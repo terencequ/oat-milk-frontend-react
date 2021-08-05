@@ -6,16 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import {SetupGlobalAxiosInterceptor} from "./api/interceptors/HttpInterceptor";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
-import {saveState} from "./redux/localStorage";
-import throttle from 'lodash.throttle';
 
 // Axios
 SetupGlobalAxiosInterceptor();
-
-// Redux
-store.subscribe(throttle(() => {
-    saveState(store.getState())
-},1000))
 
 // Redux
 ReactDOM.render(
