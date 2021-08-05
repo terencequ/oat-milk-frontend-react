@@ -13,7 +13,7 @@ import throttle from 'lodash.throttle';
 SetupGlobalAxiosInterceptor();
 
 // Redux
-store.subscribe(throttle(()=>{
+store.subscribe(throttle(() => {
     saveState(store.getState())
 },1000))
 
