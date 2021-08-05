@@ -1,7 +1,6 @@
 import React from 'react';
-import {Drawer, Link} from "@material-ui/core";
+import {Drawer, Link, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
-import NavBar from "./navbar/NavBar";
 
 interface GenericDrawerProps {
   open: boolean;
@@ -12,9 +11,19 @@ interface GenericDrawerProps {
 
 
 const StyledDrawerContents = styled.div`
-  width: 25vw;
-  max-width: 25vw;
+  width: 15vw;
+  max-width: 15vw;
 `;
+
+const StyledTypography = styled(Typography)`
+  width: 100%;
+  min-height: 64px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 
 const GenericDrawer = (p: GenericDrawerProps) => {
   const {open, setOpen, anchor, style} = p;
@@ -26,7 +35,9 @@ const GenericDrawer = (p: GenericDrawerProps) => {
   return <>
     <Drawer open={open} anchor={anchor} onClose={onClose} style={style}>
       <StyledDrawerContents>
-        <NavBar dense={true}/>
+
+        <StyledTypography variant={"h4"}>Oat Milk</StyledTypography>
+
         <Link href={"/"} underline={"none"}>Home</Link>
       </StyledDrawerContents>
     </Drawer>

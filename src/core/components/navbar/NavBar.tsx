@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {AppBar, IconButton, Theme, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, Theme, Toolbar, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import MenuIcon from '@material-ui/icons/Menu';
 import {MenuOpen} from "@material-ui/icons";
@@ -32,16 +32,6 @@ const NavBar = (p: NavBarProps) => {
 
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
 
-  if (dense)
-  {
-    return <>
-      <StyledAppBar dense={dense}>
-        <Toolbar>
-          Test
-        </Toolbar>
-      </StyledAppBar>
-    </>;
-  }
 
   return <>
     <StyledAppBar dense={dense}>
