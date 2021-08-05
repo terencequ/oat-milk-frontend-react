@@ -13,7 +13,6 @@ import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import theme from "./theme";
 import styled from "@emotion/styled";
 
-
 const StyledBody = styled.div`
   width: 90vw;
   
@@ -23,7 +22,6 @@ const StyledBody = styled.div`
 
 
 const App = () => {
-  console.log(process.env)
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>

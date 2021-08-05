@@ -12,7 +12,12 @@
                     "host": "https://localhost:5001"
                 },
                 "additionalProperties": {
-                    "apiModulePrefix": "Backend"
+                    "apiModulePrefix": "Backend",
+                    "npmName": "oat-milk-backend-sdk",
+                    "npmVersion": "1.0.0",
+                    "snapshot": false,
+                    "supportsES6": false,
+                    "modelPropertyNaming": "original"
                 }
             }
         }
