@@ -23,6 +23,9 @@ const StyledBody = styled.div`
 
 
 const App = () => {
+
+  document.title = "Oat Milk";
+
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>

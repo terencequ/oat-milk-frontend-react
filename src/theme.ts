@@ -1,15 +1,20 @@
 import {createTheme} from '@material-ui/core/styles';
 
-// A custom theme for this app
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ffcdbf',
-      dark: "#fdbc82"
+      light: '#ffe6c1',
+      main: '#ffe0b2',
+      dark: "#b29c7c"
+    },
+    secondary: {
+      light: '#f9c8d9',
+      main: '#f8bbd0',
+      dark: "#ad8291"
     },
     background: {
-      default: "#fff6ee",
-      paper: "#fdf3ea"
+      default: "#f5f5f5",
+      paper: "#f0f0f0"
     }
   }
 });
