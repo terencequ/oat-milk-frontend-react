@@ -12,7 +12,7 @@ import CharacterPage from "./core/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import theme from "./theme";
 import styled from "@emotion/styled";
-import {CharacterApi, CharacterApiAxiosParamCreator, UserApi} from "./api/backend";
+import {CharacterApi, CharacterApiAxiosParamCreator, UserApi} from "./api/clients/backend";
 
 
 const StyledBody = styled.div`

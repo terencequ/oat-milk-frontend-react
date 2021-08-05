@@ -6,8 +6,8 @@
         "generators": {
             "Backend": {
                 "generatorName": "typescript-axios",
-                "output": "./src/api/backend",
-                "inputSpec": "./openapi/backend.json",
+                "output": "./src/api/clients/backend",
+                "inputSpec": "./src/api/clients/backend.json",
                 "serverVariables": {
                     "host": "https://localhost:5001"
                 },
