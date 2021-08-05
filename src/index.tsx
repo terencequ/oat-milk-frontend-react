@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from "./reportWebVitals";
-import {SetupInterceptor} from "./api/interceptors/HttpInterceptor";
+import {SetupGlobalAxiosInterceptor} from "./api/interceptors/HttpInterceptor";
 import {Provider} from "react-redux";
 import store from "./redux/store";
+import {saveState} from "./redux/localStorage";
+import throttle from 'lodash.throttle';
 
-SetupInterceptor();
+// Axios
+SetupGlobalAxiosInterceptor();
+
+// Redux
+store.subscribe(throttle(()=>{
+    saveState(store.getState())
+},1000))
+
+// Redux
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>

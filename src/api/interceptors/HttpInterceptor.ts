@@ -3,7 +3,7 @@ import globalAxios from 'axios';
 /**
  * This will tell the global axios instance to use auth, and the correct base URL.
  */
-export function SetupInterceptor(){
+export function SetupGlobalAxiosInterceptor(){
     const baseUrl = "test";
     const authJwt = "test";
     globalAxios.interceptors.request.use(
