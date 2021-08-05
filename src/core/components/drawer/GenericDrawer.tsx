@@ -66,14 +66,14 @@ const GenericDrawer: FC<GenericDrawerProps> = p => {
 
         <List>
           {drawerButtons.map((value, i) => {
-            return <>
+            return (
               <ListItem button={true} key={i}>
                 <StyledLink href={value.link} underline={"none"}>
                   {value.icon}
                   {value.title}
                 </StyledLink>
               </ListItem>
-            </>;
+            );
             })}
         </List>
       </StyledDrawerContents>

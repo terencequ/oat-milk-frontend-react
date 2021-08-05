@@ -8,16 +8,17 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
-  OutlinedInput,
   TextField, Theme,
   Typography
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
+import {UserApi} from "../../api/clients/backend";
 
 
 
 const StyledWrap = styled.div`
   width: 100%;
+  height: 90vh;
   
   display: flex;
   flex-flow: column;
@@ -28,9 +29,6 @@ const StyledWrap = styled.div`
 
 const StyledCard = styled(Card)`
   width: 20vw;
-  height: 50vh;
-  
-  margin-top: 15vh;
   
   display: flex;
   flex-flow: column;
@@ -101,7 +99,14 @@ const LoginPage = () => {
   };
 
   const handleLogin = (e: MouseEvent<HTMLButtonElement>) => {
-
+    const api = new UserApi(undefined, process.env.REACT_APP_API_URL);
+    api.userLoginPost({
+      email: email,
+      password: password
+    })
+    .then(res => {
+      console.log(res);
+    });
   };
 
 
