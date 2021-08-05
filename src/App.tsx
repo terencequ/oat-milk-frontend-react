@@ -12,6 +12,7 @@ import CharacterPage from "./core/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import theme from "./theme";
 import styled from "@emotion/styled";
+import {CharacterApi, CharacterApiAxiosParamCreator, UserApi} from "./api/backend";
 
 
 const StyledBody = styled.div`
@@ -23,6 +24,16 @@ const StyledBody = styled.div`
 
 
 const App = () => {
+  const api = new CharacterApi();
+  api.characterGet();
+
+  const userApi = new UserApi();
+  userApi
+      .userLoginPost({email: "lol@gmail.com", password: "lmao"})
+      .then(result => {
+        console.log(result.data.authToken);
+      });
+
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
