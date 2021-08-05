@@ -23,6 +23,7 @@ const StyledBody = styled.div`
 
 
 const App = () => {
+  console.log(process.env)
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
