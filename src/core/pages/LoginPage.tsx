@@ -1,9 +1,9 @@
-import React, {ChangeEvent, MouseEvent, useState} from 'react';
+import React, {ChangeEvent, MouseEvent, useEffect, useState} from 'react';
 import styled from "@emotion/styled";
 
 import logo from "../../assets/logo-128px.png";
 import {
-  Button, Card, CardContent, Checkbox, FilledInput,
+  Button, Card, CardContent, Checkbox, CircularProgress, FilledInput,
   FormControl, FormControlLabel,
   IconButton,
   InputAdornment,
@@ -12,7 +12,10 @@ import {
   Typography
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
-import {UserApi} from "../../api/clients/backend";
+import {UserApi} from "oat-milk-backend-sdk";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import {setAuth} from "../../redux/reducers/authSlice";
+import {useHistory} from "react-router-dom";
 
 
 
@@ -78,6 +81,12 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const history = useHistory();
+
+  const dispatch = useAppDispatch();
+
 
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -99,13 +108,25 @@ const LoginPage = () => {
   };
 
   const handleLogin = (e: MouseEvent<HTMLButtonElement>) => {
+    setLoading(true);
+
     const api = new UserApi(undefined, process.env.REACT_APP_API_URL);
     api.userLoginPost({
       email: email,
       password: password
     })
     .then(res => {
-      console.log(res);
+      setLoading(false);
+
+      if (res.status !== 200)
+      {
+        // TODO: Toaster here
+        return;
+      }
+
+      if (remember) dispatch(setAuth(res.data.authToken ?? ""));
+
+      history.push("/");
     });
   };
 
@@ -157,10 +178,12 @@ const LoginPage = () => {
           </FormControl>
 
           <StyledFormControl spacing={3}>
-            <Button
-              variant={"contained"}
-              onClick={handleLogin}
-            >Login</Button>
+            {loading
+              ? <CircularProgress />
+              : <Button
+                  variant={"contained"}
+                  onClick={handleLogin}
+                >Login</Button>}
           </StyledFormControl>
 
         </StyledCardContent>
