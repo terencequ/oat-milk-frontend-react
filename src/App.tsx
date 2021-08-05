@@ -14,6 +14,8 @@ import theme from "./theme";
 import styled from "@emotion/styled";
 import PrivateRoute from "./core/components/override/PrivateRoute";
 
+
+
 const StyledBody = styled.div`
   width: 90vw;
   
@@ -22,10 +24,10 @@ const StyledBody = styled.div`
 `;
 
 
+
 const App = () => {
 
   document.title = "Oat Milk";
-  console.log(process.env)
 
   return <>
     <ThemeProvider theme={theme}>
