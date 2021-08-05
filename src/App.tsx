@@ -5,17 +5,24 @@ import {
   Route
 } from "react-router-dom";
 import './App.css';
-import NavBar from "./core/NavBar";
+import NavBar from "./core/components/navbar/NavBar";
 import HomePage from "./core/pages/HomePage";
 import LoginPage from "./core/pages/LoginPage";
 import CharacterPage from "./core/pages/CharacterPage";
-import {createTheme, CssBaseline, ThemeProvider} from "@material-ui/core";
+import {CssBaseline, ThemeProvider} from "@material-ui/core";
+import theme from "./theme";
+import styled from "@emotion/styled";
+
+
+const StyledBody = styled.div`
+  width: 90vw;
+  
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 
 const App = () => {
-
-  const theme = createTheme({});
-
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
@@ -23,20 +30,24 @@ const App = () => {
       <Router>
         <NavBar/>
 
-        <Switch>
-          <Route path={"/login"}>
-            <LoginPage/>
-          </Route>
+        <StyledBody>
+          <Switch>
+            <Route path={"/login"}>
+              <LoginPage/>
+            </Route>
 
-          <Route path={"/character"}>
-            <CharacterPage/>
-          </Route>
+            <Route path={"/character"}>
+              <CharacterPage/>
+            </Route>
 
-          <Route path={"/"}>
-            <HomePage/>
-          </Route>
-        </Switch>
+            <Route path={"/"}>
+              <HomePage/>
+            </Route>
+          </Switch>
+        </StyledBody>
+
       </Router>
+
     </ThemeProvider>
   </>;
 };
