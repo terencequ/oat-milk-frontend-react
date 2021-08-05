@@ -10,9 +10,10 @@ import HomePage from "./core/pages/HomePage";
 import LoginPage from "./core/pages/LoginPage";
 import CharacterPage from "./core/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
-import theme from "./theme";
 import styled from "@emotion/styled";
 import PrivateRoute from "./core/components/override/PrivateRoute";
+import {useAppSelector} from "./redux/hooks";
+import createAppTheme from "./theme";
 
 
 
@@ -26,6 +27,12 @@ const StyledBody = styled.div`
 
 
 const App = () => {
+
+  const darkMode = useAppSelector(state => state.darkMode.darkMode);
+  const theme = createAppTheme(darkMode);
+
+  console.log(theme);
+
 
   document.title = "Oat Milk";
 
