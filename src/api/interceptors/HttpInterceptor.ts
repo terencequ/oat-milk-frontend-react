@@ -10,9 +10,7 @@ export function SetupInterceptor(){
         async config => {
             config.baseURL = baseUrl;
             if(authJwt != null){
-                config.headers = {
-                    'Authorization': `Bearer ${authJwt}`
-                }
+                config.headers["Authorization"] = `Bearer ${authJwt}`;
             }
             return config;
         },
