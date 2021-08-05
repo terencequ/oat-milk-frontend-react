@@ -27,7 +27,6 @@ const App = () => {
   document.title = "Oat Milk";
   console.log(process.env)
 
-  
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
