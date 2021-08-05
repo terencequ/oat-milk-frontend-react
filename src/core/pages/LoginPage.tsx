@@ -80,7 +80,6 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const history = useHistory();
@@ -103,10 +102,6 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleRemember = () => {
-    setRemember(!remember);
-  };
-
   const handleLogin = (e: MouseEvent<HTMLButtonElement>) => {
     setLoading(true);
 
@@ -124,7 +119,7 @@ const LoginPage = () => {
         return;
       }
 
-      if (remember) dispatch(setAuth(res.data.authToken ?? ""));
+      dispatch(setAuth(res.data.authToken ?? ""));
 
       history.push("/");
     });
@@ -171,15 +166,9 @@ const LoginPage = () => {
             />
           </StyledFormControl>
 
-          <FormControl>
-            <FormControlLabel control={
-              <Checkbox size={"small"} value={remember} onChange={handleRemember}/>
-            } label={"Remember me"} />
-          </FormControl>
-
           <StyledFormControl spacing={3}>
             {loading
-              ? <CircularProgress />
+              ? <IconButton><CircularProgress /></IconButton>
               : <Button
                   variant={"contained"}
                   onClick={handleLogin}
