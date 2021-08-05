@@ -64,6 +64,7 @@ const NavBar: FC<NavBarProps> = (p) => {
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
 
   const darkMode = useAppSelector(state => state.darkMode.darkMode);
+  const authToken = useAppSelector(state => state.auth.authToken);
 
   const dispatch = useAppDispatch();
 
@@ -114,14 +115,17 @@ const NavBar: FC<NavBarProps> = (p) => {
               {darkMode ? "Light" : "Dark"} Mode
             </MenuItem>
 
-            <Divider/>
-
-            <MenuItem onClick={handleLogout}>
-              <StyledListItemIcon>
-                <ExitToAppIcon/>
-              </StyledListItemIcon>
-              Log out
-            </MenuItem>
+            {authToken && authToken
+              ? <>
+                <Divider/>
+                <MenuItem onClick={handleLogout}>
+                  <StyledListItemIcon>
+                    <ExitToAppIcon/>
+                  </StyledListItemIcon>
+                  Log out
+                </MenuItem>
+              </>
+              : null}
           </Menu>
         </StyledSettingsWrap>
 
