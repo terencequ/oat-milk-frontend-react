@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/drawer/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/drawer/GenericDrawer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
     </list>
-    <list id="8165aa48-dd6f-4e64-9838-17918340079c" name="Changes by there" comment="">
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-    </list>
+    <list id="8165aa48-dd6f-4e64-9838-17918340079c" name="Changes by there" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,14 +23,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/index.tsx">
-      <ranges>
-        <range start1="4" end1="5" start2="4" end2="5" changelist="d0114d68-5e41-4218-996a-a8b9cfe01bf6" />
-        <range start1="8" end1="9" start2="8" end2="9" changelist="8165aa48-dd6f-4e64-9838-17918340079c" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="1wHz8cxWNTlSiewn0hWf5jxB2of" />
   <component name="ProjectLevelVcsManager">

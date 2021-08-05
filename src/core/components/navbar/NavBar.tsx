@@ -22,7 +22,6 @@ interface NavBarProps {
   dense?: boolean;
 }
 
-
 const NavBar: FC<NavBarProps> = (p) => {
   const {dense} = p;
 

@@ -50,7 +50,6 @@ interface GenericDrawerProps {
   style?: CSSProperties;
 }
 
-
 const GenericDrawer: FC<GenericDrawerProps> = p => {
   const {open, setOpen, anchor, style} = p;
 
