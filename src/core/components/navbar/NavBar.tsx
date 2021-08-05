@@ -1,21 +1,12 @@
-import React, {useState} from 'react';
-import {AppBar, IconButton, Theme, Toolbar, Typography} from "@material-ui/core";
+import React, {FC, useState} from 'react';
+import {AppBar, IconButton, Theme, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 import MenuIcon from '@material-ui/icons/Menu';
 import {MenuOpen} from "@material-ui/icons";
-import GenericDrawer from "../GenericDrawer";
+import GenericDrawer from "../drawer/GenericDrawer";
 
 
-interface NavBarProps {
-  dense?: boolean;
-}
-
-type StyledNavBar = {
-  dense?: boolean;
-};
-
-
-const StyledAppBar = styled(AppBar)<StyledNavBar>`
+const StyledAppBar = styled(AppBar)<any>`
   background-color: ${p => {
     const thm = p.theme as Theme;
     return thm.palette.primary.main;
@@ -27,7 +18,12 @@ const StyledAppBar = styled(AppBar)<StyledNavBar>`
 `;
 
 
-const NavBar = (p: NavBarProps) => {
+interface NavBarProps {
+  dense?: boolean;
+}
+
+
+const NavBar: FC<NavBarProps> = (p) => {
   const {dense} = p;
 
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
