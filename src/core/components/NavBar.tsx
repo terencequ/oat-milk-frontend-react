@@ -9,11 +9,11 @@ import Brightness7Icon from "@material-ui/icons/Brightness7";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import GenericDrawer from "../drawer/GenericDrawer";
-import logoIcon128 from "../../../assets/logo-128px.png";
-import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {setDarkMode} from "../../../redux/reducers/darkModeSlice";
-import {setAuth} from "../../../redux/reducers/authSlice";
+import GenericDrawer from "./GenericDrawer";
+import logoIcon128 from "../../assets/logo-128px.png";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import {setDarkMode} from "../../redux/reducers/darkModeSlice";
+import {setAuth} from "../../redux/reducers/authSlice";
 
 
 
