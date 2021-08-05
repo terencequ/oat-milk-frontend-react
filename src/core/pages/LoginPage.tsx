@@ -1,4 +1,4 @@
-import React, {ChangeEvent, MouseEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, MouseEvent, useEffect, useState} from 'react';
 import styled from "@emotion/styled";
 
 import logo from "../../assets/logo-128px.png";
@@ -75,7 +75,7 @@ const StyledFormControl = styled(FormControl)<StyledFormControlProps>`
 
 
 
-const LoginPage = () => {
+const LoginPage: FC = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
