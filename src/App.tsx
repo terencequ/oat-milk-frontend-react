@@ -12,7 +12,6 @@ import CharacterPage from "./core/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import theme from "./theme";
 import styled from "@emotion/styled";
-import {CharacterApi, CharacterApiAxiosParamCreator, UserApi} from "./api/clients/backend";
 
 
 const StyledBody = styled.div`
@@ -24,6 +23,7 @@ const StyledBody = styled.div`
 
 
 const App = () => {
+  console.log(process.env)
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>

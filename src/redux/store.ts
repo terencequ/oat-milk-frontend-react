@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from "./reducers/authSlice";
-const store = configureStore({
+export const store = configureStore({
     reducer: {
         auth: authReducer
     },
+    devTools: process.env.NODE_ENV !== 'production' // this is not related to the .env.prod, just the npm run build version
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch

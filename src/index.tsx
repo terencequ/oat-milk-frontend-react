@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from "./reportWebVitals";
 import {SetupGlobalAxiosInterceptor} from "./api/interceptors/HttpInterceptor";
 import {Provider} from "react-redux";
-import store from "./redux/store";
+import {store} from "./redux/store";
 import {saveState} from "./redux/localStorage";
 import throttle from 'lodash.throttle';
 

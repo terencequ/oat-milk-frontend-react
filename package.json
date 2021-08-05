@@ -15,6 +15,7 @@
     "@types/node": "^12.20.19",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
+    "env-cmd": "^10.1.0",
     "lodash.throttle": "^4.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -27,7 +28,9 @@
   "scripts": {
     "generate:api": "openapi-generator-cli generate",
     "start": "react-scripts start",
+    "start:prod": "env-cmd -f .env.prod react-scripts start",
     "build": "react-scripts build",
+    "build:prod": "env-cmd -f .env.prod npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
