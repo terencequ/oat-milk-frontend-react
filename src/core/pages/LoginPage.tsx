@@ -1,10 +1,10 @@
-import React, {ChangeEvent, FC, MouseEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, MouseEvent, useState} from 'react';
 import styled from "@emotion/styled";
 
 import logo from "../../assets/logo-128px.png";
 import {
-  Button, Card, CardContent, Checkbox, CircularProgress, FilledInput,
-  FormControl, FormControlLabel,
+  Button, Card, CardContent, CircularProgress, FilledInput,
+  FormControl,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {UserApi} from "oat-milk-backend-sdk";
-import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import {useAppDispatch} from "../../redux/hooks";
 import {setAuth} from "../../redux/reducers/authSlice";
 import {useHistory} from "react-router-dom";
 

@@ -3,6 +3,7 @@ import {Typography} from "@material-ui/core";
 
 
 const HomePage: FC = () => {
+
   return <>
     <Typography variant={"h1"}>HomePage</Typography>
   </>;

@@ -12,6 +12,7 @@ import CharacterPage from "./core/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import theme from "./theme";
 import styled from "@emotion/styled";
+import PrivateRoute from "./core/components/override/PrivateRoute";
 
 const StyledBody = styled.div`
   width: 90vw;
@@ -39,13 +40,13 @@ const App = () => {
               <LoginPage/>
             </Route>
 
-            <Route path={"/character"}>
+            <PrivateRoute path={"/character"}>
               <CharacterPage/>
-            </Route>
+            </PrivateRoute>
 
-            <Route path={"/"}>
+            <PrivateRoute path={"/"}>
               <HomePage/>
-            </Route>
+            </PrivateRoute>
           </Switch>
         </StyledBody>
 
