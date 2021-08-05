@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/backend.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
-    <property name="ts.external.directory.path" value="E:\Projects\Misc\oat-milk-frontend-react\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\there\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\212.4746.80\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
