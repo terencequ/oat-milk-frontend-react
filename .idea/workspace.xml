@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/LeftNav.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/TopNav.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/pages/CharacterPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/TopNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/NavBar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +27,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1wHz8cxWNTlSiewn0hWf5jxB2of" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -33,13 +38,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core/pages" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
-    <property name="ts.external.directory.path" value="C:\Users\TerenceQu\Documents\Code - Personal\oat-milk-frontend-react\node_modules\typescript\lib" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
+    <property name="ts.external.directory.path" value="E:\Projects\Misc\oat-milk-frontend-react\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\pages" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
@@ -62,6 +72,8 @@
       <option name="presentableId" value="Default" />
       <updated>1628130145743</updated>
       <workItem from="1628130149006" duration="2312000" />
+      <workItem from="1628132820279" duration="840000" />
+      <workItem from="1628133671592" duration="72000" />
     </task>
     <servers />
   </component>
@@ -78,6 +90,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
