@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducers/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/authSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.ts" afterDir="false" />
     </list>
     <list id="8165aa48-dd6f-4e64-9838-17918340079c" name="Changes by there" comment="" />
@@ -16,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -90,7 +90,6 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c641d220-af17-44fd-b711-8cbdd1bf21d8" name="Changes" comment="" />
       <created>1628130145743</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -100,6 +99,7 @@
       <workItem from="1628133671592" duration="2484000" />
       <workItem from="1628136167105" duration="10090000" />
       <workItem from="1628160382786" duration="96000" />
+      <workItem from="1628200147263" duration="3573000" />
     </task>
     <servers />
   </component>
