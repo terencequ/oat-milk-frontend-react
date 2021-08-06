@@ -1,5 +1,5 @@
 import React, {CSSProperties, FC, ReactElement} from 'react';
-import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@material-ui/core";
+import {Divider, Drawer, List, ListItem, ListItemText} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import LogoDense from "./logo/LogoDense";

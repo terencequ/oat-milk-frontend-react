@@ -2,13 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/components/characters/Effects.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/.openapi-generator-ignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/.openapi-generator-ignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/base.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/configuration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/git_push.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/git_push.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/clients/backend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/backend/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/NavBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/logo/LogoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/logo/LogoDense.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.ts" afterDir="false" />
     </list>
     <list id="8165aa48-dd6f-4e64-9838-17918340079c" name="Changes by there" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +32,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -40,7 +53,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/redux/reducers" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JavaScript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core/components/characters" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -50,6 +64,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\characters" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\redux\reducers" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\navbar" />
@@ -102,7 +117,7 @@
       <workItem from="1628133671592" duration="2484000" />
       <workItem from="1628136167105" duration="10090000" />
       <workItem from="1628160382786" duration="96000" />
-      <workItem from="1628200147263" duration="17321000" />
+      <workItem from="1628200147263" duration="23860000" />
     </task>
     <servers />
   </component>

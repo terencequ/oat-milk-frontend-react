@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Card, CardContent, Divider, Typography} from "@material-ui/core";
+import {CardContent, Divider, Typography} from "@material-ui/core";
 import {CharacterDenseType} from "../components/characters/CharacterInfoBasicTypes";
 import CharacterInfoDense from "../components/characters/CharacterInfoDense";
 import logoIcon128 from "../../assets/logo-128px.png";
@@ -150,7 +150,7 @@ const HomePage: FC = () => {
         <StyledCharactersText variant={"h3"}>Characters ({String(characters.length).padStart(2, '0')})</StyledCharactersText>
 
         <StyledDenseWrap>
-          {characters.map(value => <CharacterInfoDense key={value.id} chctr={value}/>)}
+          {characters.map((value, i) => <CharacterInfoDense key={i} chctr={value}/>)}
         </StyledDenseWrap>
       </StyledCardContent>
     </StyledSection>

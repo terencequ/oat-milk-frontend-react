@@ -110,7 +110,7 @@ const NavBar: FC<NavBarProps> = (p) => {
             </MenuItem>
 
             {authToken && authToken
-              ? <>
+              ? <div>
                 <Divider/>
                 <MenuItem onClick={handleLogout}>
                   <StyledListItemIcon>
@@ -118,7 +118,7 @@ const NavBar: FC<NavBarProps> = (p) => {
                   </StyledListItemIcon>
                   Log out
                 </MenuItem>
-              </>
+              </div>
               : null}
           </Menu>
         </StyledSettingsWrap>

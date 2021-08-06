@@ -35,6 +35,8 @@ const StyledClassIconWrap = styled.div`
 const StyledClassIcon = styled.img<{numIcons: number}>`
   max-height: ${p => (128 - (p.numIcons * 8)).toString() + "px"};
   max-width: ${p => (128 - (p.numIcons * 8)).toString() + "px"};
+  
+  width: 4vw;
 `;
 
 const StyledLinearProgress = styled(LinearProgress)`
@@ -62,7 +64,7 @@ const CharacterInfoDense: FC<CharacterInfoBasicProp> = ({chctr, style}) => {
         <StyledTypography variant={"h4"}>{chctr.name}</StyledTypography>
 
         <StyledClassIconWrap>
-          {chctr.classImage.map(value => <StyledClassIcon src={value} numIcons={chctr.classImage.length}/>)}
+          {chctr.classImage.map((value, i) => <StyledClassIcon key={i} src={value} numIcons={chctr.classImage.length}/>)}
         </StyledClassIconWrap>
 
         <div>
