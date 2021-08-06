@@ -118,7 +118,7 @@ const LoginPage: FC = () => {
 
       dispatch(setAuth(res.data.authToken ?? ""));
 
-      // This is worse than using history.push, but this guarantees the page will be refreshed
+      // This is worse than using history.push, but guarantees the page will be refreshed
       window.location.href = "/";
     });
   };

@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, Divider, IconButton, Menu, MenuItem, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Divider, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -10,10 +10,10 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import GenericDrawer from "./GenericDrawer";
-import logoIcon128 from "../../assets/logo-128px.png";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 import {setDarkMode} from "../../redux/reducers/darkModeSlice";
 import {setAuth} from "../../redux/reducers/authSlice";
+import LogoDense from "./logo/LogoDense";
 
 
 
@@ -31,11 +31,6 @@ const StyledLogoWrap = styled.div`
   justify-content: center;
   
   margin-left: 1vw;
-`;
-
-const StyledLogo = styled.img`
-  max-height: 32px;
-  max-width: 32px;
 `;
 
 
@@ -100,8 +95,7 @@ const NavBar: FC<NavBarProps> = (p) => {
         </IconButton>
 
         <StyledLogoWrap>
-          <StyledLogo src={logoIcon128}/>
-          <Typography variant={"h6"}>Oat Milk</Typography>
+          <LogoDense/>
         </StyledLogoWrap>
 
         <StyledSettingsWrap>

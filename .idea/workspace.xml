@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/components/logo/LogoDense.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/navbar/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.ts" afterDir="false" />
     </list>
     <list id="8165aa48-dd6f-4e64-9838-17918340079c" name="Changes by there" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,10 +59,10 @@
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\assets" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\public" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\drawer" />
-      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\navbar" />
     </key>
   </component>
@@ -98,7 +105,7 @@
       <workItem from="1628133671592" duration="2484000" />
       <workItem from="1628136167105" duration="10090000" />
       <workItem from="1628160382786" duration="96000" />
-      <workItem from="1628200147263" duration="3782000" />
+      <workItem from="1628200147263" duration="11501000" />
     </task>
     <servers />
   </component>
