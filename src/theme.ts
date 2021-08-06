@@ -3,6 +3,8 @@ import {createTheme} from "@material-ui/core/styles";
 
 const createAppTheme = (darkMode: boolean = true) =>
 {
+  const fontFamily = "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif";
+
   return createTheme({
     palette: {
       mode: darkMode ? "dark" : "light",
@@ -22,24 +24,24 @@ const createAppTheme = (darkMode: boolean = true) =>
       }
     },
     typography: {
-      fontFamily: "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+      fontFamily: fontFamily,
       h1: {
-        fontFamily: "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+        fontFamily: fontFamily
       },
       h2: {
-        fontFamily: "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+        fontFamily: fontFamily
       },
       h3: {
-        fontFamily: "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+        fontFamily: fontFamily
       },
       h4: {
-        fontFamily: "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+        fontFamily: fontFamily
       },
       h5: {
-        fontFamily: "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+        fontFamily: fontFamily
       },
       h6: {
-        fontFamily: "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif"
+        fontFamily: fontFamily
       }
     }
   });

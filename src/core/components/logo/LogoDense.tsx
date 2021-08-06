@@ -1,8 +1,15 @@
 import {Typography} from "@material-ui/core";
-import React, {FC} from "react";
+import React, {CSSProperties, FC} from "react";
 import styled from "@emotion/styled";
 import logoIcon128 from "../../../assets/logo-128px.png";
 
+
+
+const StyledLogoDenseWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const StyledLogo = styled.img`
   max-height: 32px;
@@ -14,12 +21,12 @@ const StyledLogoText = styled(Typography)`
   padding-top: 0.2rem;
 `;
 
-const LogoDense: FC = () => {
+const LogoDense: FC<{style?: CSSProperties}> = ({style}) => {
 
-  return <>
+  return <StyledLogoDenseWrap style={style}>
     <StyledLogo src={logoIcon128}/>
     <StyledLogoText variant={"h6"}>Oat Milk</StyledLogoText>
-  </>;
+  </StyledLogoDenseWrap>;
 };
 
 
