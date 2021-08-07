@@ -28,7 +28,6 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "generate:api": "openapi-generator-cli generate",
     "start": "react-scripts start",
     "start:prod": "env-cmd -f .env.prod react-scripts start",
     "build": "react-scripts build",

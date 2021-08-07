@@ -7,7 +7,7 @@ type TParams = { id: string; };
 
 const CharacterPage: FC = () => {
 
-  const { id } = useParams<TParams>();
+  //const { id } = useParams<TParams>(); // I have commented this out because an unused variable makes the pipeline break
 
   return <>
     <Typography variant={"h1"}>CharacterPage</Typography>
