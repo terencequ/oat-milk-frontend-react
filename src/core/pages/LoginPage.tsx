@@ -15,6 +15,7 @@ import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {UserApi} from "oat-milk-backend-sdk";
 import {useAppDispatch} from "../../redux/hooks";
 import {setAuth} from "../../redux/reducers/authSlice";
+import {useHistory} from "react-router-dom";
 
 
 
@@ -82,6 +83,7 @@ const LoginPage: FC = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useAppDispatch();
+  const history = useHistory();
 
 
 
@@ -118,8 +120,7 @@ const LoginPage: FC = () => {
 
       dispatch(setAuth(res.data.authToken ?? ""));
 
-      // This is worse than using history.push, but guarantees the page will be refreshed
-      window.location.href = "/";
+      history.push("/");
     });
   };
 

@@ -1,4 +1,4 @@
-import React, {FC, MouseEvent, useState} from 'react';
+import React, {FC, MouseEvent, useEffect, useState} from 'react';
 import {AppBar, Divider, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
@@ -62,6 +62,12 @@ const NavBar: FC<NavBarProps> = (p) => {
   const authToken = useAppSelector(state => state.auth.authToken);
 
   const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+
+  }, []);
+
 
 
   const handleToggleLeftDrawer = (e: MouseEvent<HTMLButtonElement>) => {

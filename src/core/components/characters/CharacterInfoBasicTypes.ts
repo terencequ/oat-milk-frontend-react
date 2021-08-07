@@ -8,7 +8,7 @@ export type CharacterDenseType = {
   nextExpRequirement: number;
   classImage: string[];
   alive: boolean;
-  id: number;
+  id: string;
 };
 
 export type CharacterInfoBasicProp = {

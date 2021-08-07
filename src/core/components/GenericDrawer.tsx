@@ -2,7 +2,9 @@ import React, {CSSProperties, FC, ReactElement} from 'react';
 import {Divider, Drawer, List, ListItem, ListItemText} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
+import AddIcon from '@material-ui/icons/Add';
 import LogoDense from "./logo/LogoDense";
+import {useHistory} from "react-router-dom";
 
 
 const StyledDrawerContents = styled.div`
@@ -31,6 +33,11 @@ const drawerButtons: DrawerButton[] = [
     path: "/",
     title: "Home",
     icon: <HomeIcon/>
+  },
+  {
+    path: "/create",
+    title: "New Character",
+    icon: <AddIcon/>
   }
 ];
 
@@ -42,8 +49,8 @@ interface GenericDrawerProps {
   style?: CSSProperties;
 }
 
-const GenericDrawer: FC<GenericDrawerProps> = p => {
-  const {open, setOpen, anchor, style} = p;
+const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) => {
+  const history = useHistory();
 
   const onClose = () => {
     setOpen(false);
@@ -51,7 +58,8 @@ const GenericDrawer: FC<GenericDrawerProps> = p => {
 
   const handleNavigate = (path: string) => {
     return () => {
-      window.location.href = path;
+      onClose();
+      history.push(path);
     };
   };
 

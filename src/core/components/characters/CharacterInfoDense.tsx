@@ -1,27 +1,14 @@
 import {FC} from "react";
 import {CharacterInfoBasicProp} from "./CharacterInfoBasicTypes";
-import {Card, CardContent, LinearProgress, Typography} from "@material-ui/core";
+import {LinearProgress, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
+import GenericDense from "../GenericDense";
 
 
-
-const StyledCard = styled(Card)`
-  width: 15vw;
-  height: 15vw;
-  
-  margin: 0.5vw 1vw;
-`;
 
 const StyledTypography = styled(Typography)`
   text-align: center;
   font-size: 1.5vw;
-`;
-
-const StyledCardContent = styled(CardContent)`
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  height: inherit;
 `;
 
 
@@ -47,7 +34,6 @@ const StyledLinearProgress = styled(LinearProgress)`
 
 
 const CharacterInfoDense: FC<CharacterInfoBasicProp> = ({chctr, style}) => {
-  console.log(chctr);
 
   const pctToLevelUp = (exp: number, lastExpRequirement: number, nextExpRequirement: number) => {
     const flatCurrent = exp - lastExpRequirement;
@@ -59,20 +45,18 @@ const CharacterInfoDense: FC<CharacterInfoBasicProp> = ({chctr, style}) => {
   };
 
   return <>
-    <StyledCard variant={"outlined"} style={style}>
-      <StyledCardContent>
-        <StyledTypography variant={"h4"}>{chctr.name}</StyledTypography>
+    <GenericDense>
+      <StyledTypography variant={"h4"}>{chctr.name}</StyledTypography>
 
-        <StyledClassIconWrap>
-          {chctr.classImage.map((value, i) => <StyledClassIcon key={i} src={value} numIcons={chctr.classImage.length}/>)}
-        </StyledClassIconWrap>
+      <StyledClassIconWrap>
+        {chctr.classImage.map((value, i) => <StyledClassIcon key={i} src={value} numIcons={chctr.classImage.length}/>)}
+      </StyledClassIconWrap>
 
-        <div>
-          <StyledTypography variant={"subtitle1"}>Level {chctr.level}</StyledTypography>
-          <StyledLinearProgress variant={"determinate"} value={100 * pctToLevelUp(chctr.exp, chctr.lastExpRequirement, chctr.nextExpRequirement)}/>
-        </div>
-      </StyledCardContent>
-    </StyledCard>
+      <div>
+        <StyledTypography variant={"subtitle1"}>Level {chctr.level}</StyledTypography>
+        <StyledLinearProgress variant={"determinate"} value={100 * pctToLevelUp(chctr.exp, chctr.lastExpRequirement, chctr.nextExpRequirement)}/>
+      </div>
+    </GenericDense>
   </>;
 };
 

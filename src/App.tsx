@@ -14,6 +14,7 @@ import styled from "@emotion/styled";
 import PrivateRoute from "./core/components/override/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";
 import createAppTheme from "./theme";
+import CreateCharacterPage from "./core/pages/CreateCharacterPage";
 
 
 
@@ -49,8 +50,12 @@ const App = () => {
               <LoginPage/>
             </Route>
 
-            <PrivateRoute path={"/character"}>
+            <PrivateRoute path={"/character=:id"}>
               <CharacterPage/>
+            </PrivateRoute>
+
+            <PrivateRoute path={"/create"}>
+              <CreateCharacterPage/>
             </PrivateRoute>
 
             <PrivateRoute path={"/"}>

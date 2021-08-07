@@ -1,13 +1,15 @@
-import React, {FC} from 'react';
-import {CardContent, Divider, Typography} from "@material-ui/core";
+import React, {FC, useEffect, useState} from 'react';
+import {CardContent, CircularProgress, Divider, Typography} from "@material-ui/core";
 import {CharacterDenseType} from "../components/characters/CharacterInfoBasicTypes";
 import CharacterInfoDense from "../components/characters/CharacterInfoDense";
 import logoIcon128 from "../../assets/logo-128px.png";
 import styled from "@emotion/styled";
+import {CharacterApi} from "oat-milk-backend-sdk";
+import CharacterAdd from "../components/characters/CharacterAdd";
 
 
 
-const characters: CharacterDenseType[] = [
+const safeCharacters: CharacterDenseType[] = [
   {
     name: "Riven 'Mooneater' Akala",
     level: 4,
@@ -16,7 +18,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 3000,
     classImage: [logoIcon128],
     alive: true,
-    id: 42
+    id: "42"
   },
   {
     name: "Wizard",
@@ -26,7 +28,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 3,
     classImage: [logoIcon128],
     alive: false,
-    id: 2
+    id: "2"
   },
   {
     name: "Chug the Weaver of Death",
@@ -36,7 +38,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 9999999,
     classImage: [logoIcon128, logoIcon128, logoIcon128],
     alive: false,
-    id: 0
+    id: "0"
   },
   {
     name: "Elijah Steelhammer",
@@ -46,7 +48,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 100,
     classImage: [logoIcon128, logoIcon128, logoIcon128],
     alive: true,
-    id: 0
+    id: "0"
   },
   {
     name: "Babboon in a Trenchcoat",
@@ -56,7 +58,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 0,
     classImage: [logoIcon128],
     alive: true,
-    id: 18
+    id: "18"
   },
   {
     name: "Babboon in a Trenchcoat",
@@ -66,7 +68,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 0,
     classImage: [logoIcon128],
     alive: true,
-    id: 19
+    id: "19"
   },
   {
     name: "Babboon in a Trenchcoat",
@@ -76,7 +78,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 0,
     classImage: [logoIcon128],
     alive: true,
-    id: 20
+    id: "20"
   },
   {
     name: "Babboon in a Trenchcoat",
@@ -86,7 +88,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 0,
     classImage: [logoIcon128],
     alive: true,
-    id: 21
+    id: "21"
   },
   {
     name: "Babboon in a Trenchcoat",
@@ -96,7 +98,7 @@ const characters: CharacterDenseType[] = [
     nextExpRequirement: 0,
     classImage: [logoIcon128],
     alive: true,
-    id: 22
+    id: "22"
   },
 ];
 
@@ -130,6 +132,15 @@ const StyledCharactersText = styled(Typography)`
   padding-bottom: 0.5vw;
 `;
 
+
+const StyledCircularProgressWrap = styled.div`
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const StyledDenseWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -141,17 +152,70 @@ const StyledDenseWrap = styled.div`
 
 const HomePage: FC = () => {
 
+  const [characters, setCharacters] = useState<CharacterDenseType[] | undefined>(safeCharacters);
+
+  const getCharacters = async () => {
+    try {
+      let res = await new CharacterApi(undefined, process.env.REACT_APP_API_URL).characterGet()
+
+      if (res.status !== 200) {
+        // TODO: Toaster here
+      }
+
+      let newCharactersFull = res.data.items ?? [];
+
+      if (res.data.hasNextPage) {
+        // TODO: Sort this out later
+        // Recursive sub-function?
+      }
+
+      let newCharactersDense: CharacterDenseType[] = [];
+      newCharactersFull.forEach(value => {
+        const newDense: CharacterDenseType = {
+          alive: (value.attributes?.filter(val => val.id === "hitPoints")[0].currentValue ?? 0) > 0 ?? true,
+          classImage: [],
+          exp: value.attributes?.filter(val => val.id === "experience")[0].currentValue ?? 0,
+          id: value.id ?? "MISSING_ID",
+          lastExpRequirement: 0,
+          level: 0,
+          name: value.name ?? "",
+          nextExpRequirement: 0
+        };
+
+        newCharactersDense.push(newDense);
+      });
+
+      setCharacters(newCharactersDense);
+    } catch (err) {
+      // TODO: Toaster here
+    }
+  };
+
+
+  useEffect(() => {
+    getCharacters().then();
+  }, []);
+
+
   return <>
     <StyledSection>
       <StyledHeroText variant={"h1"}>Welcome patrons,<br/>new and old</StyledHeroText>
 
       <StyledCardContent>
         <StyledDivider/>
-        <StyledCharactersText variant={"h3"}>Characters ({String(characters.length).padStart(2, '0')})</StyledCharactersText>
+        <StyledCharactersText variant={"h3"}>Characters ({characters !== undefined ? characters.length : "0"})</StyledCharactersText>
 
-        <StyledDenseWrap>
-          {characters.map((value, i) => <CharacterInfoDense key={i} chctr={value}/>)}
-        </StyledDenseWrap>
+        {characters === undefined
+          ? <StyledCircularProgressWrap>
+              <CircularProgress size={100}/>
+            </StyledCircularProgressWrap>
+          : <>
+            <StyledDenseWrap>
+              {characters.map((value, i) => <CharacterInfoDense key={i} chctr={value}/>)}
+              <CharacterAdd/>
+            </StyledDenseWrap>
+          </>}
+
       </StyledCardContent>
     </StyledSection>
   </>;
