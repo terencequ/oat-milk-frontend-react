@@ -60,13 +60,9 @@ const NavBar: FC<NavBarProps> = (p) => {
 
   const darkMode = useAppSelector(state => state.darkMode.darkMode);
   const authToken = useAppSelector(state => state.auth.authToken);
+  const isLoggedIn = authToken !== undefined && authToken !== null;
 
   const dispatch = useAppDispatch();
-
-
-  useEffect(() => {
-
-  }, []);
 
 
 
@@ -96,9 +92,11 @@ const NavBar: FC<NavBarProps> = (p) => {
     <StyledAppBar dense={dense}>
       <Toolbar>
 
-        <IconButton onClick={handleToggleLeftDrawer}>
-          {leftDrawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
-        </IconButton>
+        {isLoggedIn
+          ? <IconButton onClick={handleToggleLeftDrawer}>
+              {leftDrawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
+            </IconButton>
+          : null}
 
         <StyledLogoWrap>
           <LogoDense/>
@@ -115,16 +113,16 @@ const NavBar: FC<NavBarProps> = (p) => {
               {darkMode ? "Light" : "Dark"} Mode
             </MenuItem>
 
-            {authToken && authToken
-              ? <div>
-                <Divider/>
-                <MenuItem onClick={handleLogout}>
-                  <StyledListItemIcon>
-                    <ExitToAppIcon/>
-                  </StyledListItemIcon>
-                  Log out
-                </MenuItem>
-              </div>
+            {isLoggedIn
+              ? <>
+                  <Divider/>
+                  <MenuItem onClick={handleLogout}>
+                    <StyledListItemIcon>
+                      <ExitToAppIcon/>
+                    </StyledListItemIcon>
+                    Log out
+                  </MenuItem>
+                </>
               : null}
           </Menu>
         </StyledSettingsWrap>

@@ -33,7 +33,7 @@ const StyledLinearProgress = styled(LinearProgress)`
 `;
 
 
-const CharacterInfoDense: FC<CharacterInfoBasicProp> = ({chctr, style}) => {
+const CharacterInfoDense: FC<CharacterInfoBasicProp> = ({denseCharacter, style}) => {
 
   const pctToLevelUp = (exp: number, lastExpRequirement: number, nextExpRequirement: number) => {
     const flatCurrent = exp - lastExpRequirement;
@@ -46,15 +46,15 @@ const CharacterInfoDense: FC<CharacterInfoBasicProp> = ({chctr, style}) => {
 
   return <>
     <GenericDense>
-      <StyledTypography variant={"h4"}>{chctr.name}</StyledTypography>
+      <StyledTypography variant={"h4"}>{denseCharacter.name}</StyledTypography>
 
       <StyledClassIconWrap>
-        {chctr.classImage.map((value, i) => <StyledClassIcon key={i} src={value} numIcons={chctr.classImage.length}/>)}
+        {/*{denseCharacter.classImage.map((value, i) => <StyledClassIcon key={i} src={value} numIcons={denseCharacter.classImage.length}/>)}*/}
       </StyledClassIconWrap>
 
       <div>
-        <StyledTypography variant={"subtitle1"}>Level {chctr.level}</StyledTypography>
-        <StyledLinearProgress variant={"determinate"} value={100 * pctToLevelUp(chctr.exp, chctr.lastExpRequirement, chctr.nextExpRequirement)}/>
+        <StyledTypography variant={"subtitle1"}>Level {denseCharacter.level}</StyledTypography>
+        <StyledLinearProgress variant={"determinate"} value={100 * pctToLevelUp(denseCharacter.experience ?? 0, denseCharacter.previousLevelExperienceRequirement ?? 0, denseCharacter.nextLevelExperienceRequirement ?? 0)}/>
       </div>
     </GenericDense>
   </>;

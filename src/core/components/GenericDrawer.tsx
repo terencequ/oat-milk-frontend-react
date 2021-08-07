@@ -1,10 +1,11 @@
 import React, {CSSProperties, FC, ReactElement} from 'react';
-import {Divider, Drawer, List, ListItem, ListItemText} from "@material-ui/core";
+import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
 import LogoDense from "./logo/LogoDense";
 import {useHistory} from "react-router-dom";
+
 
 
 const StyledDrawerContents = styled.div`
@@ -20,6 +21,11 @@ const StyledListItemText = styled(ListItemText)`
   align-items: center;
   justify-content: left;
 `;
+
+const StyledTypography = styled(Typography)`
+  margin-left: 0.3rem;
+`;
+
 
 
 interface DrawerButton {
@@ -40,6 +46,7 @@ const drawerButtons: DrawerButton[] = [
     icon: <AddIcon/>
   }
 ];
+
 
 
 interface GenericDrawerProps {
@@ -74,9 +81,9 @@ const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) =
           {drawerButtons.map((value, i) => {
             return (
               <ListItem button={true} key={i}>
-                <StyledListItemText onClick={handleNavigate(value.path)}>
+                <StyledListItemText onClick={handleNavigate(value.path)} disableTypography={true}>
                   {value.icon}
-                  {value.title}
+                  <StyledTypography variant={"body1"}>{value.title}</StyledTypography>
                 </StyledListItemText>
               </ListItem>
             );

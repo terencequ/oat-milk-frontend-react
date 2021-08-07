@@ -12,7 +12,7 @@ import {
   Typography
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
-import {UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {CharacterApi, UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {useAppDispatch} from "../../redux/hooks";
 import {setAuth} from "../../redux/reducers/authSlice";
 import {useHistory} from "react-router-dom";
@@ -74,6 +74,13 @@ const StyledFormControl = styled(FormControl)<StyledFormControlProps>`
 `;
 
 
+const StyledCircularProgressWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+
 
 const LoginPage: FC = () => {
 
@@ -94,6 +101,11 @@ const LoginPage: FC = () => {
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
+    if (value.slice(value.length-1) === "\n")
+    {
+      handleLogin();
+      return;
+    }
     if (value !== password) setPassword(value);
   };
 
@@ -101,7 +113,7 @@ const LoginPage: FC = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = (e?: MouseEvent<HTMLButtonElement>) => {
     setLoading(true);
 
     const api = new UserApi(undefined, process.env.REACT_APP_API_URL);
@@ -123,6 +135,7 @@ const LoginPage: FC = () => {
       history.push("/");
     });
   };
+
 
 
   return <>
@@ -167,7 +180,9 @@ const LoginPage: FC = () => {
 
           <StyledFormControl spacing={3}>
             {loading
-              ? <IconButton><CircularProgress /></IconButton>
+              ? <StyledCircularProgressWrap>
+                  <CircularProgress />
+                </StyledCircularProgressWrap>
               : <Button
                   variant={"contained"}
                   onClick={handleLogin}
