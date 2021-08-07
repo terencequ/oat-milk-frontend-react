@@ -1,8 +1,10 @@
 import React, {CSSProperties, FC, ReactElement} from 'react';
-import {Divider, Drawer, Link, List, ListItem, Typography} from "@material-ui/core";
+import {Divider, Drawer, List, ListItem, ListItemText} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
-
+import AddIcon from '@material-ui/icons/Add';
+import LogoDense from "./logo/LogoDense";
+import {useHistory} from "react-router-dom";
 
 
 const StyledDrawerContents = styled.div`
@@ -10,16 +12,8 @@ const StyledDrawerContents = styled.div`
   max-width: 15vw;
 `;
 
-const StyledTypography = styled(Typography)`
-  width: 100%;
-  min-height: 64px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
-const StyledLink = styled(Link)`
+const StyledListItemText = styled(ListItemText)`
   width: 100%;
 
   display: flex;
@@ -29,16 +23,21 @@ const StyledLink = styled(Link)`
 
 
 interface DrawerButton {
-  link: string;
+  path: string;
   title: string;
   icon: ReactElement;
 }
 
 const drawerButtons: DrawerButton[] = [
   {
-    link: "/",
+    path: "/",
     title: "Home",
     icon: <HomeIcon/>
+  },
+  {
+    path: "/create",
+    title: "New Character",
+    icon: <AddIcon/>
   }
 ];
 
@@ -50,28 +49,35 @@ interface GenericDrawerProps {
   style?: CSSProperties;
 }
 
-const GenericDrawer: FC<GenericDrawerProps> = p => {
-  const {open, setOpen, anchor, style} = p;
+const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) => {
+  const history = useHistory();
 
   const onClose = () => {
     setOpen(false);
+  };
+
+  const handleNavigate = (path: string) => {
+    return () => {
+      onClose();
+      history.push(path);
+    };
   };
 
   return <>
     <Drawer open={open} anchor={anchor} onClose={onClose} style={style}>
       <StyledDrawerContents>
 
-        <StyledTypography variant={"h5"}>Oat Milk</StyledTypography>
+        <LogoDense style={{minHeight: "64px"}}/>
         <Divider/>
 
         <List>
           {drawerButtons.map((value, i) => {
             return (
               <ListItem button={true} key={i}>
-                <StyledLink href={value.link} underline={"none"}>
+                <StyledListItemText onClick={handleNavigate(value.path)}>
                   {value.icon}
                   {value.title}
-                </StyledLink>
+                </StyledListItemText>
               </ListItem>
             );
             })}

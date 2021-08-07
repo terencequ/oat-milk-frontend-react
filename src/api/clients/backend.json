@@ -432,17 +432,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthTokenResponse"
+                  "$ref": "#/components/schemas/UserAuthTokenResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthTokenResponse"
+                  "$ref": "#/components/schemas/UserAuthTokenResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthTokenResponse"
+                  "$ref": "#/components/schemas/UserAuthTokenResponse"
                 }
               }
             }
@@ -500,17 +500,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthTokenResponse"
+                  "$ref": "#/components/schemas/UserAuthTokenResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthTokenResponse"
+                  "$ref": "#/components/schemas/UserAuthTokenResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthTokenResponse"
+                  "$ref": "#/components/schemas/UserAuthTokenResponse"
                 }
               }
             }
@@ -590,6 +590,97 @@
   },
   "components": {
     "schemas": {
+      "CharacterAttributeResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentValue": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "defaultValue": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CharacterAbilityScoreProficiencyResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficient": {
+            "type": "boolean"
+          },
+          "expertise": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CharacterAbilityScoreResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "proficient": {
+            "type": "boolean"
+          },
+          "expertise": {
+            "type": "boolean"
+          },
+          "proficiencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterAbilityScoreProficiencyResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CharacterDescriptionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CharacterResponse": {
         "type": "object",
         "properties": {
@@ -609,142 +700,25 @@
             "type": "string",
             "nullable": true
           },
-          "experience": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "strength": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dexterity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "constitution": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "intelligence": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "wisdom": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "charisma": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "armorClass": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "initiative": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "speedInFt": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "currentHitPoints": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "maxHitPoints": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "deathSaveSuccesses": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "deathSaveFailures": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "acrobatics": {
-            "type": "boolean"
-          },
-          "animalHandling": {
-            "type": "boolean"
-          },
-          "arcana": {
-            "type": "boolean"
-          },
-          "athletics": {
-            "type": "boolean"
-          },
-          "deception": {
-            "type": "boolean"
-          },
-          "history": {
-            "type": "boolean"
-          },
-          "insight": {
-            "type": "boolean"
-          },
-          "intimidation": {
-            "type": "boolean"
-          },
-          "investigation": {
-            "type": "boolean"
-          },
-          "medicine": {
-            "type": "boolean"
-          },
-          "nature": {
-            "type": "boolean"
-          },
-          "perception": {
-            "type": "boolean"
-          },
-          "performance": {
-            "type": "boolean"
-          },
-          "persuasion": {
-            "type": "boolean"
-          },
-          "religion": {
-            "type": "boolean"
-          },
-          "sleightOfHand": {
-            "type": "boolean"
-          },
-          "stealth": {
-            "type": "boolean"
-          },
-          "survival": {
-            "type": "boolean"
-          },
-          "personalityTraits": {
-            "type": "string",
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterAttributeResponse"
+            },
             "nullable": true
           },
-          "ideals": {
-            "type": "string",
+          "abilityScores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterAbilityScoreResponse"
+            },
             "nullable": true
           },
-          "bonds": {
-            "type": "string",
-            "nullable": true
-          },
-          "flaws": {
-            "type": "string",
-            "nullable": true
-          },
-          "backstory": {
-            "type": "string",
-            "nullable": true
-          },
-          "alliesAndOrganisations": {
-            "type": "string",
-            "nullable": true
-          },
-          "appearance": {
-            "type": "string",
+          "descriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterDescriptionResponse"
+            },
             "nullable": true
           }
         },
@@ -803,6 +777,94 @@
         },
         "additionalProperties": false
       },
+      "CharacterAttributeRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentValue": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "defaultValue": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CharacterAbilityScoreRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "proficient": {
+            "type": "boolean"
+          },
+          "expertise": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CharacterAbilityScoreProficiencyRequest": {
+        "type": "object",
+        "properties": {
+          "abilityScoreId": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "proficient": {
+            "type": "boolean"
+          },
+          "expertise": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CharacterDescriptionRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CharacterRequest": {
         "type": "object",
         "properties": {
@@ -810,142 +872,32 @@
             "type": "string",
             "nullable": true
           },
-          "experience": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "strength": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dexterity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "constitution": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "intelligence": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "wisdom": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "charisma": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "armorClass": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "initiative": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "speedInFt": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "currentHitPoints": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "maxHitPoints": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "deathSaveSuccesses": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "deathSaveFailures": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "acrobatics": {
-            "type": "boolean"
-          },
-          "animalHandling": {
-            "type": "boolean"
-          },
-          "arcana": {
-            "type": "boolean"
-          },
-          "athletics": {
-            "type": "boolean"
-          },
-          "deception": {
-            "type": "boolean"
-          },
-          "history": {
-            "type": "boolean"
-          },
-          "insight": {
-            "type": "boolean"
-          },
-          "intimidation": {
-            "type": "boolean"
-          },
-          "investigation": {
-            "type": "boolean"
-          },
-          "medicine": {
-            "type": "boolean"
-          },
-          "nature": {
-            "type": "boolean"
-          },
-          "perception": {
-            "type": "boolean"
-          },
-          "performance": {
-            "type": "boolean"
-          },
-          "persuasion": {
-            "type": "boolean"
-          },
-          "religion": {
-            "type": "boolean"
-          },
-          "sleightOfHand": {
-            "type": "boolean"
-          },
-          "stealth": {
-            "type": "boolean"
-          },
-          "survival": {
-            "type": "boolean"
-          },
-          "personalityTraits": {
-            "type": "string",
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterAttributeRequest"
+            },
             "nullable": true
           },
-          "ideals": {
-            "type": "string",
+          "abilityScores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterAbilityScoreRequest"
+            },
             "nullable": true
           },
-          "bonds": {
-            "type": "string",
+          "abilityScoreProficiencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterAbilityScoreProficiencyRequest"
+            },
             "nullable": true
           },
-          "flaws": {
-            "type": "string",
-            "nullable": true
-          },
-          "backstory": {
-            "type": "string",
-            "nullable": true
-          },
-          "alliesAndOrganisations": {
-            "type": "string",
-            "nullable": true
-          },
-          "appearance": {
-            "type": "string",
+          "descriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CharacterDescriptionRequest"
+            },
             "nullable": true
           }
         },
@@ -968,7 +920,7 @@
         },
         "additionalProperties": false
       },
-      "AuthTokenResponse": {
+      "UserAuthTokenResponse": {
         "type": "object",
         "properties": {
           "authToken": {

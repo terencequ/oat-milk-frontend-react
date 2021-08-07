@@ -24,15 +24,262 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface AuthTokenResponse
+ * @interface CharacterAbilityScoreProficiencyRequest
  */
-export interface AuthTokenResponse {
+export interface CharacterAbilityScoreProficiencyRequest {
     /**
      * 
      * @type {string}
-     * @memberof AuthTokenResponse
+     * @memberof CharacterAbilityScoreProficiencyRequest
      */
-    authToken?: string | null;
+    abilityScoreId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreProficiencyRequest
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreProficiencyRequest
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreProficiencyRequest
+     */
+    proficient?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreProficiencyRequest
+     */
+    expertise?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CharacterAbilityScoreProficiencyResponse
+ */
+export interface CharacterAbilityScoreProficiencyResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreProficiencyResponse
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreProficiencyResponse
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreProficiencyResponse
+     */
+    proficient?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreProficiencyResponse
+     */
+    expertise?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CharacterAbilityScoreRequest
+ */
+export interface CharacterAbilityScoreRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreRequest
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreRequest
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CharacterAbilityScoreRequest
+     */
+    value?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreRequest
+     */
+    proficient?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreRequest
+     */
+    expertise?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface CharacterAbilityScoreResponse
+ */
+export interface CharacterAbilityScoreResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreResponse
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAbilityScoreResponse
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CharacterAbilityScoreResponse
+     */
+    value?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreResponse
+     */
+    proficient?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CharacterAbilityScoreResponse
+     */
+    expertise?: boolean;
+    /**
+     * 
+     * @type {Array<CharacterAbilityScoreProficiencyResponse>}
+     * @memberof CharacterAbilityScoreResponse
+     */
+    proficiencies?: Array<CharacterAbilityScoreProficiencyResponse> | null;
+}
+/**
+ * 
+ * @export
+ * @interface CharacterAttributeRequest
+ */
+export interface CharacterAttributeRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAttributeRequest
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAttributeRequest
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CharacterAttributeRequest
+     */
+    currentValue?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CharacterAttributeRequest
+     */
+    defaultValue?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CharacterAttributeResponse
+ */
+export interface CharacterAttributeResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAttributeResponse
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterAttributeResponse
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CharacterAttributeResponse
+     */
+    currentValue?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CharacterAttributeResponse
+     */
+    defaultValue?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CharacterDescriptionRequest
+ */
+export interface CharacterDescriptionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterDescriptionRequest
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterDescriptionRequest
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterDescriptionRequest
+     */
+    value?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface CharacterDescriptionResponse
+ */
+export interface CharacterDescriptionResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterDescriptionResponse
+     */
+    id?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterDescriptionResponse
+     */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharacterDescriptionResponse
+     */
+    value?: string | null;
 }
 /**
  * 
@@ -48,238 +295,28 @@ export interface CharacterRequest {
     name?: string | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<CharacterAttributeRequest>}
      * @memberof CharacterRequest
      */
-    experience?: number;
+    attributes?: Array<CharacterAttributeRequest> | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<CharacterAbilityScoreRequest>}
      * @memberof CharacterRequest
      */
-    strength?: number;
+    abilityScores?: Array<CharacterAbilityScoreRequest> | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<CharacterAbilityScoreProficiencyRequest>}
      * @memberof CharacterRequest
      */
-    dexterity?: number;
+    abilityScoreProficiencies?: Array<CharacterAbilityScoreProficiencyRequest> | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<CharacterDescriptionRequest>}
      * @memberof CharacterRequest
      */
-    constitution?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    intelligence?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    wisdom?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    charisma?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    armorClass?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    initiative?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    speedInFt?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    currentHitPoints?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    maxHitPoints?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    deathSaveSuccesses?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterRequest
-     */
-    deathSaveFailures?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    acrobatics?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    animalHandling?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    arcana?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    athletics?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    deception?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    history?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    insight?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    intimidation?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    investigation?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    medicine?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    nature?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    perception?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    performance?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    persuasion?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    religion?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    sleightOfHand?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    stealth?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterRequest
-     */
-    survival?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterRequest
-     */
-    personalityTraits?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterRequest
-     */
-    ideals?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterRequest
-     */
-    bonds?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterRequest
-     */
-    flaws?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterRequest
-     */
-    backstory?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterRequest
-     */
-    alliesAndOrganisations?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterRequest
-     */
-    appearance?: string | null;
+    descriptions?: Array<CharacterDescriptionRequest> | null;
 }
 /**
  * 
@@ -313,238 +350,22 @@ export interface CharacterResponse {
     name?: string | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<CharacterAttributeResponse>}
      * @memberof CharacterResponse
      */
-    experience?: number;
+    attributes?: Array<CharacterAttributeResponse> | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<CharacterAbilityScoreResponse>}
      * @memberof CharacterResponse
      */
-    strength?: number;
+    abilityScores?: Array<CharacterAbilityScoreResponse> | null;
     /**
      * 
-     * @type {number}
+     * @type {Array<CharacterDescriptionResponse>}
      * @memberof CharacterResponse
      */
-    dexterity?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    constitution?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    intelligence?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    wisdom?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    charisma?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    armorClass?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    initiative?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    speedInFt?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    currentHitPoints?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    maxHitPoints?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    deathSaveSuccesses?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CharacterResponse
-     */
-    deathSaveFailures?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    acrobatics?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    animalHandling?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    arcana?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    athletics?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    deception?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    history?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    insight?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    intimidation?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    investigation?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    medicine?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    nature?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    perception?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    performance?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    persuasion?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    religion?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    sleightOfHand?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    stealth?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CharacterResponse
-     */
-    survival?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterResponse
-     */
-    personalityTraits?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterResponse
-     */
-    ideals?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterResponse
-     */
-    bonds?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterResponse
-     */
-    flaws?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterResponse
-     */
-    backstory?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterResponse
-     */
-    alliesAndOrganisations?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CharacterResponse
-     */
-    appearance?: string | null;
+    descriptions?: Array<CharacterDescriptionResponse> | null;
 }
 /**
  * 
@@ -619,6 +440,19 @@ export interface ErrorResponse {
      * @memberof ErrorResponse
      */
     stackTrace?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface UserAuthTokenResponse
+ */
+export interface UserAuthTokenResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserAuthTokenResponse
+     */
+    authToken?: string | null;
 }
 /**
  * 
@@ -1350,7 +1184,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userLoginPost(userLoginRequest?: UserLoginRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthTokenResponse>> {
+        async userLoginPost(userLoginRequest?: UserLoginRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserAuthTokenResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userLoginPost(userLoginRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1369,7 +1203,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userRegisterPost(userRequest?: UserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthTokenResponse>> {
+        async userRegisterPost(userRequest?: UserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserAuthTokenResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.userRegisterPost(userRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1389,7 +1223,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userLoginPost(userLoginRequest?: UserLoginRequest, options?: any): AxiosPromise<AuthTokenResponse> {
+        userLoginPost(userLoginRequest?: UserLoginRequest, options?: any): AxiosPromise<UserAuthTokenResponse> {
             return localVarFp.userLoginPost(userLoginRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1406,7 +1240,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userRegisterPost(userRequest?: UserRequest, options?: any): AxiosPromise<AuthTokenResponse> {
+        userRegisterPost(userRequest?: UserRequest, options?: any): AxiosPromise<UserAuthTokenResponse> {
             return localVarFp.userRegisterPost(userRequest, options).then((request) => request(axios, basePath));
         },
     };

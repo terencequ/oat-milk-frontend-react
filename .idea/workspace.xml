@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/core/components/GenericDense.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterAdd.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/pages/CreateCharacterPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/pages/CharacterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/CharacterPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <list id="8165aa48-dd6f-4e64-9838-17918340079c" name="Changes by there" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +47,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core/components" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JavaScript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core/pages" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -45,15 +58,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\pages" />
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\characters" />
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\redux\reducers" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\navbar" />
-      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\assets" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\public" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\drawer" />
-      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\navbar" />
     </key>
   </component>
@@ -87,7 +102,6 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c641d220-af17-44fd-b711-8cbdd1bf21d8" name="Changes" comment="" />
       <created>1628130145743</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -97,6 +111,9 @@
       <workItem from="1628133671592" duration="2484000" />
       <workItem from="1628136167105" duration="10090000" />
       <workItem from="1628160382786" duration="96000" />
+      <workItem from="1628200147263" duration="27404000" />
+      <workItem from="1628288770066" duration="639000" />
+      <workItem from="1628290780640" duration="9252000" />
     </task>
     <servers />
   </component>
