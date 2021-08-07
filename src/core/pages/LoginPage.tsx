@@ -12,7 +12,7 @@ import {
   Typography
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
-import {UserApi} from "oat-milk-backend-sdk";
+import {UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {useAppDispatch} from "../../redux/hooks";
 import {setAuth} from "../../redux/reducers/authSlice";
 import {useHistory} from "react-router-dom";

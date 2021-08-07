@@ -4,7 +4,7 @@ import {CharacterDenseType} from "../components/characters/CharacterInfoBasicTyp
 import CharacterInfoDense from "../components/characters/CharacterInfoDense";
 import logoIcon128 from "../../assets/logo-128px.png";
 import styled from "@emotion/styled";
-import {CharacterApi} from "oat-milk-backend-sdk";
+import {CharacterApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterAdd from "../components/dense/CharacterAdd";
 
 
@@ -156,7 +156,7 @@ const HomePage: FC = () => {
 
   const getCharacters = async () => {
     try {
-      let res = await new CharacterApi(undefined, process.env.REACT_APP_API_URL).characterGet()
+      let res = await new CharacterApi(undefined, process.env.REACT_APP_API_URL).characterFullGet()
 
       if (res.status !== 200) {
         // TODO: Toaster here

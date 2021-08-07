@@ -17,7 +17,7 @@
     "@types/react-dom": "^17.0.9",
     "env-cmd": "^10.1.0",
     "lodash.throttle": "^4.1.1",
-    "oat-milk-backend-sdk": "file:src/api/clients/backend",
+    "@oatmilk/oat-milk-backend-typescript-axios-sdk": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
