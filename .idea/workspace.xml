@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0114d68-5e41-4218-996a-a8b9cfe01bf6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/components/GenericDense.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterAdd.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/pages/CreateCharacterPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/GenericDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/dense/GenericDense.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterAdd.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/dense/CharacterAdd.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/CharacterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/CharacterPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <list id="8165aa48-dd6f-4e64-9838-17918340079c" name="Changes by there" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,11 +57,11 @@
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\navbar" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\dense" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\assets" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\public" />
       <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\drawer" />
-      <recent name="E:\Projects\Misc\oat-milk-frontend-react\src\core\components\navbar" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start:prod">
@@ -113,7 +105,7 @@
       <workItem from="1628160382786" duration="96000" />
       <workItem from="1628200147263" duration="27404000" />
       <workItem from="1628288770066" duration="639000" />
-      <workItem from="1628290780640" duration="9252000" />
+      <workItem from="1628290780640" duration="11234000" />
     </task>
     <servers />
   </component>

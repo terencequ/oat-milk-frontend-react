@@ -5,7 +5,7 @@ import CharacterInfoDense from "../components/characters/CharacterInfoDense";
 import logoIcon128 from "../../assets/logo-128px.png";
 import styled from "@emotion/styled";
 import {CharacterApi} from "oat-milk-backend-sdk";
-import CharacterAdd from "../components/characters/CharacterAdd";
+import CharacterAdd from "../components/dense/CharacterAdd";
 
 
 

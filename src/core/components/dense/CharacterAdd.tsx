@@ -1,5 +1,5 @@
 import {CSSProperties, FC} from "react";
-import GenericDense from "../GenericDense";
+import GenericDense from "./GenericDense";
 import AddIcon from '@material-ui/icons/Add';
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
@@ -11,9 +11,16 @@ const StyledAddWrap = styled.div`
   height: 100%;
   
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   
+  font-size: 1.5vw;
+  letter-spacing: 0.15vw;
+  text-transform: uppercase;
+`;
+
+const StyledAddIcon = styled(AddIcon)`
   font-size: 4vw;
 `;
 
@@ -33,7 +40,8 @@ const CharacterAdd: FC<CharacterAddProps> = ({style}) => {
   return <>
     <GenericDense style={style} action={gotoCreateNewCharacter}>
       <StyledAddWrap>
-        <AddIcon fontSize={"inherit"}/>
+        <StyledAddIcon fontSize={"inherit"}/>
+        New
       </StyledAddWrap>
     </GenericDense>
   </>;

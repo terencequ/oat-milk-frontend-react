@@ -2,7 +2,7 @@ import {FC} from "react";
 import {CharacterInfoBasicProp} from "./CharacterInfoBasicTypes";
 import {LinearProgress, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
-import GenericDense from "../GenericDense";
+import GenericDense from "../dense/GenericDense";
 
 
 
