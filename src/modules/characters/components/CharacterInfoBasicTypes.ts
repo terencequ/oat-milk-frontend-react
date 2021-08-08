@@ -1,6 +1,7 @@
 import {CSSProperties} from "react";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk/dist/api";
 
+
 export type CharacterDenseType = {
   name: string;
   level: number;

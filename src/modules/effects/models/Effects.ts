@@ -1,4 +1,4 @@
-import {NameId} from "./CharacterType";
+import {NameId} from "../../characters/models/CharacterType";
 
 
 

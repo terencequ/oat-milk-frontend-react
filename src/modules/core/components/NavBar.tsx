@@ -7,12 +7,12 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import GenericDrawer from "./GenericDrawer";
-import {useAppDispatch, useAppSelector} from "../../redux/hooks";
-import {setAuth} from "../../redux/reducers/authSlice";
-import LogoDense from "./logo/LogoDense";
+import GenericDrawer from "../../shared/components/generic/GenericDrawer";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {setAuth} from "../../../redux/reducers/authSlice";
+import LogoDense from "../../shared/components/logo/LogoDense";
 import {useLocation} from "react-router-dom";
-import MenuItemThemeButton from "./theme/MenuItemThemeButton";
+import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
 
 const StyledAppBar = styled(AppBar)<any>`
   position: ${p => {

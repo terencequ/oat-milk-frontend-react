@@ -13,11 +13,11 @@ import {
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {useAppDispatch} from "../../redux/hooks";
-import {setAuth} from "../../redux/reducers/authSlice";
+import {useAppDispatch} from "../../../redux/hooks";
+import {setAuth} from "../../../redux/reducers/authSlice";
 import {useHistory} from "react-router-dom";
-import Logo from "../components/logo/Logo";
-import MenuItemThemeButton from "../components/theme/MenuItemThemeButton";
+import Logo from "../../shared/components/logo/Logo";
+import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
 
 
 

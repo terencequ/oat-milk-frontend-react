@@ -3,7 +3,7 @@ import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@materi
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
-import LogoDense from "./logo/LogoDense";
+import LogoDense from "../logo/LogoDense";
 import {useHistory} from "react-router-dom";
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect, Route} from "react-router-dom";
-import {useAppSelector} from "../../../redux/hooks";
+import {useAppSelector} from "../../../../redux/hooks";
 
 
 // @ts-ignore

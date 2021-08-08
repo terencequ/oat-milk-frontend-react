@@ -2,8 +2,7 @@ import {FC} from "react";
 import {CharacterInfoBasicProp} from "./CharacterInfoBasicTypes";
 import {LinearProgress, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
-import GenericDense from "../dense/GenericDense";
-
+import GenericDense from "../../shared/components/generic/GenericDense";
 
 
 const StyledTypography = styled(Typography)`
