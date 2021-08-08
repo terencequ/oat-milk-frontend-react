@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edffb773-a1e0-48ad-a3a5-5b915e70dbaf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/clients/CharacterClient.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/clients/UserClient.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/models/thunkReducers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/models/user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/redux/userThunks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/users/redux/usersSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/models/actionStatus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/shared/components/routing/PrivateRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/components/PrivateRoute.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/interceptors/HttpInterceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/interceptors/HttpInterceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/auth/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/users/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/shared/components/theme/MenuItemThemeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/theme/MenuItemThemeButton.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -70,7 +81,7 @@
       <updated>1628375588478</updated>
       <workItem from="1628375590451" duration="3197000" />
       <workItem from="1628395338509" duration="4642000" />
-      <workItem from="1628409479295" duration="1697000" />
+      <workItem from="1628409479295" duration="6740000" />
     </task>
     <servers />
   </component>

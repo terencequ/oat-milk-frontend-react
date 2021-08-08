@@ -15,7 +15,7 @@ const StyledListItemIcon = styled.div`
 `;
 
 /**
- * This button allows the user to switch from dark mode to light mode and vice versa.
+ * This button allows the users to switch from dark mode to light mode and vice versa.
  * @constructor
  */
 const MenuItemThemeButton: FC = () => {

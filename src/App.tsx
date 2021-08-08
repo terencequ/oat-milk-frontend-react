@@ -7,7 +7,7 @@ import {
 import './App.css';
 import NavBar from "./modules/core/components/NavBar";
 import HomePage from "./modules/core/pages/HomePage";
-import LoginPage from "./modules/auth/pages/LoginPage";
+import LoginPage from "./modules/users/pages/LoginPage";
 import CharacterPage from "./modules/characters/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import styled from "@emotion/styled";
