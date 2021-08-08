@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edffb773-a1e0-48ad-a3a5-5b915e70dbaf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/clients/CharacterClient.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/clients/UserClient.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/users/models/thunkReducers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/users/models/user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/users/redux/userThunks.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/users/redux/usersSlice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/models/actionStatus.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/interceptors/HttpInterceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/interceptors/HttpInterceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/users/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/components/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/core/components/PrivateRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/components/PrivateRoute.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/pages/HomePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/shared/components/theme/MenuItemThemeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/theme/MenuItemThemeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/users/models/thunkReducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/clients/CharacterSummaryClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/users/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/users/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/users/redux/userThunks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/charactersSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/users/redux/usersSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/usersSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/localStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/localStorage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducers/authSlice.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducers/darkModeSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/darkModeSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +32,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1wQ0cjXLcErJB8x4RFdb2YlHqOI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -52,11 +61,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\slices" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\core\redux" />
       <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\core\components" />
       <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers" />
       <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers\theme" />
-      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers\auth" />
-      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\characters\models" />
     </key>
   </component>
   <component name="RunManager">
@@ -81,7 +90,7 @@
       <updated>1628375588478</updated>
       <workItem from="1628375590451" duration="3197000" />
       <workItem from="1628395338509" duration="4642000" />
-      <workItem from="1628409479295" duration="6740000" />
+      <workItem from="1628409479295" duration="11173000" />
     </task>
     <servers />
   </component>

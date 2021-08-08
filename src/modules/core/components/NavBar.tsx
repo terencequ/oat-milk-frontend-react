@@ -9,10 +9,10 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import GenericDrawer from "../../shared/components/generic/GenericDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {setAuth} from "../../../redux/reducers/authSlice";
 import LogoDense from "../../shared/components/logo/LogoDense";
-import {useLocation} from "react-router-dom";
+import {Redirect, useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
+import {logout} from "../../../redux/slices/usersSlice";
 
 const StyledAppBar = styled(AppBar)<any>`
   position: ${p => {
@@ -51,7 +51,7 @@ const NavBar: FC<NavBarProps> = (p) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
 
-  const authToken = useAppSelector(state => state.auth.authToken);
+  const authToken = useAppSelector(state => state.users.authToken);
   const isLoggedIn = authToken !== undefined && authToken !== null;
 
   const dispatch = useAppDispatch();
@@ -70,7 +70,7 @@ const NavBar: FC<NavBarProps> = (p) => {
   };
 
   const handleLogout = () => {
-    dispatch(setAuth(null));
+    dispatch(logout());
     setSettingsOpen(false);
   };
 

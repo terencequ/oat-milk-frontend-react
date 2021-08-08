@@ -1,3 +1,6 @@
+import {RootState} from "./store";
+import {ActionStatus} from "./models/actionStatus";
+
 export const saveState = (state: any) => {
   try {
     const serializedState = JSON.stringify(state);
@@ -13,7 +16,9 @@ export const loadState = () => {
     if (serializedState === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    const state = JSON.parse(serializedState);
+    state.users.loginStatus = ActionStatus.NotStarted;
+    return state;
   } catch (err) {
     return undefined;
   }

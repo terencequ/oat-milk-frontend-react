@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import {useAppDispatch, useAppSelector} from "../../../../redux/hooks";
-import {setDarkMode} from "../../../../redux/reducers/darkModeSlice";
+import {setDarkMode} from "../../../../redux/slices/darkModeSlice";
 
 const StyledListItemIcon = styled.div`
   margin-right: 0.5vw;

@@ -5,7 +5,8 @@ import styled from "@emotion/styled";
 import {CharacterSummaryApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterAdd from "../../characters/components/CharacterAdd";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk/dist/api";
-
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {getCharacterSummaries} from "../../../redux/slices/charactersSlice";
 
 
 const StyledSection = styled.section`
@@ -58,27 +59,14 @@ const StyledDenseWrap = styled.div`
 
 const HomePage: FC = () => {
 
-  const [characters, setCharacters] = useState<CharacterSummaryResponse[] | undefined>(undefined);
-
-  const getCharacters = async () => {
-    try {
-      let res = await new CharacterSummaryApi(undefined, process.env.REACT_APP_API_URL).characterSummaryGet();
-
-      if (res.status !== 200) {
-        // TODO: Toaster here
-      }
-
-      setCharacters(res.data.items ?? []);
-    } catch (err) {
-      // TODO: Toaster here
-    }
-  };
-
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getCharacters().then();
+    dispatch(getCharacterSummaries());
   }, []);
 
+
+  const {characterSummaries} = useAppSelector(state => state.characters)
 
   return <>
     <StyledSection>
@@ -86,15 +74,15 @@ const HomePage: FC = () => {
 
       <StyledCardContent>
         <StyledDivider/>
-        <StyledCharactersText variant={"h3"}>Characters ({characters !== undefined ? characters.length : "0"})</StyledCharactersText>
+        <StyledCharactersText variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</StyledCharactersText>
 
-        {characters === undefined
+        {characterSummaries === undefined
           ? <StyledCircularProgressWrap>
               <CircularProgress size={100}/>
             </StyledCircularProgressWrap>
           : <>
             <StyledDenseWrap>
-              {characters.map((value, i) => <CharacterInfoDense key={i} denseCharacter={value}/>)}
+              {characterSummaries.map((value, i) => <CharacterInfoDense key={i} denseCharacter={value}/>)}
               <CharacterAdd/>
             </StyledDenseWrap>
           </>}

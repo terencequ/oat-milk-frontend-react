@@ -12,12 +12,12 @@ import {
   Theme,
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
-import {UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {useAppDispatch} from "../../../redux/hooks";
-import {setAuth} from "../../../redux/reducers/authSlice";
-import {useHistory} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {Redirect} from "react-router-dom";
 import Logo from "../../shared/components/logo/Logo";
 import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
+import {ActionStatus} from "../../../redux/models/actionStatus";
+import {login} from "../../../redux/slices/usersSlice";
 
 
 
@@ -88,10 +88,9 @@ const LoginPage: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const usersState = useAppSelector(state => state.users);
 
   const dispatch = useAppDispatch();
-  const history = useHistory();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -100,7 +99,7 @@ const LoginPage: FC = () => {
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
-    if (value.slice(value.length-1) === "\n")
+    if (value.slice(value.length-1) === "\n") // If user presses Enter on the password field, log them in
     {
       handleLogin();
       return;
@@ -113,36 +112,21 @@ const LoginPage: FC = () => {
   };
 
   const handleLogin = (e?: MouseEvent<HTMLButtonElement>) => {
-    setLoading(true);
-
-    const api = new UserApi(undefined, process.env.REACT_APP_API_URL);
-    api.userLoginPost({
-      email: email,
-      password: password
-    })
-    .then(res => {
-      setLoading(false);
-
-      if (res.status !== 200)
-      {
-        // TODO: Toaster here
-        return;
-      }
-
-      dispatch(setAuth(res.data.authToken ?? ""));
-
-      history.push("/");
-    });
+    dispatch(login(email, password));
   };
 
   return <>
+    {usersState.authToken != null && // This means user is logged in
+      <Redirect to={'/'}/>
+    }
     <StyledWrap>
       <StyledContainer>
         <StyledContainerContent>
+          {/* Logo */}
           <StyledHeroContainer>
-            <Logo></Logo>
+            <Logo/>
           </StyledHeroContainer>
-
+          {/* Email field */}
           <StyledFormControl>
             <TextField
               onChange={handleEmailChange}
@@ -152,7 +136,7 @@ const LoginPage: FC = () => {
               required
             />
           </StyledFormControl>
-
+          {/* Password field */}
           <StyledFormControl variant={"filled"}>
             <InputLabel htmlFor={"filled-adornment-password"}>Password</InputLabel>
             <FilledInput
@@ -172,9 +156,9 @@ const LoginPage: FC = () => {
               }
             />
           </StyledFormControl>
-
+          {/* Login button */}
           <StyledFormControl spacing={3}>
-            {loading
+            {usersState.loginStatus === ActionStatus.InProgress
               ? <StyledCircularProgressWrap>
                   <CircularProgress />
                 </StyledCircularProgressWrap>
