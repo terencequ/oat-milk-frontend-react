@@ -11,7 +11,7 @@ import LoginPage from "./modules/auth/pages/LoginPage";
 import CharacterPage from "./modules/characters/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import styled from "@emotion/styled";
-import PrivateRoute from "./modules/shared/components/routing/PrivateRoute";
+import PrivateRoute from "./modules/core/components/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";
 import createAppTheme from "./theme";
 import CreateCharacterPage from "./modules/characters/pages/CreateCharacterPage";

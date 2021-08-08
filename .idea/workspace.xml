@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edffb773-a1e0-48ad-a3a5-5b915e70dbaf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/generic/GenericDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/components/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/characters/components/CharacterInfoBasicTypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/characters/components/CharacterInfoDense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/characters/models/CharacterType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/Effects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/effects/models/Effects.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/dense/CharacterAdd.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/characters/components/CharacterAdd.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/dense/GenericDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/generic/GenericDense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/logo/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/logo/Logo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/logo/LogoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/logo/LogoDense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/override/PrivateRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/routing/PrivateRoute.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/theme/MenuItemThemeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/theme/MenuItemThemeButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/CharacterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/characters/pages/CharacterPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/CreateCharacterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/characters/pages/CreateCharacterPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/pages/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/shared/components/routing/PrivateRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/components/PrivateRoute.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +41,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\core\components" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers\theme" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers\auth" />
       <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\characters\models" />
-      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\auth\pages" />
-      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\shared\components" />
-      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\shared\components\generic" />
-      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\shared\components\routing" />
     </key>
   </component>
   <component name="RunManager">
@@ -86,7 +70,7 @@
       <updated>1628375588478</updated>
       <workItem from="1628375590451" duration="3197000" />
       <workItem from="1628395338509" duration="4642000" />
-      <workItem from="1628409479295" duration="1580000" />
+      <workItem from="1628409479295" duration="1697000" />
     </task>
     <servers />
   </component>
