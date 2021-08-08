@@ -1,9 +1,6 @@
 import {Typography} from "@material-ui/core";
 import React, {CSSProperties, FC} from "react";
 import styled from "@emotion/styled";
-import logoIcon128 from "../../../assets/logo-128px.png";
-
-
 
 const StyledLogoDenseWrap = styled.div`
   display: flex;
@@ -24,7 +21,7 @@ const StyledLogoText = styled(Typography)`
 const LogoDense: FC<{style?: CSSProperties}> = ({style}) => {
 
   return <StyledLogoDenseWrap style={style}>
-    <StyledLogo src={logoIcon128}/>
+    <StyledLogo src={'/logo-128px.png'}/>
     <StyledLogoText variant={"h6"}>Oat Milk</StyledLogoText>
   </StyledLogoDenseWrap>;
 };

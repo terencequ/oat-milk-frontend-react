@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edffb773-a1e0-48ad-a3a5-5b915e70dbaf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/components/logo/Logo.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/components/theme/MenuItemThemeButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/logo-128px.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/logo-128px.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/logo/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/logo/Logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/components/logo/LogoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/logo/LogoDense.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticwebapp.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/staticwebapp.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,11 @@
     <property name="ts.external.directory.path" value="E:\Code - Personal\oat-milk-frontend-react\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\public" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="start:prod" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -68,6 +71,7 @@
       <updated>1628375588478</updated>
       <workItem from="1628375590451" duration="3197000" />
       <workItem from="1628395338509" duration="4642000" />
+      <workItem from="1628409479295" duration="1197000" />
     </task>
     <servers />
   </component>

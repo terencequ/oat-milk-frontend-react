@@ -1,8 +1,6 @@
 import {Typography} from "@material-ui/core";
 import React, {CSSProperties, FC} from "react";
 import styled from "@emotion/styled";
-import logoIcon128 from "../../../assets/logo-128px.png";
-
 
 
 const StyledLogoWrap = styled.div`
@@ -26,7 +24,7 @@ const StyledLogoText = styled(Typography)`
 const Logo: FC<{style?: CSSProperties}> = ({style}) => {
 
     return <StyledLogoWrap style={style}>
-        <StyledLogo src={logoIcon128}/>
+        <StyledLogo src={'/logo-128px.png'}/>
         <StyledLogoText variant={"h4"}>Oat Milk</StyledLogoText>
     </StyledLogoWrap>;
 };

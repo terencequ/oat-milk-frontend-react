@@ -1,15 +1,15 @@
 import React, {ChangeEvent, FC, MouseEvent, useState} from 'react';
 import styled from "@emotion/styled";
-
-import logo from "../../assets/logo-128px.png";
 import {
-  Button, Card, CardContent, CircularProgress, FilledInput,
+  Button,
+  CircularProgress,
+  FilledInput,
   FormControl,
   IconButton,
   InputAdornment,
   InputLabel,
-  TextField, Theme,
-  Typography
+  TextField,
+  Theme,
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import {UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
