@@ -8,7 +8,6 @@ import GenericDense from "../dense/GenericDense";
 
 const StyledTypography = styled(Typography)`
   text-align: center;
-  font-size: 1.5vw;
 `;
 
 
@@ -53,7 +52,7 @@ const CharacterInfoDense: FC<CharacterInfoBasicProp> = ({denseCharacter, style})
       </StyledClassIconWrap>
 
       <div>
-        <StyledTypography variant={"subtitle1"}>Level {denseCharacter.level}</StyledTypography>
+        <StyledTypography variant={"h6"}>Level {denseCharacter.level}</StyledTypography>
         <StyledLinearProgress variant={"determinate"} value={100 * pctToLevelUp(denseCharacter.experience ?? 0, denseCharacter.previousLevelExperienceRequirement ?? 0, denseCharacter.nextLevelExperienceRequirement ?? 0)}/>
       </div>
     </GenericDense>

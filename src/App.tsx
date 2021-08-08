@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route, useLocation
 } from "react-router-dom";
 import './App.css';
 import NavBar from "./core/components/NavBar";
@@ -34,9 +34,7 @@ const App = () => {
 
   console.log(theme);
 
-
   document.title = "Oat Milk";
-
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>

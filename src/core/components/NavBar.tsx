@@ -1,21 +1,18 @@
-import React, {FC, MouseEvent, useEffect, useState} from 'react';
+import React, {FC, MouseEvent, useState} from 'react';
 import {AppBar, Divider, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import GenericDrawer from "./GenericDrawer";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks";
-import {setDarkMode} from "../../redux/reducers/darkModeSlice";
 import {setAuth} from "../../redux/reducers/authSlice";
 import LogoDense from "./logo/LogoDense";
-
-
+import {useLocation} from "react-router-dom";
+import MenuItemThemeButton from "./theme/MenuItemThemeButton";
 
 const StyledAppBar = styled(AppBar)<any>`
   position: ${p => {
@@ -24,7 +21,6 @@ const StyledAppBar = styled(AppBar)<any>`
   }};
 `;
 
-
 const StyledLogoWrap = styled.div`
   display: flex;
   align-items: center;
@@ -32,7 +28,6 @@ const StyledLogoWrap = styled.div`
   
   margin-left: 1vw;
 `;
-
 
 const StyledSettingsWrap = styled.div`
   margin-left: auto;
@@ -45,8 +40,6 @@ const StyledListItemIcon = styled.div`
   justify-content: center;
 `;
 
-
-
 interface NavBarProps {
   dense?: boolean;
 }
@@ -58,13 +51,10 @@ const NavBar: FC<NavBarProps> = (p) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
 
-  const darkMode = useAppSelector(state => state.darkMode.darkMode);
   const authToken = useAppSelector(state => state.auth.authToken);
   const isLoggedIn = authToken !== undefined && authToken !== null;
 
   const dispatch = useAppDispatch();
-
-
 
   const handleToggleLeftDrawer = (e: MouseEvent<HTMLButtonElement>) => {
     setLeftDrawerOpen(!leftDrawerOpen);
@@ -79,14 +69,16 @@ const NavBar: FC<NavBarProps> = (p) => {
     setSettingsOpen(false);
   };
 
-  const handleToggleTheme = () => {
-    dispatch(setDarkMode(!darkMode));
-  };
-
   const handleLogout = () => {
     dispatch(setAuth(null));
+    setSettingsOpen(false);
   };
 
+  // No app bar if this is the login page
+  const location = useLocation();
+  if(location.pathname === '/login' || location.pathname === '/register') {
+    return <></>
+  }
 
   return <>
     <StyledAppBar dense={dense}>
@@ -105,24 +97,15 @@ const NavBar: FC<NavBarProps> = (p) => {
         <StyledSettingsWrap>
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
-
-            <MenuItem onClick={handleToggleTheme}>
-              <StyledListItemIcon>
-                {darkMode ? <Brightness7Icon/> : <Brightness4Icon/>}
-              </StyledListItemIcon>
-              {darkMode ? "Light" : "Dark"} Mode
-            </MenuItem>
-
+            <MenuItemThemeButton/>
             {isLoggedIn
-              ? <>
-                  <Divider/>
-                  <MenuItem onClick={handleLogout}>
-                    <StyledListItemIcon>
-                      <ExitToAppIcon/>
-                    </StyledListItemIcon>
-                    Log out
-                  </MenuItem>
-                </>
+              ?
+                <MenuItem onClick={handleLogout}>
+                  <StyledListItemIcon>
+                    <ExitToAppIcon/>
+                  </StyledListItemIcon>
+                  Log out
+                </MenuItem>
               : null}
           </Menu>
         </StyledSettingsWrap>

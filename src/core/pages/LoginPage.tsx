@@ -12,10 +12,12 @@ import {
   Typography
 } from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
-import {CharacterApi, UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {UserApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {useAppDispatch} from "../../redux/hooks";
 import {setAuth} from "../../redux/reducers/authSlice";
 import {useHistory} from "react-router-dom";
+import Logo from "../components/logo/Logo";
+import MenuItemThemeButton from "../components/theme/MenuItemThemeButton";
 
 
 
@@ -30,17 +32,18 @@ const StyledWrap = styled.div`
   justify-content: center;
 `;
 
-const StyledCard = styled(Card)`
-  width: 20vw;
+const StyledContainer = styled.div`
+  width: 450px;
+  max-width: 95vw;
   
   display: flex;
   flex-flow: column;
   justify-content: center;
 `;
 
-const StyledCardContent = styled(CardContent)`
+const StyledContainerContent = styled.div`
   height: 100%;
-  padding: 24px 24px 32px;
+  padding: 24px 24px 24px;
 
   display: flex;
   flex-flow: column;
@@ -55,12 +58,6 @@ const StyledHeroContainer = styled.div`
   margin: 3vh auto;
 `;
 
-const StyledLogo = styled.img`
-  max-width: 128px;
-  max-height: 128px;
-`;
-
-
 interface StyledFormControlProps {
   spacing?: number;
 }
@@ -73,13 +70,17 @@ const StyledFormControl = styled(FormControl)<StyledFormControlProps>`
   }} 0;
 `;
 
-
 const StyledCircularProgressWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
+const StyledThemeButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 
 const LoginPage: FC = () => {
@@ -91,8 +92,6 @@ const LoginPage: FC = () => {
 
   const dispatch = useAppDispatch();
   const history = useHistory();
-
-
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -136,16 +135,12 @@ const LoginPage: FC = () => {
     });
   };
 
-
-
   return <>
     <StyledWrap>
-      <StyledCard>
-        <StyledCardContent>
-
+      <StyledContainer>
+        <StyledContainerContent>
           <StyledHeroContainer>
-            <StyledLogo src={logo}/>
-            <Typography variant={"h4"} style={{alignSelf: "center"}}>Oat Milk</Typography>
+            <Logo></Logo>
           </StyledHeroContainer>
 
           <StyledFormControl>
@@ -188,10 +183,12 @@ const LoginPage: FC = () => {
                   onClick={handleLogin}
                 >Login</Button>}
           </StyledFormControl>
-
-        </StyledCardContent>
-      </StyledCard>
+        </StyledContainerContent>
+      </StyledContainer>
     </StyledWrap>
+    <StyledThemeButton>
+      <MenuItemThemeButton/>
+    </StyledThemeButton>
   </>;
 };
 

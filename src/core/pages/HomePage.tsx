@@ -35,6 +35,7 @@ const StyledDivider = styled(Divider)`
 const StyledCharactersText = styled(Typography)`
   padding-top: 0.5vw;
   padding-bottom: 0.5vw;
+  margin: 0.5vw 1vw;
 `;
 
 
