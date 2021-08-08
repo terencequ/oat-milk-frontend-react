@@ -1,4 +1,3 @@
-import {RootState} from "./store";
 import {ActionStatus} from "./models/actionStatus";
 
 export const saveState = (state: any) => {

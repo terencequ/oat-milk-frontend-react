@@ -1,10 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {CardContent, CircularProgress, Divider, Typography} from "@material-ui/core";
 import CharacterInfoDense from "../../characters/components/CharacterInfoDense";
 import styled from "@emotion/styled";
-import {CharacterSummaryApi} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterAdd from "../../characters/components/CharacterAdd";
-import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk/dist/api";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {getCharacterSummaries} from "../../../redux/slices/charactersSlice";
 
@@ -63,7 +61,7 @@ const HomePage: FC = () => {
 
   useEffect(() => {
     dispatch(getCharacterSummaries());
-  }, []);
+  }, [dispatch]);
 
 
   const {characterSummaries} = useAppSelector(state => state.characters)

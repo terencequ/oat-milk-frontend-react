@@ -80,8 +80,8 @@ const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) =
         <List>
           {drawerButtons.map((value, i) => {
             return (
-              <ListItem button={true} key={i}>
-                <StyledListItemText onClick={handleNavigate(value.path)} disableTypography={true}>
+              <ListItem button={true} key={i} onClick={handleNavigate(value.path)} >
+                <StyledListItemText disableTypography={true}>
                   {value.icon}
                   <StyledTypography variant={"body1"}>{value.title}</StyledTypography>
                 </StyledListItemText>

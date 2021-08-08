@@ -3,7 +3,6 @@ import {ErrorResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {createCharacterSummaryClient} from "../../api/clients/CharacterSummaryClient";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk/dist/api";
 import {ActionStatus} from "../models/actionStatus";
-import {logout} from "./usersSlice";
 
 interface CharactersState {
     characterSummaries: CharacterSummaryResponse[];

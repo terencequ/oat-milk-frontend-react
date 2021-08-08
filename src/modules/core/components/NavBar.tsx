@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, Divider, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -10,7 +10,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import GenericDrawer from "../../shared/components/generic/GenericDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import LogoDense from "../../shared/components/logo/LogoDense";
-import {Redirect, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
 
