@@ -1,9 +1,8 @@
 import {CSSProperties, FC} from "react";
-import GenericDense from "./GenericDense";
+import GenericDense from "../../shared/components/generic/GenericDense";
 import AddIcon from '@material-ui/icons/Add';
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
-
 
 
 const StyledAddWrap = styled.div`

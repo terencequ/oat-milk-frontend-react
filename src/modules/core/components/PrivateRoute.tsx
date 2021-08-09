@@ -5,7 +5,7 @@ import {useAppSelector} from "../../../redux/hooks";
 
 // @ts-ignore
 const PrivateRoute = ({children, ...rest}) => {
-  const authToken = useAppSelector(state => state.auth.authToken);
+  const authToken = useAppSelector(state => state.users.authToken);
 
   return <>
     <Route {...rest}

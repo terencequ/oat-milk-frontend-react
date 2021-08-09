@@ -3,7 +3,7 @@ import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@materi
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
-import LogoDense from "./logo/LogoDense";
+import LogoDense from "../logo/LogoDense";
 import {useHistory} from "react-router-dom";
 
 
@@ -80,8 +80,8 @@ const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) =
         <List>
           {drawerButtons.map((value, i) => {
             return (
-              <ListItem button={true} key={i}>
-                <StyledListItemText onClick={handleNavigate(value.path)} disableTypography={true}>
+              <ListItem button={true} key={i} onClick={handleNavigate(value.path)} >
+                <StyledListItemText disableTypography={true}>
                   {value.icon}
                   <StyledTypography variant={"body1"}>{value.title}</StyledTypography>
                 </StyledListItemText>

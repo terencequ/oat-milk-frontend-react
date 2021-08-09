@@ -2,23 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edffb773-a1e0-48ad-a3a5-5b915e70dbaf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/GenericDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoBasicTypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/components/characters/CharacterInfoDense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/pages/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/core/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/components/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/core/pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/core/pages/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/shared/components/generic/GenericDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/shared/components/generic/GenericDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/localStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/localStorage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/slices/charactersSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/charactersSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1wQ0cjXLcErJB8x4RFdb2YlHqOI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -35,8 +48,17 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="E:\Projects\Misc\oat-milk-frontend-react\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="E:\Code - Personal\oat-milk-frontend-react\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\slices" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\core\redux" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\modules\core\components" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers" />
+      <recent name="E:\Code - Personal\oat-milk-frontend-react\src\redux\reducers\theme" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="start:prod" type="js.build_tools.npm" nameIsGenerated="true">
@@ -59,6 +81,8 @@
       <option name="presentableId" value="Default" />
       <updated>1628375588478</updated>
       <workItem from="1628375590451" duration="3197000" />
+      <workItem from="1628395338509" duration="4642000" />
+      <workItem from="1628409479295" duration="11820000" />
     </task>
     <servers />
   </component>
@@ -66,6 +90,15 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

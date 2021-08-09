@@ -9,7 +9,7 @@ const createAppTheme = (darkMode: boolean = true) =>
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        light: "#ffe6c1",
+        light: "#c9ac81",
         main: "#ffe0b2",
         dark: "#b29c7c"
       },
@@ -19,29 +19,39 @@ const createAppTheme = (darkMode: boolean = true) =>
         dark: "#ad8291"
       },
       background: {
-        default: darkMode ? "#121212" : "#f5f5f5",
-        paper: darkMode ? "#1e1e1e" : "#fafafa"
+        default: darkMode ? "#121212" : "#f5f3ef",
+        paper: darkMode ? "#1e1e1e" : "#ffffff"
       }
     },
     typography: {
       fontFamily: fontFamily,
       h1: {
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: '4rem'
       },
       h2: {
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: '3rem'
       },
       h3: {
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: '2rem'
       },
       h4: {
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: '1.8rem'
       },
       h5: {
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: '1.6rem'
       },
       h6: {
-        fontFamily: fontFamily
+        fontFamily: fontFamily,
+        fontSize: '1.4rem'
+      },
+      button: {
+        fontFamily: fontFamily,
+        fontSize: '1rem'
       }
     }
   });

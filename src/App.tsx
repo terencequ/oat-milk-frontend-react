@@ -5,17 +5,16 @@ import {
   Route
 } from "react-router-dom";
 import './App.css';
-import NavBar from "./core/components/NavBar";
-import HomePage from "./core/pages/HomePage";
-import LoginPage from "./core/pages/LoginPage";
-import CharacterPage from "./core/pages/CharacterPage";
+import NavBar from "./modules/core/components/NavBar";
+import HomePage from "./modules/core/pages/HomePage";
+import LoginPage from "./modules/users/pages/LoginPage";
+import CharacterPage from "./modules/characters/pages/CharacterPage";
 import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import styled from "@emotion/styled";
-import PrivateRoute from "./core/components/override/PrivateRoute";
+import PrivateRoute from "./modules/core/components/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";
 import createAppTheme from "./theme";
-import CreateCharacterPage from "./core/pages/CreateCharacterPage";
-
+import CreateCharacterPage from "./modules/characters/pages/CreateCharacterPage";
 
 
 const StyledBody = styled.div`
@@ -25,8 +24,6 @@ const StyledBody = styled.div`
   margin-right: auto;
 `;
 
-
-
 const App = () => {
 
   const darkMode = useAppSelector(state => state.darkMode.darkMode);
@@ -34,36 +31,28 @@ const App = () => {
 
   console.log(theme);
 
-
   document.title = "Oat Milk";
-
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
-
       <Router>
         <NavBar/>
-
         <StyledBody>
           <Switch>
             <Route path={"/login"}>
               <LoginPage/>
             </Route>
-
             <PrivateRoute path={"/character=:id"}>
               <CharacterPage/>
             </PrivateRoute>
-
             <PrivateRoute path={"/create"}>
               <CreateCharacterPage/>
             </PrivateRoute>
-
             <PrivateRoute path={"/"}>
               <HomePage/>
             </PrivateRoute>
           </Switch>
         </StyledBody>
-
       </Router>
 
     </ThemeProvider>
