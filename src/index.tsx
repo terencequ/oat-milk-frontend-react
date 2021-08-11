@@ -7,6 +7,7 @@ import {SetupGlobalAxiosInterceptor} from "./api/interceptors/HttpInterceptor";
 import {Provider} from "react-redux";
 import {persistor, store} from "./redux/store";
 import {PersistGate} from "redux-persist/integration/react";
+import {usersClearProgress} from "./redux/slices/usersSlice";
 
 // Axios
 SetupGlobalAxiosInterceptor();
@@ -22,6 +23,7 @@ render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+store.dispatch(usersClearProgress());
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

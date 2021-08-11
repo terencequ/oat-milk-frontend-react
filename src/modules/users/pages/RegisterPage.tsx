@@ -3,7 +3,7 @@ import {CenteredCircularProgress, UserFormPageContainer } from "./UserFormStyles
 import {login} from "../../../redux/slices/usersSlice";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Logo from "../../shared/components/logo/Logo";
-import {Button, CircularProgress, FormControl, TextField} from "@material-ui/core";
+import {Button, FormControl, TextField} from "@material-ui/core";
 import PasswordInput from "../../shared/components/forms/PasswordInput";
 import {ActionStatus} from "../../../redux/models/actionStatus";
 
