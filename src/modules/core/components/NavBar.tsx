@@ -25,7 +25,6 @@ const StyledLogoWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
   margin-left: 1vw;
 `;
 
@@ -98,21 +97,12 @@ const NavBar: FC<NavBarProps> = (p) => {
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
             <MenuItemThemeButton/>
-            {isLoggedIn
-              ?
-                <MenuItem onClick={handleLogout}>
-                  <StyledListItemIcon>
-                    <ExitToAppIcon/>
-                  </StyledListItemIcon>
-                  Log out
-                </MenuItem>
-              : null}
+            {isLoggedIn && <MenuItem onClick={handleLogout}><StyledListItemIcon><ExitToAppIcon/></StyledListItemIcon>Log out</MenuItem>}
           </Menu>
         </StyledSettingsWrap>
 
       </Toolbar>
     </StyledAppBar>
-
     <GenericDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen}/>
   </>;
 }

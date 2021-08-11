@@ -11,24 +11,21 @@ const StyledSection = styled.section`
   margin-bottom: 2vw;
 `;
 
-const StyledHeroText = styled(Typography)`
-  width: 100%;
+const HeroContainer = styled.div`
+  margin-top: 4vw;
+  margin-bottom: 4vw;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   text-align: center;
-  text-transform: uppercase;
-  
-  padding: 5vw 0;
-
-  font-family: "Josefin Slab", "Roboto", "Helvetica", "Arial", sans-serif;
-`;
-
+  img {
+    width: 256px;
+  }
+`
 
 const StyledCardContent = styled(CardContent)`
   display: flex;
   flex-flow: column;
-`;
-
-const StyledDivider = styled(Divider)`
-  margin-bottom: 1vw;
 `;
 
 const StyledCharactersText = styled(Typography)`
@@ -36,7 +33,6 @@ const StyledCharactersText = styled(Typography)`
   padding-bottom: 0.5vw;
   margin: 0.5vw 1vw;
 `;
-
 
 const StyledCircularProgressWrap = styled.div`
   width: 100%;
@@ -68,22 +64,21 @@ const HomePage: FC = () => {
 
   return <>
     <StyledSection>
-      <StyledHeroText variant={"h1"}>Welcome patrons,<br/>new and old</StyledHeroText>
+      <HeroContainer>
+        <Typography variant={"h1"}>Home Page</Typography>
+      </HeroContainer>
 
       <StyledCardContent>
-        <StyledDivider/>
+        <Divider/>
         <StyledCharactersText variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</StyledCharactersText>
-
         {characterSummaries === undefined
           ? <StyledCircularProgressWrap>
               <CircularProgress size={100}/>
             </StyledCircularProgressWrap>
-          : <>
-            <StyledDenseWrap>
+          : <StyledDenseWrap>
               {characterSummaries.map((value, i) => <CharacterInfoDense key={i} denseCharacter={value}/>)}
               <CharacterAdd/>
-            </StyledDenseWrap>
-          </>}
+            </StyledDenseWrap>}
 
       </StyledCardContent>
     </StyledSection>

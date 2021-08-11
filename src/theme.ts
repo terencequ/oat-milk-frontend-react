@@ -3,7 +3,8 @@ import {createTheme} from "@material-ui/core/styles";
 
 const createAppTheme = (darkMode: boolean = true) =>
 {
-  const fontFamily = "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif";
+  const titleFontFamily = `"Quicksand", "Roboto", "Helvetica", sans-serif`;
+  const fontFamily = `"Noto Sans", "Roboto", "Helvetica", "Arial", sans-serif`;
 
   return createTheme({
     palette: {
@@ -26,27 +27,27 @@ const createAppTheme = (darkMode: boolean = true) =>
     typography: {
       fontFamily: fontFamily,
       h1: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '4rem'
       },
       h2: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '3rem'
       },
       h3: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '2rem'
       },
       h4: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '1.8rem'
       },
       h5: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '1.6rem'
       },
       h6: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '1.4rem'
       },
       button: {
