@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, MouseEvent, useState} from 'react';
+import React, {ChangeEvent, FC, FormEvent, useState} from 'react';
 import styled from "@emotion/styled";
 import {
   Button,
@@ -20,29 +20,17 @@ import {ActionStatus} from "../../../redux/models/actionStatus";
 import {login} from "../../../redux/slices/usersSlice";
 
 
-
-const StyledWrap = styled.div`
-  width: 100%;
-  height: 90vh;
-  
-  display: flex;
-  flex-flow: column;
-  
-  align-items: center;
-  justify-content: center;
-`;
-
 const StyledContainer = styled.div`
   width: 450px;
   max-width: 95vw;
-  
+
   display: flex;
   flex-flow: column;
   justify-content: center;
+  margin: 8vw auto auto;
 `;
 
-const StyledContainerContent = styled.div`
-  height: 100%;
+const StyledForm = styled.form`
   padding: 24px 24px 24px;
 
   display: flex;
@@ -50,8 +38,7 @@ const StyledContainerContent = styled.div`
   justify-content: center;
 `;
 
-
-const StyledHeroContainer = styled.div`
+const StyledLogo = styled.div`
   display: flex;
   align-items: center;
   flex-flow: column;
@@ -61,7 +48,6 @@ const StyledHeroContainer = styled.div`
 interface StyledFormControlProps {
   spacing?: number;
 }
-
 const StyledFormControl = styled(FormControl)<StyledFormControlProps>`
   width: 100%;
   margin: ${p => {
@@ -77,11 +63,11 @@ const StyledCircularProgressWrap = styled.div`
 `;
 
 const StyledThemeButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
-
 
 const LoginPage: FC = () => {
 
@@ -92,26 +78,22 @@ const LoginPage: FC = () => {
 
   const dispatch = useAppDispatch();
 
+  // Form field handlers
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
-    if (value !== password) setEmail(value);
+    setEmail(value);
   };
-
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
-    if (value.slice(value.length-1) === "\n") // If user presses Enter on the password field, log them in
-    {
-      handleLogin();
-      return;
-    }
-    if (value !== password) setPassword(value);
+    setPassword(value);
   };
-
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = (e?: MouseEvent<HTMLButtonElement>) => {
+  // Login
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch(login(email, password));
   };
 
@@ -119,57 +101,41 @@ const LoginPage: FC = () => {
     {usersState.authToken != null && // This means user is logged in
       <Redirect to={'/'}/>
     }
-    <StyledWrap>
-      <StyledContainer>
-        <StyledContainerContent>
-          {/* Logo */}
-          <StyledHeroContainer>
-            <Logo/>
-          </StyledHeroContainer>
-          {/* Email field */}
-          <StyledFormControl>
-            <TextField
-              onChange={handleEmailChange}
-              variant={"filled"}
-              label={"Email"}
-              value={email}
-              required
-            />
-          </StyledFormControl>
-          {/* Password field */}
-          <StyledFormControl variant={"filled"}>
-            <InputLabel htmlFor={"filled-adornment-password"}>Password</InputLabel>
-            <FilledInput
-              id={"filled-adornment-password"}
-              type={showPassword ? "text" : "password"}
-              onChange={handlePasswordChange}
-              value={password}
-              required
-              endAdornment={
-                <InputAdornment position={"end"}>
-                  <IconButton
-                    onClick={handleShowPassword}
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </StyledFormControl>
-          {/* Login button */}
-          <StyledFormControl spacing={3}>
-            {usersState.loginStatus === ActionStatus.InProgress
-              ? <StyledCircularProgressWrap>
-                  <CircularProgress />
-                </StyledCircularProgressWrap>
-              : <Button
-                  variant={"contained"}
-                  onClick={handleLogin}
-                >Login</Button>}
-          </StyledFormControl>
-        </StyledContainerContent>
-      </StyledContainer>
-    </StyledWrap>
+    <StyledContainer>
+      <StyledForm onSubmit={handleLogin}>
+        {/* Logo */}
+        <StyledLogo><Logo/></StyledLogo>
+        {/* Email field */}
+        <StyledFormControl>
+          <TextField onChange={handleEmailChange} variant={"filled"} label={"Email"} value={email} required/>
+        </StyledFormControl>
+        {/* Password field */}
+        <StyledFormControl variant={"filled"}>
+          <InputLabel htmlFor={"filled-adornment-password"}>Password</InputLabel>
+          <FilledInput id={"filled-adornment-password"}
+            type={showPassword ? "text" : "password"}
+            onChange={handlePasswordChange}
+            value={password}
+            required
+            endAdornment={
+              <InputAdornment position={"end"}>
+                <IconButton
+                  onClick={handleShowPassword}
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </StyledFormControl>
+        {/* Login button */}
+        <StyledFormControl spacing={3}>
+          {usersState.loginStatus === ActionStatus.InProgress
+            ? <StyledCircularProgressWrap><CircularProgress /></StyledCircularProgressWrap>
+            : <Button type="submit" variant={"contained"}>Login</Button>}
+        </StyledFormControl>
+      </StyledForm>
+    </StyledContainer>
     <StyledThemeButton>
       <MenuItemThemeButton/>
     </StyledThemeButton>
