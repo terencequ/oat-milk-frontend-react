@@ -15,6 +15,7 @@ import PrivateRoute from "./modules/core/components/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";
 import createAppTheme from "./theme";
 import CreateCharacterPage from "./modules/characters/pages/CreateCharacterPage";
+import RegisterPage from "./modules/users/pages/RegisterPage";
 
 
 const StyledBody = styled.div`
@@ -41,6 +42,9 @@ const App = () => {
           <Switch>
             <Route path={"/login"}>
               <LoginPage/>
+            </Route>
+            <Route path={"/register"}>
+              <RegisterPage/>
             </Route>
             <PrivateRoute path={"/character=:id"}>
               <CharacterPage/>

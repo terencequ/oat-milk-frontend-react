@@ -49,8 +49,6 @@ const StyledDenseWrap = styled.div`
   align-items: center;
 `;
 
-
-
 const HomePage: FC = () => {
 
   const dispatch = useAppDispatch();
@@ -79,7 +77,6 @@ const HomePage: FC = () => {
               {characterSummaries.map((value, i) => <CharacterInfoDense key={i} denseCharacter={value}/>)}
               <CharacterAdd/>
             </StyledDenseWrap>}
-
       </StyledCardContent>
     </StyledSection>
   </>;
