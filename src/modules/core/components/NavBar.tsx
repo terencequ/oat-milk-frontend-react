@@ -12,7 +12,6 @@ import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import LogoDense from "../../shared/components/logo/LogoDense";
 import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
-import {logout} from "../../../redux/slices/usersSlice";
 
 const StyledAppBar = styled(AppBar)<any>`
   position: ${p => {
@@ -69,7 +68,6 @@ const NavBar: FC<NavBarProps> = (p) => {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
     setSettingsOpen(false);
   };
 

@@ -12,7 +12,7 @@ export function SetupGlobalAxiosInterceptor(){
             config.baseURL = baseUrl;
             const authJwt = store.getState().users.authToken;
             if(authJwt != null){
-                config.headers["Authorization"] = `Bearer ${authJwt}`;
+                config.headers["Authorization"] = `Bearer ${authJwt}adasdas`;
             }
             return config;
         },
