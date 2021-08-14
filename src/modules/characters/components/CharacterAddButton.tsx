@@ -29,7 +29,7 @@ interface CharacterAddProps {
   style?: CSSProperties;
 }
 
-const CharacterAdd: FC<CharacterAddProps> = ({style}) => {
+const CharacterAddButton: FC<CharacterAddProps> = ({style}) => {
   const history = useHistory();
 
   const gotoCreateNewCharacter = () => {
@@ -47,4 +47,4 @@ const CharacterAdd: FC<CharacterAddProps> = ({style}) => {
 };
 
 
-export default CharacterAdd;
+export default CharacterAddButton;

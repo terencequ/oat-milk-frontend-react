@@ -1,14 +1,10 @@
-import React, {FC, useEffect, useState} from 'react';
-import {CardContent, CircularProgress, Divider, Typography} from "@material-ui/core";
-import CharacterInfoDense from "../../characters/components/CharacterInfoDense";
+import React, {FC} from 'react';
+import {CardContent, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
-import CharacterAdd from "../../characters/components/CharacterAdd";
-import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {getCharacterSummaries} from "../../../api/clients/CharacterSummaryClient";
-import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
+import CharacterListView from "../../characters/components/CharacterListView";
 
 
-const StyledSection = styled.section`
+const MainContainer = styled.section`
   margin-bottom: 2vw;
 `;
 
@@ -24,72 +20,21 @@ const HeroContainer = styled.div`
   }
 `
 
-const StyledCardContent = styled(CardContent)`
+const Content = styled(CardContent)`
   display: flex;
   flex-flow: column;
 `;
 
-const StyledCharactersText = styled(Typography)`
-  padding-top: 0.5vw;
-  padding-bottom: 0.5vw;
-  margin: 0.5vw 1vw;
-`;
-
-const StyledCircularProgressWrap = styled.div`
-  width: 100%;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const StyledDenseWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; 
-  align-items: center;
-`;
-
 const HomePage: FC = () => {
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const dispatch = useAppDispatch();
-
-  const getData = async () => {
-    setLoading(true);
-    const [res, err] = await getCharacterSummaries();
-    setLoading(false);
-    if(res){ dispatch(setCharacterSummaries(res)); }
-    if(err){ setError(err.message ?? null); }
-  }
-  useEffect(() => {
-    getData().then();
-  }, []);
-
-  const {characterSummaries} = useAppSelector(state => state.characters)
-
-  return <>
-    <StyledSection>
+  return <MainContainer>
       <HeroContainer>
         <Typography variant={"h1"}>Home Page</Typography>
       </HeroContainer>
 
-      <StyledCardContent>
-        <Divider/>
-        <StyledCharactersText variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</StyledCharactersText>
-        {loading ?
-          <StyledCircularProgressWrap>
-            <CircularProgress size={100}/>
-          </StyledCircularProgressWrap> :
-          <StyledDenseWrap>
-            {characterSummaries.map((value, i) => <CharacterInfoDense key={i} denseCharacter={value}/>)}
-            <CharacterAdd/>
-          </StyledDenseWrap>
-        }
-      </StyledCardContent>
-    </StyledSection>
-  </>;
+      <Content>
+        <CharacterListView/>
+      </Content>
+    </MainContainer>;
 };
 
 export default HomePage;
