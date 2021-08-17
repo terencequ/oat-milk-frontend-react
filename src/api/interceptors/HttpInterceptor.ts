@@ -15,7 +15,8 @@ export function SetupGlobalAxiosInterceptor(){
                 config.headers["Authorization"] = `Bearer ${authJwt}`;
             }
             // Artificial delay
-            return await new Promise(resolve => setTimeout(() => resolve(config), 1000));
+            // return await new Promise(resolve => setTimeout(() => resolve(config), 1000));
+            return config;
         },
     )
 }

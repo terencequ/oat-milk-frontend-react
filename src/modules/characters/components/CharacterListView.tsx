@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {getCharacterSummaries} from "../../../api/clients/CharacterSummaryClient";
 import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
+import CharacterListAddButton from "./CharacterListAddButton";
 
 const MainContainer = styled(CardContent)`
   display: flex;
@@ -61,6 +62,8 @@ const CharacterListView: FC = () => {
                 :
                 <CharacterSummaryContainer>
                     {characterSummaries.map((value, i) => <CharacterListItem key={i} characterSummary={value}/>)}
+                    <CharacterListAddButton/>
+
                 </CharacterSummaryContainer>
             }
 

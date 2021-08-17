@@ -3,13 +3,17 @@ import {
   Avatar, Button,
   ButtonGroup,
   Card,
-  CardActionArea, Collapse, Theme, Typography
+  CardActionArea, Collapse, Grid, Theme, Typography
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
 import {Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {deleteCharacter} from "../../../api/clients/CharacterClient";
+import {getCharacterSummaries} from "../../../api/clients/CharacterSummaryClient";
+import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
+import {useAppDispatch} from "../../../redux/hooks";
 
 export type CharacterInfoBasicProp = {
   characterSummary: CharacterSummaryResponse;
@@ -92,9 +96,10 @@ const ExpandedCollapseButton = styled(Button)`
  * @constructor
  */
 const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
-  const [expand, setExpand] = useState(false);
-
   const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  const [expand, setExpand] = useState(false);
 
   /** Toggle expansion on the more info section. */
   const toggleExpand = () => {
@@ -102,8 +107,23 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
   }
 
   /** View character in View Character page. */
-  const view = () => {
+  const viewThis = () => {
     history.push(`character=${characterSummary.identifier}`)
+  }
+
+  /** View character in View Character page. */
+  const deleteThis = async () => {
+    const [, err] = await deleteCharacter(characterSummary.id);
+    if(err){
+      console.error(err);
+      return err;
+    }
+    const [res2, err2] = await getCharacterSummaries();
+    if(err2){
+      console.error(err);
+      return;
+    }
+    dispatch(setCharacterSummaries(res2 ?? []));
   }
 
   return <MainContainer>
@@ -125,9 +145,9 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
         </SummaryHealth>
       </SummaryActionArea>
       <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
-        <Button onClick={view}><Visibility/></Button>
+        <Button onClick={viewThis}><Visibility/></Button>
         <Button><Edit/></Button>
-        <Button color={"error"}><Delete/></Button>
+        <Button onClick={deleteThis} color={"error"}><Delete/></Button>
       </SummaryActions>
     </SummaryDisplay>
 
