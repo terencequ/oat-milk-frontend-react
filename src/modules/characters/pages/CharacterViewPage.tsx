@@ -5,6 +5,7 @@ import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {getCharacterByIdentifier} from "../../../api/clients/CharacterClient";
 import {setCurrentCharacter} from "../../../redux/slices/charactersSlice";
 import styled from "@emotion/styled";
+import {HeroContainer, PageContainer } from '../../core/styles/GlobalStyles';
 
 const CircularProgressContainer = styled.div`
   width: 100%;
@@ -26,11 +27,14 @@ const CharacterViewPage: FC = () => {
   const dispatch = useAppDispatch();
 
   const getCurrentCharacter = async() => {
-    const [res, error] = await getCharacterByIdentifier(id)
+    setLoading(true);
+    const [res, error] = await getCharacterByIdentifier(id);
+    setLoading(false);
     if(res){
       dispatch(setCurrentCharacter(res));
     } else if(error){
       dispatch(setCurrentCharacter(null));
+      setError(error.message ?? "");
     } else {
       dispatch(setCurrentCharacter(null));
     }
@@ -40,21 +44,22 @@ const CharacterViewPage: FC = () => {
     getCurrentCharacter().then();
   }, [])
 
-  return <>
+  return <PageContainer>
     {
-      currentCharacter
-          ?
-          <>
-            <Typography variant={"h1"}>{currentCharacter.name}</Typography>
-          </>
-          :
-          <>
-            <CircularProgressContainer>
-              <CircularProgress/>
-            </CircularProgressContainer>
-          </>
+      currentCharacter &&
+      <HeroContainer>
+        <Typography align={"center"} variant={"h1"}>{currentCharacter.name}</Typography>
+      </HeroContainer>
     }
-    </>;
+    {
+      loading &&
+      <>
+        <CircularProgressContainer>
+          <CircularProgress/>
+        </CircularProgressContainer>
+      </>
+    }
+    </PageContainer>;
 };
 
 export default CharacterViewPage;

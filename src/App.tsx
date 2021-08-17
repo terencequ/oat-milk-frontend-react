@@ -16,6 +16,7 @@ import {useAppSelector} from "./redux/hooks";
 import createAppTheme from "./theme";
 import CharacterCreatePage from "./modules/characters/pages/CharacterCreatePage";
 import RegisterPage from "./modules/users/pages/RegisterPage";
+import CharacterListPage from "./modules/characters/pages/CharacterListPage";
 
 
 const StyledBody = styled.div`
@@ -46,6 +47,9 @@ const App = () => {
             <Route path={"/register"}>
               <RegisterPage/>
             </Route>
+            <PrivateRoute path={"/characters"}>
+              <CharacterListPage/>
+            </PrivateRoute>
             <PrivateRoute path={"/character=:id"}>
               <CharacterViewPage/>
             </PrivateRoute>

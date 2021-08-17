@@ -9,12 +9,11 @@ import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {Redirect} from "react-router-dom";
 import Logo from "../../shared/components/logo/Logo";
 import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
-import {ActionStatus} from "../../../redux/models/actionStatus";
 import {
   CenteredCircularProgress,
   UserFormPageContainer,
 } from "./UserFormStyles";
-import {BottomMiddleFixedDiv} from "../../core/styles/PositionStyles";
+import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
 import PasswordInput from "../../shared/components/forms/PasswordInput";
 import {login} from "../../../api/clients/UserClient";
 import {setAuthToken} from "../../../redux/slices/usersSlice";

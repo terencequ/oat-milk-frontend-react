@@ -10,7 +10,7 @@ const createAppTheme = (darkMode: boolean = true) =>
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        light: "#c9ac81",
+        light: darkMode ? "#363636" : "#fff9f3",
         main: "#ffe0b2",
         dark: "#b29c7c"
       },
@@ -47,8 +47,16 @@ const createAppTheme = (darkMode: boolean = true) =>
         fontSize: '1.6rem'
       },
       h6: {
+        fontFamily: fontFamily,
+        fontSize: '1.2rem',
+      },
+      subtitle1: {
         fontFamily: titleFontFamily,
-        fontSize: '1.4rem'
+        fontSize: '1.2rem',
+      },
+      subtitle2: {
+        fontFamily: titleFontFamily,
+        fontSize: '1.1rem',
       },
       button: {
         fontFamily: fontFamily,

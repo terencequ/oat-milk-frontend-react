@@ -1,8 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
-import {CardContent, CircularProgress, Divider, Typography} from "@material-ui/core";
-import CharacterSummaryCard from "./CharacterSummaryCard";
+import {CardContent, CircularProgress, Typography} from "@material-ui/core";
+import CharacterListItem from "./CharacterListItem";
 import styled from "@emotion/styled";
-import CharacterAddButton from "./CharacterAddButton";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {getCharacterSummaries} from "../../../api/clients/CharacterSummaryClient";
 import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
@@ -13,6 +12,7 @@ const MainContainer = styled(CardContent)`
 `;
 
 const CircularProgressContainer = styled.div`
+  margin-top: 2vw;
   width: 100%;
   height: 15vw;
   
@@ -22,10 +22,12 @@ const CircularProgressContainer = styled.div`
 `;
 
 const CharacterSummaryContainer = styled.div`
-  display: flex;
+  margin-top: 2vw;
+  display: inline-flex;
   flex-wrap: wrap;
   justify-content: flex-start; 
   align-items: center;
+  min-width: 100%;
 `;
 
 const CharacterListView: FC = () => {
@@ -48,17 +50,17 @@ const CharacterListView: FC = () => {
     const {characterSummaries} = useAppSelector(state => state.characters)
 
     return <MainContainer>
-            <Divider/>
-            <Typography margin={"normal"} variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</Typography>
+            <Typography align={"left"} margin={"normal"} variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</Typography>
             {loading ?
                 <CircularProgressContainer>
                     <CircularProgress/>
-                </CircularProgressContainer> :
+                </CircularProgressContainer>
+                :
                 <CharacterSummaryContainer>
-                    {characterSummaries.map((value, i) => <CharacterSummaryCard key={i} characterSummary={value}/>)}
-                    <CharacterAddButton/>
+                    {characterSummaries.map((value, i) => <CharacterListItem key={i} characterSummary={value}/>)}
                 </CharacterSummaryContainer>
             }
+
         </MainContainer>;
     };
 

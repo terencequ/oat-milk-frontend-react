@@ -1,40 +1,29 @@
 import React, {FC} from 'react';
-import {CardContent, Typography} from "@material-ui/core";
+import {CardContent, Divider, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import CharacterListView from "../../characters/components/CharacterListView";
+import { HeroContainer, PageContainer } from '../styles/GlobalStyles';
 
-
-const MainContainer = styled.section`
-  margin-bottom: 2vw;
-`;
-
-const HeroContainer = styled.div`
-  margin-top: 4vw;
-  margin-bottom: 4vw;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  text-align: center;
-  img {
-    width: 256px;
-  }
+const PageSection = styled.div`
+  margin-top: 1vw;
 `
 
-const Content = styled(CardContent)`
-  display: flex;
-  flex-flow: column;
-`;
-
 const HomePage: FC = () => {
-  return <MainContainer>
+  return <PageContainer>
       <HeroContainer>
-        <Typography variant={"h1"}>Home Page</Typography>
+        <Typography variant={"h1"}>Welcome to Oat Milk</Typography>
       </HeroContainer>
 
-      <Content>
-        <CharacterListView/>
-      </Content>
-    </MainContainer>;
+      <PageSection>
+          <Typography align={"left"} variant={"h3"}>Characters</Typography>
+          <Divider/>
+      </PageSection>
+
+      <PageSection>
+          <Typography align={"left"} variant={"h3"}>Campaigns</Typography>
+          <Divider/>
+      </PageSection>
+    </PageContainer>;
 };
 
 export default HomePage;

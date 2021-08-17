@@ -7,7 +7,7 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import GenericDrawer from "../../shared/components/generic/GenericDrawer";
+import NavDrawer from "./NavDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import LogoDense from "../../shared/components/logo/LogoDense";
 import {useLocation} from "react-router-dom";
@@ -103,7 +103,7 @@ const NavBar: FC<NavBarProps> = (p) => {
 
       </Toolbar>
     </StyledAppBar>
-    <GenericDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen}/>
+    <NavDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen}/>
   </>;
 }
 
