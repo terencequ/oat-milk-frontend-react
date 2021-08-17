@@ -3,15 +3,12 @@ import {
   Avatar, Button,
   ButtonGroup,
   Card,
-  CardActionArea, CardActions, Collapse, Divider, Grid,
-  IconButton, LinearProgress,
-  Theme, Tooltip,
-  Typography
+  CardActionArea, Collapse, Theme, Typography
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk/dist/api";
-import {Build, Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
+import {Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
 
 export type CharacterInfoBasicProp = {
@@ -71,13 +68,8 @@ const SummaryHealth = styled.div`
 `
 
 const SummaryActions = styled(ButtonGroup)`
-  padding: ${themeSpacing(5)};
+  padding: ${themeSpacing(4)};
   align-self: center;
-`
-
-// Expanded
-const ExpandedContainer = styled(Collapse)`
-
 `
 
 const ExpandedContents = styled.div`
@@ -95,50 +87,21 @@ const ExpandedCollapseButton = styled(Button)`
 `
 
 /**
- * Display a summary of a character (with expandable information) in a vertical list item.
+ * Display a summary of a character as a vertical list item. Can be expanded to see more information, like an accordion.
  * @param characterSummary
  * @constructor
  */
 const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
   const [expand, setExpand] = useState(false);
 
-  const levelProgress = () => {
-    const exp = characterSummary.experience ?? 0;
-    const lastExpRequirement = characterSummary.previousLevelExperienceRequirement ?? 0;
-    const nextExpRequirement = characterSummary.nextLevelExperienceRequirement ?? 0;
-
-    if(nextExpRequirement === -1){ // Reached max level
-      return 1;
-    }
-
-    const flatCurrent = exp - lastExpRequirement;
-    const flatNext = nextExpRequirement - lastExpRequirement;
-
-    if (flatNext === 0) return 1;
-
-    return flatCurrent / flatNext;
-  };
-
   const history = useHistory();
 
-  // Get a "30/300xp" style string
-  const getExpText = () => {
-    const currentExp = characterSummary.experience ?? 0;
-    const nextExp = characterSummary.nextLevelExperienceRequirement ?? 0;
-    let currentExpString = `${currentExp}`;
-    let nextExpString = `${nextExp}`;
-    if(nextExp === -1){
-      nextExpString = "MAX";
-    }
-    return `${currentExpString}/${nextExpString}`;
-  }
-
-  // Toggle expansion on the more info section
+  /** Toggle expansion on the more info section. */
   const toggleExpand = () => {
     setExpand(!expand);
   }
 
-  // View character in View Character page
+  /** View character in View Character page. */
   const view = () => {
     history.push(`character=${characterSummary.identifier}`)
   }
@@ -161,15 +124,15 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
           <Typography align={"center"} variant={"subtitle1"}>999/999 HP</Typography>
         </SummaryHealth>
       </SummaryActionArea>
-      <SummaryActions variant="text" color="inherit" aria-label="text primary button group">
-        <IconButton><Visibility/></IconButton>
-        <IconButton><Edit/></IconButton>
-        <IconButton color={"error"}><Delete/></IconButton>
+      <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
+        <Button onClick={view}><Visibility/></Button>
+        <Button><Edit/></Button>
+        <Button color={"error"}><Delete/></Button>
       </SummaryActions>
     </SummaryDisplay>
 
     {/** More Information */}
-    <ExpandedContainer in={expand}>
+    <Collapse in={expand}>
       <ExpandedContents>
         <Typography align={"left"} variant={"h2"} gutterBottom>{characterSummary.name}</Typography>
         <Typography align={"left"} variant={"h3"} gutterBottom>Backstory</Typography>
@@ -186,7 +149,7 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
       <ExpandedCollapseButton variant={"text"} color={"inherit"} onClick={toggleExpand}>
         <ExpandLess fontSize={"large"}/>
       </ExpandedCollapseButton>
-    </ExpandedContainer>
+    </Collapse>
   </MainContainer>;
 };
 

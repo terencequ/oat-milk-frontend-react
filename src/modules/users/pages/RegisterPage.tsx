@@ -2,29 +2,45 @@ import React, {FC, FormEvent, useState} from "react";
 import {CenteredCircularProgress, UserFormPageContainer } from "./UserFormStyles";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Logo from "../../shared/components/logo/Logo";
-import {Button, FormControl, TextField} from "@material-ui/core";
+import {Button, FormControl, TextField, Typography} from "@material-ui/core";
 import PasswordInput from "../../shared/components/forms/PasswordInput";
+import {Redirect} from "react-router-dom";
+import {login} from "../../../api/clients/UserClient";
+import {isLoggedInSelector, setAuthToken} from "../../../redux/slices/usersSlice";
+import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
+import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
 
 const RegisterPage: FC = () => {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const [displayName, setDisplayName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    // Register
+    const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if(password !== confirmPassword){
+            setError("Passwords do not match!");
+        }
+        setLoading(true);
+        const [res, err] = await login({email: email, password: password});
+        setLoading(false);
+        setError(err?.message ?? null);
+        dispatch(setAuthToken(res?.authToken ?? ""))
+    };
+
     const usersState = useAppSelector(state => state.users);
     const dispatch = useAppDispatch();
 
-    // Register
-    const handleRegister = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if(password !== confirmPassword){
-
-        }
-    };
+    const isLoggedIn = isLoggedInSelector(usersState);
 
     return <>
+        {isLoggedIn && // This means user is logged in
+            <Redirect to={'/'}/>
+        }
         <UserFormPageContainer>
             <form onSubmit={handleRegister}>
                 <div className="logo"><Logo/></div>
@@ -46,7 +62,14 @@ const RegisterPage: FC = () => {
                         : <Button type="submit" variant={"contained"}>Register</Button>}
                 </FormControl>
             </form>
+            {error
+                && error !== ""
+                && <Typography variant={"caption"} align={"center"}>{error}</Typography>
+            }
         </UserFormPageContainer>
+        <BottomMiddleFixedDiv>
+            <MenuItemThemeButton/>
+        </BottomMiddleFixedDiv>
     </>
 }
 

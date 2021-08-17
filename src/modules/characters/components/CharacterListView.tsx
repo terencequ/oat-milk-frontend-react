@@ -30,8 +30,11 @@ const CharacterSummaryContainer = styled.div`
   min-width: 100%;
 `;
 
+/**
+ * Retrieves and displays character sheet summaries in a vertical list.
+ * @constructor
+ */
 const CharacterListView: FC = () => {
-
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const dispatch = useAppDispatch();

@@ -3,7 +3,7 @@ import {
   Button,
   CircularProgress,
   FormControl,
-  TextField,
+  TextField, Typography,
 } from "@material-ui/core";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {Redirect} from "react-router-dom";
@@ -16,7 +16,7 @@ import {
 import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
 import PasswordInput from "../../shared/components/forms/PasswordInput";
 import {login} from "../../../api/clients/UserClient";
-import {setAuthToken} from "../../../redux/slices/usersSlice";
+import {isLoggedInSelector, setAuthToken} from "../../../redux/slices/usersSlice";
 
 const LoginPage: FC = () => {
   const [loading, setLoading] = useState(false);
@@ -24,9 +24,11 @@ const LoginPage: FC = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const usersState = useAppSelector(state => state.users);
 
+  const usersState = useAppSelector(state => state.users);
   const dispatch = useAppDispatch();
+
+  const isLoggedIn = isLoggedInSelector(usersState);
 
   // Login
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
@@ -39,7 +41,7 @@ const LoginPage: FC = () => {
   };
 
   return <>
-    {usersState.authToken != null && // This means user is logged in
+    {isLoggedIn && // This means user is logged in
       <Redirect to={'/'}/>
     }
     <UserFormPageContainer>
@@ -58,6 +60,10 @@ const LoginPage: FC = () => {
         </FormControl>
       </form>
     </UserFormPageContainer>
+    {error
+      && error !== ""
+      && <Typography variant={"caption"} align={"center"}>{error}</Typography>
+    }
     <BottomMiddleFixedDiv>
       <MenuItemThemeButton/>
     </BottomMiddleFixedDiv>
