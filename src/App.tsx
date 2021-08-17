@@ -8,13 +8,15 @@ import './App.css';
 import NavBar from "./modules/core/components/NavBar";
 import HomePage from "./modules/core/pages/HomePage";
 import LoginPage from "./modules/users/pages/LoginPage";
-import CharacterPage from "./modules/characters/pages/CharacterPage";
-import {CssBaseline, ThemeProvider} from "@material-ui/core";
+import CharacterViewPage from "./modules/characters/pages/CharacterViewPage";
+import {CssBaseline, Fade, ThemeProvider, Zoom} from "@material-ui/core";
 import styled from "@emotion/styled";
 import PrivateRoute from "./modules/core/components/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";
 import createAppTheme from "./theme";
-import CreateCharacterPage from "./modules/characters/pages/CreateCharacterPage";
+import CharacterCreatePage from "./modules/characters/pages/CharacterCreatePage";
+import RegisterPage from "./modules/users/pages/RegisterPage";
+import CharacterListPage from "./modules/characters/pages/CharacterListPage";
 
 
 const StyledBody = styled.div`
@@ -42,11 +44,17 @@ const App = () => {
             <Route path={"/login"}>
               <LoginPage/>
             </Route>
+            <Route path={"/register"}>
+              <RegisterPage/>
+            </Route>
+            <PrivateRoute path={"/characters"}>
+              <CharacterListPage/>
+            </PrivateRoute>
             <PrivateRoute path={"/character=:id"}>
-              <CharacterPage/>
+              <CharacterViewPage/>
             </PrivateRoute>
             <PrivateRoute path={"/create"}>
-              <CreateCharacterPage/>
+              <CharacterCreatePage/>
             </PrivateRoute>
             <PrivateRoute path={"/"}>
               <HomePage/>

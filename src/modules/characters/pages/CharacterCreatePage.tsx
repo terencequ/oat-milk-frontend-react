@@ -3,11 +3,11 @@ import {Typography} from "@material-ui/core";
 
 
 
-const CreateCharacterPage: FC = () => {
+const CharacterCreatePage: FC = () => {
 
   return <>
     <Typography variant={"h1"}>CreateCharacterPage</Typography>
   </>;
 };
 
-export default CreateCharacterPage;
+export default CharacterCreatePage;

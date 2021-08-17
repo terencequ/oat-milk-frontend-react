@@ -3,13 +3,14 @@ import {createTheme} from "@material-ui/core/styles";
 
 const createAppTheme = (darkMode: boolean = true) =>
 {
-  const fontFamily = "\"Noto Sans\", \"Roboto\", \"Helvetica\", \"Arial\", sans-serif";
+  const titleFontFamily = `"Quicksand", "Roboto", "Helvetica", sans-serif`;
+  const fontFamily = `"Noto Sans", "Roboto", "Helvetica", "Arial", sans-serif`;
 
   return createTheme({
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        light: "#c9ac81",
+        light: darkMode ? "#363636" : "#fff9f3",
         main: "#ffe0b2",
         dark: "#b29c7c"
       },
@@ -26,28 +27,36 @@ const createAppTheme = (darkMode: boolean = true) =>
     typography: {
       fontFamily: fontFamily,
       h1: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '4rem'
       },
       h2: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '3rem'
       },
       h3: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '2rem'
       },
       h4: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '1.8rem'
       },
       h5: {
-        fontFamily: fontFamily,
+        fontFamily: titleFontFamily,
         fontSize: '1.6rem'
       },
       h6: {
         fontFamily: fontFamily,
-        fontSize: '1.4rem'
+        fontSize: '1.2rem',
+      },
+      subtitle1: {
+        fontFamily: titleFontFamily,
+        fontSize: '1.2rem',
+      },
+      subtitle2: {
+        fontFamily: titleFontFamily,
+        fontSize: '1.1rem',
       },
       button: {
         fontFamily: fontFamily,

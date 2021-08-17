@@ -7,7 +7,7 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import GenericDrawer from "../../shared/components/generic/GenericDrawer";
+import NavDrawer from "./NavDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import LogoDense from "../../shared/components/logo/LogoDense";
 import {useLocation} from "react-router-dom";
@@ -25,7 +25,6 @@ const StyledLogoWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
   margin-left: 1vw;
 `;
 
@@ -70,8 +69,8 @@ const NavBar: FC<NavBarProps> = (p) => {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
     setSettingsOpen(false);
+    dispatch(logout());
   };
 
   // No app bar if this is the login page
@@ -98,22 +97,13 @@ const NavBar: FC<NavBarProps> = (p) => {
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
             <MenuItemThemeButton/>
-            {isLoggedIn
-              ?
-                <MenuItem onClick={handleLogout}>
-                  <StyledListItemIcon>
-                    <ExitToAppIcon/>
-                  </StyledListItemIcon>
-                  Log out
-                </MenuItem>
-              : null}
+            {isLoggedIn && <MenuItem onClick={handleLogout}><StyledListItemIcon><ExitToAppIcon/></StyledListItemIcon>Log out</MenuItem>}
           </Menu>
         </StyledSettingsWrap>
 
       </Toolbar>
     </StyledAppBar>
-
-    <GenericDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen}/>
+    <NavDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen}/>
   </>;
 }
 

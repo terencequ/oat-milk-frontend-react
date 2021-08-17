@@ -3,12 +3,13 @@ import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@materi
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
-import LogoDense from "../logo/LogoDense";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import LogoDense from "../../shared/components/logo/LogoDense";
 import {useHistory} from "react-router-dom";
 
 
 
-const StyledDrawerContents = styled.div`
+const DrawerContents = styled.div`
   width: 15vw;
   max-width: 15vw;
 `;
@@ -41,6 +42,11 @@ const drawerButtons: DrawerButton[] = [
     icon: <HomeIcon/>
   },
   {
+    path: "/characters",
+    title: "Characters",
+    icon: <ListAltIcon/>
+  },
+  {
     path: "/create",
     title: "New Character",
     icon: <AddIcon/>
@@ -56,7 +62,7 @@ interface GenericDrawerProps {
   style?: CSSProperties;
 }
 
-const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) => {
+const NavDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) => {
   const history = useHistory();
 
   const onClose = () => {
@@ -70,10 +76,8 @@ const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) =
     };
   };
 
-  return <>
-    <Drawer open={open} anchor={anchor} onClose={onClose} style={style}>
-      <StyledDrawerContents>
-
+  return <Drawer open={open} anchor={anchor} onClose={onClose} style={style}>
+      <DrawerContents>
         <LogoDense style={{minHeight: "64px"}}/>
         <Divider/>
 
@@ -89,12 +93,11 @@ const GenericDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) =
             );
             })}
         </List>
-      </StyledDrawerContents>
-    </Drawer>
-  </>;
+      </DrawerContents>
+    </Drawer>;
 }
 
-export default GenericDrawer;
+export default NavDrawer;
 
 
 

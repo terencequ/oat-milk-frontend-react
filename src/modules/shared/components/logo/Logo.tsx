@@ -24,7 +24,7 @@ const StyledLogoText = styled(Typography)`
 const Logo: FC<{style?: CSSProperties}> = ({style}) => {
 
     return <StyledLogoWrap style={style}>
-        <StyledLogo src={'/logo-128px.png'}/>
+        <StyledLogo src={'/images/logo.png'}/>
         <StyledLogoText variant={"h4"}>Oat Milk</StyledLogoText>
     </StyledLogoWrap>;
 };

@@ -21,7 +21,7 @@ const StyledLogoText = styled(Typography)`
 const LogoDense: FC<{style?: CSSProperties}> = ({style}) => {
 
   return <StyledLogoDenseWrap style={style}>
-    <StyledLogo src={'/logo-128px.png'}/>
+    <StyledLogo src={'/images/logo.png'}/>
     <StyledLogoText variant={"h6"}>Oat Milk</StyledLogoText>
   </StyledLogoDenseWrap>;
 };
