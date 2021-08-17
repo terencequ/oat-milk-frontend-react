@@ -7,9 +7,9 @@ import {
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
-import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk/dist/api";
 import {Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
+import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 
 export type CharacterInfoBasicProp = {
   characterSummary: CharacterSummaryResponse;
@@ -118,10 +118,10 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
           <Typography align={"left"} variant={"subtitle1"}>Level {characterSummary.level}</Typography>
         </SummaryNameAndLevel>
         <SummaryClass>
-          <Typography align={"center"} variant={"subtitle1"}>Artisan</Typography>
+          <Typography align={"center"} variant={"subtitle1"}>Unknown Class</Typography>
         </SummaryClass>
         <SummaryHealth>
-          <Typography align={"center"} variant={"subtitle1"}>999/999 HP</Typography>
+          <Typography align={"center"} variant={"subtitle1"}>{characterSummary.currentHitPoints}/{characterSummary.maxHitPoints} HP</Typography>
         </SummaryHealth>
       </SummaryActionArea>
       <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
@@ -136,15 +136,7 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
       <ExpandedContents>
         <Typography align={"left"} variant={"h2"} gutterBottom>{characterSummary.name}</Typography>
         <Typography align={"left"} variant={"h3"} gutterBottom>Backstory</Typography>
-        <Typography align={"left"} variant={"body1"} gutterBottom>
-          Chug used to be the best fisherman in his village. But one day, his family was killed in
-          a terrible fishing accident. However, this was no accident. Chug found out that his family
-          was actually murdered by man dressed up like a fish!
-        </Typography>
-        <Typography align={"left"} variant={"body1"} gutterBottom>
-          Chug was outraged. He did not want his family to be murdered. So from that day forth,
-          Chug swore an oath to search for his parents' murderer and bring him to justice.
-        </Typography>
+        <Typography align={"left"} variant={"body1"} gutterBottom>{characterSummary.backstory}</Typography>
       </ExpandedContents>
       <ExpandedCollapseButton variant={"text"} color={"inherit"} onClick={toggleExpand}>
         <ExpandLess fontSize={"large"}/>
