@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, Menu, MenuItem, Theme, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -15,17 +15,22 @@ import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
 import {themeSpacing} from "../styles/GlobalStyles";
 
-const StyledAppBar = styled(AppBar)`
+const StyledAppBar = styled(AppBar)<{isLeftDrawerOpen: boolean}>`
   width: 100vw;
-  
+  transition: ${props => {
+    const theme = props.theme as Theme;
+    return props.isLeftDrawerOpen ?
+        theme.transitions.create(['margin', 'width'], { // Enter screen animation
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        })
+        :
+        theme.transitions.create(['margin', 'width'], { // Exit screen animation
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        })
+  }}
 `
-
-const StyledLogoWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: ${themeSpacing(2)};
-`;
 
 const StyledSettingsWrap = styled.div`
   margin-left: auto;
@@ -39,13 +44,7 @@ const StyledListItemIcon = styled.div`
   justify-content: center;
 `;
 
-interface NavBarProps {
-  dense?: boolean;
-}
-
-const NavBar: FC<NavBarProps> = (p) => {
-  const {dense} = p;
-
+const NavBar: FC = () => {
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
@@ -79,20 +78,16 @@ const NavBar: FC<NavBarProps> = (p) => {
     return <></>
   }
 
+  const drawerWidth = 350;
   return <>
-    <StyledAppBar position="sticky">
+    <StyledAppBar position="sticky" sx={{
+      width: { sm: `calc(100% - ${leftDrawerOpen ? drawerWidth : 0}px)` },
+      ml: { sm: `${leftDrawerOpen ? drawerWidth : 0}px` },
+    }} isLeftDrawerOpen={leftDrawerOpen}>
       <Toolbar>
-
-        {isLoggedIn
-          ? <IconButton onClick={handleToggleLeftDrawer}>
-              {leftDrawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
-            </IconButton>
-          : null}
-
-        <StyledLogoWrap>
-          <LogoDense/>
-        </StyledLogoWrap>
-
+        <IconButton onClick={handleToggleLeftDrawer}>
+          {leftDrawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
+        </IconButton>
         <StyledSettingsWrap>
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
@@ -100,10 +95,9 @@ const NavBar: FC<NavBarProps> = (p) => {
             {isLoggedIn && <MenuItem onClick={handleLogout}><StyledListItemIcon><ExitToAppIcon/></StyledListItemIcon>Log out</MenuItem>}
           </Menu>
         </StyledSettingsWrap>
-
       </Toolbar>
     </StyledAppBar>
-    <NavDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen}/>
+    <NavDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen} drawerWidth={drawerWidth}/>
   </>;
 }
 

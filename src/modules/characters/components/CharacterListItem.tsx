@@ -76,16 +76,12 @@ const SummaryActions = styled(ButtonGroup)`
 
 const ExpandedContents = styled.div`
   padding: ${themeSpacing(2)} ${themeSpacing(5)};
-  margin-top: 2vw;
+  margin-top: ${themeSpacing(2)};
 `
 
 const ExpandedCollapseButton = styled(Button)`
   margin-top: 20px;
   width: 100%;
-  background: ${props => {
-    const theme = props.theme as Theme;
-    return theme.palette.primary.light;
-  }};
 `
 
 /**

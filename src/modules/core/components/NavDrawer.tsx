@@ -1,19 +1,26 @@
 import React, {CSSProperties, FC, ReactElement} from 'react';
-import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@material-ui/core";
+import {Divider, Drawer, IconButton, List, ListItem, ListItemText, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import LogoDense from "../../shared/components/LogoDense";
 import {useHistory} from "react-router-dom";
+import {ChevronLeft, ChevronRight} from "@material-ui/icons";
 
 
+const DrawerHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto 0.75rem;
+`
 
-const DrawerContents = styled.div`
-  width: 15vw;
-  max-width: 15vw;
-`;
+const DrawerHeaderLogo = styled.div`
+  margin-right: auto;
 
+`
 
 const StyledListItemText = styled(ListItemText)`
   width: 100%;
@@ -55,32 +62,42 @@ const drawerButtons: DrawerButton[] = [
 
 
 
-interface GenericDrawerProps {
+interface NavDrawerProps {
   open: boolean;
   setOpen: (value: boolean) => void;
   anchor?: 'left' | 'top' | 'right' | 'bottom';
-  style?: CSSProperties;
+  drawerWidth: number;
 }
 
-const NavDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) => {
+const NavDrawer: FC<NavDrawerProps> = ({open, setOpen, anchor, drawerWidth}) => {
   const history = useHistory();
 
+  const onOpen = () => {
+    setOpen(true);
+  };
   const onClose = () => {
     setOpen(false);
   };
 
   const handleNavigate = (path: string) => {
     return () => {
-      onClose();
       history.push(path);
     };
   };
 
-  return <Drawer open={open} anchor={anchor} onClose={onClose} style={style}>
-      <DrawerContents>
-        <LogoDense style={{minHeight: "64px"}}/>
-        <Divider/>
+  return <Drawer variant={"persistent"} open={open} anchor={anchor} onClose={onClose}>
+      <div style={{width: drawerWidth+"px"}}>
+        <DrawerHeader>
+          <DrawerHeaderLogo><LogoDense style={{minHeight: "64px"}}/></DrawerHeaderLogo>
 
+            {
+              open
+                ? <IconButton onClick={onClose}><ChevronLeft/></IconButton>
+                : <IconButton onClick={onOpen}><ChevronRight/></IconButton>
+            }
+
+        </DrawerHeader>
+        <Divider/>
         <List>
           {drawerButtons.map((value, i) => {
             return (
@@ -93,7 +110,7 @@ const NavDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) => {
             );
             })}
         </List>
-      </DrawerContents>
+      </div>
     </Drawer>;
 }
 
