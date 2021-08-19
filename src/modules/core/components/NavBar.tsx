@@ -9,27 +9,27 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import NavDrawer from "./NavDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import LogoDense from "../../shared/components/logo/LogoDense";
+import LogoDense from "../../shared/components/LogoDense";
 import {useLocation} from "react-router-dom";
-import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
+import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
+import {themeSpacing} from "../styles/GlobalStyles";
 
-const StyledAppBar = styled(AppBar)<any>`
-  position: ${p => {
-    const dense = p.dense as boolean;
-    return dense ? "relative" : "sticky";
-  }};
-`;
+const StyledAppBar = styled(AppBar)`
+  width: 100vw;
+  
+`
 
 const StyledLogoWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 1vw;
+  margin-left: ${themeSpacing(2)};
 `;
 
 const StyledSettingsWrap = styled.div`
   margin-left: auto;
+  margin-right: ${themeSpacing(2)};
 `;
 
 const StyledListItemIcon = styled.div`
@@ -80,7 +80,7 @@ const NavBar: FC<NavBarProps> = (p) => {
   }
 
   return <>
-    <StyledAppBar dense={dense}>
+    <StyledAppBar position="sticky">
       <Toolbar>
 
         {isLoggedIn

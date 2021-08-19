@@ -10,19 +10,19 @@ export const requestsSlice = createSlice({
     reducers: {
         initialRequest: (state, action: PayloadAction<string>) => {
             const requestId = action.payload;
-            initialState[requestId] = getInitialRequest();
+            state[requestId] = getInitialRequest();
         },
         startRequest: (state, action: PayloadAction<string>) => {
             const requestId = action.payload;
-            initialState[requestId] = getInProgressRequest();
+            state[requestId] = getInProgressRequest();
         },
         succeedRequest: (state, action: PayloadAction<string>) => {
             const requestId = action.payload;
-            initialState[requestId] = getSuccessRequest();
+            state[requestId] = getSuccessRequest();
         },
         failRequest: (state, action: PayloadAction<[string, string]>) => {
             const [requestId, error] = action.payload;
-            initialState[requestId] = getFailRequest(error);
+            state[requestId] = getFailRequest(error);
         },
     },
 });

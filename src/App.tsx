@@ -9,7 +9,7 @@ import NavBar from "./modules/core/components/NavBar";
 import HomePage from "./modules/core/pages/HomePage";
 import LoginPage from "./modules/users/pages/LoginPage";
 import CharacterViewPage from "./modules/characters/pages/CharacterViewPage";
-import {CssBaseline, Fade, ThemeProvider, Zoom} from "@material-ui/core";
+import {CssBaseline, ThemeProvider} from "@material-ui/core";
 import styled from "@emotion/styled";
 import PrivateRoute from "./modules/core/components/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";

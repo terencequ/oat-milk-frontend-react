@@ -3,7 +3,7 @@ import {
   Avatar, Button,
   ButtonGroup,
   Card,
-  CardActionArea, Collapse, Grid, Theme, Typography
+  CardActionArea, Collapse, Theme, Typography
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
@@ -11,8 +11,6 @@ import {Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {deleteCharacter} from "../../../redux/thunks/characterThunks";
-import {getCharacterSummaries} from "../../../redux/thunks/characterSummaryThunks";
-import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
 import {useAppDispatch} from "../../../redux/hooks";
 
 export type CharacterInfoBasicProp = {

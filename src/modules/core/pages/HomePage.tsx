@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
-import {Button, Card, CardActionArea, CardMedia, Typography} from "@material-ui/core";
+import {Card, CardActionArea, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
-import {HeroContainer, PageContainer, themeSpacing} from '../styles/GlobalStyles';
+import {PageContainer, themeSpacing} from '../styles/GlobalStyles';
 import {useHistory} from "react-router-dom";
 import {ListAlt, PeopleAlt} from "@material-ui/icons";
 
@@ -42,7 +42,8 @@ const HomePage: FC = () => {
 
     return <PageContainer>
       <HomePageHeroContainer>
-          <Typography align={"center"} variant={"h2"}>Where would you like to go?</Typography>
+          <Typography gutterBottom align={"center"} variant={"h1"}>Home Page</Typography>
+          <Typography gutterBottom align={"center"} variant={"h2"}>Where would you like to go?</Typography>
       </HomePageHeroContainer>
 
       <HomePageButtons>

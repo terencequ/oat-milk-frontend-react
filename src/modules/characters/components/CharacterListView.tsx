@@ -9,13 +9,12 @@ import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {getCharacterByIdentifier} from "../../../redux/thunks/characterThunks";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 
-const MainContainer = styled(CardContent)`
+const MainContainer = styled.div`
   display: flex;
   flex-flow: column;
 `;
 
 const CircularProgressContainer = styled.div`
-  margin-top: 2vw;
   width: 100%;
   height: 15vw;
   
@@ -25,7 +24,6 @@ const CircularProgressContainer = styled.div`
 `;
 
 const CharacterSummaryContainer = styled.div`
-  margin-top: 2vw;
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: flex-start; 
@@ -39,20 +37,16 @@ const CharacterSummaryContainer = styled.div`
  */
 const CharacterListView: FC = () => {
     const dispatch = useAppDispatch();
-    const { status, error } = requestSelector(getCharacterByIdentifier.name)();
+    const { status, } = requestSelector(getCharacterByIdentifier.name)();
     const {characterSummaries} = useAppSelector(state => state.characters)
     
-    const getData = async () => {
-        dispatch(getCharacterSummaries());
-    }
-    
     useEffect(() => {
-        getData().then();
-    }, []);
+        dispatch(getCharacterSummaries());
+    }, [dispatch]);
     
     return <MainContainer>
             <Typography align={"left"} margin={"normal"} variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</Typography>
-            {status == RequestStatus.InProgress ?
+            {status === RequestStatus.InProgress ?
                 <CircularProgressContainer>
                     <CircularProgress/>
                 </CircularProgressContainer>
@@ -60,7 +54,6 @@ const CharacterListView: FC = () => {
                 <CharacterSummaryContainer>
                     {characterSummaries.map((value, i) => <CharacterListItem key={i} characterSummary={value}/>)}
                     <CharacterListAddButton/>
-
                 </CharacterSummaryContainer>
             }
 

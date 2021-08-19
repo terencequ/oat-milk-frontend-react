@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import LogoDense from "../../shared/components/logo/LogoDense";
+import LogoDense from "../../shared/components/LogoDense";
 import {useHistory} from "react-router-dom";
 
 

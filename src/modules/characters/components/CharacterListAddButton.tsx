@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 import {Button} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
 import {createCharacter} from "../../../redux/thunks/characterThunks";
-import {getCharacterSummaries} from "../../../redux/thunks/characterSummaryThunks";
-import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
 import {useAppDispatch} from "../../../redux/hooks";
 
 const ButtonContainer = styled(Button)`

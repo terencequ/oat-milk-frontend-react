@@ -6,14 +6,14 @@ import {
 } from "@material-ui/core";
 import {useAppDispatch} from "../../../redux/hooks";
 import {Redirect} from "react-router-dom";
-import Logo from "../../shared/components/logo/Logo";
-import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
+import Logo from "../../shared/components/Logo";
+import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {
   CenteredCircularProgress,
   UserFormPageContainer,
 } from "./UserFormStyles";
 import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
-import PasswordInput from "../../shared/components/forms/PasswordInput";
+import PasswordInput from "../../shared/components/PasswordInput";
 import {login} from "../../../redux/thunks/userThunks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
@@ -28,7 +28,8 @@ const LoginPage: FC = () => {
   const { status, error } = requestSelector(login.name)();
 
   // Login
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     dispatch(login({email: email, password: password}));
   };
 

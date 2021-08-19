@@ -1,14 +1,14 @@
 import React, {FC, FormEvent, useState} from "react";
 import {CenteredCircularProgress, UserFormPageContainer } from "./UserFormStyles";
 import {useAppDispatch} from "../../../redux/hooks";
-import Logo from "../../shared/components/logo/Logo";
+import Logo from "../../shared/components/Logo";
 import {Button, FormControl, TextField, Typography} from "@material-ui/core";
-import PasswordInput from "../../shared/components/forms/PasswordInput";
+import PasswordInput from "../../shared/components/PasswordInput";
 import {Redirect} from "react-router-dom";
 import {login, register} from "../../../redux/thunks/userThunks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
 import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
-import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
+import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 
@@ -23,8 +23,9 @@ const RegisterPage: FC = () => {
     const { status, error } = requestSelector(login.name)();
 
     // Register
-    const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
-        dispatch(register({displayName, email, password}))
+    const handleRegister = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        dispatch(register({displayName, email, password}));
     };
 
     return <>
