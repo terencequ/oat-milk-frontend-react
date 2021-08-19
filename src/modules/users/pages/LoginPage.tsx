@@ -1,11 +1,10 @@
-import React, {ChangeEvent, FC, FormEvent, useState} from 'react';
+import React, {FC, FormEvent, useState} from 'react';
 import {
   Button,
-  CircularProgress,
   FormControl,
   TextField, Typography,
 } from "@material-ui/core";
-import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {useAppDispatch} from "../../../redux/hooks";
 import {Redirect} from "react-router-dom";
 import Logo from "../../shared/components/logo/Logo";
 import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
@@ -15,33 +14,26 @@ import {
 } from "./UserFormStyles";
 import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
 import PasswordInput from "../../shared/components/forms/PasswordInput";
-import {login} from "../../../api/clients/UserClient";
-import {isLoggedInSelector, setAuthToken} from "../../../redux/slices/usersSlice";
+import {login} from "../../../redux/thunks/userThunks";
+import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
+import {requestSelector} from "../../../redux/slices/requestsSlice";
+import {RequestStatus} from "../../../redux/actions/requestStatus";
 
 const LoginPage: FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const usersState = useAppSelector(state => state.users);
   const dispatch = useAppDispatch();
-
-  const isLoggedIn = isLoggedInSelector(usersState);
+  const isLoggedIn = isLoggedInSelector()();
+  const { status, error } = requestSelector(login.name)();
 
   // Login
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    const [res, err] = await login({email: email, password: password});
-    setLoading(false);
-    setError(err?.message ?? null);
-    dispatch(setAuthToken(res?.authToken ?? ""))
+    dispatch(login({email: email, password: password}));
   };
 
   return <>
-    {isLoggedIn && // This means user is logged in
+    {isLoggedIn &&
       <Redirect to={'/'}/>
     }
     <UserFormPageContainer>
@@ -54,16 +46,16 @@ const LoginPage: FC = () => {
           <PasswordInput label={"Password"} password={password} setPassword={setPassword}/>
         </FormControl>
         <FormControl margin={'normal'}>
-          {loading
+          {status === RequestStatus.InProgress
             ? <CenteredCircularProgress />
             : <Button type="submit" variant={"contained"}>Login</Button>}
         </FormControl>
       </form>
+      {error
+        && error !== ""
+        && <Typography variant={"caption"} color={"error"} align={"center"}>{error}</Typography>
+      }
     </UserFormPageContainer>
-    {error
-      && error !== ""
-      && <Typography variant={"caption"} align={"center"}>{error}</Typography>
-    }
     <BottomMiddleFixedDiv>
       <MenuItemThemeButton/>
     </BottomMiddleFixedDiv>

@@ -10,8 +10,8 @@ import {useHistory} from "react-router-dom";
 import {Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {deleteCharacter} from "../../../api/clients/CharacterClient";
-import {getCharacterSummaries} from "../../../api/clients/CharacterSummaryClient";
+import {deleteCharacter} from "../../../redux/thunks/characterThunks";
+import {getCharacterSummaries} from "../../../redux/thunks/characterSummaryThunks";
 import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
 import {useAppDispatch} from "../../../redux/hooks";
 
@@ -113,17 +113,7 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
 
   /** View character in View Character page. */
   const deleteThis = async () => {
-    const [, err] = await deleteCharacter(characterSummary.id);
-    if(err){
-      console.error(err);
-      return err;
-    }
-    const [res2, err2] = await getCharacterSummaries();
-    if(err2){
-      console.error(err);
-      return;
-    }
-    dispatch(setCharacterSummaries(res2 ?? []));
+    dispatch(deleteCharacter(characterSummary.id));
   }
 
   return <MainContainer>

@@ -2,8 +2,8 @@ import {FC} from "react";
 import styled from "@emotion/styled";
 import {Button} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
-import {createCharacter} from "../../../api/clients/CharacterClient";
-import {getCharacterSummaries} from "../../../api/clients/CharacterSummaryClient";
+import {createCharacter} from "../../../redux/thunks/characterThunks";
+import {getCharacterSummaries} from "../../../redux/thunks/characterSummaryThunks";
 import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
 import {useAppDispatch} from "../../../redux/hooks";
 
@@ -15,24 +15,13 @@ const ButtonContainer = styled(Button)`
 const CharacterListAddButton: FC = () => {
     const dispatch = useAppDispatch();
     const createBlankCharacter = async () => {
-        const [, err] = await createCharacter({
+        dispatch(createCharacter({
             name: "new character",
             attributes: null,
             abilityScores: null,
             abilityScoreProficiencies: null,
             descriptions: null
-        })
-        if(err){
-            console.error(err);
-            return;
-        }
-
-        const [res2, err2] = await getCharacterSummaries();
-        if(err2){
-            console.error(err);
-            return;
-        }
-        dispatch(setCharacterSummaries(res2 ?? []));
+        }));
     }
     return <>
         <ButtonContainer onClick={createBlankCharacter} color={"inherit"} startIcon={<Add fontSize={"inherit"}/>}>

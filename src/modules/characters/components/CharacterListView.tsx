@@ -1,11 +1,13 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {CardContent, CircularProgress, Typography} from "@material-ui/core";
 import CharacterListItem from "./CharacterListItem";
 import styled from "@emotion/styled";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {getCharacterSummaries} from "../../../api/clients/CharacterSummaryClient";
-import {setCharacterSummaries} from "../../../redux/slices/charactersSlice";
+import {getCharacterSummaries} from "../../../redux/thunks/characterSummaryThunks";
 import CharacterListAddButton from "./CharacterListAddButton";
+import {requestSelector} from "../../../redux/slices/requestsSlice";
+import {getCharacterByIdentifier} from "../../../redux/thunks/characterThunks";
+import {RequestStatus} from "../../../redux/actions/requestStatus";
 
 const MainContainer = styled(CardContent)`
   display: flex;
@@ -36,26 +38,21 @@ const CharacterSummaryContainer = styled.div`
  * @constructor
  */
 const CharacterListView: FC = () => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
     const dispatch = useAppDispatch();
-
+    const { status, error } = requestSelector(getCharacterByIdentifier.name)();
+    const {characterSummaries} = useAppSelector(state => state.characters)
+    
     const getData = async () => {
-        setLoading(true);
-        const [res, err] = await getCharacterSummaries();
-        setLoading(false);
-        if(res){ dispatch(setCharacterSummaries(res)); }
-        if(err){ setError(err.message ?? null); }
+        dispatch(getCharacterSummaries());
     }
+    
     useEffect(() => {
         getData().then();
     }, []);
-
-    const {characterSummaries} = useAppSelector(state => state.characters)
-
+    
     return <MainContainer>
             <Typography align={"left"} margin={"normal"} variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</Typography>
-            {loading ?
+            {status == RequestStatus.InProgress ?
                 <CircularProgressContainer>
                     <CircularProgress/>
                 </CircularProgressContainer>

@@ -1,8 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {UserResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {useAppSelector} from "../hooks";
-import {TypedUseSelectorHook} from "react-redux";
-import {RootState} from "../store";
 
 export interface UsersState {
     authToken: string | null;
@@ -33,8 +31,10 @@ export const usersSlice = createSlice({
 })
 
 export default usersSlice.reducer;
-export const { logout, setAuthToken, setUser } = usersSlice.actions;
+export const { logout, setAuthToken } = usersSlice.actions;
 
-export const isLoggedInSelector = (state: UsersState) => {
-    return !(state.authToken === null || state.authToken === "");
+export const isLoggedInSelector = () => {
+    return () => {
+        return useAppSelector(state => !(state.users.authToken === null || state.users.authToken === ""));
+    }
 }

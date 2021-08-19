@@ -2,10 +2,13 @@ import React, {FC, useEffect, useState} from 'react';
 import {CircularProgress, Typography} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {getCharacterByIdentifier} from "../../../api/clients/CharacterClient";
+import {getCharacterByIdentifier} from "../../../redux/thunks/characterThunks";
 import {setCurrentCharacter} from "../../../redux/slices/charactersSlice";
 import styled from "@emotion/styled";
 import {HeroContainer, PageContainer } from '../../core/styles/GlobalStyles';
+import {requestSelector} from "../../../redux/slices/requestsSlice";
+import {login} from "../../../redux/thunks/userThunks";
+import {RequestStatus} from "../../../redux/actions/requestStatus";
 
 const CircularProgressContainer = styled.div`
   width: 100%;
@@ -18,27 +21,16 @@ const CircularProgressContainer = styled.div`
 type TParams = { id: string; };
 
 const CharacterViewPage: FC = () => {
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const currentCharacter = useAppSelector(state => state.characters.currentCharacter)
-
   const { id } = useParams<TParams>();
+
   const dispatch = useAppDispatch();
+  const { status, error } = requestSelector(getCharacterByIdentifier.name)();
 
   const getCurrentCharacter = async() => {
-    setLoading(true);
-    const [res, error] = await getCharacterByIdentifier(id);
-    setLoading(false);
-    if(res){
-      dispatch(setCurrentCharacter(res));
-    } else if(error){
-      dispatch(setCurrentCharacter(null));
-      setError(error.message ?? "");
-    } else {
-      dispatch(setCurrentCharacter(null));
-    }
+    dispatch(getCharacterByIdentifier(id));
   }
+  const currentCharacter = useAppSelector(state => state.characters.currentCharacter)
+
 
   useEffect(() => {
     getCurrentCharacter().then();
@@ -52,7 +44,7 @@ const CharacterViewPage: FC = () => {
       </HeroContainer>
     }
     {
-      loading &&
+      status === RequestStatus.InProgress &&
       <>
         <CircularProgressContainer>
           <CircularProgress/>

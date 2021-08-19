@@ -1,6 +1,5 @@
 import React from 'react';
 import {Redirect, Route, RouteProps} from "react-router-dom";
-import {useAppSelector} from "../../../redux/hooks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
 
 interface PrivateRouteProps extends RouteProps {
@@ -8,8 +7,7 @@ interface PrivateRouteProps extends RouteProps {
 }
 
 const PrivateRoute = ({children, ...rest}: PrivateRouteProps) => {
-  const usersState = useAppSelector(state => state.users);
-  const isLoggedIn = isLoggedInSelector(usersState);
+  const isLoggedIn = isLoggedInSelector()();
 
   return <>
     <Route {...rest}
