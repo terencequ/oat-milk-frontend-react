@@ -9,7 +9,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import NavDrawer from "./NavDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import LogoDense from "../../shared/components/LogoDense";
 import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
@@ -44,8 +43,10 @@ const StyledListItemIcon = styled.div`
   justify-content: center;
 `;
 
-const NavBar: FC = () => {
-  const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
+const NavBar: FC<
+    { leftDrawerOpen: boolean,
+      setLeftDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>,
+      drawerWidth: number}> = ({leftDrawerOpen, setLeftDrawerOpen, drawerWidth}) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
 
@@ -78,7 +79,6 @@ const NavBar: FC = () => {
     return <></>
   }
 
-  const drawerWidth = 350;
   return <>
     <StyledAppBar position="sticky" sx={{
       width: { sm: `calc(100% - ${leftDrawerOpen ? drawerWidth : 0}px)` },
