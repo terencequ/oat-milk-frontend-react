@@ -3,12 +3,14 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 interface ThemeState {
     darkMode: boolean;
     drawerOpen: boolean;
+    drawerMinimised: boolean;
     appBarTitle: string;
 }
 
 const initialState: ThemeState = {
     darkMode: true,
     drawerOpen: true,
+    drawerMinimised: false,
     appBarTitle: "Home"
 }
 
@@ -22,6 +24,9 @@ export const userInterfaceSlice = createSlice({
         setDrawerOpen: (state, action: PayloadAction<boolean>) => {
             state.drawerOpen = action.payload;
         },
+        setDrawerMinimised: (state, action: PayloadAction<boolean>) => {
+            state.drawerMinimised = action.payload;
+        },
         setAppBarTitle: (state, action: PayloadAction<string>) => {
             state.appBarTitle = action.payload;
         }
@@ -29,5 +34,5 @@ export const userInterfaceSlice = createSlice({
     }
 })
 
-export const { setDarkMode, setDrawerOpen, setAppBarTitle } = userInterfaceSlice.actions;
+export const { setDarkMode, setDrawerOpen, setDrawerMinimised, setAppBarTitle } = userInterfaceSlice.actions;
 export default userInterfaceSlice.reducer;

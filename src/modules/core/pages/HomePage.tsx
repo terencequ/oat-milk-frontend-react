@@ -14,11 +14,13 @@ const HomePageHeroContainer = styled.div`
 const HomePageButtons = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `
 
 const HomePageCard = styled(Card)`
-  width: 45%;
+  max-width: 40%;
+  width: 500px;
+  margin: ${themeSpacing(2)};
 `
 
 const HomePageCardActions = styled(CardActionArea)`

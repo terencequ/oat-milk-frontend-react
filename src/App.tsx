@@ -17,13 +17,16 @@ import createAppTheme from "./theme";
 import CharacterCreatePage from "./modules/characters/pages/CharacterCreatePage";
 import RegisterPage from "./modules/users/pages/RegisterPage";
 import CharacterListPage from "./modules/characters/pages/CharacterListPage";
-import {drawerWidth} from "./modules/core/components/NavDrawer";
+import NavDrawer, {drawerMinimisedWidth, drawerWidth} from "./modules/core/components/NavDrawer";
 
+const RootContainer = styled.div`
 
-const StyledBody = styled.div<{drawerOpen: boolean, drawerWidth: number }>`
+`
+
+const StyledBody = styled.div<{drawerOpen: boolean, drawerMinimised: boolean}>`
   margin-right: auto;
-  width: calc(100% - ${props => props.drawerOpen ? props.drawerWidth : 0}px);
-  margin-left: ${props => props.drawerOpen ? props.drawerWidth : 0}px;
+  width: calc(100% - ${props => props.drawerOpen ? props.drawerMinimised ? drawerMinimisedWidth : drawerWidth : 0}px);
+  margin-left: ${props => props.drawerOpen ? props.drawerMinimised ? drawerMinimisedWidth : drawerWidth : 0}px;
   transition: ${props => {
     const theme = props.theme as Theme;
     return props.drawerOpen ?
@@ -46,37 +49,39 @@ const App = () => {
   console.log(theme);
 
   document.title = "Oat Milk";
-  const drawerOpen = useAppSelector(state => state.userInterface.drawerOpen);
+  const {drawerOpen, drawerMinimised} = useAppSelector(state => state.userInterface);
 
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
       <Router>
-        <NavBar/>
-        <StyledBody drawerOpen={drawerOpen} drawerWidth={drawerWidth}>
-          <Switch>
-            <Route path={"/login"}>
-              <LoginPage/>
-            </Route>
-            <Route path={"/register"}>
-              <RegisterPage/>
-            </Route>
-            <PrivateRoute path={"/characters"}>
-              <CharacterListPage/>
-            </PrivateRoute>
-            <PrivateRoute path={"/character=:id"}>
-              <CharacterViewPage/>
-            </PrivateRoute>
-            <PrivateRoute path={"/create"}>
-              <CharacterCreatePage/>
-            </PrivateRoute>
-            <PrivateRoute path={"/"}>
-              <HomePage/>
-            </PrivateRoute>
-          </Switch>
-        </StyledBody>
+        <RootContainer>
+          <NavBar/>
+          <NavDrawer anchor={"left"}/>
+          <StyledBody drawerOpen={drawerOpen} drawerMinimised={drawerMinimised}>
+            <Switch>
+              <Route path={"/login"}>
+                <LoginPage/>
+              </Route>
+              <Route path={"/register"}>
+                <RegisterPage/>
+              </Route>
+              <PrivateRoute path={"/characters"}>
+                <CharacterListPage/>
+              </PrivateRoute>
+              <PrivateRoute path={"/character=:id"}>
+                <CharacterViewPage/>
+              </PrivateRoute>
+              <PrivateRoute path={"/create"}>
+                <CharacterCreatePage/>
+              </PrivateRoute>
+              <PrivateRoute path={"/"}>
+                <HomePage/>
+              </PrivateRoute>
+            </Switch>
+          </StyledBody>
+        </RootContainer>
       </Router>
-
     </ThemeProvider>
   </>;
 };

@@ -1,39 +1,41 @@
 import React, {FC, ReactElement} from 'react';
-import {Divider, Drawer, IconButton, List, ListItem, ListItemText, Typography} from "@material-ui/core";
+import {Drawer, List, ListItem, ListItemText, Theme, Toolbar, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import LogoDense from "../../shared/components/LogoDense";
 import {useHistory} from "react-router-dom";
-import {ChevronLeft, ChevronRight} from "@material-ui/icons";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
+import {themeSpacing} from "../styles/GlobalStyles";
 
 export const drawerWidth = 240;
+export const drawerMinimisedWidth = 72;
 
-const DrawerHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto 0.75rem;
-`
-
-const DrawerHeaderLogo = styled.div`
-  margin-right: auto;
-
+const StyledDrawerContents = styled.div`
+  width: ${() => {
+    const {drawerMinimised} = useAppSelector(state => state.userInterface);
+    return (drawerMinimised ? drawerMinimisedWidth : drawerWidth)+"px";
+  }};
+  transition: ${props => {
+    const theme = props.theme as Theme;
+    return theme.transitions.create(['margin', 'width'], { // Enter screen animation
+          easing: theme.transitions.easing.easeInOut,
+          duration: theme.transitions.duration.leavingScreen,
+        })
+  }}};
 `
 
 const StyledListItemText = styled(ListItemText)`
+  margin: 0 ${themeSpacing(2)};
+  padding: ${themeSpacing(0.5)} 8px;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: left;
 `;
 
 const StyledTypography = styled(Typography)`
-  margin-left: 2rem;
+  margin-left: ${themeSpacing(2)};
 `;
 
 interface DrawerButton {
@@ -62,7 +64,7 @@ interface NavDrawerProps {
 const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
-  const drawerOpen = useAppSelector(state => state.userInterface.drawerOpen);
+  const {drawerOpen, drawerMinimised} = useAppSelector(state => state.userInterface);
 
   const onToggleOpen = () => {
     dispatch(setDrawerOpen(!drawerOpen));
@@ -74,30 +76,22 @@ const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
     };
   };
 
-  return <Drawer variant={"persistent"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
-      <div style={{width: drawerWidth+"px"}}>
-        <DrawerHeader>
-          <DrawerHeaderLogo><LogoDense style={{minHeight: "64px"}}/></DrawerHeaderLogo>
-            {
-              drawerOpen
-                ? <IconButton onClick={onToggleOpen}><ChevronLeft/></IconButton>
-                : <IconButton onClick={onToggleOpen}><ChevronRight/></IconButton>
-            }
-        </DrawerHeader>
-        <Divider/>
+  return <Drawer variant={"permanent"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
+      <StyledDrawerContents>
+        <Toolbar/> {/** Spacer, for App Bar height */}
         <List>
           {drawerButtons.map((value, i) => {
             return (
-              <ListItem button={true} key={i} onClick={handleNavigate(value.path)} >
-                <StyledListItemText disableTypography={true}>
-                  {value.icon}
-                  <StyledTypography variant={"body1"}>{value.title}</StyledTypography>
-                </StyledListItemText>
-              </ListItem>
+                <ListItem disableGutters button={true} key={i} onClick={handleNavigate(value.path)} >
+                  <StyledListItemText disableTypography={true}>
+                    {value.icon}
+                    {!drawerMinimised && <StyledTypography variant={"body1"}>{value.title}</StyledTypography>}
+                  </StyledListItemText>
+                </ListItem>
             );
-            })}
+          })}
         </List>
-      </div>
+      </StyledDrawerContents>
     </Drawer>;
 }
 

@@ -7,34 +7,17 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import NavDrawer, {drawerWidth} from "./NavDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
 import {themeSpacing} from "../styles/GlobalStyles";
-import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
+import {setDrawerMinimised} from "../../../redux/slices/userInterfaceSlice";
+import LogoDense from "../../shared/components/LogoDense";
 
-const StyledAppBar = styled(AppBar)<{isLeftDrawerOpen: boolean}>`
-  transition: ${props => {
-    const theme = props.theme as Theme;
-    return props.isLeftDrawerOpen ?
-        theme.transitions.create(['margin', 'width'], { // Enter screen animation
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        })
-        :
-        theme.transitions.create(['margin', 'width'], { // Exit screen animation
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        })
-  }}
-`
-
-const AppTitle = styled(Typography)`
-  font-family: "Quicksand", sans-serif;
-  margin-left: 20px;
-  font-weight: 400;
+const StyledAppBar = styled(AppBar)`
+  padding: 0 ${themeSpacing(2)}; // This should be lined up with icons from NavDrawer
+  width: 100vw;
 `
 
 const StyledSettingsWrap = styled.div`
@@ -57,10 +40,10 @@ const NavBar: FC = () => {
   const isLoggedIn = authToken !== undefined && authToken !== null;
 
   const dispatch = useAppDispatch();
-  const {drawerOpen, appBarTitle} = useAppSelector(state => state.userInterface);
+  const {drawerMinimised} = useAppSelector(state => state.userInterface);
 
   const handleToggleLeftDrawer = (e: MouseEvent<HTMLButtonElement>) => {
-    dispatch(setDrawerOpen(!drawerOpen));
+    dispatch(setDrawerMinimised(!drawerMinimised));
   };
 
   const handleOpenSettings = (e: MouseEvent<HTMLButtonElement>) => {
@@ -83,16 +66,12 @@ const NavBar: FC = () => {
     return <></>
   }
 
-  return <>
-    <StyledAppBar position="sticky" sx={{
-      width: { sm: `calc(100vw - ${drawerOpen ? drawerWidth : 0}px)` },
-      ml: { sm: `${drawerOpen ? drawerWidth : 0}px` },
-    }} isLeftDrawerOpen={drawerOpen}>
-      <Toolbar>
+  return <StyledAppBar sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}position="sticky">
+      <Toolbar disableGutters>
         <IconButton onClick={handleToggleLeftDrawer}>
-          {drawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
+          <MenuIcon/>
         </IconButton>
-        <AppTitle variant={"h4"}>{appBarTitle}</AppTitle>
+        <LogoDense style={{marginLeft: 20}}/>
         <StyledSettingsWrap>
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
@@ -101,9 +80,7 @@ const NavBar: FC = () => {
           </Menu>
         </StyledSettingsWrap>
       </Toolbar>
-    </StyledAppBar>
-    <NavDrawer anchor={"left"}/>
-  </>;
+    </StyledAppBar>;
 }
 
 export default NavBar;
