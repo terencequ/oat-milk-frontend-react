@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,43 +17,28 @@ import createAppTheme from "./theme";
 import CharacterCreatePage from "./modules/characters/pages/CharacterCreatePage";
 import RegisterPage from "./modules/users/pages/RegisterPage";
 import CharacterListPage from "./modules/characters/pages/CharacterListPage";
+import {drawerWidth} from "./modules/core/components/NavDrawer";
 
 
-const StyledBody = styled.div<{leftDrawerOpen: boolean, drawerWidth: number }>`
-  margin-right: auto;
-  width: calc(100% - ${props => props.leftDrawerOpen ? props.drawerWidth : 0}px);
-  margin-left: ${props => props.leftDrawerOpen ? props.drawerWidth : 0}px;
-  transition: ${props => {
-    const theme = props.theme as Theme;
-    return props.leftDrawerOpen ?
-        theme.transitions.create(['margin', 'width'], { // Enter screen animation
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        })
-        :
-        theme.transitions.create(['margin', 'width'], { // Exit screen animation
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        })
-  }}};
+const StyledBody = styled.div`
+
 `;
 
 const App = () => {
-  const darkMode = useAppSelector(state => state.darkMode.darkMode);
+  const darkMode = useAppSelector(state => state.userInterface.darkMode);
   const theme = createAppTheme(darkMode);
 
   console.log(theme);
 
   document.title = "Oat Milk";
+  const drawerOpen = useAppSelector(state => state.userInterface.drawerOpen);
 
-  const drawerWidth = 350;
-  const [leftDrawerOpen, setLeftDrawerOpen] = useState(false)
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
       <Router>
-        <NavBar leftDrawerOpen={leftDrawerOpen} setLeftDrawerOpen={setLeftDrawerOpen} drawerWidth={drawerWidth}/>
-        <StyledBody leftDrawerOpen={leftDrawerOpen} drawerWidth={drawerWidth}>
+        <NavBar/>
+        <StyledBody>
           <Switch>
             <Route path={"/login"}>
               <LoginPage/>

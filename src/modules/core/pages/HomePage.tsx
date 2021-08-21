@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import {PageContainer, themeSpacing} from '../styles/GlobalStyles';
 import {useHistory} from "react-router-dom";
 import {ListAlt, PeopleAlt} from "@material-ui/icons";
+import {useAppSelector} from "../../../redux/hooks";
 
 const HomePageHeroContainer = styled.div`
   margin-top: ${themeSpacing(10)};
@@ -13,12 +14,11 @@ const HomePageHeroContainer = styled.div`
 const HomePageButtons = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `
 
 const HomePageCard = styled(Card)`
-  margin: ${themeSpacing(3)};
-  width: 100%;
+  width: 45%;
 `
 
 const HomePageCardActions = styled(CardActionArea)`
@@ -36,13 +36,14 @@ const HomePageCardActions = styled(CardActionArea)`
 const HomePage: FC = () => {
 
     const history = useHistory();
+    const drawerOpen = useAppSelector(state => state.userInterface.drawerOpen);
     const gotoCharacters = () => {
         history.push("/characters");
     }
 
     return <PageContainer>
       <HomePageHeroContainer>
-          <Typography gutterBottom align={"center"} variant={"h1"}>Home Page</Typography>
+          <Typography gutterBottom align={"center" } variant={"h1"}>Home Page</Typography>
           <Typography gutterBottom align={"center"} variant={"h2"}>Where would you like to go?</Typography>
       </HomePageHeroContainer>
 

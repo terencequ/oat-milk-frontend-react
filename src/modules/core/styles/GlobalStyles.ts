@@ -15,7 +15,7 @@ export const BottomMiddleFixedDiv = styled.div`
 `
 
 export const PageContainer = styled.div`
-  margin: ${themeSpacing(4)};
+  margin: ${themeSpacing(4)} auto;
   max-width: 960px;
 `
 

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {setDarkMode} from "../../../redux/slices/darkModeSlice";
+import {setDarkMode} from "../../../redux/slices/userInterfaceSlice";
 import {MenuItem} from "@material-ui/core";
 
 const StyledListItemIcon = styled.div`
@@ -19,7 +19,7 @@ const StyledListItemIcon = styled.div`
  * @constructor
  */
 const MenuItemThemeButton: FC = () => {
-    const darkMode = useAppSelector(state => state.darkMode.darkMode);
+    const darkMode = useAppSelector(state => state.userInterface.darkMode);
     const dispatch = useAppDispatch();
 
     const handleToggleTheme = () => {

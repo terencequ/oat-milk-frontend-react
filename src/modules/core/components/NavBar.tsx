@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, IconButton, Menu, MenuItem, Theme, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, Menu, MenuItem, Theme, Toolbar, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -13,22 +13,16 @@ import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
 import {themeSpacing} from "../styles/GlobalStyles";
+import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
 
-const StyledAppBar = styled(AppBar)<{isLeftDrawerOpen: boolean}>`
-  width: 100vw;
-  transition: ${props => {
-    const theme = props.theme as Theme;
-    return props.isLeftDrawerOpen ?
-        theme.transitions.create(['margin', 'width'], { // Enter screen animation
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        })
-        :
-        theme.transitions.create(['margin', 'width'], { // Exit screen animation
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        })
-  }}
+const StyledAppBar = styled(AppBar)`
+
+`
+
+const AppTitle = styled(Typography)`
+  font-family: "Quicksand", sans-serif;
+  margin-left: 20px;
+  font-weight: 400;
 `
 
 const StyledSettingsWrap = styled.div`
@@ -43,10 +37,7 @@ const StyledListItemIcon = styled.div`
   justify-content: center;
 `;
 
-const NavBar: FC<
-    { leftDrawerOpen: boolean,
-      setLeftDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>,
-      drawerWidth: number}> = ({leftDrawerOpen, setLeftDrawerOpen, drawerWidth}) => {
+const NavBar: FC = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
 
@@ -54,9 +45,10 @@ const NavBar: FC<
   const isLoggedIn = authToken !== undefined && authToken !== null;
 
   const dispatch = useAppDispatch();
+  const {drawerOpen, appBarTitle} = useAppSelector(state => state.userInterface);
 
   const handleToggleLeftDrawer = (e: MouseEvent<HTMLButtonElement>) => {
-    setLeftDrawerOpen(!leftDrawerOpen);
+    dispatch(setDrawerOpen(!drawerOpen));
   };
 
   const handleOpenSettings = (e: MouseEvent<HTMLButtonElement>) => {
@@ -80,14 +72,12 @@ const NavBar: FC<
   }
 
   return <>
-    <StyledAppBar position="sticky" sx={{
-      width: { sm: `calc(100% - ${leftDrawerOpen ? drawerWidth : 0}px)` },
-      ml: { sm: `${leftDrawerOpen ? drawerWidth : 0}px` },
-    }} isLeftDrawerOpen={leftDrawerOpen}>
+    <StyledAppBar position="sticky">
       <Toolbar>
         <IconButton onClick={handleToggleLeftDrawer}>
-          {leftDrawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
+          {drawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
         </IconButton>
+        <AppTitle variant={"h4"}>{appBarTitle}</AppTitle>
         <StyledSettingsWrap>
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
@@ -97,7 +87,7 @@ const NavBar: FC<
         </StyledSettingsWrap>
       </Toolbar>
     </StyledAppBar>
-    <NavDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen} drawerWidth={drawerWidth}/>
+    <NavDrawer anchor={"left"}/>
   </>;
 }
 

@@ -1,13 +1,14 @@
-import React, {CSSProperties, FC, ReactElement} from 'react';
-import {Divider, Drawer, IconButton, List, ListItem, ListItemText, Typography} from "@material-ui/core";
+import React, {FC, ReactElement} from 'react';
+import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
-import AddIcon from '@material-ui/icons/Add';
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import LogoDense from "../../shared/components/LogoDense";
 import {useHistory} from "react-router-dom";
-import {ChevronLeft, ChevronRight} from "@material-ui/icons";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
 
+export const drawerWidth = 300;
 
 const DrawerHeader = styled.div`
   display: flex;
@@ -31,10 +32,8 @@ const StyledListItemText = styled(ListItemText)`
 `;
 
 const StyledTypography = styled(Typography)`
-  margin-left: 0.3rem;
+  margin-left: 2rem;
 `;
-
-
 
 interface DrawerButton {
   path: string;
@@ -53,49 +52,32 @@ const drawerButtons: DrawerButton[] = [
     title: "Characters",
     icon: <ListAltIcon/>
   },
-  {
-    path: "/create",
-    title: "New Character",
-    icon: <AddIcon/>
-  }
 ];
 
-
-
 interface NavDrawerProps {
-  open: boolean;
-  setOpen: (value: boolean) => void;
   anchor?: 'left' | 'top' | 'right' | 'bottom';
-  drawerWidth: number;
 }
 
-const NavDrawer: FC<NavDrawerProps> = ({open, setOpen, anchor, drawerWidth}) => {
+const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
   const history = useHistory();
+  const dispatch = useAppDispatch();
+  const drawerOpen = useAppSelector(state => state.userInterface.drawerOpen);
 
-  const onOpen = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
+  const onToggleOpen = () => {
+    dispatch(setDrawerOpen(!drawerOpen));
   };
 
   const handleNavigate = (path: string) => {
     return () => {
       history.push(path);
+      onToggleOpen();
     };
   };
 
-  return <Drawer variant={"persistent"} open={open} anchor={anchor} onClose={onClose}>
+  return <Drawer variant={"temporary"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
       <div style={{width: drawerWidth+"px"}}>
         <DrawerHeader>
           <DrawerHeaderLogo><LogoDense style={{minHeight: "64px"}}/></DrawerHeaderLogo>
-
-            {
-              open
-                ? <IconButton onClick={onClose}><ChevronLeft/></IconButton>
-                : <IconButton onClick={onOpen}><ChevronRight/></IconButton>
-            }
-
         </DrawerHeader>
         <Divider/>
         <List>

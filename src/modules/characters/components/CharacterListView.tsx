@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {CardContent, CircularProgress, Typography} from "@material-ui/core";
+import {CircularProgress, Typography} from "@material-ui/core";
 import CharacterListItem from "./CharacterListItem";
 import styled from "@emotion/styled";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
@@ -45,7 +45,7 @@ const CharacterListView: FC = () => {
     }, [dispatch]);
     
     return <MainContainer>
-            <Typography align={"left"} margin={"normal"} variant={"h2"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</Typography>
+            <Typography align={"left"} margin={"normal"} variant={"h3"}>Characters ({characterSummaries !== undefined ? characterSummaries.length : "0"})</Typography>
             {status === RequestStatus.InProgress ?
                 <CircularProgressContainer>
                     <CircularProgress/>

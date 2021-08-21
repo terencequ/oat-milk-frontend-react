@@ -12,7 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import charactersReducer from "./slices/charactersSlice";
 import requestsReducer from "./slices/requestsSlice";
-import darkModeReducer from "./slices/darkModeSlice";
+import userInterfaceReducer from "./slices/userInterfaceSlice";
 import usersReducer from "./slices/usersSlice";
 
 const persistConfig = {
@@ -27,7 +27,7 @@ const persistedReducer = persistReducer(
     combineReducers({
         characters: charactersReducer,
         users: usersReducer,
-        darkMode: darkModeReducer,
+        userInterface: userInterfaceReducer,
         requests: requestsReducer,
     })
 );

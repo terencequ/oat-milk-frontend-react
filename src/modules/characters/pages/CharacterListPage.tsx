@@ -1,12 +1,22 @@
 import {FC} from "react";
 import { PageContainer } from "../../core/styles/GlobalStyles";
 import CharacterListView from "../components/CharacterListView";
-import {Typography} from "@material-ui/core";
+import {Button, Link, Typography} from "@material-ui/core";
+import styled from "@emotion/styled";
+import {useAppDispatch} from "../../../redux/hooks";
+
+const MainSection = styled.div`
+
+`
 
 const CharacterListPage: FC = () => {
+    const dispatch = useAppDispatch();
+
     return <PageContainer>
-        <Typography gutterBottom variant={"h1"}>My Characters</Typography>
-        <CharacterListView/>
+        <MainSection>
+            <Typography gutterBottom variant={"h2"}>My Characters</Typography>
+            <CharacterListView/>
+        </MainSection>
     </PageContainer>
 }
 
