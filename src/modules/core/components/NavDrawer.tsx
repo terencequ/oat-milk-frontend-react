@@ -1,14 +1,15 @@
 import React, {FC, ReactElement} from 'react';
-import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@material-ui/core";
+import {Divider, Drawer, IconButton, List, ListItem, ListItemText, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import LogoDense from "../../shared/components/LogoDense";
 import {useHistory} from "react-router-dom";
+import {ChevronLeft, ChevronRight} from "@material-ui/icons";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
 
-export const drawerWidth = 300;
+export const drawerWidth = 240;
 
 const DrawerHeader = styled.div`
   display: flex;
@@ -70,14 +71,18 @@ const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
   const handleNavigate = (path: string) => {
     return () => {
       history.push(path);
-      onToggleOpen();
     };
   };
 
-  return <Drawer variant={"temporary"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
+  return <Drawer variant={"persistent"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
       <div style={{width: drawerWidth+"px"}}>
         <DrawerHeader>
           <DrawerHeaderLogo><LogoDense style={{minHeight: "64px"}}/></DrawerHeaderLogo>
+            {
+              drawerOpen
+                ? <IconButton onClick={onToggleOpen}><ChevronLeft/></IconButton>
+                : <IconButton onClick={onToggleOpen}><ChevronRight/></IconButton>
+            }
         </DrawerHeader>
         <Divider/>
         <List>

@@ -20,8 +20,23 @@ import CharacterListPage from "./modules/characters/pages/CharacterListPage";
 import {drawerWidth} from "./modules/core/components/NavDrawer";
 
 
-const StyledBody = styled.div`
-
+const StyledBody = styled.div<{drawerOpen: boolean, drawerWidth: number }>`
+  margin-right: auto;
+  width: calc(100% - ${props => props.drawerOpen ? props.drawerWidth : 0}px);
+  margin-left: ${props => props.drawerOpen ? props.drawerWidth : 0}px;
+  transition: ${props => {
+    const theme = props.theme as Theme;
+    return props.drawerOpen ?
+        theme.transitions.create(['margin', 'width'], { // Enter screen animation
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        })
+        :
+        theme.transitions.create(['margin', 'width'], { // Exit screen animation
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        })
+  }}};
 `;
 
 const App = () => {
@@ -38,7 +53,7 @@ const App = () => {
       <CssBaseline/>
       <Router>
         <NavBar/>
-        <StyledBody>
+        <StyledBody drawerOpen={drawerOpen} drawerWidth={drawerWidth}>
           <Switch>
             <Route path={"/login"}>
               <LoginPage/>

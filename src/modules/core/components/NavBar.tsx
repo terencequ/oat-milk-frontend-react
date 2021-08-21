@@ -7,7 +7,7 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import NavDrawer from "./NavDrawer";
+import NavDrawer, {drawerWidth} from "./NavDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
@@ -15,8 +15,20 @@ import {logout} from "../../../redux/slices/usersSlice";
 import {themeSpacing} from "../styles/GlobalStyles";
 import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
 
-const StyledAppBar = styled(AppBar)`
-
+const StyledAppBar = styled(AppBar)<{isLeftDrawerOpen: boolean}>`
+  transition: ${props => {
+    const theme = props.theme as Theme;
+    return props.isLeftDrawerOpen ?
+        theme.transitions.create(['margin', 'width'], { // Enter screen animation
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        })
+        :
+        theme.transitions.create(['margin', 'width'], { // Exit screen animation
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        })
+  }}
 `
 
 const AppTitle = styled(Typography)`
@@ -72,7 +84,10 @@ const NavBar: FC = () => {
   }
 
   return <>
-    <StyledAppBar position="sticky">
+    <StyledAppBar position="sticky" sx={{
+      width: { sm: `calc(100vw - ${drawerOpen ? drawerWidth : 0}px)` },
+      ml: { sm: `${drawerOpen ? drawerWidth : 0}px` },
+    }} isLeftDrawerOpen={drawerOpen}>
       <Toolbar>
         <IconButton onClick={handleToggleLeftDrawer}>
           {drawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
