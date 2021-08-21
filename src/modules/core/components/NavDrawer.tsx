@@ -35,7 +35,7 @@ const StyledListItemText = styled(ListItemText)`
 `;
 
 const StyledTypography = styled(Typography)`
-  margin-left: ${themeSpacing(2)};
+  margin-left: 25px;
 `;
 
 interface DrawerButton {

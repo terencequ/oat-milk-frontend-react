@@ -71,7 +71,7 @@ const NavBar: FC = () => {
         <IconButton onClick={handleToggleLeftDrawer}>
           <MenuIcon/>
         </IconButton>
-        <LogoDense style={{marginLeft: 20}}/>
+        <LogoDense style={{marginLeft: "10px"}}/>
         <StyledSettingsWrap>
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
