@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route, useLocation
 } from "react-router-dom";
 import './App.css';
 import NavBar from "./modules/core/components/NavBar";
@@ -18,26 +18,40 @@ import CharacterCreatePage from "./modules/characters/pages/CharacterCreatePage"
 import RegisterPage from "./modules/users/pages/RegisterPage";
 import CharacterListPage from "./modules/characters/pages/CharacterListPage";
 import NavDrawer, {drawerMinimisedWidth, drawerWidth} from "./modules/core/components/NavDrawer";
+import {themeSpacing} from "./modules/core/styles/GlobalStyles";
+import {isLoggedInSelector} from "./redux/slices/usersSlice";
 
 const RootContainer = styled.div`
-
+  background-image: ${props => {
+    const theme = props.theme as Theme;
+    return theme.palette.mode === "dark" ? 'url("images/background-dark.svg")' : 'url("images/background.svg")';
+  }};
+  background-size: 100%;
 `
 
-const StyledBody = styled.div<{drawerOpen: boolean, drawerMinimised: boolean}>`
+interface BodyProps {
+  drawerOpen: boolean;
+  drawerMinimised: boolean;
+}
+const getDrawerWidth = (props: BodyProps) => {
+  let currentDrawerWidth = props.drawerOpen ? props.drawerMinimised ? drawerMinimisedWidth : drawerWidth : 0;
+  const loggedIn = isLoggedInSelector()();
+  if(!loggedIn) {
+    currentDrawerWidth = 0;
+  }
+  return currentDrawerWidth+"px"
+}
+const StyledBody = styled.div<BodyProps>`
+  min-height: 100vh;
+  padding: ${themeSpacing(8)} 0;
   margin-right: auto;
-  width: calc(100% - ${props => props.drawerOpen ? props.drawerMinimised ? drawerMinimisedWidth : drawerWidth : 0}px);
-  margin-left: ${props => props.drawerOpen ? props.drawerMinimised ? drawerMinimisedWidth : drawerWidth : 0}px;
+  margin-left: ${getDrawerWidth};
+  width: calc(100% - ${getDrawerWidth});
   transition: ${props => {
     const theme = props.theme as Theme;
-    return props.drawerOpen ?
-        theme.transitions.create(['margin', 'width'], { // Enter screen animation
+    return theme.transitions.create(['margin', 'width'], { // Enter screen animation
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen,
-        })
-        :
-        theme.transitions.create(['margin', 'width'], { // Exit screen animation
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
         })
   }}};
 `;

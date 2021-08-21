@@ -7,8 +7,6 @@ import {ListAlt, PeopleAlt} from "@material-ui/icons";
 import {useAppSelector} from "../../../redux/hooks";
 
 const HomePageHeroContainer = styled.div`
-  margin-top: ${themeSpacing(10)};
-  margin-bottom: ${themeSpacing(4)};
 `
 
 const HomePageButtons = styled.div`

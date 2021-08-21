@@ -3,7 +3,7 @@ import {Drawer, List, ListItem, ListItemText, Theme, Toolbar, Typography} from "
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
 import {themeSpacing} from "../styles/GlobalStyles";
@@ -12,17 +12,21 @@ export const drawerWidth = 240;
 export const drawerMinimisedWidth = 72;
 
 const StyledDrawerContents = styled.div`
+  height: 100%;
   width: ${() => {
     const {drawerMinimised} = useAppSelector(state => state.userInterface);
-    return (drawerMinimised ? drawerMinimisedWidth : drawerWidth)+"px";
+    return (drawerMinimised ? drawerMinimisedWidth : drawerWidth) + "px";
   }};
   transition: ${props => {
     const theme = props.theme as Theme;
     return theme.transitions.create(['margin', 'width'], { // Enter screen animation
-          easing: theme.transitions.easing.easeInOut,
-          duration: theme.transitions.duration.leavingScreen,
-        })
-  }}};
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.leavingScreen,
+    })
+  }}
+}
+
+;
 `
 
 const StyledListItemText = styled(ListItemText)`
@@ -75,6 +79,12 @@ const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
       history.push(path);
     };
   };
+
+  // No app drawer if this is the login page
+  const location = useLocation();
+  if(location.pathname === '/login' || location.pathname === '/register') {
+    return <></>
+  }
 
   return <Drawer variant={"permanent"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
       <StyledDrawerContents>
