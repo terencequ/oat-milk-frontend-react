@@ -5,13 +5,15 @@ interface ThemeState {
     drawerOpen: boolean;
     drawerMinimised: boolean;
     appBarTitle: string;
+    currentBackground: string;
 }
 
 const initialState: ThemeState = {
     darkMode: true,
     drawerOpen: true,
     drawerMinimised: false,
-    appBarTitle: "Home"
+    appBarTitle: "Home",
+    currentBackground: `url("images/background-entry.svg")`,
 }
 
 export const userInterfaceSlice = createSlice({
@@ -29,10 +31,12 @@ export const userInterfaceSlice = createSlice({
         },
         setAppBarTitle: (state, action: PayloadAction<string>) => {
             state.appBarTitle = action.payload;
-        }
-
+        },
+        setBackground: (state, action: PayloadAction<string>) => {
+            state.currentBackground = action.payload;
+        },
     }
 })
 
-export const { setDarkMode, setDrawerOpen, setDrawerMinimised, setAppBarTitle } = userInterfaceSlice.actions;
+export const { setDarkMode, setDrawerOpen, setDrawerMinimised, setAppBarTitle, setBackground } = userInterfaceSlice.actions;
 export default userInterfaceSlice.reducer;

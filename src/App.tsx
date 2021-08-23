@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route, useLocation
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
 import NavBar from "./modules/core/components/NavBar";
 import HomePage from "./modules/core/pages/HomePage";
@@ -22,9 +18,8 @@ import {themeSpacing} from "./modules/core/styles/GlobalStyles";
 import {isLoggedInSelector} from "./redux/slices/usersSlice";
 
 const RootContainer = styled.div`
-  background-image: ${props => {
-    const theme = props.theme as Theme;
-    return theme.palette.mode === "dark" ? 'url("images/background-dark.svg")' : 'url("images/background.svg")';
+  background-image: ${() => {
+    return useAppSelector(state => state.userInterface.currentBackground);
   }};
   background-size: 100%;
 `

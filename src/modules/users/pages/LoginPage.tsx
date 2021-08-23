@@ -4,7 +4,7 @@ import {
   FormControl,
   TextField, Typography,
 } from "@material-ui/core";
-import {useAppDispatch} from "../../../redux/hooks";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {Redirect} from "react-router-dom";
 import Logo from "../../shared/components/Logo";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
@@ -18,6 +18,7 @@ import {login} from "../../../redux/thunks/userThunks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
+import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const LoginPage: FC = () => {
   const [email, setEmail] = useState("");
@@ -33,6 +34,9 @@ const LoginPage: FC = () => {
     dispatch(login({email: email, password: password}));
   };
 
+  const darkmode = useAppSelector(state => state.userInterface.darkMode);
+  document.title = "Oat Milk - Login"
+  dispatch(setBackground(`url("images/background-entry${darkmode ? "-dark" : ""}.svg")`));
   return <>
     {isLoggedIn &&
       <Redirect to={'/'}/>

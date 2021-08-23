@@ -1,6 +1,6 @@
 import React, {FC, FormEvent, useState} from "react";
 import {CenteredCircularProgress, UserFormPageContainer } from "./UserFormStyles";
-import {useAppDispatch} from "../../../redux/hooks";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Logo from "../../shared/components/Logo";
 import {Button, FormControl, TextField, Typography} from "@material-ui/core";
 import PasswordInput from "../../shared/components/PasswordInput";
@@ -11,6 +11,7 @@ import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
+import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const RegisterPage: FC = () => {
     const [displayName, setDisplayName] = useState("");
@@ -28,6 +29,9 @@ const RegisterPage: FC = () => {
         dispatch(register({displayName, email, password}));
     };
 
+    const darkmode = useAppSelector(state => state.userInterface.darkMode);
+    document.title = "Oat Milk - Register"
+    dispatch(setBackground(`url("images/background-entry${darkmode ? "-dark" : ""}.svg")`));
     return <>
         {isLoggedIn && // This means user is logged in
             <Redirect to={'/'}/>

@@ -4,7 +4,8 @@ import styled from "@emotion/styled";
 import {PageContainer, themeSpacing} from '../styles/GlobalStyles';
 import {useHistory} from "react-router-dom";
 import {ListAlt, PeopleAlt} from "@material-ui/icons";
-import {useAppSelector} from "../../../redux/hooks";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const HomePageHeroContainer = styled.div`
 `
@@ -34,13 +35,14 @@ const HomePageCardActions = styled(CardActionArea)`
 `
 
 const HomePage: FC = () => {
-
+    const dispatch = useAppDispatch();
     const history = useHistory();
-    const drawerOpen = useAppSelector(state => state.userInterface.drawerOpen);
     const gotoCharacters = () => {
         history.push("/characters");
     }
 
+    document.title = "Oat Milk - Home"
+    dispatch(setBackground("inherit"));
     return <PageContainer>
       <HomePageHeroContainer>
           <Typography gutterBottom align={"center" } variant={"h1"}>Home Page</Typography>

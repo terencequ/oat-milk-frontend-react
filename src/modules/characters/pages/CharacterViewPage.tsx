@@ -10,6 +10,7 @@ import {RequestStatus} from "../../../redux/actions/requestStatus";
 import CharacterViewDescriptions from '../components/CharacterViewDescriptions';
 import CharacterViewStats from "../components/CharacterViewStats";
 import CharacterViewSummary from "../components/CharacterViewSummary";
+import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const CircularProgressContainer = styled.div`
   width: 100%;
@@ -27,6 +28,7 @@ const SectionContainer = styled(Paper)`
 type TParams = { id: string; };
 
 const CharacterViewPage: FC = () => {
+
   const { id } = useParams<TParams>();
   const dispatch = useAppDispatch();
   const { status, } = requestSelector(getCharacterByIdentifier.name)();
@@ -37,6 +39,8 @@ const CharacterViewPage: FC = () => {
     dispatch(getCharacterByIdentifier(id));
   }, [dispatch, id])
 
+  document.title = `Oat Milk - View Character | ${currentCharacter?.name ?? "Character"}`
+  dispatch(setBackground("inherit"));
   return <PageContainer>
     {
       currentCharacter &&
