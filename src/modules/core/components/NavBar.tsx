@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, Menu, MenuItem, Theme, Toolbar, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -7,29 +7,22 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import NavDrawer from "./NavDrawer";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import LogoDense from "../../shared/components/logo/LogoDense";
 import {useLocation} from "react-router-dom";
-import MenuItemThemeButton from "../../shared/components/theme/MenuItemThemeButton";
+import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
+import {themeSpacing} from "../styles/GlobalStyles";
+import {setDrawerMinimised} from "../../../redux/slices/userInterfaceSlice";
+import LogoDense from "../../shared/components/LogoDense";
 
-const StyledAppBar = styled(AppBar)<any>`
-  position: ${p => {
-    const dense = p.dense as boolean;
-    return dense ? "relative" : "sticky";
-  }};
-`;
-
-const StyledLogoWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 1vw;
-`;
+const StyledAppBar = styled(AppBar)`
+  padding: 0 ${themeSpacing(2)}; // This should be lined up with icons from NavDrawer
+  width: 100vw;
+`
 
 const StyledSettingsWrap = styled.div`
   margin-left: auto;
+  margin-right: ${themeSpacing(2)};
 `;
 
 const StyledListItemIcon = styled.div`
@@ -39,14 +32,7 @@ const StyledListItemIcon = styled.div`
   justify-content: center;
 `;
 
-interface NavBarProps {
-  dense?: boolean;
-}
-
-const NavBar: FC<NavBarProps> = (p) => {
-  const {dense} = p;
-
-  const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
+const NavBar: FC = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
 
@@ -54,9 +40,10 @@ const NavBar: FC<NavBarProps> = (p) => {
   const isLoggedIn = authToken !== undefined && authToken !== null;
 
   const dispatch = useAppDispatch();
+  const {drawerMinimised} = useAppSelector(state => state.userInterface);
 
   const handleToggleLeftDrawer = (e: MouseEvent<HTMLButtonElement>) => {
-    setLeftDrawerOpen(!leftDrawerOpen);
+    dispatch(setDrawerMinimised(!drawerMinimised));
   };
 
   const handleOpenSettings = (e: MouseEvent<HTMLButtonElement>) => {
@@ -79,20 +66,12 @@ const NavBar: FC<NavBarProps> = (p) => {
     return <></>
   }
 
-  return <>
-    <StyledAppBar dense={dense}>
-      <Toolbar>
-
-        {isLoggedIn
-          ? <IconButton onClick={handleToggleLeftDrawer}>
-              {leftDrawerOpen ? <MenuOpenIcon/> : <MenuIcon/>}
-            </IconButton>
-          : null}
-
-        <StyledLogoWrap>
-          <LogoDense/>
-        </StyledLogoWrap>
-
+  return <StyledAppBar sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}position="sticky">
+      <Toolbar disableGutters>
+        <IconButton onClick={handleToggleLeftDrawer}>
+          <MenuIcon/>
+        </IconButton>
+        <LogoDense style={{marginLeft: "10px"}}/>
         <StyledSettingsWrap>
           <IconButton onClick={handleOpenSettings}><SettingsIcon/></IconButton>
           <Menu open={settingsOpen} anchorEl={settingsAnchor} onClose={handleCloseSettings}>
@@ -100,11 +79,8 @@ const NavBar: FC<NavBarProps> = (p) => {
             {isLoggedIn && <MenuItem onClick={handleLogout}><StyledListItemIcon><ExitToAppIcon/></StyledListItemIcon>Log out</MenuItem>}
           </Menu>
         </StyledSettingsWrap>
-
       </Toolbar>
-    </StyledAppBar>
-    <NavDrawer open={leftDrawerOpen} setOpen={setLeftDrawerOpen}/>
-  </>;
+    </StyledAppBar>;
 }
 
 export default NavBar;

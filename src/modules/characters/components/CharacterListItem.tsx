@@ -3,16 +3,15 @@ import {
   Avatar, Button,
   ButtonGroup,
   Card,
-  CardActionArea, CardActions, Collapse, Divider, Grid,
-  IconButton, LinearProgress,
-  Theme, Tooltip,
-  Typography
+  CardActionArea, Collapse, Theme, Typography
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
-import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk/dist/api";
-import {Build, Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
+import {Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
+import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {deleteCharacter} from "../../../redux/thunks/characterThunks";
+import {useAppDispatch} from "../../../redux/hooks";
 
 export type CharacterInfoBasicProp = {
   characterSummary: CharacterSummaryResponse;
@@ -71,76 +70,44 @@ const SummaryHealth = styled.div`
 `
 
 const SummaryActions = styled(ButtonGroup)`
-  padding: ${themeSpacing(5)};
+  padding: ${themeSpacing(4)};
   align-self: center;
-`
-
-// Expanded
-const ExpandedContainer = styled(Collapse)`
-
 `
 
 const ExpandedContents = styled.div`
   padding: ${themeSpacing(2)} ${themeSpacing(5)};
-  margin-top: 2vw;
+  margin-top: ${themeSpacing(2)};
 `
 
 const ExpandedCollapseButton = styled(Button)`
   margin-top: 20px;
   width: 100%;
-  background: ${props => {
-    const theme = props.theme as Theme;
-    return theme.palette.primary.light;
-  }};
 `
 
 /**
- * Display a summary of a character (with expandable information) in a vertical list item.
+ * Display a summary of a character as a vertical list item. Can be expanded to see more information, like an accordion.
  * @param characterSummary
  * @constructor
  */
 const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+
   const [expand, setExpand] = useState(false);
 
-  const levelProgress = () => {
-    const exp = characterSummary.experience ?? 0;
-    const lastExpRequirement = characterSummary.previousLevelExperienceRequirement ?? 0;
-    const nextExpRequirement = characterSummary.nextLevelExperienceRequirement ?? 0;
-
-    if(nextExpRequirement === -1){ // Reached max level
-      return 1;
-    }
-
-    const flatCurrent = exp - lastExpRequirement;
-    const flatNext = nextExpRequirement - lastExpRequirement;
-
-    if (flatNext === 0) return 1;
-
-    return flatCurrent / flatNext;
-  };
-
-  const history = useHistory();
-
-  // Get a "30/300xp" style string
-  const getExpText = () => {
-    const currentExp = characterSummary.experience ?? 0;
-    const nextExp = characterSummary.nextLevelExperienceRequirement ?? 0;
-    let currentExpString = `${currentExp}`;
-    let nextExpString = `${nextExp}`;
-    if(nextExp === -1){
-      nextExpString = "MAX";
-    }
-    return `${currentExpString}/${nextExpString}`;
-  }
-
-  // Toggle expansion on the more info section
+  /** Toggle expansion on the more info section. */
   const toggleExpand = () => {
     setExpand(!expand);
   }
 
-  // View character in View Character page
-  const view = () => {
+  /** View character in View Character page. */
+  const viewThis = () => {
     history.push(`character=${characterSummary.identifier}`)
+  }
+
+  /** View character in View Character page. */
+  const deleteThis = async () => {
+    dispatch(deleteCharacter(characterSummary.id));
   }
 
   return <MainContainer>
@@ -155,38 +122,30 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
           <Typography align={"left"} variant={"subtitle1"}>Level {characterSummary.level}</Typography>
         </SummaryNameAndLevel>
         <SummaryClass>
-          <Typography align={"center"} variant={"subtitle1"}>Artisan</Typography>
+          <Typography align={"center"} variant={"subtitle1"}>Unknown Class</Typography>
         </SummaryClass>
         <SummaryHealth>
-          <Typography align={"center"} variant={"subtitle1"}>999/999 HP</Typography>
+          <Typography align={"center"} variant={"subtitle1"}>{characterSummary.currentHitPoints}/{characterSummary.maxHitPoints} HP</Typography>
         </SummaryHealth>
       </SummaryActionArea>
-      <SummaryActions variant="text" color="inherit" aria-label="text primary button group">
-        <IconButton><Visibility/></IconButton>
-        <IconButton><Edit/></IconButton>
-        <IconButton color={"error"}><Delete/></IconButton>
+      <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
+        <Button onClick={viewThis}><Visibility/></Button>
+        <Button><Edit/></Button>
+        <Button onClick={deleteThis} color={"error"}><Delete/></Button>
       </SummaryActions>
     </SummaryDisplay>
 
     {/** More Information */}
-    <ExpandedContainer in={expand}>
+    <Collapse in={expand}>
       <ExpandedContents>
         <Typography align={"left"} variant={"h2"} gutterBottom>{characterSummary.name}</Typography>
         <Typography align={"left"} variant={"h3"} gutterBottom>Backstory</Typography>
-        <Typography align={"left"} variant={"body1"} gutterBottom>
-          Chug used to be the best fisherman in his village. But one day, his family was killed in
-          a terrible fishing accident. However, this was no accident. Chug found out that his family
-          was actually murdered by man dressed up like a fish!
-        </Typography>
-        <Typography align={"left"} variant={"body1"} gutterBottom>
-          Chug was outraged. He did not want his family to be murdered. So from that day forth,
-          Chug swore an oath to search for his parents' murderer and bring him to justice.
-        </Typography>
+        <Typography align={"left"} variant={"body1"} gutterBottom>{characterSummary.backstory}</Typography>
       </ExpandedContents>
       <ExpandedCollapseButton variant={"text"} color={"inherit"} onClick={toggleExpand}>
         <ExpandLess fontSize={"large"}/>
       </ExpandedCollapseButton>
-    </ExpandedContainer>
+    </Collapse>
   </MainContainer>;
 };
 

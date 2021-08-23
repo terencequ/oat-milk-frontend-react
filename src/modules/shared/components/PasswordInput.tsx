@@ -1,4 +1,4 @@
-import {FilledInput, FormControl, IconButton, InputAdornment, InputLabel} from "@material-ui/core";
+import {FilledInput, IconButton, InputAdornment, InputLabel} from "@material-ui/core";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import React, {ChangeEvent, FC, useState} from "react";
 

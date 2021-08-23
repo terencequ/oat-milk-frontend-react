@@ -1,6 +1,5 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import {CircularProgress, FormControl, Theme} from "@material-ui/core";
+import {CircularProgress} from "@material-ui/core";
 
 export const UserFormPageContainer = styled.div`
   width: 450px;

@@ -10,7 +10,7 @@ const createAppTheme = (darkMode: boolean = true) =>
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        light: darkMode ? "#363636" : "#fff9f3",
+        light: darkMode ? "#363636" : "#f5f4f0",
         main: "#ffe0b2",
         dark: "#b29c7c"
       },
@@ -28,19 +28,22 @@ const createAppTheme = (darkMode: boolean = true) =>
       fontFamily: fontFamily,
       h1: {
         fontFamily: titleFontFamily,
-        fontSize: '4rem'
+        fontSize: '4rem',
+        fontWeight: 400
       },
       h2: {
         fontFamily: titleFontFamily,
-        fontSize: '3rem'
+        fontSize: '2.4rem',
+        fontWeight: 300
       },
       h3: {
         fontFamily: titleFontFamily,
-        fontSize: '2rem'
+        fontSize: '1.6rem',
+        fontWeight: 300
       },
       h4: {
         fontFamily: titleFontFamily,
-        fontSize: '1.8rem'
+        fontSize: '1.5rem'
       },
       h5: {
         fontFamily: titleFontFamily,
@@ -57,6 +60,10 @@ const createAppTheme = (darkMode: boolean = true) =>
       subtitle2: {
         fontFamily: titleFontFamily,
         fontSize: '1.1rem',
+      },
+      body1: {
+        fontFamily: fontFamily,
+        fontSize: '1rem'
       },
       button: {
         fontFamily: fontFamily,

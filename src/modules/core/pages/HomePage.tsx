@@ -1,28 +1,68 @@
 import React, {FC} from 'react';
-import {CardContent, Divider, Typography} from "@material-ui/core";
+import {Card, CardActionArea, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
-import CharacterListView from "../../characters/components/CharacterListView";
-import { HeroContainer, PageContainer } from '../styles/GlobalStyles';
+import {PageContainer, themeSpacing} from '../styles/GlobalStyles';
+import {useHistory} from "react-router-dom";
+import {ListAlt, PeopleAlt} from "@material-ui/icons";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
-const PageSection = styled.div`
-  margin-top: 1vw;
+const HomePageHeroContainer = styled.div`
+`
+
+const HomePageButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const HomePageCard = styled(Card)`
+  max-width: 40%;
+  width: 500px;
+  margin: ${themeSpacing(2)};
+`
+
+const HomePageCardActions = styled(CardActionArea)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 40vh;
+  .icon {
+    font-size: 5rem;
+    margin: ${themeSpacing(1)};
+  }
 `
 
 const HomePage: FC = () => {
-  return <PageContainer>
-      <HeroContainer>
-        <Typography variant={"h1"}>Welcome to Oat Milk</Typography>
-      </HeroContainer>
+    const dispatch = useAppDispatch();
+    const history = useHistory();
+    const gotoCharacters = () => {
+        history.push("/characters");
+    }
 
-      <PageSection>
-          <Typography align={"left"} variant={"h3"}>Characters</Typography>
-          <Divider/>
-      </PageSection>
+    document.title = "Oat Milk - Home"
+    dispatch(setBackground("inherit"));
+    return <PageContainer>
+      <HomePageHeroContainer>
+          <Typography gutterBottom align={"center" } variant={"h1"}>Home Page</Typography>
+          <Typography gutterBottom align={"center"} variant={"h2"}>Where would you like to go?</Typography>
+      </HomePageHeroContainer>
 
-      <PageSection>
-          <Typography align={"left"} variant={"h3"}>Campaigns</Typography>
-          <Divider/>
-      </PageSection>
+      <HomePageButtons>
+          <HomePageCard color={"inherit"}>
+              <HomePageCardActions onClick={gotoCharacters}>
+                  <Typography align={"center"} variant={"h3"}>Characters</Typography>
+                  <ListAlt className={"icon"}/>
+              </HomePageCardActions>
+          </HomePageCard>
+          <HomePageCard color={"inherit"}>
+              <HomePageCardActions>
+                  <Typography align={"center"} variant={"h3"}>Campaigns</Typography>
+                  <PeopleAlt className={"icon"}/>
+              </HomePageCardActions>
+          </HomePageCard>
+      </HomePageButtons>
     </PageContainer>;
 };
 

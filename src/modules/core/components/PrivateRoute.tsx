@@ -1,16 +1,18 @@
 import React from 'react';
-import {Redirect, Route} from "react-router-dom";
-import {useAppSelector} from "../../../redux/hooks";
+import {Redirect, Route, RouteProps} from "react-router-dom";
+import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
 
+interface PrivateRouteProps extends RouteProps {
+  children: JSX.Element;
+}
 
-// @ts-ignore
-const PrivateRoute = ({children, ...rest}) => {
-  const authToken = useAppSelector(state => state.users.authToken);
+const PrivateRoute = ({children, ...rest}: PrivateRouteProps) => {
+  const isLoggedIn = isLoggedInSelector()();
 
   return <>
     <Route {...rest}
       render={() => {
-        return authToken !== null
+        return isLoggedIn
         ? children
         : <Redirect to={"/login"}/>
       }}

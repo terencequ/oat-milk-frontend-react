@@ -1,58 +1,66 @@
-import React, {FC, useEffect, useState} from 'react';
-import {CircularProgress, Typography} from "@material-ui/core";
+import React, {FC, useEffect} from 'react';
+import {CircularProgress, LinearProgress, Paper, Typography} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {getCharacterByIdentifier} from "../../../api/clients/CharacterClient";
-import {setCurrentCharacter} from "../../../redux/slices/charactersSlice";
+import {getCharacterByIdentifier} from "../../../redux/thunks/characterThunks";
 import styled from "@emotion/styled";
-import {HeroContainer, PageContainer } from '../../core/styles/GlobalStyles';
+import {HeroContainer, PageContainer, themeSpacing} from '../../core/styles/GlobalStyles';
+import {requestSelector} from "../../../redux/slices/requestsSlice";
+import {RequestStatus} from "../../../redux/actions/requestStatus";
+import CharacterViewDescriptions from '../components/CharacterViewDescriptions';
+import CharacterViewStats from "../components/CharacterViewStats";
+import CharacterViewSummary from "../components/CharacterViewSummary";
+import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const CircularProgressContainer = styled.div`
   width: 100%;
-  
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
+const SectionContainer = styled(Paper)`
+  width: 100%;
+  padding: ${themeSpacing(2)};
+  margin-bottom: ${themeSpacing(4)};
+`
+
 type TParams = { id: string; };
 
 const CharacterViewPage: FC = () => {
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const currentCharacter = useAppSelector(state => state.characters.currentCharacter)
-
   const { id } = useParams<TParams>();
   const dispatch = useAppDispatch();
+  const { status, } = requestSelector(getCharacterByIdentifier.name)();
 
-  const getCurrentCharacter = async() => {
-    setLoading(true);
-    const [res, error] = await getCharacterByIdentifier(id);
-    setLoading(false);
-    if(res){
-      dispatch(setCurrentCharacter(res));
-    } else if(error){
-      dispatch(setCurrentCharacter(null));
-      setError(error.message ?? "");
-    } else {
-      dispatch(setCurrentCharacter(null));
-    }
-  }
+  const currentCharacter = useAppSelector(state => state.characters.currentCharacter)
 
   useEffect(() => {
-    getCurrentCharacter().then();
-  }, [])
+    dispatch(getCharacterByIdentifier(id));
+  }, [dispatch, id])
 
+  document.title = `Oat Milk - View Character | ${currentCharacter?.name ?? "Character"}`
+  dispatch(setBackground("inherit"));
   return <PageContainer>
     {
       currentCharacter &&
       <HeroContainer>
-        <Typography align={"center"} variant={"h1"}>{currentCharacter.name}</Typography>
+        <SectionContainer>
+          <Typography align={"center"} variant={"h1"}>{currentCharacter.name}</Typography>
+        </SectionContainer>
+        <SectionContainer>
+          <CharacterViewSummary character={currentCharacter}/>
+        </SectionContainer>
+        <SectionContainer>
+          <CharacterViewStats character={currentCharacter}/>
+        </SectionContainer>
+        <SectionContainer>
+          <CharacterViewDescriptions character={currentCharacter}/>
+        </SectionContainer>
       </HeroContainer>
     }
     {
-      loading &&
+      status === RequestStatus.InProgress &&
       <>
         <CircularProgressContainer>
           <CircularProgress/>

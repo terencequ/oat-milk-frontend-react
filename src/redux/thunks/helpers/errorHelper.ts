@@ -8,10 +8,10 @@ export function processError (err : Error | AxiosError) : ErrorResponse {
         if (errData?.type || errData?.message || errData?.stackTrace) {
             return error.response?.data as ErrorResponse;
         } else {
-            return { type: error.response?.statusText, message: error.message }
+            return { type: error.response?.statusText ?? null, message: error.message, stackTrace: null }
         }
     }
 
     const error = err as Error;
-    return { type: error.name, message: error.message };
+    return { type: error.name, message: error.message, stackTrace: null };
 }

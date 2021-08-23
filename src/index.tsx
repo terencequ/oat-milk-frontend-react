@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from "./reportWebVitals";
-import {SetupGlobalAxiosInterceptor} from "./api/interceptors/HttpInterceptor";
+import {SetupGlobalAxiosInterceptor} from "./api/interceptors/httpInterceptor";
 import {Provider} from "react-redux";
 import {persistor, store} from "./redux/store";
 import {PersistGate} from "redux-persist/integration/react";

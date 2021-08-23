@@ -1,33 +1,46 @@
-import React, {CSSProperties, FC, ReactElement} from 'react';
-import {Divider, Drawer, List, ListItem, ListItemText, Typography} from "@material-ui/core";
+import React, {FC, ReactElement} from 'react';
+import {Drawer, List, ListItem, ListItemText, Theme, Toolbar, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import HomeIcon from '@material-ui/icons/Home';
-import AddIcon from '@material-ui/icons/Add';
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import LogoDense from "../../shared/components/logo/LogoDense";
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
+import {themeSpacing} from "../styles/GlobalStyles";
 
+export const drawerWidth = 240;
+export const drawerMinimisedWidth = 72;
 
+const StyledDrawerContents = styled.div`
+  height: 100%;
+  width: ${() => {
+    const {drawerMinimised} = useAppSelector(state => state.userInterface);
+    return (drawerMinimised ? drawerMinimisedWidth : drawerWidth) + "px";
+  }};
+  transition: ${props => {
+    const theme = props.theme as Theme;
+    return theme.transitions.create(['margin', 'width'], { // Enter screen animation
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.leavingScreen,
+    })
+  }}
+}
 
-const DrawerContents = styled.div`
-  width: 15vw;
-  max-width: 15vw;
-`;
-
+;
+`
 
 const StyledListItemText = styled(ListItemText)`
+  margin: 0 ${themeSpacing(2)};
+  padding: ${themeSpacing(0.5)} 8px;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: left;
 `;
 
 const StyledTypography = styled(Typography)`
-  margin-left: 0.3rem;
+  margin-left: 25px;
 `;
-
-
 
 interface DrawerButton {
   path: string;
@@ -46,54 +59,49 @@ const drawerButtons: DrawerButton[] = [
     title: "Characters",
     icon: <ListAltIcon/>
   },
-  {
-    path: "/create",
-    title: "New Character",
-    icon: <AddIcon/>
-  }
 ];
 
-
-
-interface GenericDrawerProps {
-  open: boolean;
-  setOpen: (value: boolean) => void;
+interface NavDrawerProps {
   anchor?: 'left' | 'top' | 'right' | 'bottom';
-  style?: CSSProperties;
 }
 
-const NavDrawer: FC<GenericDrawerProps> = ({open, setOpen, anchor, style}) => {
+const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
   const history = useHistory();
+  const dispatch = useAppDispatch();
+  const {drawerOpen, drawerMinimised} = useAppSelector(state => state.userInterface);
 
-  const onClose = () => {
-    setOpen(false);
+  const onToggleOpen = () => {
+    dispatch(setDrawerOpen(!drawerOpen));
   };
 
   const handleNavigate = (path: string) => {
     return () => {
-      onClose();
       history.push(path);
     };
   };
 
-  return <Drawer open={open} anchor={anchor} onClose={onClose} style={style}>
-      <DrawerContents>
-        <LogoDense style={{minHeight: "64px"}}/>
-        <Divider/>
+  // No app drawer if this is the login page
+  const location = useLocation();
+  if(location.pathname === '/login' || location.pathname === '/register') {
+    return <></>
+  }
 
+  return <Drawer variant={"permanent"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
+      <StyledDrawerContents>
+        <Toolbar/> {/** Spacer, for App Bar height */}
         <List>
           {drawerButtons.map((value, i) => {
             return (
-              <ListItem button={true} key={i} onClick={handleNavigate(value.path)} >
-                <StyledListItemText disableTypography={true}>
-                  {value.icon}
-                  <StyledTypography variant={"body1"}>{value.title}</StyledTypography>
-                </StyledListItemText>
-              </ListItem>
+                <ListItem disableGutters button={true} key={i} onClick={handleNavigate(value.path)} >
+                  <StyledListItemText disableTypography={true}>
+                    {value.icon}
+                    {!drawerMinimised && <StyledTypography variant={"body1"}>{value.title}</StyledTypography>}
+                  </StyledListItemText>
+                </ListItem>
             );
-            })}
+          })}
         </List>
-      </DrawerContents>
+      </StyledDrawerContents>
     </Drawer>;
 }
 
