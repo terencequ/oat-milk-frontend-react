@@ -1,5 +1,6 @@
 import {FilledInput, IconButton, InputAdornment, InputLabel} from "@material-ui/core";
-import {Visibility, VisibilityOff} from "@material-ui/icons";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import React, {ChangeEvent, FC, useState} from "react";
 
 interface PasswordInputProps {

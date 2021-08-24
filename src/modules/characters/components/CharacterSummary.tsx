@@ -13,7 +13,7 @@ interface CharacterViewSummaryProps {
  * - Classes
  * - Race
  */
-const CharacterViewSummary: FC<CharacterViewSummaryProps> = ({character}) => {
+const CharacterSummary: FC<CharacterViewSummaryProps> = ({character}) => {
     const getProgressPercentage = () => {
         const nextLevelExp = character.level.nextLevelExperienceRequirement;
         const currentExp = character.level.experience;
@@ -33,4 +33,4 @@ const CharacterViewSummary: FC<CharacterViewSummaryProps> = ({character}) => {
         </Typography>
     </>
 }
-export default CharacterViewSummary;
+export default CharacterSummary;

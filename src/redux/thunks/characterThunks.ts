@@ -30,9 +30,9 @@ export function createCharacter(request: CharacterRequest): ThunkAction<void, Ro
 export function deleteCharacter(id: string): ThunkAction<void, RootState, unknown, AnyAction> {
     return async dispatch => {
         try {
-            dispatch(startRequest(deleteCharacter.name))
+            dispatch(startRequest(deleteCharacter.name));
             await createCharacterClient().characterFullIdDelete(id);
-            dispatch(succeedRequest(deleteCharacter.name))
+            dispatch(succeedRequest(deleteCharacter.name));
             await dispatch(getCharacterSummaries());
         } catch (err) {
             const errorRes = processError(err);
@@ -41,16 +41,29 @@ export function deleteCharacter(id: string): ThunkAction<void, RootState, unknow
     }
 }
 
+export function updateCharacter(id: string, request: CharacterRequest): ThunkAction<void, RootState, unknown, AnyAction> {
+    return async dispatch => {
+        try {
+            dispatch(startRequest(updateCharacter.name));
+            await createCharacterClient().characterFullIdPut(id, request);
+            dispatch(succeedRequest(updateCharacter.name));
+            await dispatch(getCharacterSummaries());
+        } catch (e) {
+
+        }
+    }
+}
+
 export function getCharacterByIdentifier(identifier: string): ThunkAction<void, RootState, unknown, AnyAction> {
     return async dispatch => {
         try {
-            dispatch(startRequest(getCharacterByIdentifier.name))
+            dispatch(startRequest(getCharacterByIdentifier.name));
             const res = await createCharacterClient().characterFullIdentifierGet(identifier);
-            dispatch(succeedRequest(getCharacterByIdentifier.name))
-            dispatch(setCurrentCharacter(res.data))
+            dispatch(succeedRequest(getCharacterByIdentifier.name));
+            dispatch(setCurrentCharacter(res.data));
         } catch (err) {
             const errorRes = processError(err);
-            dispatch(failRequest([getCharacterByIdentifier.name, errorRes.message ?? "An unexpected error has occurred!"]))
+            dispatch(failRequest([getCharacterByIdentifier.name, errorRes.message ?? "An unexpected error has occurred!"]));
         }
     }
 }

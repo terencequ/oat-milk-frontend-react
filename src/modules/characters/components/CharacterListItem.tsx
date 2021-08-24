@@ -7,11 +7,14 @@ import {
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
-import {Delete, Edit, ExpandLess, Visibility} from "@material-ui/icons";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {deleteCharacter} from "../../../redux/thunks/characterThunks";
 import {useAppDispatch} from "../../../redux/hooks";
+import Visibility from "@material-ui/icons/Visibility";
+import Delete from "@material-ui/icons/Delete";
+import Edit from "@material-ui/icons/Edit";
+import ExpandLess from "@material-ui/icons/ExpandLess"
 
 export type CharacterInfoBasicProp = {
   characterSummary: CharacterSummaryResponse;

@@ -1,10 +1,11 @@
+import PeopleAlt from "@material-ui/icons/PeopleAlt";
+import ListAlt from "@material-ui/icons/ListAlt";
 import React, {FC} from 'react';
 import {Card, CardActionArea, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import {PageContainer, themeSpacing} from '../styles/GlobalStyles';
 import {useHistory} from "react-router-dom";
-import {ListAlt, PeopleAlt} from "@material-ui/icons";
-import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import {useAppDispatch} from "../../../redux/hooks";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const HomePageHeroContainer = styled.div`
@@ -46,19 +47,19 @@ const HomePage: FC = () => {
     return <PageContainer>
       <HomePageHeroContainer>
           <Typography gutterBottom align={"center" } variant={"h1"}>Home Page</Typography>
-          <Typography gutterBottom align={"center"} variant={"h2"}>Where would you like to go?</Typography>
+          <Typography gutterBottom align={"center"} variant={"h2"}>wHo aRE YoU?</Typography>
       </HomePageHeroContainer>
 
       <HomePageButtons>
           <HomePageCard color={"inherit"}>
               <HomePageCardActions onClick={gotoCharacters}>
-                  <Typography align={"center"} variant={"h3"}>Characters</Typography>
+                  <Typography align={"center"} variant={"h3"}>Player</Typography>
                   <ListAlt className={"icon"}/>
               </HomePageCardActions>
           </HomePageCard>
           <HomePageCard color={"inherit"}>
               <HomePageCardActions>
-                  <Typography align={"center"} variant={"h3"}>Campaigns</Typography>
+                  <Typography align={"center"} variant={"h3"}>Dungeon Master</Typography>
                   <PeopleAlt className={"icon"}/>
               </HomePageCardActions>
           </HomePageCard>
