@@ -1,9 +1,8 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, IconButton, Menu, MenuItem, Theme, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
-import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 

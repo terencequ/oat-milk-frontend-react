@@ -16,7 +16,7 @@ interface CharacterViewStatsProps {
  * - Ability Score Proficiencies
  * - Attributes
  */
-const CharacterViewStats: FC<CharacterViewStatsProps> = ({character}) => {
+const CharacterStats: FC<CharacterViewStatsProps> = ({character}) => {
     return <>
         {character.abilityScores.map((value, index) => {
             return <CharacterViewAbilityScore abilityScore={value}/>
@@ -39,4 +39,4 @@ const CharacterViewAbilityScoreProficiency: FC<{abilityScoreProficiency: Charact
     </>
 }
 
-export default CharacterViewStats;
+export default CharacterStats;

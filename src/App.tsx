@@ -4,8 +4,9 @@ import './App.css';
 import NavBar from "./modules/core/components/NavBar";
 import HomePage from "./modules/core/pages/HomePage";
 import LoginPage from "./modules/users/pages/LoginPage";
-import CharacterViewPage from "./modules/characters/pages/CharacterViewPage";
-import {CssBaseline, Theme, ThemeProvider} from "@material-ui/core";
+import CharacterPage from "./modules/characters/pages/CharacterPage";
+import {CssBaseline} from "@material-ui/core";
+import {Theme, ThemeProvider} from "@material-ui/core/styles";
 import styled from "@emotion/styled";
 import PrivateRoute from "./modules/core/components/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";
@@ -79,7 +80,7 @@ const App = () => {
                 <CharacterListPage/>
               </PrivateRoute>
               <PrivateRoute path={"/character=:id"}>
-                <CharacterViewPage/>
+                <CharacterPage/>
               </PrivateRoute>
               <PrivateRoute path={"/create"}>
                 <CharacterCreatePage/>

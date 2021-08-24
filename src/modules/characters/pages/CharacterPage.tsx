@@ -7,9 +7,9 @@ import styled from "@emotion/styled";
 import {HeroContainer, PageContainer, themeSpacing} from '../../core/styles/GlobalStyles';
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
-import CharacterViewDescriptions from '../components/CharacterViewDescriptions';
-import CharacterViewStats from "../components/CharacterViewStats";
-import CharacterViewSummary from "../components/CharacterViewSummary";
+import CharacterDescriptions from '../components/CharacterDescriptions';
+import CharacterStats from "../components/CharacterStats";
+import CharacterSummary from "../components/CharacterSummary";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const CircularProgressContainer = styled.div`
@@ -27,7 +27,7 @@ const SectionContainer = styled(Paper)`
 
 type TParams = { id: string; };
 
-const CharacterViewPage: FC = () => {
+const CharacterPage: FC = () => {
 
   const { id } = useParams<TParams>();
   const dispatch = useAppDispatch();
@@ -49,13 +49,13 @@ const CharacterViewPage: FC = () => {
           <Typography align={"center"} variant={"h1"}>{currentCharacter.name}</Typography>
         </SectionContainer>
         <SectionContainer>
-          <CharacterViewSummary character={currentCharacter}/>
+          <CharacterSummary character={currentCharacter}/>
         </SectionContainer>
         <SectionContainer>
-          <CharacterViewStats character={currentCharacter}/>
+          <CharacterStats character={currentCharacter}/>
         </SectionContainer>
         <SectionContainer>
-          <CharacterViewDescriptions character={currentCharacter}/>
+          <CharacterDescriptions character={currentCharacter}/>
         </SectionContainer>
       </HeroContainer>
     }
@@ -70,4 +70,4 @@ const CharacterViewPage: FC = () => {
     </PageContainer>;
 };
 
-export default CharacterViewPage;
+export default CharacterPage;

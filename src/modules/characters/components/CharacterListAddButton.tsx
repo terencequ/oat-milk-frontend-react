@@ -1,7 +1,7 @@
 import {FC} from "react";
 import styled from "@emotion/styled";
 import {Button} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
+import Add from "@material-ui/icons/Add";
 import {createCharacter} from "../../../redux/thunks/characterThunks";
 import {useAppDispatch} from "../../../redux/hooks";
 
