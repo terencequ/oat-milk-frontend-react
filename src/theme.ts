@@ -34,7 +34,7 @@ const createAppTheme = (darkMode: boolean = true) =>
       h2: {
         fontFamily: titleFontFamily,
         fontSize: '2.4rem',
-        fontWeight: 300
+        fontWeight: 400
       },
       h3: {
         fontFamily: titleFontFamily,

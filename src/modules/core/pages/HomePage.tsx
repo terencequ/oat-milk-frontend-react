@@ -9,6 +9,7 @@ import {useAppDispatch} from "../../../redux/hooks";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const HomePageHeroContainer = styled.div`
+    margin-top: 8vw;
 `
 
 const HomePageButtons = styled.div`
@@ -28,11 +29,7 @@ const HomePageCardActions = styled(CardActionArea)`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 40vh;
-  .icon {
-    font-size: 5rem;
-    margin: ${themeSpacing(1)};
-  }
+  padding: ${themeSpacing(5)};
 `
 
 const HomePage: FC = () => {
@@ -46,21 +43,19 @@ const HomePage: FC = () => {
     dispatch(setBackground("inherit"));
     return <PageContainer>
       <HomePageHeroContainer>
-          <Typography gutterBottom align={"center" } variant={"h1"}>Home Page</Typography>
-          <Typography gutterBottom align={"center"} variant={"h2"}>wHo aRE YoU?</Typography>
+          <Typography gutterBottom align={"center"} variant={"h1"}>Home Page</Typography>
+          <Typography gutterBottom align={"center"} variant={"h2"}>I am a...</Typography>
       </HomePageHeroContainer>
 
       <HomePageButtons>
           <HomePageCard color={"inherit"}>
               <HomePageCardActions onClick={gotoCharacters}>
                   <Typography align={"center"} variant={"h3"}>Player</Typography>
-                  <ListAlt className={"icon"}/>
               </HomePageCardActions>
           </HomePageCard>
           <HomePageCard color={"inherit"}>
               <HomePageCardActions>
                   <Typography align={"center"} variant={"h3"}>Dungeon Master</Typography>
-                  <PeopleAlt className={"icon"}/>
               </HomePageCardActions>
           </HomePageCard>
       </HomePageButtons>

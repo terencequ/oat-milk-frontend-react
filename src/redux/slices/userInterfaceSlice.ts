@@ -6,6 +6,7 @@ interface ThemeState {
     drawerMinimised: boolean;
     appBarTitle: string;
     currentBackground: string;
+    isLoading: boolean;
 }
 
 const initialState: ThemeState = {
@@ -14,6 +15,7 @@ const initialState: ThemeState = {
     drawerMinimised: false,
     appBarTitle: "Home",
     currentBackground: `url("images/background-entry.svg")`,
+    isLoading: false
 }
 
 export const userInterfaceSlice = createSlice({
@@ -35,8 +37,11 @@ export const userInterfaceSlice = createSlice({
         setBackground: (state, action: PayloadAction<string>) => {
             state.currentBackground = action.payload;
         },
+        setLoading: (state, action: PayloadAction<boolean>) => {
+            state.isLoading = action.payload;
+        }
     }
 })
 
-export const { setDarkMode, setDrawerOpen, setDrawerMinimised, setAppBarTitle, setBackground } = userInterfaceSlice.actions;
+export const { setDarkMode, setDrawerOpen, setDrawerMinimised, setAppBarTitle, setBackground, setLoading } = userInterfaceSlice.actions;
 export default userInterfaceSlice.reducer;

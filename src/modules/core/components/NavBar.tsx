@@ -1,5 +1,5 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, IconButton, Menu, MenuItem, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, LinearProgress, Menu, MenuItem, Toolbar} from "@material-ui/core";
 import styled from "@emotion/styled";
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -31,6 +31,13 @@ const StyledListItemIcon = styled.div`
   justify-content: center;
 `;
 
+const StyledLinearProgress = styled(LinearProgress)`
+  position: absolute;
+  width: 100vw;
+  bottom: -0px;
+  left: -${themeSpacing(2)};
+`
+
 const NavBar: FC = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsAnchor, setSettingsAnchor] = useState<Element | undefined>(undefined);
@@ -39,7 +46,7 @@ const NavBar: FC = () => {
   const isLoggedIn = authToken !== undefined && authToken !== null;
 
   const dispatch = useAppDispatch();
-  const {drawerMinimised} = useAppSelector(state => state.userInterface);
+  const {drawerMinimised, isLoading} = useAppSelector(state => state.userInterface);
 
   const handleToggleLeftDrawer = (e: MouseEvent<HTMLButtonElement>) => {
     dispatch(setDrawerMinimised(!drawerMinimised));
@@ -78,6 +85,7 @@ const NavBar: FC = () => {
             {isLoggedIn && <MenuItem onClick={handleLogout}><StyledListItemIcon><ExitToAppIcon/></StyledListItemIcon>Log out</MenuItem>}
           </Menu>
         </StyledSettingsWrap>
+        {isLoading && <StyledLinearProgress color={"secondary"} variant={"indeterminate"}/>}
       </Toolbar>
     </StyledAppBar>;
 }

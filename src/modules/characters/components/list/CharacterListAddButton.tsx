@@ -2,8 +2,8 @@ import {FC} from "react";
 import styled from "@emotion/styled";
 import {Button} from "@material-ui/core";
 import Add from "@material-ui/icons/Add";
-import {createCharacter} from "../../../redux/thunks/characterThunks";
-import {useAppDispatch} from "../../../redux/hooks";
+import {createCharacter} from "../../../../redux/thunks/characterThunks";
+import {useAppDispatch} from "../../../../redux/hooks";
 
 const ButtonContainer = styled(Button)`
   font-size: 1rem;
@@ -23,7 +23,7 @@ const CharacterListAddButton: FC = () => {
             descriptions: null
         }));
     }
-    return <ButtonContainer onClick={createBlankCharacter} color={"primary"} variant={"contained"} startIcon={<Add fontSize={"inherit"}/>}>
+    return <ButtonContainer onClick={createBlankCharacter} color={"secondary"} variant={"contained"} startIcon={<Add fontSize={"inherit"}/>}>
         Add a new character
     </ButtonContainer>
 }

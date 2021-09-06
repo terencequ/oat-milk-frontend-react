@@ -4,7 +4,7 @@ import {
 import {processError} from "./helpers/errorHelper";
 import {AnyAction, ThunkAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
-import {failRequest, startRequest} from "../slices/requestsSlice";
+import {failRequest, startRequest, succeedRequest} from "../slices/requestsSlice";
 import {setCharacterSummaries} from "../slices/charactersSlice";
 
 export const createCharacterSummaryClient = (): CharacterSummaryApi => {
@@ -16,7 +16,7 @@ export function getCharacterSummaries(): ThunkAction<void, RootState, unknown, A
         try {
             dispatch(startRequest(getCharacterSummaries.name))
             const res = await createCharacterSummaryClient().characterSummaryGet();
-            dispatch(startRequest(getCharacterSummaries.name))
+            dispatch(succeedRequest(getCharacterSummaries.name))
             dispatch(setCharacterSummaries(res.data?.items ?? []));
         } catch (err) {
             const errorRes = processError(err);

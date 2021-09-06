@@ -7,10 +7,10 @@ import {
 } from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
-import {themeSpacing} from "../../core/styles/GlobalStyles";
+import {themeSpacing} from "../../../core/styles/GlobalStyles";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {deleteCharacter} from "../../../redux/thunks/characterThunks";
-import {useAppDispatch} from "../../../redux/hooks";
+import {deleteCharacter} from "../../../../redux/thunks/characterThunks";
+import {useAppDispatch} from "../../../../redux/hooks";
 import Visibility from "@material-ui/icons/Visibility";
 import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
@@ -43,33 +43,8 @@ const SummaryDisplay = styled.div`
 `
 
 const SummaryActionArea = styled(CardActionArea)`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-`
-
-const SummaryImage = styled.div`
-  padding: ${themeSpacing(1)};
-`
-
-const SummaryNameAndLevel = styled.div`
-  margin-left: ${themeSpacing(2)};
-  display: flex;
-  align-self: center;
-  flex-direction: column;
-`
-
-const SummaryClass = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  align-self: center;
-`
-
-const SummaryHealth = styled.div`
-  margin-right: ${themeSpacing(3)};
-  display: flex;
-  align-self: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 130px 15rem 10rem 1fr;
 `
 
 const SummaryActions = styled(ButtonGroup)`
@@ -117,19 +92,10 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
     {/** Summary Information */}
     <SummaryDisplay>
       <SummaryActionArea onClick={toggleExpand}>
-        <SummaryImage>
-          <Avatar variant={"rounded"} className={"character-image"} alt="Character Icon" src="./images/logo.png" />
-        </SummaryImage>
-        <SummaryNameAndLevel>
-          <Typography align={"left"} variant={"h4"}>{characterSummary.name}</Typography>
-          <Typography align={"left"} variant={"subtitle1"}>Level {characterSummary.level}</Typography>
-        </SummaryNameAndLevel>
-        <SummaryClass>
-          <Typography align={"center"} variant={"subtitle1"}>Unknown Class</Typography>
-        </SummaryClass>
-        <SummaryHealth>
-          <Typography align={"center"} variant={"subtitle1"}>{characterSummary.currentHitPoints}/{characterSummary.maxHitPoints} HP</Typography>
-        </SummaryHealth>
+        <Avatar variant={"rounded"} className={"character-image"} alt="Character Icon" src="./images/logo.png" />
+        <Typography align={"left"} variant={"h4"}>{characterSummary.name}</Typography>
+        <Typography align={"left"} variant={"subtitle1"}>{characterSummary.currentHitPoints}/{characterSummary.maxHitPoints} HP</Typography>
+        <Typography align={"left"} variant={"subtitle1"}>Peasant, Level {characterSummary.level}</Typography>
       </SummaryActionArea>
       <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
         <Button onClick={viewThis}><Visibility/></Button>
