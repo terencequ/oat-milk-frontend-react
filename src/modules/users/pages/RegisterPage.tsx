@@ -2,9 +2,9 @@ import React, {FC, FormEvent, useState} from "react";
 import {CenteredCircularProgress, UserFormPageContainer } from "./UserFormStyles";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Logo from "../../shared/components/Logo";
-import {Button, FormControl, TextField, Typography} from "@material-ui/core";
+import {Button, Divider, FormControl, Link, TextField, Typography} from "@material-ui/core";
 import PasswordInput from "../../shared/components/PasswordInput";
-import {Redirect} from "react-router-dom";
+import {Link as RouterLink, Redirect} from "react-router-dom";
 import {login, register} from "../../../redux/thunks/userThunks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
 import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
@@ -56,6 +56,7 @@ const RegisterPage: FC = () => {
                         ? <CenteredCircularProgress color={"secondary"}/>
                         : <Button type="submit" variant={"contained"}>Register</Button>}
                 </FormControl>
+                <Link align="center" component={RouterLink} to={"/login"} color={"inherit"} underline={"hover"}>Have an account? Login here!</Link>
             </form>
             {error
                 && error !== ""

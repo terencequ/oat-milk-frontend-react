@@ -8,7 +8,7 @@ export const UserFormPageContainer = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
-  margin: 8vw auto auto;
+  margin: 6vw auto auto;
 
   .logo {
     display: flex;
@@ -18,10 +18,10 @@ export const UserFormPageContainer = styled.div`
   }
   
   form {
-    padding: 24px 24px 24px;
     display: flex;
     flex-flow: column;
     justify-content: center;
+    height: auto;
   }
 `;
 

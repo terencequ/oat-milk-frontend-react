@@ -2,14 +2,14 @@ import React, {FC, useEffect} from "react";
 import {getCharacterSummaries} from "../../../redux/thunks/characterSummaryThunks";
 import { PageContainer } from "../../core/styles/GlobalStyles";
 import GenericAsyncComponent from "../../shared/components/GenericAsyncComponent";
-import {Typography} from "@material-ui/core";
+import {Fade, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 import CharacterListAddButton from "../components/list/CharacterListAddButton";
 import CharacterListItem from "../components/list/CharacterListItem";
 
-const MainSection = styled.div`
+const MainSection = styled(Fade)`
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -31,9 +31,11 @@ const CharacterListPage: FC = () => {
         <GenericAsyncComponent existingData={!!characterSummaries} requestId={getCharacterSummaries.name}>
             <>
                 <Typography variant={"h1"} align={"left"} gutterBottom>Characters</Typography>
-                <MainSection>
-                    {characterSummaries.map((value, i) => <CharacterListItem key={i} characterSummary={value}/>)}
-                    <CharacterListAddButton/>
+                <MainSection in appear>
+                    <div>
+                        {characterSummaries.map((value, i) => <CharacterListItem key={i} characterSummary={value}/>)}
+                        <CharacterListAddButton/>
+                    </div>
                 </MainSection>
             </>
         </GenericAsyncComponent>
