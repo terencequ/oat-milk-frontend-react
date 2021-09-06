@@ -52,8 +52,8 @@ const LoginPage: FC = () => {
         </FormControl>
         <FormControl margin={'normal'}>
           {status === RequestStatus.InProgress
-            ? <CenteredCircularProgress />
-            : <Button type="submit" variant={"contained"} color={"secondary"}>Login</Button>}
+            ? <CenteredCircularProgress color={"secondary"}/>
+            : <Button type="submit" variant={"contained"}>Login</Button>}
         </FormControl>
       </form>
       {error

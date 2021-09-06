@@ -53,8 +53,8 @@ const RegisterPage: FC = () => {
                 </FormControl>
                 <FormControl margin={'normal'}>
                     {status === RequestStatus.InProgress
-                        ? <CenteredCircularProgress />
-                        : <Button type="submit" variant={"contained"} color={"secondary"}>Register</Button>}
+                        ? <CenteredCircularProgress color={"secondary"}/>
+                        : <Button type="submit" variant={"contained"}>Register</Button>}
                 </FormControl>
             </form>
             {error

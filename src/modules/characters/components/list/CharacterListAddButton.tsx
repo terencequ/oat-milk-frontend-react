@@ -23,7 +23,7 @@ const CharacterListAddButton: FC = () => {
             descriptions: null
         }));
     }
-    return <ButtonContainer onClick={createBlankCharacter} color={"secondary"} variant={"contained"} startIcon={<Add fontSize={"inherit"}/>}>
+    return <ButtonContainer onClick={createBlankCharacter} variant={"contained"} startIcon={<Add fontSize={"inherit"}/>}>
         Add a new character
     </ButtonContainer>
 }
