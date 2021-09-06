@@ -57,7 +57,7 @@ const CharacterStatsViewAttributes: FC<CharacterStatsViewAttributesProps> = ({ch
 
     return <StyledAttributes>
         <StyledLevel>
-            <CharacterStatsViewLevel character={character}/>
+            <CharacterStatsViewLevel level={character.level}/>
         </StyledLevel>
         <StyledAttribute>
             <Typography variant={"subtitle1"}>{hitPointsAttribute.name}</Typography>

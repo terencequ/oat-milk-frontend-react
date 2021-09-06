@@ -1,10 +1,10 @@
 import React, {FC} from "react";
 import {LinearProgress, Typography} from "@material-ui/core";
-import {CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {CharacterLevelResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {getProgressPercentage} from "../../helpers/CharacterStatHelpers";
 
 interface CharacterViewLevelProps {
-    character: CharacterResponse;
+    level: CharacterLevelResponse;
 }
 
 /**
@@ -14,14 +14,14 @@ interface CharacterViewLevelProps {
  * - Classes
  * - Race
  */
-const CharacterStatsViewLevel: FC<CharacterViewLevelProps> = ({character}) => {
+const CharacterStatsViewLevel: FC<CharacterViewLevelProps> = ({level}) => {
     return <>
         <Typography align={"center"} variant={"subtitle1"}>
-            Level {character.level.level}
+            Level {level.level}
         </Typography>
-        <LinearProgress variant={"determinate"} value={getProgressPercentage(character.level)}/>
+        <LinearProgress variant={"determinate"} value={getProgressPercentage(level)}/>
         <Typography align={"center"} variant={"body1"}>
-            {character.level.experience}/{character.level.nextLevelExperienceRequirement} exp
+            {level.experience}/{level.nextLevelExperienceRequirement} exp
         </Typography>
     </>
 }
