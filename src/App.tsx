@@ -18,18 +18,19 @@ import NavDrawer, {drawerMinimisedWidth, drawerWidth} from "./modules/core/compo
 import {themeSpacing} from "./modules/core/styles/GlobalStyles";
 import {isLoggedInSelector} from "./redux/slices/usersSlice";
 
-const RootContainer = styled.div`
+const StyledRoot = styled.div`
   background-image: ${() => {
     return useAppSelector(state => state.userInterface.currentBackground);
   }};
   background-size: 100%;
 `
 
-interface BodyProps {
+interface StyledBodyProps {
   drawerOpen: boolean;
   drawerMinimised: boolean;
 }
-const getDrawerWidth = (props: BodyProps) => {
+
+const getDrawerWidth = (props: StyledBodyProps) => {
   let currentDrawerWidth = props.drawerOpen ? props.drawerMinimised ? drawerMinimisedWidth : drawerWidth : 0;
   const loggedIn = isLoggedInSelector()();
   if(!loggedIn) {
@@ -37,7 +38,8 @@ const getDrawerWidth = (props: BodyProps) => {
   }
   return currentDrawerWidth+"px"
 }
-const StyledBody = styled.div<BodyProps>`
+
+const StyledBody = styled.div<StyledBodyProps>`
   min-height: 100vh;
   padding: ${themeSpacing(8)} 0;
   margin-right: auto;
@@ -65,7 +67,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline/>
       <Router>
-        <RootContainer>
+        <StyledRoot>
           <NavBar/>
           <NavDrawer anchor={"left"}/>
           <StyledBody drawerOpen={drawerOpen} drawerMinimised={drawerMinimised}>
@@ -90,7 +92,7 @@ const App = () => {
               </PrivateRoute>
             </Switch>
           </StyledBody>
-        </RootContainer>
+        </StyledRoot>
       </Router>
     </ThemeProvider>
   </>;

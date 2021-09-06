@@ -15,9 +15,9 @@ const createAppTheme = (darkMode: boolean = true) =>
         dark: "#b29c7c"
       },
       secondary: {
-        light: "#f9c8d9",
-        main: "#f8bbd0",
-        dark: "#ad8291"
+        light: "#f6afc5",
+        main: "#ff538e",
+        dark: "#6b434d"
       },
       background: {
         default: darkMode ? "#121212" : "#f5f3ef",
@@ -34,7 +34,7 @@ const createAppTheme = (darkMode: boolean = true) =>
       h2: {
         fontFamily: titleFontFamily,
         fontSize: '2.4rem',
-        fontWeight: 300
+        fontWeight: 400
       },
       h3: {
         fontFamily: titleFontFamily,

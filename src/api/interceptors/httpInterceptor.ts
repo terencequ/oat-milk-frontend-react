@@ -6,6 +6,8 @@ import {store} from "../../redux/store";
  */
 export function SetupGlobalAxiosInterceptor(){
     const baseUrl = process.env.REACT_APP_API_URL;
+    const artificialDelay = 1000; // in milliseconds
+
     console.log("set up global axios");
     globalAxios.interceptors.request.use(
         async config => {
@@ -14,9 +16,7 @@ export function SetupGlobalAxiosInterceptor(){
             if(authJwt != null){
                 config.headers["Authorization"] = `Bearer ${authJwt}`;
             }
-            // Artificial delay
-            // return await new Promise(resolve => setTimeout(() => resolve(config), 1000));
-            return config;
+            return await new Promise(resolve => setTimeout(() => resolve(config), artificialDelay));
         },
     )
 }

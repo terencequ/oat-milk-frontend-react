@@ -1,11 +1,11 @@
 import React, {FC, FormEvent, useState} from 'react';
 import {
   Button,
-  FormControl,
+  FormControl, Link,
   TextField, Typography,
 } from "@material-ui/core";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 import Logo from "../../shared/components/Logo";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {
@@ -19,8 +19,11 @@ import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
+import { Link as RouterLink } from "react-router-dom";
 
 const LoginPage: FC = () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -52,9 +55,10 @@ const LoginPage: FC = () => {
         </FormControl>
         <FormControl margin={'normal'}>
           {status === RequestStatus.InProgress
-            ? <CenteredCircularProgress />
+            ? <CenteredCircularProgress color={"secondary"}/>
             : <Button type="submit" variant={"contained"}>Login</Button>}
         </FormControl>
+        <Link align="center" component={RouterLink} to={"/register"} color={"inherit"} underline={"hover"}>Don't have an account? Register here!</Link>
       </form>
       {error
         && error !== ""

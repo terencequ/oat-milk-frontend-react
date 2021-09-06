@@ -9,8 +9,8 @@ interface CharacterViewDescriptionsProps {
  * Displays the following information for a character:
  * - Descriptions
  */
-const CharacterDescriptions: FC<CharacterViewDescriptionsProps> = ({character}) => {
+const CharacterStatsViewDescriptions: FC<CharacterViewDescriptionsProps> = ({character}) => {
     return <>
     </>
 }
-export default CharacterDescriptions;
+export default CharacterStatsViewDescriptions;
