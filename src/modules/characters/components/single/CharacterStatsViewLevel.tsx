@@ -16,7 +16,7 @@ interface CharacterViewLevelProps {
  */
 const CharacterStatsViewLevel: FC<CharacterViewLevelProps> = ({character}) => {
     return <>
-        <Typography align={"center"} variant={"body1"}>
+        <Typography align={"center"} variant={"subtitle1"}>
             Level {character.level.level}
         </Typography>
         <LinearProgress variant={"determinate"} value={getProgressPercentage(character.level)}/>

@@ -78,7 +78,7 @@ const CharacterViewAbilityScore: FC<{abilityScore: CharacterAbilityScoreResponse
     return <StyledAbilityScore>
         <Typography variant={"subtitle1"}>{abilityScore.name}</Typography>
         <Typography variant={"h2"}>{getModifierAsString(getModifier(abilityScore.value))}</Typography>
-        <Typography variant={"subtitle1"}>{abilityScore.value}</Typography>
+        <Typography variant={"subtitle2"}>{abilityScore.value}</Typography>
     </StyledAbilityScore>
 }
 //endregion
@@ -105,7 +105,7 @@ const CharacterViewAbilityScoreProficiency: FC<CharacterViewAbilityScoreProficie
     return <StyledCharacterViewAbilityScoreProficiency>
         {abilityScoreProficiency.proficient ? <RadioButtonCheckedOutlined/> : <RadioButtonUncheckedOutlined/>}
         <Typography variant={"body1"}>{abilityScoreProficiency.name}</Typography>
-        <Typography variant={"body1"}>{getModifierAsString(modifier)}</Typography>
+        <Typography variant={"subtitle2"}>{getModifierAsString(modifier)}</Typography>
     </StyledCharacterViewAbilityScoreProficiency>
 }
 //endregion
