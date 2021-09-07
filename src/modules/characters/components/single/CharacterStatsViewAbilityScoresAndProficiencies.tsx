@@ -18,7 +18,8 @@ interface CharacterViewStatsProps {
 const StyledAbilityScoresAndProficiencies = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-column-gap: ${themeSpacing(2)};
+  grid-column-gap: ${themeSpacing(1)};
+  width: auto;
 `
 
 const StyledAbilityScores = styled.div`
@@ -54,7 +55,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
                 .map((value, index) => {
                 return <CharacterViewAbilityScoreProficiency
                     abilityScoreProficiency={value.proficiency}
-                    abilityScoreValue={value.abilityScore.value}
+                    abilityScore={value.abilityScore}
                     levelValue={character.level.level}/>
             })}
         </StyledProficiencies>
@@ -86,25 +87,25 @@ const CharacterViewAbilityScore: FC<{abilityScore: CharacterAbilityScoreResponse
 //region Proficiency
 const StyledCharacterViewAbilityScoreProficiency = styled.div`
   display: grid;
-  grid-template-columns: [Is Proficient] 40px [Name] 10rem [Modifier] 2rem;
+  grid-template-columns: [Is Proficient] 40px [Name] 14rem [AbilityScore] 3rem;
   width: 100%;
   align-items: center;
 `
 
 interface CharacterViewAbilityScoreProficiencyProps {
     abilityScoreProficiency: CharacterAbilityScoreProficiencyResponse;
-    abilityScoreValue: number;
+    abilityScore: CharacterAbilityScoreResponse;
     levelValue: number;
 }
 
 /**
  * Displays a single ability score proficiency.
  */
-const CharacterViewAbilityScoreProficiency: FC<CharacterViewAbilityScoreProficiencyProps> = ({abilityScoreProficiency, abilityScoreValue, levelValue}) => {
-    const modifier = getModifier(abilityScoreValue) + (abilityScoreProficiency.proficient ? getProficiencyBonus(levelValue) : 0);
+const CharacterViewAbilityScoreProficiency: FC<CharacterViewAbilityScoreProficiencyProps> = ({abilityScoreProficiency, abilityScore, levelValue}) => {
+    const modifier = getModifier(abilityScore.value) + (abilityScoreProficiency.proficient ? getProficiencyBonus(levelValue) : 0);
     return <StyledCharacterViewAbilityScoreProficiency>
         {abilityScoreProficiency.proficient ? <RadioButtonCheckedOutlined/> : <RadioButtonUncheckedOutlined/>}
-        <Typography variant={"body1"}>{abilityScoreProficiency.name}</Typography>
+        <Typography variant={"body1"}>{abilityScoreProficiency.name} <em>({abilityScore.name.substr(0, 3).toLowerCase()})</em></Typography>
         <Typography variant={"subtitle2"}>{getModifierAsString(modifier)}</Typography>
     </StyledCharacterViewAbilityScoreProficiency>
 }
