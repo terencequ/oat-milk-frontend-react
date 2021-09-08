@@ -5,13 +5,9 @@ import {FC} from "react";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
 
 const StyledContainer = styled.div`
-  height: 100%;
-  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: ${themeSpacing(4)};
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-row-gap: ${themeSpacing(4)};
   align-items: center;
   justify-content: center;
 `
@@ -20,79 +16,76 @@ const StyledSpellSlotIcons = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `
 
 const CharacterStatsViewSpellSlots: FC = () => {
     return <>
         <Typography variant={"subtitle1"} gutterBottom>Spell Slots</Typography>
         <StyledContainer>
-            <div>
-                <Typography align={"center"}>Level 1</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 2</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 3</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 4</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 5</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 6</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 7</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 8</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
-            <div>
-                <Typography align={"center"}>Level 9</Typography>
-                <StyledSpellSlotIcons>
-                    <RadioButtonUnchecked/>
-                </StyledSpellSlotIcons>
-            </div>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>1</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>2</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>3</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>4</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>5</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>6</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>7</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>8</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
+            <StyledSpellSlotIcons>
+                <Typography align={"center"}>9</Typography>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+                <RadioButtonUnchecked/>
+            </StyledSpellSlotIcons>
         </StyledContainer>
     </>
 }
