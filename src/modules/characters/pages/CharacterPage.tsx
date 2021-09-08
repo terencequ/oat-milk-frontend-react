@@ -39,7 +39,7 @@ const CharacterPage: FC = () => {
             <Typography variant={"h3"} align={"center"}>{levelString}</Typography>
             <StyledTabs value={tabSelection}
                         onChange={(_, newValue) => setTabSelection(newValue)} indicatorColor={"secondary"} textColor={"secondary"}>
-              <Tab label={"Stats"} value={0}/>
+              <Tab label={"Overall"} value={0}/>
               <Tab label={"Descriptions"} value={1}/>
             </StyledTabs>
             <Fade in={tabSelection === 0} appear>

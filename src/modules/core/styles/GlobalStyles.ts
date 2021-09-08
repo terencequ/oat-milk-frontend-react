@@ -16,6 +16,7 @@ export const BottomMiddleFixedDiv = styled.div`
 
 export const PageContainer = styled.div`
   margin: auto;
+  width: 1200px;
   max-width: 95%;
 `
 

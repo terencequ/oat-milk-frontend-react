@@ -5,7 +5,7 @@ import {
     CharacterAbilityScoreResponse,
     CharacterResponse
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {Card, Typography} from "@material-ui/core";
+import {Card, Divider, Typography} from "@material-ui/core";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../helpers/CharacterStatHelpers";
@@ -28,9 +28,13 @@ const StyledAbilityScores = styled.div`
   grid-row-gap: ${themeSpacing(1)};
 `
 
-const StyledProficiencies = styled(Card)`
+const StyledProficiencies = styled.div`
   display: grid;
-  grid-auto-rows: 2rem;
+  grid-template-rows: auto 1fr;
+  grid-row-gap: ${themeSpacing(1)};
+`
+
+const StyledProficienciesContainer = styled(Card)`
   padding: ${themeSpacing(2)};
 `
 
@@ -51,13 +55,24 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
             })}
         </StyledAbilityScores>
         <StyledProficiencies>
-            {abilityScoresAndProficiencies
-                .map((value, index) => {
-                return <CharacterViewAbilityScoreProficiency
-                    abilityScoreProficiency={value.proficiency}
-                    abilityScore={value.abilityScore}
-                    levelValue={character.level.level}/>
-            })}
+            <StyledProficienciesContainer>
+                <Typography variant={"subtitle1"} gutterBottom align={"center"}>Saving Throws</Typography>
+                {abilityScores.map((value, index) => {
+                    return <CharacterViewSavingThrowProficiency
+                        abilityScore={value}
+                        levelValue={character.level.level}/>
+                })}
+            </StyledProficienciesContainer>
+            <StyledProficienciesContainer>
+                <Typography variant={"subtitle1"} gutterBottom align={"center"}>Proficiencies</Typography>
+                {abilityScoresAndProficiencies
+                    .map((value, index) => {
+                        return <CharacterViewAbilityScoreProficiency
+                            abilityScoreProficiency={value.proficiency}
+                            abilityScore={value.abilityScore}
+                            levelValue={character.level.level}/>
+                    })}
+            </StyledProficienciesContainer>
         </StyledProficiencies>
     </StyledAbilityScoresAndProficiencies>
 }
@@ -84,13 +99,30 @@ const CharacterViewAbilityScore: FC<{abilityScore: CharacterAbilityScoreResponse
 }
 //endregion
 
-//region Proficiency
-const StyledCharacterViewAbilityScoreProficiency = styled.div`
+//region Saving Throws & Proficiencies
+const StyledCharacterViewAbilityScoreProficiencyOrSavingThrow = styled.div`
   display: grid;
-  grid-template-columns: [Is Proficient] 40px [Name] 14rem [AbilityScore] 3rem;
+  grid-template-columns: [Is Proficient] 40px [Name] 14rem [Modifier] 3rem;
   width: 100%;
   align-items: center;
 `
+
+interface CharacterViewSavingThrowProficiencyProps {
+    abilityScore: CharacterAbilityScoreResponse;
+    levelValue: number;
+}
+
+/**
+ * Displays a single ability score saving throw.
+ */
+const CharacterViewSavingThrowProficiency: FC<CharacterViewSavingThrowProficiencyProps> = ({abilityScore, levelValue}) => {
+    const modifier = getModifier(abilityScore.value) + (abilityScore.proficient ? getProficiencyBonus(levelValue) : 0);
+    return <StyledCharacterViewAbilityScoreProficiencyOrSavingThrow>
+        {abilityScore.proficient ? <RadioButtonCheckedOutlined/> : <RadioButtonUncheckedOutlined/>}
+        <Typography variant={"body1"}>{abilityScore.name}</Typography>
+        <Typography variant={"subtitle2"}>{getModifierAsString(modifier)}</Typography>
+    </StyledCharacterViewAbilityScoreProficiencyOrSavingThrow>
+}
 
 interface CharacterViewAbilityScoreProficiencyProps {
     abilityScoreProficiency: CharacterAbilityScoreProficiencyResponse;
@@ -103,11 +135,11 @@ interface CharacterViewAbilityScoreProficiencyProps {
  */
 const CharacterViewAbilityScoreProficiency: FC<CharacterViewAbilityScoreProficiencyProps> = ({abilityScoreProficiency, abilityScore, levelValue}) => {
     const modifier = getModifier(abilityScore.value) + (abilityScoreProficiency.proficient ? getProficiencyBonus(levelValue) : 0);
-    return <StyledCharacterViewAbilityScoreProficiency>
+    return <StyledCharacterViewAbilityScoreProficiencyOrSavingThrow>
         {abilityScoreProficiency.proficient ? <RadioButtonCheckedOutlined/> : <RadioButtonUncheckedOutlined/>}
         <Typography variant={"body1"}>{abilityScoreProficiency.name} <em>({abilityScore.name.substr(0, 3).toLowerCase()})</em></Typography>
         <Typography variant={"subtitle2"}>{getModifierAsString(modifier)}</Typography>
-    </StyledCharacterViewAbilityScoreProficiency>
+    </StyledCharacterViewAbilityScoreProficiencyOrSavingThrow>
 }
 //endregion
 
