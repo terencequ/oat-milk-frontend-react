@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {Typography} from "@material-ui/core";
+import {Paper, Typography} from "@material-ui/core";
 import {RadioButtonChecked, RadioButtonUnchecked} from "@material-ui/icons";
 import {FC} from "react";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
@@ -14,9 +14,16 @@ const StyledDeathSavesAndFailuresRadio = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 50%;
+  width: 60%;
   margin: auto;
 `
+
+const StyledAttributeLogo = styled.img`
+  width: 32px;
+  height: 32px;
+`
+
+
 
 interface CharacterStatsViewDeathSavesProps {
     deathSaveSuccesses: number,
@@ -31,6 +38,7 @@ const CharacterStatsViewDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({de
         <div>
             <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
             <StyledDeathSavesAndFailuresRadio>
+                <StyledAttributeLogo src={"images/icons/deathsavesuccesses.png"}/>
                 {[...Array(deathSaveSuccesses)].map((value, index) => <>
                     <RadioButtonChecked/>
                 </>)}
@@ -42,6 +50,7 @@ const CharacterStatsViewDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({de
         <div>
             <Typography align={"center"} variant={"subtitle1"}>Death save failures</Typography>
             <StyledDeathSavesAndFailuresRadio>
+                <StyledAttributeLogo src={"images/icons/deathsavefailures.png"}/>
                 {[...Array(deathSaveFailures)].map(() => <>
                     <RadioButtonChecked/>
                 </>)}

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {Theme} from "@material-ui/core";
+import {Card, Theme} from "@material-ui/core";
 
 // helper function factory to get theme spacing
 export const themeSpacing = (amount: number) => (props: any) => {
@@ -7,7 +7,7 @@ export const themeSpacing = (amount: number) => (props: any) => {
     return theme.spacing(amount);
 }
 
-export const BottomMiddleFixedDiv = styled.div`
+export const BottomMiddleFixedCard = styled(Card)`
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -16,8 +16,10 @@ export const BottomMiddleFixedDiv = styled.div`
 
 export const PageContainer = styled.div`
   margin: auto;
-  width: 1200px;
-  max-width: 95%;
+  width: 100%;
+  padding: ${themeSpacing(8)};
+  overflow-y: scroll;
+  max-height: calc(100vh - 90px);
 `
 
 export const HeroContainer = styled.div`

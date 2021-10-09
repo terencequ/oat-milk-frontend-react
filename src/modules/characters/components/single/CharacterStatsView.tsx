@@ -7,7 +7,7 @@ import CharacterStatsViewAttributes from "./CharacterStatsViewAttributes";
 
 const StyledStatsView = styled.div`
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 1fr;
   grid-column-gap: ${themeSpacing(2)};
 `
 

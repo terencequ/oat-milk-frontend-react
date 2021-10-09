@@ -3,6 +3,12 @@ import React, {CSSProperties, FC} from "react";
 import styled from "@emotion/styled";
 
 const StyledLogoDenseWrap = styled.div`
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
   display: flex;
   justify-content: center;
   align-items: center;

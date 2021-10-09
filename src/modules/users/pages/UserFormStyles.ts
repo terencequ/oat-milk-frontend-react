@@ -1,20 +1,22 @@
 import styled from "@emotion/styled";
-import {CircularProgress} from "@material-ui/core";
+import {Card, CircularProgress, FormControl, Link} from "@material-ui/core";
+import {themeSpacing} from "../../core/styles/GlobalStyles";
 
-export const UserFormPageContainer = styled.div`
-  width: 450px;
+export const UserFormPageContainer = styled(Card)`
+  width: 480px;
   max-width: 95vw;
 
   display: flex;
   flex-flow: column;
   justify-content: center;
-  margin: 6vw auto auto;
+  margin: auto;
+  padding: ${themeSpacing(4)};
 
   .logo {
     display: flex;
     align-items: center;
     flex-flow: column;
-    margin: 3vh auto;
+    margin: auto;
   }
   
   form {
@@ -24,6 +26,10 @@ export const UserFormPageContainer = styled.div`
     height: auto;
   }
 `;
+
+export const UserFormSubmitButton = styled(FormControl)`
+  margin-bottom: ${themeSpacing(4)}
+`
 
 export const CenteredCircularProgress = styled(CircularProgress)`
   margin: auto;

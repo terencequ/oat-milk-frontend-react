@@ -1,4 +1,4 @@
-import {FilledInput, IconButton, InputAdornment, InputLabel} from "@material-ui/core";
+import {FilledInput, IconButton, InputAdornment, InputLabel, TextField} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import React, {ChangeEvent, FC, useState} from "react";
@@ -26,21 +26,25 @@ const PasswordInput: FC<PasswordInputProps> = (props) => {
     };
 
     return <>
-        <InputLabel htmlFor={"filled-adornment-password"}>{props.label}</InputLabel>
-        <FilledInput id={"filled-adornment-password"}
+        <TextField id={"filled-adornment-password"}
+                     size="small"
                      type={showPassword ? "text" : "password"}
                      onChange={handlePasswordChange}
                      value={props.password}
                      required
-                     endAdornment={
-                         <InputAdornment position={"end"}>
-                             <IconButton
+                     label={props.label}
+                     variant={"filled"}
+                     InputProps={{
+                         endAdornment: (
+                             <InputAdornment position={"end"}>
+                                 <IconButton
                                  onClick={handleShowPassword}
-                             >
-                                 {showPassword ? <Visibility /> : <VisibilityOff />}
-                             </IconButton>
-                         </InputAdornment>
-                     }
+                                 >
+                                     {showPassword ? <Visibility /> : <VisibilityOff />}
+                                 </IconButton>
+                             </InputAdornment>
+                         )
+                     }}
         />
     </>
 }

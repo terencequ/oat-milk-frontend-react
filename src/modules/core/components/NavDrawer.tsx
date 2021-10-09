@@ -6,10 +6,16 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import {useHistory, useLocation} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";
+import {isElectron} from "../../shared/helpers/ElectronHelpers";
 import {themeSpacing} from "../styles/GlobalStyles";
+import {windowBarHeight} from "./WindowBar";
 
 export const drawerWidth = 240;
 export const drawerMinimisedWidth = 72;
+
+const StyledSpacer = styled(Toolbar)`
+  margin-top: ${isElectron() ? windowBarHeight : 0}px;
+`
 
 const StyledDrawerContents = styled.div`
   height: 100%;
@@ -88,7 +94,7 @@ const NavDrawer: FC<NavDrawerProps> = ({anchor}) => {
 
   return <Drawer variant={"permanent"} open={drawerOpen} anchor={anchor} onClose={onToggleOpen}>
       <StyledDrawerContents>
-        <Toolbar/> {/** Spacer, for App Bar height */}
+        <StyledSpacer/> {/** Spacer, for App Bar height */}
         <List>
           {drawerButtons.map((value, i) => {
             return (

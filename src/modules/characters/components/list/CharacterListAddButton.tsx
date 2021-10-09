@@ -1,6 +1,6 @@
 import {FC} from "react";
 import styled from "@emotion/styled";
-import {Button} from "@material-ui/core";
+import {Button, Theme} from "@material-ui/core";
 import Add from "@material-ui/icons/Add";
 import {createCharacter} from "../../../../redux/thunks/characterThunks";
 import {useAppDispatch} from "../../../../redux/hooks";
@@ -10,6 +10,7 @@ const ButtonContainer = styled(Button)`
   width: 100%;
   height: 5vh;
   margin: 2vw auto auto;
+  z-index: 1;
 `
 
 const CharacterListAddButton: FC = () => {

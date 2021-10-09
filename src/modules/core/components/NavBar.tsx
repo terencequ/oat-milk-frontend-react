@@ -10,18 +10,22 @@ import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
+import {isElectron} from "../../shared/helpers/ElectronHelpers";
 import {themeSpacing} from "../styles/GlobalStyles";
 import {setDrawerMinimised} from "../../../redux/slices/userInterfaceSlice";
 import LogoDense from "../../shared/components/LogoDense";
+import WindowBar from "./WindowBar";
 
 const StyledAppBar = styled(AppBar)`
-  padding: 0 ${themeSpacing(2)}; // This should be lined up with icons from NavDrawer
   width: 100vw;
+`
+
+const StyledToolbar = styled(Toolbar)`
+  padding: 0 ${themeSpacing(2)};
 `
 
 const StyledSettingsWrap = styled.div`
   margin-left: auto;
-  margin-right: ${themeSpacing(2)};
 `;
 
 const StyledListItemIcon = styled.div`
@@ -35,7 +39,6 @@ const StyledLinearProgress = styled(LinearProgress)`
   position: absolute;
   width: 100vw;
   bottom: -0px;
-  left: -${themeSpacing(2)};
 `
 
 const NavBar: FC = () => {
@@ -69,11 +72,12 @@ const NavBar: FC = () => {
   // No app bar if this is the login page
   const location = useLocation();
   if(location.pathname === '/login' || location.pathname === '/register') {
-    return <></>
+    return <>{isElectron() && <WindowBar/>}</>
   }
 
-  return <StyledAppBar sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}position="sticky">
-      <Toolbar disableGutters>
+  return <StyledAppBar sx={{zIndex: (theme) => theme.zIndex.drawer + 1}} position="sticky">
+      {isElectron() && <WindowBar/>}
+      <StyledToolbar disableGutters>
         <IconButton onClick={handleToggleLeftDrawer}>
           <MenuIcon/>
         </IconButton>
@@ -85,8 +89,8 @@ const NavBar: FC = () => {
             {isLoggedIn && <MenuItem onClick={handleLogout}><StyledListItemIcon><ExitToAppIcon/></StyledListItemIcon>Log out</MenuItem>}
           </Menu>
         </StyledSettingsWrap>
-        {isLoading && <StyledLinearProgress color={"secondary"} variant={"indeterminate"}/>}
-      </Toolbar>
+      </StyledToolbar>
+      {isLoading && <StyledLinearProgress color={"secondary"} variant={"indeterminate"}/>}
     </StyledAppBar>;
 }
 

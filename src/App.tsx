@@ -41,7 +41,6 @@ const getDrawerWidth = (props: StyledBodyProps) => {
 
 const StyledBody = styled.div<StyledBodyProps>`
   min-height: 100vh;
-  padding: ${themeSpacing(8)} 0;
   margin-right: auto;
   margin-left: ${getDrawerWidth};
   width: calc(100% - ${getDrawerWidth});

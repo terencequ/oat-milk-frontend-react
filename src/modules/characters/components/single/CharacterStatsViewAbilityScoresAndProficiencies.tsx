@@ -102,7 +102,7 @@ const CharacterViewAbilityScore: FC<{abilityScore: CharacterAbilityScoreResponse
 //region Saving Throws & Proficiencies
 const StyledCharacterViewAbilityScoreProficiencyOrSavingThrow = styled.div`
   display: grid;
-  grid-template-columns: [Is Proficient] 40px [Name] 14rem [Modifier] 3rem;
+  grid-template-columns: [Is Proficient] 40px [Name] 14rem [Modifier] 2rem;
   width: 100%;
   align-items: center;
 `

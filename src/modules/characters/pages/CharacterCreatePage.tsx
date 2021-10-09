@@ -11,7 +11,7 @@ const CharacterCreatePage: FC = () => {
   document.title = `Oat Milk - Create Character`
   dispatch(setBackground("inherit"));
   return <>
-    <Typography variant={"h1"}>CreateCharacterPage</Typography>
+    <Typography variant={"h2"}>CreateCharacterPage</Typography>
   </>;
 };
 

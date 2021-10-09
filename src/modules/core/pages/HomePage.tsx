@@ -8,10 +8,6 @@ import {useHistory} from "react-router-dom";
 import {useAppDispatch} from "../../../redux/hooks";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
-const HomePageHeroContainer = styled.div`
-    margin-top: 8vw;
-`
-
 const HomePageButtons = styled.div`
   display: flex;
   align-items: center;
@@ -42,12 +38,8 @@ const HomePage: FC = () => {
     document.title = "Oat Milk - Home"
     dispatch(setBackground("inherit"));
     return <PageContainer>
-      <HomePageHeroContainer>
-          <Typography gutterBottom align={"center"} variant={"h1"}>Home Page</Typography>
-          <Typography gutterBottom align={"center"} variant={"h2"}>I am a...</Typography>
-      </HomePageHeroContainer>
-
-      <HomePageButtons>
+        <Typography gutterBottom align={"center"} variant={"h2"}>Home</Typography>
+        <HomePageButtons>
           <HomePageCard color={"inherit"}>
               <HomePageCardActions onClick={gotoCharacters}>
                   <Typography align={"center"} variant={"h3"}>Player</Typography>
@@ -58,7 +50,7 @@ const HomePage: FC = () => {
                   <Typography align={"center"} variant={"h3"}>Dungeon Master</Typography>
               </HomePageCardActions>
           </HomePageCard>
-      </HomePageButtons>
+        </HomePageButtons>
     </PageContainer>;
 };
 

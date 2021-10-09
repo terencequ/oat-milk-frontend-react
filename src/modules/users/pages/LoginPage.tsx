@@ -5,14 +5,14 @@ import {
   TextField, Typography,
 } from "@material-ui/core";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {Redirect, useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import Logo from "../../shared/components/Logo";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {
   CenteredCircularProgress,
-  UserFormPageContainer,
+  UserFormPageContainer, UserFormSubmitButton,
 } from "./UserFormStyles";
-import {BottomMiddleFixedDiv} from "../../core/styles/GlobalStyles";
+import {BottomMiddleFixedCard} from "../../core/styles/GlobalStyles";
 import PasswordInput from "../../shared/components/PasswordInput";
 import {login} from "../../../redux/thunks/userThunks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
@@ -22,8 +22,6 @@ import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 import { Link as RouterLink } from "react-router-dom";
 
 const LoginPage: FC = () => {
-  const history = useHistory();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -48,26 +46,34 @@ const LoginPage: FC = () => {
       <form onSubmit={handleLogin}>
         <div className="logo"><Logo/></div>
         <FormControl margin={'normal'}>
-          <TextField onChange={(e) => setEmail(e.target.value)} variant={"filled"} label={"Email"} value={email} required/>
+          <TextField size="small" onChange={(e) => setEmail(e.target.value)} variant={"filled"} label={"Email"} value={email} required/>
         </FormControl>
         <FormControl margin={'normal'}>
           <PasswordInput label={"Password"} password={password} setPassword={setPassword}/>
         </FormControl>
-        <FormControl margin={'normal'}>
+        <UserFormSubmitButton margin={'normal'}>
           {status === RequestStatus.InProgress
             ? <CenteredCircularProgress color={"secondary"}/>
             : <Button type="submit" variant={"contained"}>Login</Button>}
-        </FormControl>
-        <Link align="center" component={RouterLink} to={"/register"} color={"inherit"} underline={"hover"}>Don't have an account? Register here!</Link>
+        </UserFormSubmitButton>
+        <Link
+            align="center"
+            component={RouterLink}
+            to={"/register"}
+            color={"inherit"}
+            underline={"hover"}
+            variant={"body2"}>
+          Don't have an account? Register here!
+        </Link>
       </form>
       {error
         && error !== ""
         && <Typography variant={"caption"} color={"error"} align={"center"}>{error}</Typography>
       }
     </UserFormPageContainer>
-    <BottomMiddleFixedDiv>
+    <BottomMiddleFixedCard>
       <MenuItemThemeButton/>
-    </BottomMiddleFixedDiv>
+    </BottomMiddleFixedCard>
   </>;
 };
 

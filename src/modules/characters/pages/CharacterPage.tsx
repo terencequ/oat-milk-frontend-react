@@ -13,6 +13,10 @@ const StyledTabs = styled(Tabs)`
   margin-bottom: ${themeSpacing(2)};
 `
 
+const StyledMainContainer = styled.div`
+  
+`
+
 type TParams = { id: string; };
 const CharacterPage: FC = () => {
 
@@ -34,18 +38,20 @@ const CharacterPage: FC = () => {
   return <PageContainer>
       <GenericAsyncComponent existingData={!!currentCharacter} requestId={getCharacterByIdentifier.name}>
         {
-          currentCharacter && <div>
-            <Typography variant={"h1"} align={"center"} gutterBottom>{currentCharacter.name}</Typography>
-            <Typography variant={"h3"} align={"center"}>{levelString}</Typography>
-            <StyledTabs value={tabSelection}
-                        onChange={(_, newValue) => setTabSelection(newValue)} indicatorColor={"secondary"} textColor={"secondary"}>
-              <Tab label={"Overall"} value={0}/>
-              <Tab label={"Descriptions"} value={1}/>
-            </StyledTabs>
+          currentCharacter && <StyledMainContainer>
+            <div>
+              <Typography variant={"h2"} align={"center"} gutterBottom>{currentCharacter.name}</Typography>
+              <Typography variant={"h3"} align={"center"}>{levelString}</Typography>
+              <StyledTabs value={tabSelection}
+                          onChange={(_, newValue) => setTabSelection(newValue)} indicatorColor={"secondary"} textColor={"secondary"}>
+                <Tab label={"Overall"} value={0}/>
+                <Tab label={"Descriptions"} value={1}/>
+              </StyledTabs>
+            </div>
             <Fade in={tabSelection === 0} appear>
               <div><CharacterStatsView character={currentCharacter}/></div>
             </Fade>
-          </div>
+          </StyledMainContainer>
         }
       </GenericAsyncComponent>
     </PageContainer>;
