@@ -20,6 +20,8 @@ import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 import { Link as RouterLink } from "react-router-dom";
+import entryBackground from "assets/images/background-entry.svg";
+import entryBackgroundDark from "assets/images/background-entry-dark.svg";
 
 const LoginPage: FC = () => {
   const [email, setEmail] = useState("");
@@ -37,7 +39,7 @@ const LoginPage: FC = () => {
 
   const darkmode = useAppSelector(state => state.userInterface.darkMode);
   document.title = "Oat Milk - Login"
-  dispatch(setBackground(`url("images/background-entry${darkmode ? "-dark" : ""}.svg")`));
+  dispatch(setBackground(`url("${darkmode ? entryBackgroundDark : entryBackground}")`));
   return <>
     {isLoggedIn &&
       <Redirect to={'/'}/>

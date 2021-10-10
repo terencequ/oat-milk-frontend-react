@@ -23,7 +23,8 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "composite": true
+    "composite": true,
+    "baseUrl": "src"
   },
   "include": [
     "src"

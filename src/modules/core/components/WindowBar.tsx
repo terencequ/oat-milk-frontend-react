@@ -3,6 +3,11 @@ import {IconButton, Paper, Theme} from "@material-ui/core";
 import {FC, useState} from "react";
 import {isElectron} from "../../shared/helpers/ElectronHelpers";
 import {themeSpacing} from "../styles/GlobalStyles";
+import maximiseIcon from "assets/images/windowbar/maximise.png";
+import minimiseIcon from "assets/images/windowbar/minimise.png";
+import restoreIcon from "assets/images/windowbar/restore.png";
+import closeIcon from "assets/images/windowbar/close.png";
+
 const {ipcRenderer} = isElectron() ? window.require('electron') : {ipcRenderer:null};
 
 export const windowBarHeight = 25;
@@ -82,18 +87,18 @@ const WindowBar: FC = () => {
 
         <StyledWindowIconContainer>
             <IconButton onClick={minimise}>
-                <StyledWindowIcon src={"./images/windowbar/minimise.png"} alt={"minimise"}/>
+                <StyledWindowIcon src={minimiseIcon}/>
             </IconButton>
             {isMaximised ?
                 <IconButton onClick={restore}>
-                    <StyledWindowIcon src={"./images/windowbar/restore.png"} alt={"restore"}/>
+                    <StyledWindowIcon src={restoreIcon}/>
                 </IconButton>
                 : <IconButton onClick={maximise}>
-                    <StyledWindowIcon src={"./images/windowbar/maximise.png"} alt={"maximise"}/>
+                    <StyledWindowIcon src={maximiseIcon}/>
                 </IconButton>
             }
             <IconButton edge={"end"} onClick={close}>
-                <StyledWindowIcon src={"./images/windowbar/close.png"} alt={"close"}/>
+                <StyledWindowIcon src={closeIcon}/>
             </IconButton>
         </StyledWindowIconContainer>
     </StyledWindowBar>

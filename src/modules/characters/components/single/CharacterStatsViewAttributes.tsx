@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import {Button, Card, LinearProgress, Typography} from "@material-ui/core";
-import {RadioButtonChecked, RadioButtonUnchecked} from "@material-ui/icons";
+import {Card, Typography} from "@material-ui/core";
 import {CharacterAttributeResponse, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
@@ -11,6 +10,15 @@ import {
 } from "../../helpers/CharacterStatHelpers";
 import CharacterStatsViewDeathSaves from "./CharacterStatsViewDeathSaves";
 import CharacterStatsViewSpellSlots from "./CharacterStatsViewSpellSlots";
+import armorClassIcon from 'assets/images/icons/armorclass.png';
+import initiativeIcon from 'assets/images/icons/initiative.png';
+import hitDiceIcon from 'assets/images/icons/hitdice.png';
+import hitPointsIcon from 'assets/images/icons/hitpoints.png';
+import passivePerceptionIcon from 'assets/images/icons/passiveperception.png';
+import proficiencyBonusIcon from 'assets/images/icons/proficiency.png';
+import speedIcon from 'assets/images/icons/speed.png';
+import spellSlotsIcon from 'assets/images/icons/spellslots.png';
+
 
 const StyledAttributes = styled.div`
   display: grid;
@@ -71,32 +79,32 @@ const CharacterStatsViewAttributes: FC<CharacterStatsViewAttributesProps> = ({ch
 
     return <StyledAttributes>
         <StyledAttribute>
-            <StyledAttributeLogo src={"images/icons/initiative.png"}/>
+            <StyledAttributeLogo src={initiativeIcon}/>
             <Typography variant={"subtitle1"}>Initiative</Typography>
             <Typography variant={"body1"}>{getModifierAsString(initiative)}</Typography>
         </StyledAttribute>
         <StyledAttribute>
-            <StyledAttributeLogo src={"images/icons/hitpoints.png"}/>
+            <StyledAttributeLogo src={hitPointsIcon}/>
             <Typography variant={"subtitle1"}>{hitPointsAttribute.name}</Typography>
             <Typography variant={"body1"}>{hitPointsAttribute.currentValue}/{hitPointsAttribute.defaultValue}</Typography>
         </StyledAttribute>
         <StyledAttribute>
-            <StyledAttributeLogo src={"images/icons/speed.png"}/>
+            <StyledAttributeLogo src={speedIcon}/>
             <Typography variant={"subtitle1"}>{speedAttribute.name}</Typography>
             <Typography variant={"body1"}>{speedAttribute.currentValue}ft</Typography>
         </StyledAttribute>
         <StyledAttribute>
-            <StyledAttributeLogo src={"images/icons/passiveperception.png"}/>
+            <StyledAttributeLogo src={passivePerceptionIcon}/>
             <Typography variant={"subtitle1"} textAlign={"center"}>Passive Perception</Typography>
             <Typography variant={"body1"}>{passivePerception}</Typography>
         </StyledAttribute>
         <StyledAttribute>
-            <StyledAttributeLogo src={"images/icons/proficiency.png"}/>
+            <StyledAttributeLogo src={proficiencyBonusIcon}/>
             <Typography variant={"subtitle1"} textAlign={"center"}>Proficiency Bonus</Typography>
             <Typography variant={"body1"}>{getModifierAsString(proficiencyBonus)}</Typography>
         </StyledAttribute>
         <StyledAttribute>
-            <StyledAttributeLogo src={"images/icons/armorclass.png"}/>
+            <StyledAttributeLogo src={armorClassIcon}/>
             <Typography variant={"subtitle1"} textAlign={"center"}>{armorClassAttribute.name}</Typography>
             <Typography variant={"body1"}>{armorClassAttribute.currentValue}</Typography>
         </StyledAttribute>
@@ -106,14 +114,14 @@ const CharacterStatsViewAttributes: FC<CharacterStatsViewAttributesProps> = ({ch
                 deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
         </StyledWideAttribute>
         <StyledWideAttribute>
-            <StyledAttributeLogo src={"images/icons/hitdice.png"}/>
+            <StyledAttributeLogo src={hitDiceIcon}/>
             <Typography variant={"subtitle1"}>Hit Dice</Typography>
             <div>
                 10d8
             </div>
         </StyledWideAttribute>
         <StyledWideAttribute>
-            <StyledAttributeLogo src={"images/icons/spellslots.png"}/>
+            <StyledAttributeLogo src={spellSlotsIcon}/>
             <CharacterStatsViewSpellSlots/>
         </StyledWideAttribute>
     </StyledAttributes>

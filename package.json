@@ -1,5 +1,6 @@
 {
   "name": "oat-milk-frontend-react",
+  "description": "An application which acts as a Dungeons and Dragons multitool.",
   "version": "0.1.0",
   "author": "Terence Qu",
   "private": true,

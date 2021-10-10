@@ -14,7 +14,8 @@ import {useAppDispatch} from "../../../../redux/hooks";
 import Visibility from "@material-ui/icons/Visibility";
 import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
-import ExpandLess from "@material-ui/icons/ExpandLess"
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import logo from "assets/images/logo.png";
 
 export type CharacterInfoBasicProp = {
   characterSummary: CharacterSummaryResponse;
@@ -92,7 +93,7 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
     {/** Summary Information */}
     <SummaryDisplay>
       <SummaryActionArea onClick={toggleExpand}>
-        <Avatar variant={"rounded"} className={"character-image"} alt="Character Icon" src="./images/logo.png" />
+        <Avatar variant={"rounded"} className={"character-image"} alt="Character Icon" src={logo} />
         <Typography align={"left"} variant={"h4"}>{characterSummary.name}</Typography>
         <Typography align={"left"} variant={"subtitle1"}>{characterSummary.currentHitPoints}/{characterSummary.maxHitPoints} HP</Typography>
         <Typography align={"left"} variant={"subtitle1"}>Peasant, Level {characterSummary.level}</Typography>

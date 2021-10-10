@@ -3,6 +3,8 @@ import {Paper, Typography} from "@material-ui/core";
 import {RadioButtonChecked, RadioButtonUnchecked} from "@material-ui/icons";
 import {FC} from "react";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
+import deathSaveFailuresIcon from 'assets/images/icons/deathsavefailures.png';
+import deathSaveSuccessesIcon from 'assets/images/icons/deathsavesuccesses.png';
 
 const StyledDeathSavesAndFailures = styled.div`
   display: grid;
@@ -38,7 +40,7 @@ const CharacterStatsViewDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({de
         <div>
             <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
             <StyledDeathSavesAndFailuresRadio>
-                <StyledAttributeLogo src={"images/icons/deathsavesuccesses.png"}/>
+                <StyledAttributeLogo src={deathSaveSuccessesIcon}/>
                 {[...Array(deathSaveSuccesses)].map((value, index) => <>
                     <RadioButtonChecked/>
                 </>)}
@@ -50,7 +52,7 @@ const CharacterStatsViewDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({de
         <div>
             <Typography align={"center"} variant={"subtitle1"}>Death save failures</Typography>
             <StyledDeathSavesAndFailuresRadio>
-                <StyledAttributeLogo src={"images/icons/deathsavefailures.png"}/>
+                <StyledAttributeLogo src={deathSaveFailuresIcon}/>
                 {[...Array(deathSaveFailures)].map(() => <>
                     <RadioButtonChecked/>
                 </>)}

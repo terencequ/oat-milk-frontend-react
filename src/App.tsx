@@ -15,7 +15,6 @@ import CharacterCreatePage from "./modules/characters/pages/CharacterCreatePage"
 import RegisterPage from "./modules/users/pages/RegisterPage";
 import CharacterListPage from "./modules/characters/pages/CharacterListPage";
 import NavDrawer, {drawerMinimisedWidth, drawerWidth} from "./modules/core/components/NavDrawer";
-import {themeSpacing} from "./modules/core/styles/GlobalStyles";
 import {isLoggedInSelector} from "./redux/slices/usersSlice";
 
 const StyledRoot = styled.div`

@@ -16,9 +16,8 @@ export const BottomMiddleFixedCard = styled(Card)`
 
 export const PageContainer = styled.div`
   margin: auto;
-  width: 100%;
   padding: ${themeSpacing(8)};
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: calc(100vh - 90px);
 `
 

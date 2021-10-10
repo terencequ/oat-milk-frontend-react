@@ -10,7 +10,7 @@ import {isElectron} from "../../shared/helpers/ElectronHelpers";
 import {themeSpacing} from "../styles/GlobalStyles";
 import {windowBarHeight} from "./WindowBar";
 
-export const drawerWidth = 240;
+export const drawerWidth = 220;
 export const drawerMinimisedWidth = 72;
 
 const StyledSpacer = styled(Toolbar)`

@@ -14,7 +14,8 @@ const StyledTabs = styled(Tabs)`
 `
 
 const StyledMainContainer = styled.div`
-  
+  max-width: 1200px;
+  margin: auto;
 `
 
 type TParams = { id: string; };

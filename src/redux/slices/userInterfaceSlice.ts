@@ -14,7 +14,7 @@ const initialState: ThemeState = {
     drawerOpen: true,
     drawerMinimised: false,
     appBarTitle: "Home",
-    currentBackground: `url("images/background-entry.svg")`,
+    currentBackground: "inherit",
     isLoading: false
 }
 

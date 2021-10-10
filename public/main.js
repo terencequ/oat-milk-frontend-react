@@ -24,7 +24,6 @@ const createWindow = () => {
         height: 720,
     });
 
-    console.log(`file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.loadURL(
         isDev
             ? 'http://localhost:3000'
@@ -63,10 +62,10 @@ const createWindow = () => {
         });
     });
     mainWindow.on('maximize', () => {
-        mainWindow.webContents.send('isMaximised-reply', BrowserWindow.getFocusedWindow().isMaximized());
+        mainWindow.webContents.send('isMaximised-reply', BrowserWindow.getFocusedWindow()?.isMaximized() ?? true);
     });
     mainWindow.on('unmaximize', () => {
-        mainWindow.webContents.send('isMaximised-reply', BrowserWindow.getFocusedWindow().isMaximized());
+        mainWindow.webContents.send('isMaximised-reply', BrowserWindow.getFocusedWindow()?.isMaximized() ?? false);
     });
 };
 
@@ -96,7 +95,7 @@ app.on('activate', () => {
 });
 
 ipcMain.on('isMaximised-query', (event, arg) => {
-    event.reply('isMaximised-reply', BrowserWindow.getFocusedWindow().isMaximized());
+    event.reply('isMaximised-reply', BrowserWindow.getFocusedWindow()?.isMaximized() ?? false);
 });
 ipcMain.on('minimise', (event, arg) => {
     BrowserWindow.getFocusedWindow().minimize();
