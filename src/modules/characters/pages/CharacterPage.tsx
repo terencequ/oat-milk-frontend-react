@@ -6,7 +6,8 @@ import {getCharacterByIdentifier} from "../../../redux/thunks/characterThunks";
 import styled from "@emotion/styled";
 import {PageContainer, themeSpacing} from '../../core/styles/GlobalStyles';
 import GenericAsyncComponent from "../../shared/components/GenericAsyncComponent";
-import CharacterStatsView from "../components/single/CharacterStatsView";
+import CharacterStats from "../components/single/stats/CharacterStats";
+import CharacterStatsView from "../components/single/stats/view/CharacterStatsView";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 
 const StyledTabs = styled(Tabs)`
@@ -50,7 +51,7 @@ const CharacterPage: FC = () => {
               </StyledTabs>
             </div>
             <Fade in={tabSelection === 0} appear>
-              <div><CharacterStatsView character={currentCharacter}/></div>
+              <div><CharacterStats character={currentCharacter}/></div>
             </Fade>
           </StyledMainContainer>
         }

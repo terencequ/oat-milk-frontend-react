@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import {Typography} from "@material-ui/core";
 import {RadioButtonUnchecked} from "@material-ui/icons";
 import {FC} from "react";
-import {themeSpacing} from "../../../core/styles/GlobalStyles";
+import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 
 const StyledContainer = styled.div`
   display: grid;

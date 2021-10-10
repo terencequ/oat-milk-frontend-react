@@ -26,3 +26,9 @@ export const HeroContainer = styled.div`
   flex-flow: column;
   align-items: center;
 `
+
+export const FloatingAction = styled.div`
+  position: absolute;
+  right: 4%;
+  bottom: 4%;
+`

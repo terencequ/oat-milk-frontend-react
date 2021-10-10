@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 import {Card, Typography} from "@material-ui/core";
 import {CharacterAttributeResponse, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
-import {themeSpacing} from "../../../core/styles/GlobalStyles";
+import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 import {
     getModifier,
     getModifierAsString,
     getProficiencyBonus,
-} from "../../helpers/CharacterStatHelpers";
+} from "../../../../helpers/CharacterStatHelpers";
 import CharacterStatsViewDeathSaves from "./CharacterStatsViewDeathSaves";
 import CharacterStatsViewSpellSlots from "./CharacterStatsViewSpellSlots";
 import armorClassIcon from 'assets/images/icons/armorclass.png';

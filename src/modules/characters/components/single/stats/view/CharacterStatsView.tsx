@@ -1,21 +1,14 @@
-import styled from "@emotion/styled";
 import {CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
-import {themeSpacing} from "../../../core/styles/GlobalStyles";
+import { StyledStats } from "../CharacterStatsStyles";
 import CharacterStatsViewAbilityScoresAndProficiencies from "./CharacterStatsViewAbilityScoresAndProficiencies";
 import CharacterStatsViewAttributes from "./CharacterStatsViewAttributes";
 
-const StyledStatsView = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: ${themeSpacing(2)};
-`
-
 const CharacterStatsView: FC<{character: CharacterResponse}> = ({character}) => {
-    return <StyledStatsView>
+    return <StyledStats>
         <CharacterStatsViewAbilityScoresAndProficiencies character={character}/>
         <CharacterStatsViewAttributes character={character}/>
-    </StyledStatsView>;
+    </StyledStats>;
 }
 
 export default CharacterStatsView;
