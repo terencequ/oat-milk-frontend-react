@@ -1,35 +1,32 @@
-import styled from "@emotion/styled";
-import {Button, Card, IconButton, Typography} from "@material-ui/core";
-import {Edit} from "@material-ui/icons";
-import Add from "@material-ui/icons/Add";
+import {Edit, Visibility} from "@mui/icons-material";
+import Add from "@mui/icons-material/Add";
+import {Button} from "@mui/material";
 import {CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import { FloatingAction } from "modules/core/styles/GlobalStyles";
-import {FC, useState} from "react";
+import { StyledFloatingAction } from "modules/core/styles/GlobalStyles";
+import {FC, useEffect, useState} from "react";
+import {createCharacter} from "../../../../../redux/thunks/characterThunks";
+import FloatingActionList, {FloatingActionModel} from "../../../../shared/components/FloatingActionList";
 import CharacterStatsEdit from "./edit/CharacterStatsEdit";
 import CharacterStatsView from "./view/CharacterStatsView";
 
-const StyledButton = styled(Button)`
-
-`
-
 const CharacterStats: FC<{character: CharacterResponse}> = ({character}) => {
-    const [editMode, setEditMode] = useState(true);
+    const [editMode, setEditMode] = useState(false);
 
-    const toggleEditMode = () => {
-        setEditMode(!editMode);
-    }
+    const actions: FloatingActionModel[] = [
+        {
+            action: () => setEditMode(false),
+            icon: <Edit/>,
+            text: "View Stats"
+        },
+        {
+            action: () => setEditMode(true),
+            icon: <Edit/>,
+            text: "Edit Stats"
+        }
+    ]
 
     return <>
-        <FloatingAction>
-            <StyledButton
-                onClick={toggleEditMode}
-                variant={"contained"}
-                color={"secondary"}
-                startIcon={<Edit fontSize={"inherit"}/>}
-            >
-                {editMode ? "View Stats" : "Edit Stats"}
-            </StyledButton>
-        </FloatingAction>
+        <FloatingActionList actions={actions} active={editMode ? 1 : 0}/>
         {editMode
             ? <CharacterStatsEdit character={character}/>
             : <CharacterStatsView character={character}/>

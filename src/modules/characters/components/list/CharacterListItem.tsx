@@ -4,17 +4,17 @@ import {
   ButtonGroup,
   Card,
   CardActionArea, Collapse, Theme, Typography
-} from "@material-ui/core";
+} from "@mui/material";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
 import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {deleteCharacter} from "../../../../redux/thunks/characterThunks";
 import {useAppDispatch} from "../../../../redux/hooks";
-import Visibility from "@material-ui/icons/Visibility";
-import Delete from "@material-ui/icons/Delete";
-import Edit from "@material-ui/icons/Edit";
-import ExpandLess from "@material-ui/icons/ExpandLess";
+import Visibility from "@mui/icons-material/Visibility";
+import Delete from "@mui/icons-material/Delete";
+import Edit from "@mui/icons-material/Edit";
+import ExpandLess from "@mui/icons-material/ExpandLess";
 import logo from "assets/images/logo.png";
 
 export type CharacterInfoBasicProp = {

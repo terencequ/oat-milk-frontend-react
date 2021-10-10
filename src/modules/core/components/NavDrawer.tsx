@@ -1,8 +1,8 @@
 import React, {FC, ReactElement} from 'react';
-import {Drawer, List, ListItem, ListItemText, Theme, Toolbar, Typography} from "@material-ui/core";
+import {Drawer, List, ListItem, ListItemText, Theme, Toolbar, Typography} from "@mui/material";
 import styled from "@emotion/styled";
-import HomeIcon from '@material-ui/icons/Home';
-import ListAltIcon from "@material-ui/icons/ListAlt";
+import HomeIcon from '@mui/icons-material/Home';
+import ListAltIcon from "@mui/icons-material/ListAlt";
 import {useHistory, useLocation} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setDrawerOpen} from "../../../redux/slices/userInterfaceSlice";

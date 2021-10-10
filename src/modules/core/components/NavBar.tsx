@@ -1,10 +1,10 @@
 import React, {FC, MouseEvent, useState} from 'react';
-import {AppBar, IconButton, LinearProgress, Menu, MenuItem, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, LinearProgress, Menu, MenuItem, Toolbar} from "@mui/material";
 import styled from "@emotion/styled";
 
-import MenuIcon from '@material-ui/icons/Menu';
-import SettingsIcon from "@material-ui/icons/Settings";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import MenuIcon from '@mui/icons-material/Menu';
+import SettingsIcon from "@mui/icons-material/Settings";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {useLocation} from "react-router-dom";

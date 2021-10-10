@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {IconButton, Paper, Theme} from "@material-ui/core";
+import {IconButton, Paper, Theme} from "@mui/material";
 import {FC, useState} from "react";
 import {isElectron} from "../../shared/helpers/ElectronHelpers";
 import {themeSpacing} from "../styles/GlobalStyles";

@@ -1,5 +1,5 @@
 import {FC, MouseEvent} from "react";
-import {Breadcrumbs, Link} from "@material-ui/core";
+import {Breadcrumbs, Link} from "@mui/material";
 import {useHistory} from "react-router-dom";
 import styled from "@emotion/styled";
 

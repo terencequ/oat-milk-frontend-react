@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Typography} from "@material-ui/core";
+import {Typography} from "@mui/material";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 import {useAppDispatch} from "../../../redux/hooks";
 

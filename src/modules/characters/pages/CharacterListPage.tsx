@@ -1,12 +1,12 @@
 import React, {FC, useEffect} from "react";
 import {getCharacterSummaries} from "../../../redux/thunks/characterSummaryThunks";
-import {PageContainer, themeSpacing} from "../../core/styles/GlobalStyles";
-import GenericAsyncComponent from "../../shared/components/GenericAsyncComponent";
-import {Fade, Typography} from "@material-ui/core";
+import {StyledPageContainer, themeSpacing} from "../../core/styles/GlobalStyles";
+import GenericAsync from "../../shared/components/GenericAsync";
+import {Fade, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
-import CharacterListAddButton from "../components/list/CharacterListAddButton";
+import CharacterListActions from "../components/list/CharacterListActions";
 import CharacterListItem from "../components/list/CharacterListItem";
 
 const MainSection = styled(Fade)`
@@ -31,11 +31,11 @@ const CharacterListPage: FC = () => {
 
     document.title = `Oat Milk - My Characters`
     dispatch(setBackground("inherit"));
-    return <PageContainer>
-        <GenericAsyncComponent existingData={!!characterSummaries} requestId={getCharacterSummaries.name}>
+    return <StyledPageContainer>
+        <GenericAsync existingData={!!characterSummaries} requestId={getCharacterSummaries.name}>
             <>
                 <Typography variant={"h2"}>Characters</Typography>
-                <CharacterListAddButton/>
+                <CharacterListActions/>
                 <MainSection in appear>
                     <div>
                         <StyledList>
@@ -44,8 +44,8 @@ const CharacterListPage: FC = () => {
                     </div>
                 </MainSection>
             </>
-        </GenericAsyncComponent>
-    </PageContainer>
+        </GenericAsync>
+    </StyledPageContainer>
 }
 
 export default CharacterListPage;

@@ -1,18 +1,17 @@
-import styled from "@emotion/styled";
-import {CircularProgress, Divider, Fade, Paper, Typography} from "@material-ui/core";
+import {Typography} from "@mui/material";
 import React, {FC} from "react";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {useAppDispatch} from "../../../redux/hooks";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {setLoading} from "../../../redux/slices/userInterfaceSlice";
 
-interface GenericAsyncComponentProps {
+interface GenericAsyncProps {
     existingData: boolean;
     requestId: string;
     children?: JSX.Element | null;
 }
 
-const GenericAsyncComponent: FC<GenericAsyncComponentProps> = ({existingData, requestId, children}) => {
+const GenericAsync: FC<GenericAsyncProps> = ({existingData, requestId, children}) => {
     const dispatch = useAppDispatch();
     const { status, error } = requestSelector(requestId)();
     if(status === RequestStatus.InProgress){
@@ -36,4 +35,4 @@ const GenericAsyncComponent: FC<GenericAsyncComponentProps> = ({existingData, re
     </div>;
 }
 
-export default GenericAsyncComponent;
+export default GenericAsync;

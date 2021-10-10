@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import {Typography} from "@material-ui/core";
-import {RadioButtonUnchecked} from "@material-ui/icons";
+import {Typography} from "@mui/material";
+import {RadioButtonUnchecked} from "@mui/icons-material";
 import {FC} from "react";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 

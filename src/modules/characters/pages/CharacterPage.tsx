@@ -1,11 +1,11 @@
-import {Fade, Tab, Tabs, Typography} from "@material-ui/core";
+import {Fade, Tab, Tabs, Typography} from "@mui/material";
 import React, {FC, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {getCharacterByIdentifier} from "../../../redux/thunks/characterThunks";
 import styled from "@emotion/styled";
-import {PageContainer, themeSpacing} from '../../core/styles/GlobalStyles';
-import GenericAsyncComponent from "../../shared/components/GenericAsyncComponent";
+import {StyledPageContainer, themeSpacing} from '../../core/styles/GlobalStyles';
+import GenericAsync from "../../shared/components/GenericAsync";
 import CharacterStats from "../components/single/stats/CharacterStats";
 import CharacterStatsView from "../components/single/stats/view/CharacterStatsView";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
@@ -37,8 +37,8 @@ const CharacterPage: FC = () => {
 
   document.title = `Oat Milk - View Character | ${currentCharacter?.name ?? "Character"}`
   dispatch(setBackground("inherit"));
-  return <PageContainer>
-      <GenericAsyncComponent existingData={!!currentCharacter} requestId={getCharacterByIdentifier.name}>
+  return <StyledPageContainer>
+      <GenericAsync existingData={!!currentCharacter} requestId={getCharacterByIdentifier.name}>
         {
           currentCharacter && <StyledMainContainer>
             <div>
@@ -55,8 +55,8 @@ const CharacterPage: FC = () => {
             </Fade>
           </StyledMainContainer>
         }
-      </GenericAsyncComponent>
-    </PageContainer>;
+      </GenericAsync>
+    </StyledPageContainer>;
 };
 
 export default CharacterPage;

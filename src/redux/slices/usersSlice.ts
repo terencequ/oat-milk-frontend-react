@@ -12,6 +12,7 @@ const initialState: UsersState = {
     user: null,
 }
 
+// @ts-ignore
 export const usersSlice = createSlice({
     name: 'users',
     initialState,

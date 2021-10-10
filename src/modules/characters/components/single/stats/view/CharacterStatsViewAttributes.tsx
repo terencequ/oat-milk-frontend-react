@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {Card, Typography} from "@material-ui/core";
+import {Card, Typography} from "@mui/material";
 import {CharacterAttributeResponse, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";

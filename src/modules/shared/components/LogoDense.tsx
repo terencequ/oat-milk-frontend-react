@@ -1,4 +1,4 @@
-import {Typography} from "@material-ui/core";
+import {Typography} from "@mui/material";
 import React, {CSSProperties, FC} from "react";
 import styled from "@emotion/styled";
 import logo from "assets/images/logo.png";

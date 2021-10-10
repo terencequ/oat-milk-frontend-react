@@ -18,6 +18,7 @@ const initialState: ThemeState = {
     isLoading: false
 }
 
+// @ts-ignore
 export const userInterfaceSlice = createSlice({
     name: 'userInterface',
     initialState,

@@ -1,9 +1,9 @@
-import PeopleAlt from "@material-ui/icons/PeopleAlt";
-import ListAlt from "@material-ui/icons/ListAlt";
+import PeopleAlt from "@mui/icons-material/PeopleAlt";
+import ListAlt from "@mui/icons-material/ListAlt";
 import React, {FC} from 'react';
-import {Card, CardActionArea, Typography} from "@material-ui/core";
+import {Card, CardActionArea, Typography} from "@mui/material";
 import styled from "@emotion/styled";
-import {PageContainer, themeSpacing} from '../styles/GlobalStyles';
+import {StyledPageContainer, themeSpacing} from '../styles/GlobalStyles';
 import {useHistory} from "react-router-dom";
 import {useAppDispatch} from "../../../redux/hooks";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
@@ -37,7 +37,7 @@ const HomePage: FC = () => {
 
     document.title = "Oat Milk - Home"
     dispatch(setBackground("inherit"));
-    return <PageContainer>
+    return <StyledPageContainer>
         <Typography gutterBottom align={"center"} variant={"h2"}>Home</Typography>
         <HomePageButtons>
           <HomePageCard color={"inherit"}>
@@ -51,7 +51,7 @@ const HomePage: FC = () => {
               </HomePageCardActions>
           </HomePageCard>
         </HomePageButtons>
-    </PageContainer>;
+    </StyledPageContainer>;
 };
 
 export default HomePage;

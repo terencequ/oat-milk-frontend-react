@@ -12,6 +12,7 @@ const initialState: CharactersState = {
     currentCharacter: null
 }
 
+// @ts-ignore
 export const charactersSlice = createSlice({
     name: 'characters',
     initialState,

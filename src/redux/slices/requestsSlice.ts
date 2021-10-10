@@ -4,6 +4,7 @@ import {useAppSelector} from "../hooks";
 
 const initialState: {[id: string]: Request} = {};
 
+// @ts-ignore
 export const requestsSlice = createSlice({
     name: 'requests',
     initialState,

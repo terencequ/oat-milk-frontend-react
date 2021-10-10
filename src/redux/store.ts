@@ -32,6 +32,7 @@ const persistedReducer = persistReducer(
     })
 );
 
+// @ts-ignore
 export const store = configureStore({
     reducer: persistedReducer,
     devTools: process.env.NODE_ENV !== 'production', // this is not related to the .env.prod, just the npm run build version,

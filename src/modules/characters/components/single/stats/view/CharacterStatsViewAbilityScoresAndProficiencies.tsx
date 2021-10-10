@@ -1,11 +1,11 @@
-import {RadioButtonCheckedOutlined, RadioButtonUncheckedOutlined} from "@material-ui/icons";
+import {RadioButtonCheckedOutlined, RadioButtonUncheckedOutlined} from "@mui/icons-material";
 import {FC} from "react";
 import {
     CharacterAbilityScoreProficiencyResponse,
     CharacterAbilityScoreResponse,
     CharacterResponse
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {Typography} from "@material-ui/core";
+import {Typography} from "@mui/material";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../helpers/CharacterStatHelpers";
 import {StyledAbilityScore, StyledAbilityScores, StyledAbilityScoresAndProficiencies,
     StyledProficiencyOrSavingThrow, StyledProficiencies, StyledProficienciesContainer } from "../CharacterStatsStyles";

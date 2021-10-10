@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import {Paper, Typography} from "@material-ui/core";
-import {RadioButtonChecked, RadioButtonUnchecked} from "@material-ui/icons";
+import {Paper, Typography} from "@mui/material";
+import {RadioButtonChecked, RadioButtonUnchecked} from "@mui/icons-material";
 import {FC} from "react";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 import deathSaveFailuresIcon from 'assets/images/icons/deathsavefailures.png';

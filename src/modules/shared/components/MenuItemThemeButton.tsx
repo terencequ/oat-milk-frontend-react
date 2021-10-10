@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
 import styled from "@emotion/styled";
 
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {setDarkMode} from "../../../redux/slices/userInterfaceSlice";
-import {MenuItem} from "@material-ui/core";
+import {MenuItem} from "@mui/material";
 
 const StyledListItemIcon = styled.div`
   margin-right: 0.5vw;

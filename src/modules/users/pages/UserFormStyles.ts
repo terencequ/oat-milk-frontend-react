@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {Card, CircularProgress, FormControl, Link} from "@material-ui/core";
+import {Card, CircularProgress, FormControl, Link} from "@mui/material";
 import {themeSpacing} from "../../core/styles/GlobalStyles";
 
 export const UserFormPageContainer = styled(Card)`

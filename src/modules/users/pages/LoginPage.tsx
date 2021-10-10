@@ -3,7 +3,7 @@ import {
   Button,
   FormControl, Link,
   TextField, Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {Redirect} from "react-router-dom";
 import Logo from "../../shared/components/Logo";
@@ -12,7 +12,7 @@ import {
   CenteredCircularProgress,
   UserFormPageContainer, UserFormSubmitButton,
 } from "./UserFormStyles";
-import {BottomMiddleFixedCard} from "../../core/styles/GlobalStyles";
+import {StyledBottomMiddleFixedCard} from "../../core/styles/GlobalStyles";
 import PasswordInput from "../../shared/components/PasswordInput";
 import {login} from "../../../redux/thunks/userThunks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
@@ -73,9 +73,9 @@ const LoginPage: FC = () => {
         && <Typography variant={"caption"} color={"error"} align={"center"}>{error}</Typography>
       }
     </UserFormPageContainer>
-    <BottomMiddleFixedCard>
+    <StyledBottomMiddleFixedCard>
       <MenuItemThemeButton/>
-    </BottomMiddleFixedCard>
+    </StyledBottomMiddleFixedCard>
   </>;
 };
 

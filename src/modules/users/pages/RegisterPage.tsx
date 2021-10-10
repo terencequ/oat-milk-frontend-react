@@ -6,12 +6,12 @@ import {
 } from "./UserFormStyles";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Logo from "../../shared/components/Logo";
-import {Button, Divider, FormControl, Link, TextField, Typography} from "@material-ui/core";
+import {Button, Divider, FormControl, Link, TextField, Typography} from "@mui/material";
 import PasswordInput from "../../shared/components/PasswordInput";
 import {Link as RouterLink, Redirect} from "react-router-dom";
 import {login, register} from "../../../redux/thunks/userThunks";
 import {isLoggedInSelector} from "../../../redux/slices/usersSlice";
-import {BottomMiddleFixedCard} from "../../core/styles/GlobalStyles";
+import {StyledBottomMiddleFixedCard} from "../../core/styles/GlobalStyles";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
@@ -75,9 +75,9 @@ const RegisterPage: FC = () => {
                 && <Typography variant={"caption"} align={"center"}>{error}</Typography>
             }
         </UserFormPageContainer>
-        <BottomMiddleFixedCard>
+        <StyledBottomMiddleFixedCard>
             <MenuItemThemeButton/>
-        </BottomMiddleFixedCard>
+        </StyledBottomMiddleFixedCard>
     </>
 }
 
