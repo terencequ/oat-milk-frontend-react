@@ -48,8 +48,9 @@ export function updateCharacter(id: string, request: CharacterRequest): ThunkAct
             await createCharacterClient().characterFullIdPut(id, request);
             dispatch(succeedRequest(updateCharacter.name));
             await dispatch(getCharacterSummaries());
-        } catch (e) {
-
+        } catch (err) {
+            const errorRes = processError(err);
+            dispatch(failRequest([updateCharacter.name, errorRes.message ?? "An unexpected error has occurred!"]))
         }
     }
 }

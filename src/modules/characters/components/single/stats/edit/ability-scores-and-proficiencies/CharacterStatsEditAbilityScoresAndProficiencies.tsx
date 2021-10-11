@@ -1,4 +1,5 @@
 import {Typography} from "@mui/material";
+import {CharacterRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import React, {FC} from "react";
 import {getLevel} from "../../../../../helpers/CharacterStatHelpers";
 import {
@@ -12,7 +13,11 @@ import CharacterEditAbilityScore from "./CharacterStatsEditAbilityScore";
 import CharacterStatsEditAbilityScoreProficiency from "./CharacterStatsEditAbilityScoreProficiency";
 import CharacterStatsEditSavingThrowProficiency from "./CharacterStatsEditSavingThrowProficiency";
 
-const CharacterStatsEditAbilityScoresAndProficiencies: FC<CharacterStatsEditProps> = (props) => {
+interface CharacterStatsEditAbilityScoresAndProficienciesProps extends CharacterStatsEditProps{
+    character: CharacterRequest;
+}
+
+const CharacterStatsEditAbilityScoresAndProficiencies: FC<CharacterStatsEditAbilityScoresAndProficienciesProps> = (props) => {
     const {character} = props;
     const abilityScores = character.abilityScores ?? [];
     const abilityScoreProficiencies = character
@@ -23,6 +28,7 @@ const CharacterStatsEditAbilityScoresAndProficiencies: FC<CharacterStatsEditProp
         <StyledAbilityScores>
             {abilityScores.map((value, index) => {
                 return <CharacterEditAbilityScore
+                    key={index}
                     abilityScore={value}
                     {...props}/>
             })}
@@ -32,6 +38,7 @@ const CharacterStatsEditAbilityScoresAndProficiencies: FC<CharacterStatsEditProp
                 <Typography variant={"subtitle1"} gutterBottom align={"center"}>Saving Throws</Typography>
                 {abilityScores.map((value, index) => {
                     return <CharacterStatsEditSavingThrowProficiency
+                        key={index}
                         abilityScore={value}
                         levelValue={characterLevel}
                         {...props}/>
@@ -43,6 +50,7 @@ const CharacterStatsEditAbilityScoresAndProficiencies: FC<CharacterStatsEditProp
                     .map((value, index) => {
                         const abilityScore = abilityScores.find(as => as.id === value.abilityScoreId);
                         return <CharacterStatsEditAbilityScoreProficiency
+                            key={index}
                             abilityScoreProficiency={value}
                             abilityScoreName={abilityScore?.name ?? ""}
                             abilityScoreValue={abilityScore?.value ?? 10}

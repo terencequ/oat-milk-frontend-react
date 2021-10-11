@@ -1,7 +1,7 @@
 import {RadioButtonCheckedOutlined, RadioButtonUncheckedOutlined} from "@mui/icons-material";
 import {Typography} from "@mui/material";
 import {
-    CharacterAbilityScoreProficiencyRequest, CharacterAbilityScoreRequest,
+    CharacterAbilityScoreProficiencyRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";

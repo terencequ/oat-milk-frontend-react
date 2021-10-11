@@ -26,7 +26,9 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
     return <StyledAbilityScoresAndProficiencies>
         <StyledAbilityScores>
             {abilityScores.map((value, index) => {
-                return <CharacterStatsViewAbilityScore abilityScore={value}/>
+                return <CharacterStatsViewAbilityScore
+                    key={index}
+                    abilityScore={value}/>
             })}
         </StyledAbilityScores>
         <StyledProficiencies>
@@ -34,6 +36,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
                 <Typography variant={"subtitle1"} gutterBottom align={"center"}>Saving Throws</Typography>
                 {abilityScores.map((value, index) => {
                     return <CharacterViewSavingThrowProficiency
+                        key={index}
                         abilityScore={value}
                         levelValue={character.level.level}/>
                 })}
@@ -43,6 +46,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
                 {abilityScoresAndProficiencies
                     .map((value, index) => {
                         return <CharacterStatsViewAbilityScoreProficiency
+                            key={index}
                             abilityScoreProficiency={value.proficiency}
                             abilityScore={value.abilityScore}
                             levelValue={character.level.level}/>

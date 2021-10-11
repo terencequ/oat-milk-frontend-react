@@ -26,8 +26,9 @@ export const StyledAbilityScoresAndProficiencies = styled.div`
  */
 export const StyledAbilityScores = styled.div`
   display: grid;
-  grid-auto-rows: auto;
+  grid-auto-rows: 150px;
   grid-row-gap: ${themeSpacing(1)};
+  width: 150px;
 `
 
 export const StyledProficiencies = styled.div`
@@ -41,10 +42,11 @@ export const StyledProficienciesContainer = styled(Card)`
 `
 
 export const StyledAbilityScore = styled(Card)`
-  display: flex;
+  display: grid;
+  grid-template-rows: [Name] 25% [Modifier] 50% [Value] 25%;
+  text-align: center;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   padding: ${themeSpacing(2)}
 `
 

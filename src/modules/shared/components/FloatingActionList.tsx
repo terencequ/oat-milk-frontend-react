@@ -10,6 +10,7 @@ const StyledButton = styled(Button)`
 export interface FloatingActionModel {
     action: () => void;
     icon: ReactElement;
+    color?: "primary" | "secondary";
     text: string;
 }
 
@@ -34,7 +35,7 @@ const FloatingActionList: FC<FloatingActionListProps> = (props) => {
         {props.actions.map((value, index) => {
             return <StyledButton
                 onClick={value.action}
-                color={"secondary"}
+                color={value.color ?? "secondary"}
                 variant={"contained"}
                 disabled={props.active === index}
                 startIcon={value.icon}

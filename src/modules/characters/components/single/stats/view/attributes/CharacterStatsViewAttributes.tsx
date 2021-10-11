@@ -64,14 +64,11 @@ const CharacterStatsViewAttributes: FC<CharacterStatsViewAttributesProps> = ({ch
             ?? {id: id, name: "N/A", currentValue: 0, defaultValue: 0};
     }
 
-    console.log(attributesDictionary);
-
     const speedAttribute = getAttributeById("speed");
     const hitPointsAttribute = getAttributeById("hitPoints");
     const armorClassAttribute = getAttributeById("armorClass");
     const deathSaveSuccessesAttribute = getAttributeById("deathSaveSuccesses");
     const deathSaveFailuresAttribute = getAttributeById("deathSaveFailures");
-    console.log(attributesDictionary);
 
     const passivePerception = 10 + getModifier(character.abilityScores?.find(as => as.id === "wisdom")?.value ?? 10);
     const proficiencyBonus = getProficiencyBonus(character.level.level);

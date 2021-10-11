@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import {Card, Theme} from "@mui/material";
+import {Card, Theme, Tooltip, tooltipClasses} from "@mui/material";
+import {TooltipProps} from "@mui/material/Tooltip/Tooltip";
 
 // helper function factory to get theme spacing
 export const themeSpacing = (amount: number) => (props: any) => {
