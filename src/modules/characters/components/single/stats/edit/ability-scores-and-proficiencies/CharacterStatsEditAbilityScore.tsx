@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import {TextField, Typography} from "@mui/material";
 import {CharacterAbilityScoreRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import React, {ChangeEvent, FC, useEffect, useState} from "react";
+import React, {ChangeEvent, FC, useCallback, useEffect, useState} from "react";
 import ErrorTooltip from "../../../../../../core/components/ErrorTooltip";
 import {getModifier, getModifierAsString} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledAbilityScore} from "../../CharacterStatsStyles";
@@ -43,10 +43,10 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
     }
 
     /**
-     *
-     * @param value
+     * Update error messages based on value.
+     * @param value Value to check errors for.
      */
-    const updateErrors = (value: number) => {
+    const updateErrors = useCallback((value: number) => {
         if(isNaN(value) || value > 99 || value < -99){
             setError(isNaN(value)
                 ? `${abilityScore.name} must be a number!`
@@ -56,18 +56,15 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
             setError("");
             return false;
         }
-    }
+    }, [abilityScore.name])
 
     /**
      * Update ability score value and error messages.
      * @param value Value of the ability score. Can be undefined.
      */
     const updateAbilityScoreValue = (value: number) => {
-
         const errored = updateErrors(value);
-        if(errored){
-            saveAbilityScoreValue(undefined);
-        } else {
+        if(!errored){
             saveAbilityScoreValue(value);
         }
     }
@@ -89,7 +86,7 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
     useEffect(() => {
         setValue(initialValue);
         updateErrors(abilityScore.value ?? NaN);
-    }, [abilityScore.value, initialValue, updateErrors])
+    }, [character, abilityScore.value, initialValue, updateErrors])
 
     return <StyledAbilityScore>
         <Typography variant={"subtitle1"}>{abilityScore.name}</Typography>
