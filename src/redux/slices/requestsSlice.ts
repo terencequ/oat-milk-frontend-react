@@ -4,24 +4,23 @@ import {useAppSelector} from "../hooks";
 
 const initialState: {[id: string]: Request} = {};
 
-// @ts-ignore
 export const requestsSlice = createSlice({
     name: 'requests',
     initialState,
     reducers: {
-        initialRequest: (state, action: PayloadAction<string>) => {
+        initialRequest: (state: {[id: string]: Request}, action: PayloadAction<string>) => {
             const requestId = action.payload;
             state[requestId] = getInitialRequest();
         },
-        startRequest: (state, action: PayloadAction<string>) => {
+        startRequest: (state: {[id: string]: Request}, action: PayloadAction<string>) => {
             const requestId = action.payload;
             state[requestId] = getInProgressRequest();
         },
-        succeedRequest: (state, action: PayloadAction<string>) => {
+        succeedRequest: (state: {[id: string]: Request}, action: PayloadAction<string>) => {
             const requestId = action.payload;
             state[requestId] = getSuccessRequest();
         },
-        failRequest: (state, action: PayloadAction<[string, string]>) => {
+        failRequest: (state: {[id: string]: Request}, action: PayloadAction<[string, string]>) => {
             const [requestId, error] = action.payload;
             state[requestId] = getFailRequest(error);
         },

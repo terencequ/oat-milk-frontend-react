@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import {Paper, Typography} from "@mui/material";
 import {RadioButtonChecked, RadioButtonUnchecked} from "@mui/icons-material";
 import {FC} from "react";
-import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
+import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import deathSaveFailuresIcon from 'assets/images/icons/deathsavefailures.png';
 import deathSaveSuccessesIcon from 'assets/images/icons/deathsavesuccesses.png';
 
@@ -35,7 +35,7 @@ interface CharacterStatsViewDeathSavesProps {
 /**
  * Displays death save successes and failures.
  */
-const CharacterStatsViewDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({deathSaveSuccesses, deathSaveFailures}) => {
+const CharacterStatsViewAttributesDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({deathSaveSuccesses, deathSaveFailures}) => {
     return <StyledDeathSavesAndFailures>
         <div>
             <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
@@ -64,4 +64,4 @@ const CharacterStatsViewDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({de
     </StyledDeathSavesAndFailures>
 }
 
-export default CharacterStatsViewDeathSaves;
+export default CharacterStatsViewAttributesDeathSaves;

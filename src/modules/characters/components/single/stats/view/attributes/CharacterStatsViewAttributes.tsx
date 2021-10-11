@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import {Card, Typography} from "@mui/material";
 import {CharacterAttributeResponse, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
-import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
+import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import {
     getModifier,
     getModifierAsString,
     getProficiencyBonus,
-} from "../../../../helpers/CharacterStatHelpers";
-import CharacterStatsViewDeathSaves from "./CharacterStatsViewDeathSaves";
-import CharacterStatsViewSpellSlots from "./CharacterStatsViewSpellSlots";
+} from "../../../../../helpers/CharacterStatHelpers";
+import CharacterStatsViewAttributesDeathSaves from "./CharacterStatsViewAttributesDeathSaves";
+import CharacterStatsViewAttributesSpellSlots from "./CharacterStatsViewAttributesSpellSlots";
 import armorClassIcon from 'assets/images/icons/armorclass.png';
 import initiativeIcon from 'assets/images/icons/initiative.png';
 import hitDiceIcon from 'assets/images/icons/hitdice.png';
@@ -109,7 +109,7 @@ const CharacterStatsViewAttributes: FC<CharacterStatsViewAttributesProps> = ({ch
             <Typography variant={"body1"}>{armorClassAttribute.currentValue}</Typography>
         </StyledAttribute>
         <StyledWideAttribute>
-            <CharacterStatsViewDeathSaves
+            <CharacterStatsViewAttributesDeathSaves
                 deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue}
                 deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
         </StyledWideAttribute>
@@ -122,7 +122,7 @@ const CharacterStatsViewAttributes: FC<CharacterStatsViewAttributesProps> = ({ch
         </StyledWideAttribute>
         <StyledWideAttribute>
             <StyledAttributeLogo src={spellSlotsIcon}/>
-            <CharacterStatsViewSpellSlots/>
+            <CharacterStatsViewAttributesSpellSlots/>
         </StyledWideAttribute>
     </StyledAttributes>
 }

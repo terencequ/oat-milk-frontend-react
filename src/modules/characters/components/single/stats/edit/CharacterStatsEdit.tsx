@@ -1,18 +1,26 @@
-import styled from "@emotion/styled";
-import {Typography} from "@mui/material";
-import {CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {FC} from "react";
-import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
+import {CharacterRequest, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {FC, useState} from "react";
+import { StyledStats } from "../CharacterStatsStyles";
+import CharacterStatsEditAbilityScoresAndProficiencies from "./ability-scores-and-proficiencies/CharacterStatsEditAbilityScoresAndProficiencies";
+import CharacterStatsEditAttributes from "./CharacterStatsEditAttributes";
 
-const StyledStatsView = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: ${themeSpacing(2)};
-`
+const CharacterStatsEdit: FC<{originalCharacter: CharacterResponse}> = ({originalCharacter}) => {
+    const [character, setCharacter] = useState<CharacterRequest>({
+        name: originalCharacter.name,
+        abilityScores: originalCharacter.abilityScores,
+        abilityScoreProficiencies: originalCharacter.abilityScores.flatMap(as => as.proficiencies.map(p => ({
+            abilityScoreId: as.id,
+            ...p
+        }))),
+        attributes: originalCharacter.attributes,
+        descriptions: originalCharacter.descriptions
+    });
 
-const CharacterStatsEdit: FC<{character: CharacterResponse}> = ({character}) => {
     return <>
-
+        <StyledStats>
+            <CharacterStatsEditAbilityScoresAndProficiencies originalCharacter={originalCharacter} character={character} setCharacter={setCharacter}/>
+            <CharacterStatsEditAttributes originalCharacter={originalCharacter} character={character} setCharacter={setCharacter}/>
+        </StyledStats>
     </>
 }
 

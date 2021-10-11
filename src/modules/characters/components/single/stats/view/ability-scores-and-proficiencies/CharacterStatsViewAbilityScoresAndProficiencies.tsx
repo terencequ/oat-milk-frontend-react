@@ -6,9 +6,9 @@ import {
     CharacterResponse
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {Typography} from "@mui/material";
-import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../helpers/CharacterStatHelpers";
+import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledAbilityScore, StyledAbilityScores, StyledAbilityScoresAndProficiencies,
-    StyledProficiencyOrSavingThrow, StyledProficiencies, StyledProficienciesContainer } from "../CharacterStatsStyles";
+    StyledProficiencyOrSavingThrow, StyledProficiencies, StyledProficienciesContainer } from "../../CharacterStatsStyles";
 
 // region Ability Scores + Proficiencies
 interface CharacterViewStatsProps {
@@ -58,7 +58,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
 //region Ability Score
 
 /**
- * Displays a single ability score, and all of the proficiencies for that ability score.
+ * Displays a single ability score.
  */
 const CharacterViewAbilityScore: FC<{abilityScore: CharacterAbilityScoreResponse}> = ({abilityScore}) => {
     return <StyledAbilityScore>

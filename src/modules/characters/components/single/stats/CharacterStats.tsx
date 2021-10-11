@@ -28,7 +28,7 @@ const CharacterStats: FC<{character: CharacterResponse}> = ({character}) => {
     return <>
         <FloatingActionList actions={actions} active={editMode ? 1 : 0}/>
         {editMode
-            ? <CharacterStatsEdit character={character}/>
+            ? <CharacterStatsEdit originalCharacter={character}/>
             : <CharacterStatsView character={character}/>
         }
     </>

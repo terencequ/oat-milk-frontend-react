@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import {Typography} from "@mui/material";
 import {RadioButtonUnchecked} from "@mui/icons-material";
 import {FC} from "react";
-import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
+import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 
 const StyledContainer = styled.div`
   display: grid;
@@ -19,7 +19,7 @@ const StyledSpellSlotIcons = styled.div`
   flex-direction: column;
 `
 
-const CharacterStatsViewSpellSlots: FC = () => {
+const CharacterStatsViewAttributesSpellSlots: FC = () => {
     return <>
         <Typography variant={"subtitle1"} gutterBottom>Spell Slots</Typography>
         <StyledContainer>
@@ -90,4 +90,4 @@ const CharacterStatsViewSpellSlots: FC = () => {
     </>
 }
 
-export default CharacterStatsViewSpellSlots;
+export default CharacterStatsViewAttributesSpellSlots;
