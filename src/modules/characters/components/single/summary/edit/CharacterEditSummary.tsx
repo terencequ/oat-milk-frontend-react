@@ -44,7 +44,7 @@ const CharacterEditSummary: FC = () => {
     const newName = event.target.value;
     setName(newName);
     if(!!currentEditCharacter){
-      dispatch(setCurrentEditCharacter({...currentEditCharacter, name: name ?? ""}));
+      dispatch(setCurrentEditCharacter({...currentEditCharacter, name: newName?.substr(0, 30) ?? ""}));
     }
   }
 
@@ -101,7 +101,7 @@ const CharacterEditSummary: FC = () => {
             fontSize: "1.2rem",
         }}}/>
       <Typography variant={"h3"} align={"center"}>
-        {`/${currentNextLevelExperienceRequirement} XP), Peasant 1`}
+        {`/${currentNextLevelExperienceRequirement === -1 ? "MAX" : currentNextLevelExperienceRequirement} XP), Peasant 1`}
       </Typography>
     </StyledExperience>
   </StyledSummary>

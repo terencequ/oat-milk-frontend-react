@@ -10,7 +10,7 @@ const CharacterViewSummary: FC = (props) => {
     }
 
     const levelString = `Level ${currentCharacter.level.level}
-        (${currentCharacter.level.experience}/${currentCharacter.level.nextLevelExperienceRequirement} XP), 
+        (${currentCharacter.level.experience}/${currentCharacter.level.nextLevelExperienceRequirement === -1 ? "MAX" : currentCharacter.level.nextLevelExperienceRequirement} XP), 
         Peasant 1`;
     return <StyledSummary>
         <Typography variant={"h2"} align={"center"} gutterBottom>{currentCharacter.name}</Typography>
