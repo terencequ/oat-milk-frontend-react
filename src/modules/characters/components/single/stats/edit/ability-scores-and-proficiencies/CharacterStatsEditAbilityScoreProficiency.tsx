@@ -5,9 +5,10 @@ import {
     CharacterAbilityScoreProficiencyRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {ChangeEvent, FC, useState} from "react";
+import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
+import {setCurrentEditCharacter} from "../../../../../../../redux/slices/charactersSlice";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledProficiencyOrSavingThrow} from "../../CharacterStatsStyles";
-import CharacterStatsEditProps from "../models/CharacterStatsEditProps";
 
 const StyledCheckbox = styled(Checkbox)`
   padding: 0;
@@ -15,7 +16,7 @@ const StyledCheckbox = styled(Checkbox)`
   width: fit-content;
 `
 
-interface CharacterStatsEditAbilityScoreProficiencyProps extends CharacterStatsEditProps {
+interface CharacterStatsEditAbilityScoreProficiencyProps {
     abilityScoreProficiency: CharacterAbilityScoreProficiencyRequest;
     abilityScoreValue: number;
     abilityScoreName: string;
@@ -23,21 +24,26 @@ interface CharacterStatsEditAbilityScoreProficiencyProps extends CharacterStatsE
 }
 
 const CharacterStatsEditAbilityScoreProficiency: FC<CharacterStatsEditAbilityScoreProficiencyProps> =
-    ({abilityScoreProficiency, abilityScoreValue, abilityScoreName, levelValue, editCharacter, setEditCharacter}) => {
+    ({abilityScoreProficiency, abilityScoreValue, abilityScoreName, levelValue}) => {
+    const dispatch = useAppDispatch();
+    const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
+
     const onSaveProficient = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
-        setEditCharacter({
-            ...editCharacter,
-            abilityScoreProficiencies: [
-                ...editCharacter.abilityScoreProficiencies?.map(a => {
-                    return (a.id === abilityScoreProficiency.id && a.abilityScoreId === abilityScoreProficiency.abilityScoreId)
-                        ? {
-                            ...a,
-                            proficient: !a.proficient
-                        } : a
-                }) ?? [],
-            ]
-        })
+        if(!!currentEditCharacter){
+            dispatch(setCurrentEditCharacter(({
+                ...currentEditCharacter,
+                abilityScoreProficiencies: [
+                    ...currentEditCharacter.abilityScoreProficiencies?.map(a => {
+                        return (a.id === abilityScoreProficiency.id && a.abilityScoreId === abilityScoreProficiency.abilityScoreId)
+                            ? {
+                                ...a,
+                                proficient: !a.proficient
+                            } : a
+                    }) ?? [],
+                ]
+            })))
+        }
     }
 
     const modifier = getModifier(abilityScoreValue) + (abilityScoreProficiency.proficient ? getProficiencyBonus(levelValue) : 0);

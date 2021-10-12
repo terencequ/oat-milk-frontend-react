@@ -33,17 +33,19 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
      * @param value Value of the ability score. Can be undefined.
      */
     const saveValue = (value: number | undefined) => {
-        dispatch(setCurrentEditCharacter({
-            ...editCharacter,
-            abilityScores: [
-                ...editCharacter.abilityScores?.map(a => {
-                    return a.id === abilityScore.id ? {
-                        ...a,
-                        value: value
-                    } : a
-                }) ?? [],
-            ]
-        }))
+        if(!!currentEditCharacter){
+            dispatch(setCurrentEditCharacter({
+                ...currentEditCharacter,
+                abilityScores: [
+                    ...currentEditCharacter.abilityScores?.map(a => {
+                        return a.id === abilityScore.id ? {
+                            ...a,
+                            value: value
+                        } : a
+                    }) ?? [],
+                ]
+            }))
+        }
     }
 
     /**

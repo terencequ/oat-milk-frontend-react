@@ -20,9 +20,8 @@ const CharacterStatsEditAbilityScoresAndProficiencies: FC = (props) => {
     }
 
     const abilityScores = currentEditCharacter.abilityScores ?? [];
-    const abilityScoreProficiencies = currentEditCharacter
-        ?.abilityScoreProficiencies
-        ?.sort((a, b) => (a.name ?? "").localeCompare(b.name ?? "")) ?? [];
+    const abilityScoreProficiencies = [...currentEditCharacter.abilityScoreProficiencies ?? []]
+        .sort((a, b) => (a.name ?? "").localeCompare(b.name ?? "")) ?? [];
     const characterLevel = getLevel(currentEditCharacter.attributes?.find(a => a.id === "experience")?.currentValue ?? 0);
     return <StyledAbilityScoresAndProficiencies>
         <StyledAbilityScores>
