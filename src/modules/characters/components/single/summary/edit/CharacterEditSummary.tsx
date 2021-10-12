@@ -1,9 +1,10 @@
-import React, {FC} from "react";
+import React, {ChangeEvent, FC, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
 import {getLevel, getNextLevelExperienceRequirement} from "../../../../helpers/CharacterStatHelpers";
 import {TextField, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import {StyledSummary} from "../CharacterSummaryStyles";
+import {setCurrentEditCharacter} from "../../../../../../redux/slices/charactersSlice";
 
 const StyledNameField = styled(TextField)`
   width: 800px;
@@ -28,18 +29,60 @@ const StyledExperienceField = styled(TextField)`
 
 const CharacterEditSummary: FC = () => {
   const dispatch = useAppDispatch();
+
   const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
-  if(!currentEditCharacter){
-    return <></>
+
+  const currentExperience = currentEditCharacter?.attributes?.find(c => c.id === "experience")?.currentValue ?? -1;
+  const currentLevel = getLevel(currentExperience);
+  const currentNextLevelExperienceRequirement = getNextLevelExperienceRequirement(currentExperience);
+
+  const [name, setName] = useState(currentEditCharacter?.name);
+  const [experience, setExperience] = useState(currentExperience.toString());
+  const [experienceError, setExperienceError] = useState<string | null>(null);
+
+  const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
+    const newName = event.target.value;
+    setName(newName);
+    if(!!currentEditCharacter){
+      dispatch(setCurrentEditCharacter({...currentEditCharacter, name: name ?? ""}));
+    }
   }
 
-  const experience = currentEditCharacter.attributes?.find(c => c.id === "experience")?.currentValue ?? -1;
-  const level = getLevel(experience);
-  const nextLevelExperienceRequirement = getNextLevelExperienceRequirement(experience);
+  const onChangeExperience = (event: ChangeEvent<HTMLInputElement>) => {
+    const newExperience = event.target.value;
+    setExperience(newExperience);
+
+    const newExperienceNumber = Number(newExperience);
+    let success = false;
+    if(isNaN(newExperienceNumber) || newExperienceNumber < 0){
+      setExperienceError(isNaN(newExperienceNumber)
+        ? `Experience must be a number!`
+        : `Experience must be between 0 and 355000!`);
+      success = false;
+    } else {
+      setExperienceError(null);
+      success = true;
+    }
+
+    if(success && !!currentEditCharacter){
+      dispatch(setCurrentEditCharacter({...currentEditCharacter, attributes: [
+          ...currentEditCharacter.attributes?.map(a => {
+            if(a.id === "experience"){
+              return {
+                ...a, currentValue:  newExperienceNumber > 355000 ? 355000 : newExperienceNumber
+              };
+            } else {
+              return a;
+            }
+          }) ?? []
+        ]}))
+    }
+  }
 
   return <StyledSummary>
     <StyledNameField
-      value={currentEditCharacter.name}
+      value={name}
+      onChange={onChangeName}
       variant="standard"
       inputProps={{style: {
           textAlign: "center",
@@ -47,17 +90,18 @@ const CharacterEditSummary: FC = () => {
       }}}/>
     <StyledExperience>
       <Typography variant={"h3"} align={"center"}>
-        {`Level ${level} (`}
+        {`Level ${currentLevel} (`}
       </Typography>
       <StyledExperienceField
         value={experience}
+        onChange={onChangeExperience}
         variant="standard"
         inputProps={{style: {
             textAlign: "center",
             fontSize: "1.2rem",
         }}}/>
       <Typography variant={"h3"} align={"center"}>
-        {`/${nextLevelExperienceRequirement} XP), Peasant 1`}
+        {`/${currentNextLevelExperienceRequirement} XP), Peasant 1`}
       </Typography>
     </StyledExperience>
   </StyledSummary>
