@@ -7,7 +7,7 @@ import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-column-gap: ${themeSpacing(4)};
+  grid-column-gap: ${themeSpacing(3)};
   align-items: center;
   justify-content: center;
 `

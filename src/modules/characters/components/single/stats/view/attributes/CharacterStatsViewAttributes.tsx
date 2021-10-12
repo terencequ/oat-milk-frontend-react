@@ -105,7 +105,7 @@ const CharacterStatsViewAttributes: FC = (props) => {
         </StyledAttribute>
         <StyledAttribute>
             <StyledAttributeLogo src={armorClassIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>{armorClassAttribute.name}</Typography>
+            <Typography variant={"subtitle1"} textAlign={"center"}>Armor Class</Typography>
             <Typography variant={"body1"}>{armorClassAttribute.currentValue}</Typography>
         </StyledAttribute>
         <StyledWideAttribute>

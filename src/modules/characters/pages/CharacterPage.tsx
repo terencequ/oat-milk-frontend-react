@@ -12,7 +12,7 @@ import FloatingActionList, {FloatingActionModel} from "../../shared/components/F
 import GenericAsync from "../../shared/components/GenericAsync";
 import CharacterStats from "../components/single/stats/CharacterStats";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
-import CharacterViewSummary from "../components/single/summary/view/CharacterViewSummary";
+import CharacterSummary from "../components/single/summary/CharacterSummary";
 
 const StyledTabs = styled(Tabs)`
   margin-bottom: ${themeSpacing(2)};
@@ -74,24 +74,24 @@ const CharacterPage: FC = () => {
       action: refreshEditCharacterAsync,
       icon: <Restore/>,
       color: "primary",
-      text: "Reset Stats"
+      text: "Reset"
     });
     actions.push({
       action: saveEditCharacterAsync,
       icon: <Save/>,
       color: "primary",
-      text: "Save Stats"
+      text: "Save"
     })
   }
   actions.push({
     action: () => setEditMode(false),
     icon: <Edit/>,
-    text: "View Stats"
+    text: "View"
   })
   actions.push({
     action: () => setEditMode(true),
     icon: <Edit/>,
-    text: "Edit Stats"
+    text: "Edit"
   })
 
   // Background and title
@@ -104,7 +104,7 @@ const CharacterPage: FC = () => {
           currentCharacter && currentEditCharacter && <StyledMainContainer>
             <FloatingActionList actions={actions} active={editMode ? 3 : 0}/>
             <div>
-              <CharacterViewSummary character={currentCharacter}/>
+              <CharacterSummary editMode={editMode}/>
               <StyledTabs value={tabSelection}
                           onChange={(_, newValue) => setTabSelection(newValue)} indicatorColor={"secondary"} textColor={"secondary"}>
                 <Tab label={"Overall"} value={0}/>

@@ -1,15 +1,21 @@
 import {Typography} from "@mui/material";
-import {CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import React, {FC} from "react";
+import {useAppSelector} from "../../../../../../redux/hooks";
+import {StyledSummary} from "../CharacterSummaryStyles";
 
-const CharacterViewSummary: FC<{character: CharacterResponse}> = ({character}) => {
-    const levelString = `Level ${character?.level.level} 
-        (${character?.level.experience}/${character?.level.nextLevelExperienceRequirement} XP), 
+const CharacterViewSummary: FC = (props) => {
+    const currentCharacter = useAppSelector(state => state.characters.currentCharacter);
+    if(!currentCharacter){
+        return <></>
+    }
+
+    const levelString = `Level ${currentCharacter.level.level}
+        (${currentCharacter.level.experience}/${currentCharacter.level.nextLevelExperienceRequirement} XP), 
         Peasant 1`;
-    return <>
-        <Typography variant={"h2"} align={"center"} gutterBottom>{character.name}</Typography>
+    return <StyledSummary>
+        <Typography variant={"h2"} align={"center"} gutterBottom>{currentCharacter.name}</Typography>
         <Typography variant={"h3"} align={"center"}>{levelString}</Typography>
-    </>
+    </StyledSummary>
 }
 
 export default CharacterViewSummary;

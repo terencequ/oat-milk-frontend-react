@@ -47,6 +47,13 @@ export function getLevel(experience: number) {
 }
 
 /**
+ * Get next level's experience requirement. Returns -1 if max level.
+ */
+export function getNextLevelExperienceRequirement(experience: number) {
+    return levels.find(l => l.experienceRequirement > experience)?.experienceRequirement ?? -1;
+}
+
+/**
  * Get the proficiency bonus based on level.
  * @param level
  */
