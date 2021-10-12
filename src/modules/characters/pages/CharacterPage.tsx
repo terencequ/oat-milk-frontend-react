@@ -1,11 +1,11 @@
 import {Edit, Restore, Save} from "@mui/icons-material";
 import {Fade, Tab, Tabs} from "@mui/material";
-import {CharacterRequest, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import React, {FC, useCallback, useEffect, useState} from 'react';
-import {useDispatch} from "react-redux";
+import React, {FC, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
+import {mapCharacterResponseToRequest} from "../../../api/helpers/characterMapping";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {getCharacterByIdentifier, updateCharacter} from "../../../redux/thunks/characterThunks";
+import {setCurrentEditCharacter} from "../../../redux/slices/charactersSlice";
+import {getCharacterByIdentifierAsCurrent, updateCharacter} from "../../../redux/thunks/characterThunks";
 import styled from "@emotion/styled";
 import {StyledPageContainer, themeSpacing} from '../../core/styles/GlobalStyles';
 import FloatingActionList, {FloatingActionModel} from "../../shared/components/FloatingActionList";
@@ -30,40 +30,32 @@ type TParams = { id: string; };
  * @constructor
  */
 const CharacterPage: FC = () => {
-  const [editCharacter, setEditCharacter] = useState<CharacterRequest | null>(null);
   const [editMode, setEditMode] = useState(false);
-
   const [tabSelection, setTabSelection] = React.useState(0);
 
   const { id } = useParams<TParams>();
   const dispatch = useAppDispatch();
 
-  const currentCharacter = useAppSelector(state => state.characters.currentCharacter)
+  const currentCharacter = useAppSelector(state => state.characters.currentCharacter);
+  const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
 
   /**
    * Create request from current character response (API's character).
    */
-  const createEditCharacter = useCallback((): CharacterRequest | null  => !currentCharacter
-      ? null
-      : {
-        name: currentCharacter.name,
-        abilityScores: currentCharacter.abilityScores,
-        abilityScoreProficiencies: currentCharacter.abilityScores.flatMap(as => as.proficiencies.map(p => ({
-          abilityScoreId: as.id,
-          ...p
-        }))),
-        attributes: currentCharacter.attributes,
-        descriptions: currentCharacter.descriptions
-      }, [currentCharacter]);
+  const refreshEditCharacterAsync = async () => {
+    if(!!currentCharacter){
+      await dispatch(setCurrentEditCharacter(mapCharacterResponseToRequest(currentCharacter)));
+    }
+  }
 
   /**
    * Save "edit character" model to the API.
    */
-  const saveCharacter = async () => {
-    if(!!currentCharacter && !!editCharacter){
+  const saveEditCharacterAsync = async () => {
+    if(!!currentCharacter && !!currentEditCharacter){
       console.log("Saving character")
-      await dispatch(updateCharacter(currentCharacter.id, editCharacter));
-      await dispatch(getCharacterByIdentifier(currentCharacter.identifier));
+      await dispatch(updateCharacter(currentCharacter.id, currentEditCharacter));
+      await dispatch(getCharacterByIdentifierAsCurrent(currentCharacter.identifier));
       setEditMode(false);
     }
   }
@@ -72,27 +64,20 @@ const CharacterPage: FC = () => {
    * Reset current character for URL (by ID) on component mount, or ID change.
    */
   useEffect(() => {
-    dispatch(getCharacterByIdentifier(id));
+    dispatch(getCharacterByIdentifierAsCurrent(id));
   }, [dispatch, id])
-
-  /**
-   * Reset the edit character every time the current character changes.
-   */
-  useEffect(() => {
-    setEditCharacter(createEditCharacter());
-  }, [createEditCharacter])
 
   // Floating actions
   const actions: FloatingActionModel[] = [];
   if(editMode){
     actions.push({
-      action: () => {setEditCharacter(createEditCharacter())},
+      action: refreshEditCharacterAsync,
       icon: <Restore/>,
       color: "primary",
       text: "Reset Stats"
     });
     actions.push({
-      action: () => saveCharacter(),
+      action: saveEditCharacterAsync,
       icon: <Save/>,
       color: "primary",
       text: "Save Stats"
@@ -114,9 +99,9 @@ const CharacterPage: FC = () => {
   dispatch(setBackground("inherit"));
 
   return <StyledPageContainer>
-      <GenericAsync existingData={!!currentCharacter} requestId={getCharacterByIdentifier.name}>
+      <GenericAsync existingData={!!currentCharacter} requestId={getCharacterByIdentifierAsCurrent.name}>
         {
-          currentCharacter && editCharacter && <StyledMainContainer>
+          currentCharacter && currentEditCharacter && <StyledMainContainer>
             <FloatingActionList actions={actions} active={editMode ? 3 : 0}/>
             <div>
               <CharacterViewSummary character={currentCharacter}/>
@@ -128,11 +113,7 @@ const CharacterPage: FC = () => {
             </div>
             <Fade in={tabSelection === 0} appear>
               <div>
-                <CharacterStats
-                  character={currentCharacter}
-                  editCharacter={editCharacter}
-                  setEditCharacter={setEditCharacter}
-                  editMode={editMode}/>
+                <CharacterStats editMode={editMode}/>
               </div>
             </Fade>
           </StyledMainContainer>

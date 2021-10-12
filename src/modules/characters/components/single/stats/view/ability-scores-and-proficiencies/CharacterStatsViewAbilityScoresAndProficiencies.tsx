@@ -1,25 +1,24 @@
 import {FC} from "react";
-import {
-    CharacterResponse
-} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {Typography} from "@mui/material";
+import {useAppSelector} from "../../../../../../../redux/hooks";
 import {StyledAbilityScores, StyledAbilityScoresAndProficiencies,
     StyledProficiencies, StyledProficienciesContainer } from "../../CharacterStatsStyles";
 import CharacterStatsViewAbilityScore from "./CharacterStatsViewAbilityScore";
 import CharacterStatsViewAbilityScoreProficiency from "./CharacterStatsViewAbilityScoreProficiency";
 import CharacterViewSavingThrowProficiency from "./CharacterStatsViewSavingThrowProficiency";
 
-interface CharacterViewStatsProps {
-    character: CharacterResponse;
-}
-
 /**
  * Displays the following information for a character:
  * - Ability Scores
  * - Ability Score Proficiencies
  */
-const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProps> = ({character}) => {
-    const abilityScores = character.abilityScores;
+const CharacterStatsViewAbilityScoresAndProficiencies: FC = (props) => {
+    const currentCharacter = useAppSelector(state => state.characters.currentCharacter);
+    if(!currentCharacter){
+        return <></>
+    }
+
+    const abilityScores = currentCharacter.abilityScores;
     const abilityScoresAndProficiencies = abilityScores
         .flatMap(as => as.proficiencies.map(p => {return {abilityScore: as, proficiency: p}}))
         .sort((a, b) => a.proficiency.name.localeCompare(b.proficiency.name));
@@ -38,7 +37,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
                     return <CharacterViewSavingThrowProficiency
                         key={index}
                         abilityScore={value}
-                        levelValue={character.level.level}/>
+                        levelValue={currentCharacter.level.level}/>
                 })}
             </StyledProficienciesContainer>
             <StyledProficienciesContainer>
@@ -49,7 +48,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC<CharacterViewStatsProp
                             key={index}
                             abilityScoreProficiency={value.proficiency}
                             abilityScore={value.abilityScore}
-                            levelValue={character.level.level}/>
+                            levelValue={currentCharacter.level.level}/>
                     })}
             </StyledProficienciesContainer>
         </StyledProficiencies>

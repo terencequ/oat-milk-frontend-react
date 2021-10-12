@@ -1,15 +1,17 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {CharacterRequest, CharacterSummaryResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 
 export interface CharactersState {
     characterSummaries: CharacterSummaryResponse[];
     currentCharacter: CharacterResponse | null;
+    currentEditCharacter: CharacterRequest | null;
 }
 
 const initialState: CharactersState = {
     characterSummaries: [],
-    currentCharacter: null
+    currentCharacter: null,
+    currentEditCharacter: null,
 }
 
 export const charactersSlice = createSlice({
@@ -22,9 +24,12 @@ export const charactersSlice = createSlice({
         },
         setCurrentCharacter: (state: CharactersState, action: PayloadAction<CharacterResponse | null>) => {
             state.currentCharacter = action.payload;
-        }
+        },
+        setCurrentEditCharacter: (state: CharactersState, action: PayloadAction<CharacterRequest | null>) => {
+            state.currentEditCharacter = action.payload;
+        },
     }
 })
 
 export default charactersSlice.reducer;
-export const { setCharacterSummaries, setCurrentCharacter } = charactersSlice.actions;
+export const { setCharacterSummaries, setCurrentCharacter, setCurrentEditCharacter } = charactersSlice.actions;

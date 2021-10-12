@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import {Card, Typography} from "@mui/material";
 import {CharacterAttributeResponse, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
+import {useAppSelector} from "../../../../../../../redux/hooks";
 import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import {
     getModifier,
@@ -46,16 +47,18 @@ const StyledWideAttribute = styled(Card)`
   padding: ${themeSpacing(2)};
 `
 
-interface CharacterStatsViewAttributesProps {
-    character: CharacterResponse;
-}
-
 const StyledAttributeLogo = styled.img`
   width: 32px;
   height: 32px;
 `
 
-const CharacterStatsViewAttributes: FC<CharacterStatsViewAttributesProps> = ({character}) => {
+const CharacterStatsViewAttributes: FC = (props) => {
+    const character = useAppSelector(state => state.characters.currentCharacter);
+
+    if(!character){
+        return <></>
+    }
+
     const attributesDictionary: {[id: string]: CharacterAttributeResponse}
         = character.attributes.reduce((a,x) => ({...a, [x.id]: x}), {}); // Convert to dictionary for performance
 

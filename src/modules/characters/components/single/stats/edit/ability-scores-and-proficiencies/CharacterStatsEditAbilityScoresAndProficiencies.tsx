@@ -1,6 +1,7 @@
 import {Typography} from "@mui/material";
 import {CharacterRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import React, {FC} from "react";
+import {useAppSelector} from "../../../../../../../redux/hooks";
 import {getLevel} from "../../../../../helpers/CharacterStatHelpers";
 import {
     StyledAbilityScores,
@@ -8,22 +9,21 @@ import {
     StyledProficiencies,
     StyledProficienciesContainer
 } from "../../CharacterStatsStyles";
-import CharacterStatsEditProps from "../models/CharacterStatsEditProps";
 import CharacterEditAbilityScore from "./CharacterStatsEditAbilityScore";
 import CharacterStatsEditAbilityScoreProficiency from "./CharacterStatsEditAbilityScoreProficiency";
 import CharacterStatsEditSavingThrowProficiency from "./CharacterStatsEditSavingThrowProficiency";
 
-interface CharacterStatsEditAbilityScoresAndProficienciesProps extends CharacterStatsEditProps{
-    character: CharacterRequest;
-}
+const CharacterStatsEditAbilityScoresAndProficiencies: FC = (props) => {
+    const currentEditCharacter = useAppSelector(c => c.characters.currentEditCharacter);
+    if(currentEditCharacter == null){
+        return <></>
+    }
 
-const CharacterStatsEditAbilityScoresAndProficiencies: FC<CharacterStatsEditAbilityScoresAndProficienciesProps> = (props) => {
-    const {character} = props;
-    const abilityScores = character.abilityScores ?? [];
-    const abilityScoreProficiencies = character
+    const abilityScores = currentEditCharacter.abilityScores ?? [];
+    const abilityScoreProficiencies = currentEditCharacter
         ?.abilityScoreProficiencies
         ?.sort((a, b) => (a.name ?? "").localeCompare(b.name ?? "")) ?? [];
-    const characterLevel = getLevel(character.attributes?.find(a => a.id === "experience")?.currentValue ?? 0);
+    const characterLevel = getLevel(currentEditCharacter.attributes?.find(a => a.id === "experience")?.currentValue ?? 0);
     return <StyledAbilityScoresAndProficiencies>
         <StyledAbilityScores>
             {abilityScores.map((value, index) => {

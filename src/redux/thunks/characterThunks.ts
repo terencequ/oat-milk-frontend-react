@@ -2,12 +2,13 @@ import {
     CharacterApi,
     CharacterRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {mapCharacterResponseToRequest} from "../../api/helpers/characterMapping";
 import {processError} from "./helpers/errorHelper";
 import {AnyAction, ThunkAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 import {failRequest, startRequest, succeedRequest} from "../slices/requestsSlice";
 import {getCharacterSummaries} from "./characterSummaryThunks";
-import {setCurrentCharacter} from "../slices/charactersSlice";
+import {setCurrentCharacter, setCurrentEditCharacter} from "../slices/charactersSlice";
 
 export const createCharacterClient = (): CharacterApi => {
     return new CharacterApi(undefined, process.env.REACT_APP_API_URL);
@@ -55,16 +56,17 @@ export function updateCharacter(id: string, request: CharacterRequest): ThunkAct
     }
 }
 
-export function getCharacterByIdentifier(identifier: string): ThunkAction<void, RootState, unknown, AnyAction> {
+export function getCharacterByIdentifierAsCurrent(identifier: string): ThunkAction<void, RootState, unknown, AnyAction> {
     return async dispatch => {
         try {
-            dispatch(startRequest(getCharacterByIdentifier.name));
+            dispatch(startRequest(getCharacterByIdentifierAsCurrent.name));
             const res = await createCharacterClient().characterFullIdentifierGet(identifier);
-            dispatch(succeedRequest(getCharacterByIdentifier.name));
+            dispatch(succeedRequest(getCharacterByIdentifierAsCurrent.name));
             dispatch(setCurrentCharacter(res.data));
+            dispatch(setCurrentEditCharacter(mapCharacterResponseToRequest(res.data)));
         } catch (err) {
             const errorRes = processError(err);
-            dispatch(failRequest([getCharacterByIdentifier.name, errorRes.message ?? "An unexpected error has occurred!"]));
+            dispatch(failRequest([getCharacterByIdentifierAsCurrent.name, errorRes.message ?? "An unexpected error has occurred!"]));
         }
     }
 }
