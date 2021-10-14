@@ -1,10 +1,11 @@
-import React, {ChangeEvent, FocusEvent, FC, useState} from "react";
+import React, {ChangeEvent, FocusEvent, FC, useState, useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
 import {getLevel, getNextLevelExperienceRequirement, levels} from "../../../../helpers/CharacterStatHelpers";
 import {TextField, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import {StyledSummary} from "../CharacterSummaryStyles";
 import {setCurrentEditCharacter} from "../../../../../../redux/slices/charactersSlice";
+import ErrorTooltip from "../../../../../core/components/ErrorTooltip";
 
 const StyledNameField = styled(TextField)`
   width: 800px;
@@ -18,7 +19,6 @@ const StyledExperience = styled.div`
   align-items: center;
   width: fit-content;
   margin: auto;
-
 `
 
 const StyledExperienceField = styled(TextField)`
@@ -36,9 +36,21 @@ const CharacterEditSummary: FC = () => {
   const currentLevel = getLevel(currentExperience);
   const currentNextLevelExperienceRequirement = getNextLevelExperienceRequirement(currentExperience);
 
-  const [name, setName] = useState(currentEditCharacter?.name);
-  const [experience, setExperience] = useState(currentExperience.toString());
+  const initialName = currentEditCharacter?.name;
+  const initialExperience = currentExperience.toString();
+
+  const [name, setName] = useState(initialName);
+  const [experience, setExperience] = useState(initialExperience);
   const [experienceError, setExperienceError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setName(initialName);
+  }, [initialName, currentEditCharacter])
+
+  useEffect(() => {
+    setExperience(initialExperience);
+    setExperienceError(null);
+  }, [initialExperience, currentEditCharacter])
 
   /**
    * Validate and persist name to redux.
@@ -53,9 +65,10 @@ const CharacterEditSummary: FC = () => {
    * Validate and persist experience to redux.
    */
   const onSaveExperience = (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    event.preventDefault();
     const newExperienceNumber = Number(experience);
 
-    if(isNaN(newExperienceNumber) || newExperienceNumber < 0){
+    if(isNaN(newExperienceNumber) || newExperienceNumber < 0 || newExperienceNumber > 355000){
       setExperienceError(isNaN(newExperienceNumber)
           ? `Experience must be a number!`
           : `Experience must be between 0 and 355000!`);
@@ -109,11 +122,12 @@ const CharacterEditSummary: FC = () => {
             fontSize: "2rem",
             padding: 5
         }}}/>
-    <StyledExperience>
-      <Typography variant={"h3"} align={"center"}>
-        {`Level ${currentLevel} (`}
-      </Typography>
-      <StyledExperienceField
+    <ErrorTooltip open={!!experienceError} title={experienceError ?? ""}>
+      <StyledExperience>
+        <Typography variant={"h3"} align={"center"}>
+          {`Level ${currentLevel} (`}
+        </Typography>
+        <StyledExperienceField
           label={"Experience"}
           value={experience}
           onChange={onChangeExperience}
@@ -123,11 +137,12 @@ const CharacterEditSummary: FC = () => {
               textAlign: "center",
               fontSize: "1.2rem",
               padding: 5
-          }}}/>
-      <Typography variant={"h3"} align={"center"}>
-        {`/${currentNextLevelExperienceRequirement === -1 ? "MAX" : currentNextLevelExperienceRequirement} XP), Peasant 1`}
-      </Typography>
-    </StyledExperience>
+            }}}/>
+        <Typography variant={"h3"} align={"center"}>
+          {`/${currentNextLevelExperienceRequirement === -1 ? "MAX" : currentNextLevelExperienceRequirement} XP), Peasant 1`}
+        </Typography>
+      </StyledExperience>
+    </ErrorTooltip>
   </StyledSummary>
 }
 

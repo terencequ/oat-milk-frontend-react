@@ -4,7 +4,7 @@ import {Checkbox, Typography} from "@mui/material";
 import {
     CharacterAbilityScoreProficiencyRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {ChangeEvent, FC, useState} from "react";
+import {ChangeEvent, FC, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
 import {setCurrentEditCharacter} from "../../../../../../../redux/slices/charactersSlice";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
@@ -26,10 +26,19 @@ interface CharacterStatsEditAbilityScoreProficiencyProps {
 const CharacterStatsEditAbilityScoreProficiency: FC<CharacterStatsEditAbilityScoreProficiencyProps> =
     ({abilityScoreProficiency, abilityScoreValue, abilityScoreName, levelValue}) => {
     const dispatch = useAppDispatch();
+    const initialProficient = abilityScoreProficiency.proficient;
+    const [proficient, setProficient] = useState(initialProficient);
     const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
 
+    useEffect(() => {
+        setProficient(initialProficient);
+    }, [initialProficient, currentEditCharacter])
+    
     const onSaveProficient = (event: ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
+        // event.preventDefault() seems to cause a double click bug
+        const newProficient = !proficient;
+        setProficient(newProficient);
+
         if(!!currentEditCharacter){
             dispatch(setCurrentEditCharacter(({
                 ...currentEditCharacter,
@@ -38,7 +47,7 @@ const CharacterStatsEditAbilityScoreProficiency: FC<CharacterStatsEditAbilitySco
                         return (a.id === abilityScoreProficiency.id && a.abilityScoreId === abilityScoreProficiency.abilityScoreId)
                             ? {
                                 ...a,
-                                proficient: !a.proficient
+                                proficient: newProficient
                             } : a
                     }) ?? [],
                 ]
@@ -49,7 +58,7 @@ const CharacterStatsEditAbilityScoreProficiency: FC<CharacterStatsEditAbilitySco
     const modifier = getModifier(abilityScoreValue) + (abilityScoreProficiency.proficient ? getProficiencyBonus(levelValue) : 0);
     return <StyledProficiencyOrSavingThrow>
         <StyledCheckbox
-            checked={abilityScoreProficiency.proficient}
+            checked={proficient}
             icon={<RadioButtonUncheckedOutlined/>}
             checkedIcon={<RadioButtonCheckedOutlined/>}
             onChange={onSaveProficient}/>

@@ -37,6 +37,7 @@
   "scripts": {
     "start": "npm run dev",
     "start:electron": "concurrently \"cross-env BROWSER=none npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "start:electron:prod": "concurrently \"cross-env BROWSER=none npm run dev:prod\" \"wait-on http://localhost:3000 && electron .\"",
     "dev": "react-app-rewired start",
     "dev:prod": "env-cmd -f .env.prod npm run start",
     "build": "react-app-rewired build",

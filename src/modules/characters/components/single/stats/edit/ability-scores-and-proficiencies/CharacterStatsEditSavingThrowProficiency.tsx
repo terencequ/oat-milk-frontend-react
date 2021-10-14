@@ -3,7 +3,7 @@ import {Checkbox, Typography} from "@mui/material";
 import {
     CharacterAbilityScoreRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {ChangeEvent, FC} from "react";
+import {ChangeEvent, FC, useEffect, useState} from "react";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledProficiencyOrSavingThrow} from "../../CharacterStatsStyles";
 import styled from "@emotion/styled";
@@ -26,10 +26,19 @@ interface CharacterEditSavingThrowProficiencyProps {
  */
 const CharacterViewSavingThrowProficiency: FC<CharacterEditSavingThrowProficiencyProps> = ({abilityScore, levelValue}) => {
     const dispatch = useAppDispatch();
+    const initialProficient = abilityScore.proficient;
+    const [proficient, setProficient] = useState(initialProficient);
     const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
 
+    useEffect(() => {
+        setProficient(initialProficient);
+    }, [initialProficient, currentEditCharacter])
+
     const onSaveProficient = (event: ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
+        // event.preventDefault() seems to cause a double click bug
+        const newProficient = !proficient;
+        setProficient(newProficient);
+
         if(!!currentEditCharacter){
             dispatch(setCurrentEditCharacter(({
                 ...currentEditCharacter,
@@ -38,7 +47,7 @@ const CharacterViewSavingThrowProficiency: FC<CharacterEditSavingThrowProficienc
                         return (a.id === abilityScore.id)
                           ? {
                               ...a,
-                              proficient: !a.proficient
+                              proficient: newProficient
                           } : a
                     }) ?? [],
                 ]

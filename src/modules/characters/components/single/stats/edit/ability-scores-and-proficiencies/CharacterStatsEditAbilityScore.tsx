@@ -27,6 +27,11 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
     const [value, setValue] = useState<string>(initialValue);
     const [error, setError] = useState<string | null>(null);
 
+    useEffect(() => {
+        setValue(initialValue);
+        setError(null);
+    }, [initialValue, currentEditCharacter])
+
     /**
      * Changing Ability Score value.
      * @param event Change text input event.
@@ -82,7 +87,8 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
                 variant={"outlined"}
                 size={"small"}
                 value={value}
-                onChange={onChangeValue}/>
+                onChange={onChangeValue}
+                onBlur={onSaveValue}/>
         </ErrorTooltip>
 
     </StyledAbilityScore>
