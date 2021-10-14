@@ -3,7 +3,11 @@ import {TextField, Typography} from "@mui/material";
 import {CharacterAbilityScoreRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import React, {ChangeEvent, FocusEvent, FC, useCallback, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
-import {setCurrentEditCharacter} from "../../../../../../../redux/slices/charactersSlice";
+import {
+    getEditCharacterFormError,
+    setCurrentEditCharacter,
+    setCurrentEditCharacterFormError
+} from "../../../../../../../redux/slices/charactersSlice";
 import ErrorTooltip from "../../../../../../core/components/ErrorTooltip";
 import {getModifier, getModifierAsString} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledAbilityScore} from "../../CharacterStatsStyles";
@@ -25,7 +29,17 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
     const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
     const initialValue = abilityScore.value?.toString() ?? "";
     const [value, setValue] = useState<string>(initialValue);
-    const [error, setError] = useState<string | null>(null);
+
+    // Error state in redux
+    const errorId = `${CharacterEditAbilityScore.name}/${abilityScore.id}`
+    const error = getEditCharacterFormError(errorId)();
+    const setError = useCallback((newError: string | null) => {
+        dispatch(setCurrentEditCharacterFormError({id: errorId, error: newError}))
+    }, [dispatch, errorId])
+
+    useEffect(() => {
+        setError(null)
+    }, [currentEditCharacter, setError])
 
     /**
      * Changing Ability Score value.

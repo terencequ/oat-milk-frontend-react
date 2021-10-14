@@ -79,8 +79,11 @@ const App = () => {
               <PrivateRoute path={"/characters"}>
                 <CharacterListPage/>
               </PrivateRoute>
-              <PrivateRoute path={"/character=:id"}>
-                <CharacterPage/>
+              <PrivateRoute path={"/character=:id/edit"}>
+                <CharacterPage editModeStart={true}/>
+              </PrivateRoute>
+              <PrivateRoute path={"/character=:id/view"}>
+                <CharacterPage editModeStart={false}/>
               </PrivateRoute>
               <PrivateRoute path={"/create"}>
                 <CharacterCreatePage/>

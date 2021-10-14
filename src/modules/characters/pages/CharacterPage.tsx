@@ -1,10 +1,10 @@
-import {Edit, Restore, Save} from "@mui/icons-material";
+import {Edit, KeyboardReturn, Restore, Save, Visibility} from "@mui/icons-material";
 import {Fade, Tab, Tabs} from "@mui/material";
 import React, {FC, useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {mapCharacterResponseToRequest} from "../../../api/helpers/characterMapping";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {setCurrentEditCharacter} from "../../../redux/slices/charactersSlice";
+import {anyCurrentEditCharacterFormErrors, setCurrentEditCharacter} from "../../../redux/slices/charactersSlice";
 import {getCharacterByIdentifierAsCurrent, updateCharacter} from "../../../redux/thunks/characterThunks";
 import styled from "@emotion/styled";
 import {StyledPageContainer, themeSpacing} from '../../core/styles/GlobalStyles';
@@ -29,8 +29,8 @@ type TParams = { id: string; };
  * Main character page. Handles viewing, creating and editing a single character.
  * @constructor
  */
-const CharacterPage: FC = () => {
-  const [editMode, setEditMode] = useState(false);
+const CharacterPage: FC<{editModeStart: boolean}> = ({editModeStart}) => {
+  const [editMode, setEditMode] = useState(editModeStart);
   const [tabSelection, setTabSelection] = React.useState(0);
 
   const { id } = useParams<TParams>();
@@ -38,6 +38,8 @@ const CharacterPage: FC = () => {
 
   const currentCharacter = useAppSelector(state => state.characters.currentCharacter);
   const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
+
+  const anyErrors = anyCurrentEditCharacterFormErrors()();
 
   /**
    * Create request from current character response (API's character).
@@ -74,16 +76,23 @@ const CharacterPage: FC = () => {
       action: saveEditCharacterAsync,
       icon: <Save/>,
       color: "primary",
-      text: "Save"
+      text: "Save",
+      disabled: anyErrors
     })
   }
   actions.push({
-    action: () => setEditMode(false),
-    icon: <Edit/>,
+    action: async () => {
+      setEditMode(false)
+      await refreshEditCharacterAsync();
+    },
+    icon: <Visibility/>,
     text: "View"
   })
   actions.push({
-    action: () => setEditMode(true),
+    action: async () => {
+      setEditMode(true)
+      await refreshEditCharacterAsync();
+    },
     icon: <Edit/>,
     text: "Edit"
   })
@@ -96,7 +105,7 @@ const CharacterPage: FC = () => {
       <GenericAsync existingData={!!currentCharacter} requestId={getCharacterByIdentifierAsCurrent.name}>
         {
           currentCharacter && currentEditCharacter && <StyledMainContainer>
-            <FloatingActionList actions={actions} active={editMode ? 3 : 0}/>
+            <FloatingActionList actions={actions} active={editMode ? 2 : 0}/>
             <div>
               <CharacterSummary editMode={editMode}/>
               <StyledTabs value={tabSelection}

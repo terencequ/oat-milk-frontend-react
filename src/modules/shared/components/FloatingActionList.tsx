@@ -12,6 +12,7 @@ export interface FloatingActionModel {
     icon: ReactElement;
     color?: "primary" | "secondary";
     text: string;
+    disabled?: boolean;
 }
 
 export interface FloatingActionListProps {
@@ -37,7 +38,7 @@ const FloatingActionList: FC<FloatingActionListProps> = (props) => {
                 onClick={value.action}
                 color={value.color ?? "secondary"}
                 variant={"contained"}
-                disabled={props.active === index}
+                disabled={props.active === index || value.disabled === true}
                 startIcon={value.icon}
             >
                 {value.text}

@@ -7,7 +7,7 @@ import {
     PAUSE,
     PERSIST,
     PURGE,
-    REGISTER,
+    REGISTER, persistCombineReducers,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import charactersReducer from "./slices/charactersSlice";
@@ -18,18 +18,18 @@ import usersReducer from "./slices/usersSlice";
 const persistConfig = {
     key: 'root',
     version: 1,
-    blacklist: ["requests"],
+    blacklist: ['characters', 'requests'],
     storage,
 }
 
-const persistedReducer = persistReducer(
+const persistedReducer = persistCombineReducers(
     persistConfig,
-    combineReducers({
+    {
         characters: charactersReducer,
         users: usersReducer,
         userInterface: userInterfaceReducer,
         requests: requestsReducer,
-    })
+    }
 );
 
 // @ts-ignore

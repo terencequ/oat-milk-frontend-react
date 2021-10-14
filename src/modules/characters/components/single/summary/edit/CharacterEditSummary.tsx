@@ -1,10 +1,14 @@
-import React, {ChangeEvent, FocusEvent, FC, useState, useEffect} from "react";
+import React, {ChangeEvent, FocusEvent, FC, useState, useEffect, useCallback} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
 import {getLevel, getNextLevelExperienceRequirement, levels} from "../../../../helpers/CharacterStatHelpers";
 import {TextField, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import {StyledSummary} from "../CharacterSummaryStyles";
-import {setCurrentEditCharacter} from "../../../../../../redux/slices/charactersSlice";
+import {
+  getEditCharacterFormError,
+  setCurrentEditCharacter,
+  setCurrentEditCharacterFormError
+} from "../../../../../../redux/slices/charactersSlice";
 import ErrorTooltip from "../../../../../core/components/ErrorTooltip";
 
 const StyledNameField = styled(TextField)`
@@ -41,7 +45,17 @@ const CharacterEditSummary: FC = () => {
 
   const [name, setName] = useState(initialName);
   const [experience, setExperience] = useState(initialExperience);
-  const [experienceError, setExperienceError] = useState<string | null>(null);
+
+  // Error state in redux
+  const experienceErrorId = `${CharacterEditSummary.name}/experience`
+  const experienceError = getEditCharacterFormError(experienceErrorId)();
+  const setExperienceError = useCallback((newError: string | null) => {
+    dispatch(setCurrentEditCharacterFormError({id: experienceErrorId, error: newError}))
+  }, [dispatch, experienceErrorId])
+
+  useEffect(() => {
+    setExperienceError(null)
+  }, [currentEditCharacter, setExperienceError])
 
   /**
    * Validate and persist name to redux.

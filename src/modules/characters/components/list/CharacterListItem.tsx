@@ -81,12 +81,12 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
 
   /** View character in Character page. */
   const viewThis = () => {
-    history.push(`character=${characterSummary.identifier}`)
+    history.push(`character=${characterSummary.identifier}/view`)
   }
 
   /** Edit character in Character page. */
   const editThis = () => {
-    history.push(`character=${characterSummary.identifier}`)
+    history.push(`character=${characterSummary.identifier}/edit`)
   }
 
   /** Delete character. */
