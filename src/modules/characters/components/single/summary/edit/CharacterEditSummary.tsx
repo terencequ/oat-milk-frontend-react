@@ -1,6 +1,6 @@
-import React, {ChangeEvent, FC, useState} from "react";
+import React, {ChangeEvent, FocusEvent, FC, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
-import {getLevel, getNextLevelExperienceRequirement} from "../../../../helpers/CharacterStatHelpers";
+import {getLevel, getNextLevelExperienceRequirement, levels} from "../../../../helpers/CharacterStatHelpers";
 import {TextField, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import {StyledSummary} from "../CharacterSummaryStyles";
@@ -22,7 +22,7 @@ const StyledExperience = styled.div`
 `
 
 const StyledExperienceField = styled(TextField)`
-  width: 100px;
+  width: 120px;
   text-align: center;
   margin: auto;
 `
@@ -40,36 +40,36 @@ const CharacterEditSummary: FC = () => {
   const [experience, setExperience] = useState(currentExperience.toString());
   const [experienceError, setExperienceError] = useState<string | null>(null);
 
-  const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
-    const newName = event.target.value;
-    setName(newName);
+  /**
+   * Validate and persist name to redux.
+   */
+  const onSaveName = (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if(!!currentEditCharacter){
-      dispatch(setCurrentEditCharacter({...currentEditCharacter, name: newName?.substr(0, 30) ?? ""}));
+      dispatch(setCurrentEditCharacter({...currentEditCharacter, name: name?.substr(0, 30) ?? ""}));
     }
   }
 
-  const onChangeExperience = (event: ChangeEvent<HTMLInputElement>) => {
-    const newExperience = event.target.value;
-    setExperience(newExperience);
+  /**
+   * Validate and persist experience to redux.
+   */
+  const onSaveExperience = (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const newExperienceNumber = Number(experience);
 
-    const newExperienceNumber = Number(newExperience);
-    let success = false;
     if(isNaN(newExperienceNumber) || newExperienceNumber < 0){
       setExperienceError(isNaN(newExperienceNumber)
-        ? `Experience must be a number!`
-        : `Experience must be between 0 and 355000!`);
-      success = false;
-    } else {
-      setExperienceError(null);
-      success = true;
+          ? `Experience must be a number!`
+          : `Experience must be between 0 and 355000!`);
+      return;
     }
 
-    if(success && !!currentEditCharacter){
+    setExperienceError(null);
+    const maxExp = Math.max(...levels.map(l => l.experienceRequirement));
+    if(!!currentEditCharacter){
       dispatch(setCurrentEditCharacter({...currentEditCharacter, attributes: [
           ...currentEditCharacter.attributes?.map(a => {
             if(a.id === "experience"){
               return {
-                ...a, currentValue:  newExperienceNumber > 355000 ? 355000 : newExperienceNumber
+                ...a, currentValue:  newExperienceNumber > maxExp ? maxExp : newExperienceNumber
               };
             } else {
               return a;
@@ -79,27 +79,51 @@ const CharacterEditSummary: FC = () => {
     }
   }
 
+  /**
+   * Callback for changing name field.
+   * @param event
+   */
+  const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
+    const newName = event.target.value.substr(0, 20);
+    setName(newName);
+  }
+
+  /**
+   * Callback for changing experience field.
+   * @param event
+   */
+  const onChangeExperience = (event: ChangeEvent<HTMLInputElement>) => {
+    const newExperience = event.target.value.substr(0, 7);;
+    setExperience(newExperience);
+  }
+
   return <StyledSummary>
     <StyledNameField
-      value={name}
-      onChange={onChangeName}
-      variant="standard"
-      inputProps={{style: {
-          textAlign: "center",
-          fontSize: "2rem",
-      }}}/>
+        label={"Name"}
+        value={name}
+        onChange={onChangeName}
+        onBlur={onSaveName}
+        variant="outlined"
+        inputProps={{style: {
+            textAlign: "center",
+            fontSize: "2rem",
+            padding: 5
+        }}}/>
     <StyledExperience>
       <Typography variant={"h3"} align={"center"}>
         {`Level ${currentLevel} (`}
       </Typography>
       <StyledExperienceField
-        value={experience}
-        onChange={onChangeExperience}
-        variant="standard"
-        inputProps={{style: {
-            textAlign: "center",
-            fontSize: "1.2rem",
-        }}}/>
+          label={"Experience"}
+          value={experience}
+          onChange={onChangeExperience}
+          onBlur={onSaveExperience}
+          variant="outlined"
+          inputProps={{style: {
+              textAlign: "center",
+              fontSize: "1.2rem",
+              padding: 5
+          }}}/>
       <Typography variant={"h3"} align={"center"}>
         {`/${currentNextLevelExperienceRequirement === -1 ? "MAX" : currentNextLevelExperienceRequirement} XP), Peasant 1`}
       </Typography>

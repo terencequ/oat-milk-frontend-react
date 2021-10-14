@@ -79,12 +79,17 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
     setExpand(!expand);
   }
 
-  /** View character in View Character page. */
+  /** View character in Character page. */
   const viewThis = () => {
     history.push(`character=${characterSummary.identifier}`)
   }
 
-  /** View character in View Character page. */
+  /** Edit character in Character page. */
+  const editThis = () => {
+    history.push(`character=${characterSummary.identifier}`)
+  }
+
+  /** Delete character. */
   const deleteThis = async () => {
     dispatch(deleteCharacter(characterSummary.id));
   }
@@ -100,7 +105,7 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
       </SummaryActionArea>
       <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
         <Button onClick={viewThis}><Visibility/></Button>
-        <Button><Edit/></Button>
+        <Button onClick={editThis}><Edit/></Button>
         <Button onClick={deleteThis} color={"error"}><Delete/></Button>
       </SummaryActions>
     </SummaryDisplay>

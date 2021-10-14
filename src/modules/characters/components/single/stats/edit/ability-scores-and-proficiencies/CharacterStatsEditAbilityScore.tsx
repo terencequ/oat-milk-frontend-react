@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import {TextField, Typography} from "@mui/material";
 import {CharacterAbilityScoreRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import React, {ChangeEvent, FC, useCallback, useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {ChangeEvent, FocusEvent, FC, useCallback, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
 import {setCurrentEditCharacter} from "../../../../../../../redux/slices/charactersSlice";
 import ErrorTooltip from "../../../../../../core/components/ErrorTooltip";
@@ -29,10 +28,31 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
     const [error, setError] = useState<string | null>(null);
 
     /**
-     * Update parent state with new ability score value.
-     * @param value Value of the ability score. Can be undefined.
+     * Changing Ability Score value.
+     * @param event Change text input event.
      */
-    const saveValue = (value: number | undefined) => {
+    const onChangeValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        event.preventDefault();
+        setValue(event.target.value.substr(0, 4));
+    }
+
+    /**
+     * Check errors and persist Ability Score value to redux.
+     * @param event
+     */
+    const onSaveValue = (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        event.preventDefault();
+        let valueNumber = Number(value);
+
+        if(isNaN(valueNumber) || valueNumber > 99 || valueNumber < -99){
+            setError(isNaN(valueNumber)
+                ? `${abilityScore.name} must be a number!`
+                : `${abilityScore.name} must be between -99 and 99!`);
+            return;
+        } else {
+            setError(null);
+        }
+
         if(!!currentEditCharacter){
             dispatch(setCurrentEditCharacter({
                 ...currentEditCharacter,
@@ -40,7 +60,7 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
                     ...currentEditCharacter.abilityScores?.map(a => {
                         return a.id === abilityScore.id ? {
                             ...a,
-                            value: value
+                            value: valueNumber
                         } : a
                     }) ?? [],
                 ]
@@ -48,51 +68,7 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
         }
     }
 
-    /**
-     * Update error messages based on value.
-     * @param value Value to check errors for.
-     */
-    const updateErrors = useCallback((value: number) => {
-        if(isNaN(value) || value > 99 || value < -99){
-            setError(isNaN(value)
-                ? `${abilityScore.name} must be a number!`
-                : `${abilityScore.name} must be between -99 and 99!`);
-            return true;
-        } else {
-            setError("");
-            return false;
-        }
-    }, [abilityScore.name])
 
-    /**
-     * Update ability score value and error messages.
-     * @param value Value of the ability score. Can be undefined.
-     */
-    const updateValue = (value: number) => {
-        const errored = updateErrors(value);
-        if(!errored){
-            saveValue(value);
-        }
-    }
-
-    /**
-     * Callback method for changing Ability Score value.
-     * @param event Change text input event.
-     */
-    const onSaveValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        event.preventDefault();
-        const input = event.target.value;
-        if(input.length < 4){
-            setValue(input);
-            let value = Number(input);
-            updateValue(value);
-        }
-    }
-
-    useEffect(() => {
-        setValue(initialValue);
-        updateErrors(abilityScore.value ?? NaN);
-    }, [abilityScore.value, initialValue, updateErrors])
 
     return <StyledAbilityScore>
         <Typography variant={"subtitle1"}>{abilityScore.name}</Typography>
@@ -106,7 +82,7 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
                 variant={"outlined"}
                 size={"small"}
                 value={value}
-                onChange={onSaveValue}/>
+                onChange={onChangeValue}/>
         </ErrorTooltip>
 
     </StyledAbilityScore>
