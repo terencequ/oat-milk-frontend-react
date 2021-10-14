@@ -43,15 +43,6 @@ const CharacterEditSummary: FC = () => {
   const [experience, setExperience] = useState(initialExperience);
   const [experienceError, setExperienceError] = useState<string | null>(null);
 
-  useEffect(() => {
-    setName(initialName);
-  }, [initialName, currentEditCharacter])
-
-  useEffect(() => {
-    setExperience(initialExperience);
-    setExperienceError(null);
-  }, [initialExperience, currentEditCharacter])
-
   /**
    * Validate and persist name to redux.
    */
@@ -122,27 +113,29 @@ const CharacterEditSummary: FC = () => {
             fontSize: "2rem",
             padding: 5
         }}}/>
-    <ErrorTooltip open={!!experienceError} title={experienceError ?? ""}>
+
       <StyledExperience>
         <Typography variant={"h3"} align={"center"}>
           {`Level ${currentLevel} (`}
         </Typography>
-        <StyledExperienceField
-          label={"Experience"}
-          value={experience}
-          onChange={onChangeExperience}
-          onBlur={onSaveExperience}
-          variant="outlined"
-          inputProps={{style: {
-              textAlign: "center",
-              fontSize: "1.2rem",
-              padding: 5
-            }}}/>
+        <ErrorTooltip open={!!experienceError} title={experienceError ?? ""}>
+          <StyledExperienceField
+            label={"Experience"}
+            value={experience}
+            onChange={onChangeExperience}
+            onBlur={onSaveExperience}
+            variant="outlined"
+            inputProps={{style: {
+                textAlign: "center",
+                fontSize: "1.2rem",
+                padding: 5
+              }}}/>
+        </ErrorTooltip>
         <Typography variant={"h3"} align={"center"}>
           {`/${currentNextLevelExperienceRequirement === -1 ? "MAX" : currentNextLevelExperienceRequirement} XP), Peasant 1`}
         </Typography>
       </StyledExperience>
-    </ErrorTooltip>
+
   </StyledSummary>
 }
 

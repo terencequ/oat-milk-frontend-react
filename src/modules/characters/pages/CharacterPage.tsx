@@ -71,12 +71,6 @@ const CharacterPage: FC = () => {
   const actions: FloatingActionModel[] = [];
   if(editMode){
     actions.push({
-      action: refreshEditCharacterAsync,
-      icon: <Restore/>,
-      color: "primary",
-      text: "Reset"
-    });
-    actions.push({
       action: saveEditCharacterAsync,
       icon: <Save/>,
       color: "primary",

@@ -30,10 +30,6 @@ const CharacterStatsEditAbilityScoreProficiency: FC<CharacterStatsEditAbilitySco
     const [proficient, setProficient] = useState(initialProficient);
     const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
 
-    useEffect(() => {
-        setProficient(initialProficient);
-    }, [initialProficient, currentEditCharacter])
-    
     const onSaveProficient = (event: ChangeEvent<HTMLInputElement>) => {
         // event.preventDefault() seems to cause a double click bug
         const newProficient = !proficient;

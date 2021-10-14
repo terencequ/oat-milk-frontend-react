@@ -6,12 +6,14 @@ export interface CharactersState {
     characterSummaries: CharacterSummaryResponse[];
     currentCharacter: CharacterResponse | null;
     currentEditCharacter: CharacterRequest | null;
+    currentEditCharacterFormErrors: { [id: string] : string | null }
 }
 
 const initialState: CharactersState = {
     characterSummaries: [],
     currentCharacter: null,
     currentEditCharacter: null,
+    currentEditCharacterFormErrors: {}
 }
 
 export const charactersSlice = createSlice({
