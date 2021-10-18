@@ -41,24 +41,16 @@ const CharacterStatsViewAttributesDeathSaves: FC<CharacterStatsViewDeathSavesPro
             <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
             <StyledDeathSavesAndFailuresRadio>
                 <StyledAttributeLogo src={deathSaveSuccessesIcon}/>
-                {[...Array(deathSaveSuccesses)].map((value, index) => <>
-                    <RadioButtonChecked/>
-                </>)}
-                {[...Array(3 - deathSaveSuccesses)].map((value, index) => <>
-                    <RadioButtonUnchecked/>
-                </>)}
+                {[...Array(deathSaveSuccesses)].map((value, index) => <RadioButtonChecked key={index}/>)}
+                {[...Array(3 - deathSaveSuccesses)].map((value, index) => <RadioButtonUnchecked key={index}/>)}
             </StyledDeathSavesAndFailuresRadio>
         </div>
         <div>
             <Typography align={"center"} variant={"subtitle1"}>Death save failures</Typography>
             <StyledDeathSavesAndFailuresRadio>
                 <StyledAttributeLogo src={deathSaveFailuresIcon}/>
-                {[...Array(deathSaveFailures)].map(() => <>
-                    <RadioButtonChecked/>
-                </>)}
-                {[...Array(3 - deathSaveFailures)].map(() => <>
-                    <RadioButtonUnchecked/>
-                </>)}
+                {[...Array(deathSaveFailures)].map((value, index) => <RadioButtonChecked key={index}/>)}
+                {[...Array(3 - deathSaveFailures)].map((value, index) => <RadioButtonUnchecked key={index}/>)}
             </StyledDeathSavesAndFailuresRadio>
         </div>
     </StyledDeathSavesAndFailures>

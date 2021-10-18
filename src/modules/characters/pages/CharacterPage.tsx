@@ -13,6 +13,7 @@ import GenericAsync from "../../shared/components/GenericAsync";
 import CharacterStats from "../components/single/stats/CharacterStats";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 import CharacterSummary from "../components/single/summary/CharacterSummary";
+import CharacterDescriptions from "../components/single/descriptions/CharacterDescriptions";
 
 const StyledTabs = styled(Tabs)`
   margin-bottom: ${themeSpacing(2)};
@@ -115,8 +116,13 @@ const CharacterPage: FC<{editModeStart: boolean}> = ({editModeStart}) => {
               </StyledTabs>
             </div>
             <Fade in={tabSelection === 0} appear>
-              <div>
+              <div hidden={tabSelection !== 0}>
                 <CharacterStats editMode={editMode}/>
+              </div>
+            </Fade>
+            <Fade in={tabSelection === 1} appear>
+              <div hidden={tabSelection !== 1}>
+                <CharacterDescriptions editMode={editMode}/>
               </div>
             </Fade>
           </StyledMainContainer>

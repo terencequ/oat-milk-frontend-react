@@ -1,5 +1,5 @@
 import {Typography} from "@mui/material";
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {useAppDispatch} from "../../../redux/hooks";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
@@ -14,11 +14,14 @@ interface GenericAsyncProps {
 const GenericAsync: FC<GenericAsyncProps> = ({existingData, requestId, children}) => {
     const dispatch = useAppDispatch();
     const { status, error } = requestSelector(requestId)();
-    if(status === RequestStatus.InProgress){
-        dispatch(setLoading(true));
-    } else {
-        dispatch(setLoading(false));
-    }
+    
+    useEffect(() => {
+        if(status === RequestStatus.InProgress){
+            dispatch(setLoading(true));
+        } else {
+            dispatch(setLoading(false));
+        }
+    }, [dispatch, status])
 
     return <div>
         {

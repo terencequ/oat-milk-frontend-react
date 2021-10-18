@@ -40,6 +40,7 @@ const FloatingActionList: FC<FloatingActionListProps> = (props) => {
                 variant={"contained"}
                 disabled={props.active === index || value.disabled === true}
                 startIcon={value.icon}
+                key={index}
             >
                 {value.text}
             </StyledButton>

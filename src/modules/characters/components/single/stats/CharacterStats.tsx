@@ -1,6 +1,4 @@
-import {CharacterRequest, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import React, {FC} from "react";
-import {useAppSelector} from "../../../../../redux/hooks";
 import CharacterStatsEdit from "./edit/CharacterStatsEdit";
 import CharacterStatsView from "./view/CharacterStatsView";
 

@@ -70,15 +70,13 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
         if(!!currentEditCharacter){
             dispatch(setCurrentEditCharacter({
                 ...currentEditCharacter,
-                abilityScores: [
-                    ...currentEditCharacter.abilityScores?.map(a => {
-                        return a.id === abilityScore.id ? {
-                            ...a,
-                            value: valueNumber
-                        } : a
-                    }) ?? [],
-                ]
-            }))
+                abilityScores: currentEditCharacter.abilityScores?.map(a => {
+                    return a.id === abilityScore.id ? {
+                        ...a,
+                        value: valueNumber
+                    } : a
+                }) ?? []
+            }));
         }
     }
 
