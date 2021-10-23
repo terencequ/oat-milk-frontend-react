@@ -1,9 +1,7 @@
-import styled from "@emotion/styled";
 import {Card, Typography} from "@mui/material";
 import {CharacterAttributeResponse, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
 import {useAppSelector} from "../../../../../../../redux/hooks";
-import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import {
     getModifier,
     getModifierAsString,
@@ -19,38 +17,8 @@ import passivePerceptionIcon from 'assets/images/icons/passiveperception.png';
 import proficiencyBonusIcon from 'assets/images/icons/proficiency.png';
 import speedIcon from 'assets/images/icons/speed.png';
 import spellSlotsIcon from 'assets/images/icons/spellslots.png';
+import {StyledAttribute, StyledAttributeLogo, StyledAttributes, StyledWideAttribute } from "../../CharacterStatsStyles";
 
-
-const StyledAttributes = styled.div`
-  display: grid;
-  grid-template-rows: auto auto auto auto 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: ${themeSpacing(1)};
-  grid-row-gap: ${themeSpacing(1)};
-`
-
-const StyledAttribute = styled(Card)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: ${themeSpacing(2)};
-`
-
-const StyledWideAttribute = styled(Card)`
-  grid-column-start: 1;
-  grid-column-end: span 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: ${themeSpacing(2)};
-`
-
-const StyledAttributeLogo = styled.img`
-  width: 32px;
-  height: 32px;
-`
 
 const CharacterStatsViewAttributes: FC = (props) => {
     const character = useAppSelector(state => state.characters.currentCharacter);
