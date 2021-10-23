@@ -14,8 +14,6 @@ import proficiencyBonusIcon from "../../../../../../../assets/images/icons/profi
 import armorClassIcon from "../../../../../../../assets/images/icons/armorclass.png";
 import CharacterStatsViewAttributesDeathSaves from "../../view/attributes/CharacterStatsViewAttributesDeathSaves";
 import hitDiceIcon from "../../../../../../../assets/images/icons/hitdice.png";
-import spellSlotsIcon from "../../../../../../../assets/images/icons/spellslots.png";
-import CharacterStatsViewAttributesSpellSlots from "../../view/attributes/CharacterStatsViewAttributesSpellSlots";
 import {StyledAttribute, StyledAttributeLogo, StyledAttributes, StyledWideAttribute } from "../../CharacterStatsStyles";
 import {useAppSelector} from "../../../../../../../redux/hooks";
 import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
@@ -64,23 +62,19 @@ const CharacterStatsEditAttributes: FC = (props) => {
             <Typography variant={"subtitle1"} textAlign={"center"}>Proficiency Bonus</Typography>
             <Typography variant={"body1"}>{getModifierAsString(proficiencyBonus)}</Typography>
         </StyledAttribute>
-        <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>
-        <StyledWideAttribute>
-            <CharacterStatsViewAttributesDeathSaves
-                deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue}
-                deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
-        </StyledWideAttribute>
-        <StyledWideAttribute>
-            <StyledAttributeLogo src={hitDiceIcon}/>
+        <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>        <StyledWideAttribute>
+        <StyledAttributeLogo src={hitDiceIcon}/>
             <Typography variant={"subtitle1"}>Hit Dice</Typography>
             <div>
                 10d8
             </div>
         </StyledWideAttribute>
         <StyledWideAttribute>
-            <StyledAttributeLogo src={spellSlotsIcon}/>
-            <CharacterStatsViewAttributesSpellSlots/>
+            <CharacterStatsViewAttributesDeathSaves
+                deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue}
+                deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
         </StyledWideAttribute>
+
     </StyledAttributes>
 }
 

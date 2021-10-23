@@ -8,7 +8,6 @@ import {
     getProficiencyBonus,
 } from "../../../../../helpers/CharacterStatHelpers";
 import CharacterStatsViewAttributesDeathSaves from "./CharacterStatsViewAttributesDeathSaves";
-import CharacterStatsViewAttributesSpellSlots from "./CharacterStatsViewAttributesSpellSlots";
 import armorClassIcon from 'assets/images/icons/armorclass.png';
 import initiativeIcon from 'assets/images/icons/initiative.png';
 import hitDiceIcon from 'assets/images/icons/hitdice.png';
@@ -16,7 +15,6 @@ import hitPointsIcon from 'assets/images/icons/hitpoints.png';
 import passivePerceptionIcon from 'assets/images/icons/passiveperception.png';
 import proficiencyBonusIcon from 'assets/images/icons/proficiency.png';
 import speedIcon from 'assets/images/icons/speed.png';
-import spellSlotsIcon from 'assets/images/icons/spellslots.png';
 import {StyledAttribute, StyledAttributeLogo, StyledAttributes, StyledWideAttribute } from "../../CharacterStatsStyles";
 
 
@@ -77,11 +75,6 @@ const CharacterStatsViewAttributes: FC = (props) => {
             <Typography variant={"body1"}>{armorClassAttribute.currentValue}</Typography>
         </StyledAttribute>
         <StyledWideAttribute>
-            <CharacterStatsViewAttributesDeathSaves
-                deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue}
-                deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
-        </StyledWideAttribute>
-        <StyledWideAttribute>
             <StyledAttributeLogo src={hitDiceIcon}/>
             <Typography variant={"subtitle1"}>Hit Dice</Typography>
             <div>
@@ -89,8 +82,9 @@ const CharacterStatsViewAttributes: FC = (props) => {
             </div>
         </StyledWideAttribute>
         <StyledWideAttribute>
-            <StyledAttributeLogo src={spellSlotsIcon}/>
-            <CharacterStatsViewAttributesSpellSlots/>
+            <CharacterStatsViewAttributesDeathSaves
+                deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue}
+                deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
         </StyledWideAttribute>
     </StyledAttributes>
 }

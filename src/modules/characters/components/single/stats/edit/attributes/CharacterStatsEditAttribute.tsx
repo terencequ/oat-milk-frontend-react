@@ -1,8 +1,7 @@
-import React, {ChangeEvent, FC, FocusEvent, useCallback, useState} from "react";
+import React, {ChangeEvent, FC, FocusEvent, useCallback, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
 import {CharacterAttributeRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {StyledAttribute, StyledAttributeLogo} from "../../CharacterStatsStyles";
-import hitPointsIcon from "../../../../../../../assets/images/icons/hitpoints.png";
 import {TextField, Typography} from "@mui/material";
 import {
     getEditCharacterFormError,
@@ -12,6 +11,18 @@ import {
 import CharacterEditAbilityScore from "../ability-scores-and-proficiencies/CharacterStatsEditAbilityScore";
 import ErrorTooltip from "../../../../../../core/components/ErrorTooltip";
 import {castToNumber} from "../../../../../helpers/NumberHelpers";
+import styled from "@emotion/styled";
+
+const StyledContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+`
+
+const StyledTextField = styled(TextField)`
+  width: 70px;
+`
 
 interface CharacterStatsEditProps {
     iconSrc: string | undefined;
@@ -47,13 +58,17 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditProps> =
         dispatch(setCurrentEditCharacterFormError({id: errorId, error: newError}))
     }, [dispatch, errorId])
 
+    useEffect(() => {
+        setError(null)
+    }, [currentEditCharacter, setError])
+
     /**
      * Changing current value.
      * @param event Change text input event.
      */
     const onChangeDefaultValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         event.preventDefault();
-        setDefaultValue(event.target.value);
+        setDefaultValue(event.target.value.substr(0, 5))
     }
 
     /**
@@ -62,7 +77,7 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditProps> =
      */
     const onChangeCurrentValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         event.preventDefault();
-        setCurrentValue(event.target.value);
+        setCurrentValue(event.target.value.substr(0, 5));
     }
 
     /**
@@ -72,11 +87,11 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditProps> =
     const onSaveValue = (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         event.preventDefault();
 
-        let [currentValueNumber, currentValueError] = castToNumber(currentValue, minValue, maxValue, `${attribute.name}'s current value` ?? "Current value");
-        let [defaultValueNumber, defaultValueError] = castToNumber(defaultValue, minValue, maxValue, `${attribute.name}'s max value` ?? "Max value");
+        let [currentValueNumber, currentValueError] = castToNumber(currentValue, minValue, maxValue, `${attribute.name} current value` ?? "Current value");
+        let [defaultValueNumber, defaultValueError] = castToNumber(defaultValue, minValue, maxValue, `${attribute.name} max value` ?? "Max value");
 
         if(currentValueError !== null || defaultValueError !== null){
-            setError((currentValueError === null ? "" : currentValueError+"\n") + (defaultValueError))
+            setError((currentValueError === null ? "" : currentValueError+"\n") + (defaultValueError ?? ""))
             return;
         }
 
@@ -98,24 +113,26 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditProps> =
         <StyledAttributeLogo src={iconSrc}/>
         <Typography variant={"subtitle1"}>{attribute.name}</Typography>
         <ErrorTooltip open={!!error} title={error ?? ""}>
-            <div>
-                <TextField variant={"outlined"}
-                           size={"small"}
-                           value={currentValue}
-                           onChange={onChangeCurrentValue}
-                           onBlur={onSaveValue}/>
+            <StyledContainer>
+                <StyledTextField variant={"outlined"}
+                    inputProps={{min: 0, style: { textAlign: 'center' }}}
+                    size={"small"}
+                    value={currentValue}
+                    onChange={onChangeCurrentValue}
+                    onBlur={onSaveValue}/>
                 {
                     includeDefaultValue &&
                         <>
                             <Typography variant={"body1"}>/</Typography>
-                            <TextField variant={"outlined"}
-                                       size={"small"}
-                                       value={defaultValue}
-                                       onChange={onChangeDefaultValue}
-                                       onBlur={onSaveValue}/>
+                            <StyledTextField variant={"outlined"}
+                                inputProps={{min: 0, style: { textAlign: 'center' }}}
+                                size={"small"}
+                                value={defaultValue}
+                                onChange={onChangeDefaultValue}
+                                onBlur={onSaveValue}/>
                         </>
                 }
-            </div>
+            </StyledContainer>
         </ErrorTooltip>
     </StyledAttribute>
 }

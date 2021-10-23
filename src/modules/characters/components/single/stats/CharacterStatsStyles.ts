@@ -52,33 +52,33 @@ export const StyledAbilityScore = styled(Card)`
 
 export const StyledProficiencyOrSavingThrow = styled.div`
   display: grid;
-  grid-template-columns: [Is Proficient] 40px [Name] 14rem [Modifier] 2rem;  width: 100%;
+  grid-template-columns: [Is Proficient] 40px [Name] 12rem [Modifier] 1fr;  
+  width: 100%;
   align-items: center;
 `
 
 export const StyledAttributes = styled.div`
   display: grid;
   grid-template-rows: auto auto auto auto 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-column-gap: ${themeSpacing(1)};
   grid-row-gap: ${themeSpacing(1)};
 `
 
 export const StyledAttribute = styled(Card)`
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr auto 40px;
+  justify-items: center;
   align-items: center;
-  flex-direction: column;
   padding: ${themeSpacing(2)};
 `
 
 export const StyledWideAttribute = styled(Card)`
-  grid-column-start: 1;
-  grid-column-end: span 3;
-  display: flex;
-  justify-content: center;
+  grid-column: span 2;
+  display: grid;
+  grid-template-rows: 1fr auto 30px;
+  justify-items: center;
   align-items: center;
-  flex-direction: column;
   padding: ${themeSpacing(2)};
 `
 
