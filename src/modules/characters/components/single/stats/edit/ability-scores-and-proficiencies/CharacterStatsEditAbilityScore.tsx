@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {TextField, Typography} from "@mui/material";
+import {Card, TextField, Typography} from "@mui/material";
 import {CharacterAbilityScoreRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import React, {ChangeEvent, FocusEvent, FC, useCallback, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
@@ -80,25 +80,25 @@ const CharacterEditAbilityScore: FC<CharacterEditAbilityScoreProps> = ({abilityS
         }
     }
 
+    return <Card>
+        <StyledAbilityScore>
+            <Typography variant={"subtitle1"}>{abilityScore.name}</Typography>
+            {!abilityScore?.value
+                ? <Typography variant={"h2"}>N/A</Typography>
+                : <Typography variant={"h2"}>{getModifierAsString(getModifier(abilityScore.value))}</Typography>
+            }
+            <ErrorTooltip open={!!error} title={error ?? ""}>
+                <StyledValueField
+                    inputProps={{style: { textAlign: 'center' }}}
+                    variant={"outlined"}
+                    size={"small"}
+                    value={value}
+                    onChange={onChangeValue}
+                    onBlur={onSaveValue}/>
+            </ErrorTooltip>
 
-
-    return <StyledAbilityScore>
-        <Typography variant={"subtitle1"}>{abilityScore.name}</Typography>
-        {!abilityScore?.value
-            ? <Typography variant={"h3"}>N/A</Typography>
-            : <Typography variant={"h2"}>{getModifierAsString(getModifier(abilityScore.value))}</Typography>
-        }
-        <ErrorTooltip open={!!error} title={error ?? ""}>
-            <StyledValueField
-                inputProps={{min: 0, style: { textAlign: 'center' }}}
-                variant={"outlined"}
-                size={"small"}
-                value={value}
-                onChange={onChangeValue}
-                onBlur={onSaveValue}/>
-        </ErrorTooltip>
-
-    </StyledAbilityScore>
+        </StyledAbilityScore>
+    </Card>
 }
 
 export default CharacterEditAbilityScore;
