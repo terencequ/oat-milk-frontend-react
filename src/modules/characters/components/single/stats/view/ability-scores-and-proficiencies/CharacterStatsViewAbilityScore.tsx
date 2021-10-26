@@ -1,4 +1,4 @@
-import {Typography} from "@mui/material";
+import {CardActionArea, Typography} from "@mui/material";
 import {CharacterAbilityScoreResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
 import {getModifier, getModifierAsString} from "../../../../../helpers/CharacterStatHelpers";

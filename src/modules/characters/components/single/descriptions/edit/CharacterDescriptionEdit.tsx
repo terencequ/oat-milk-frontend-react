@@ -4,9 +4,16 @@ import {TextField, Typography} from "@mui/material";
 import { StyledDescription } from "../CharacterDescriptionsStyles";
 import {setCurrentEditCharacter} from "../../../../../../redux/slices/charactersSlice";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
+import {limitString} from "../../../../helpers/TextHelpers";
 
-const CharacterDescriptionEdit: FC<{description: CharacterDescriptionRequest | null, maxLength: number, columnWidth?: number, rows?: number}> =
-  ({description, maxLength, columnWidth, rows}) => {
+interface CharacterDescriptionEditProps {
+  description: CharacterDescriptionRequest | null;
+  maxLength: number;
+  columnWidth?: number;
+  rows?: number;
+}
+
+const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({description, maxLength, columnWidth, rows}) => {
 
   const dispatch = useAppDispatch();
   const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
@@ -14,13 +21,19 @@ const CharacterDescriptionEdit: FC<{description: CharacterDescriptionRequest | n
   const initialValue = description?.value?.toString() ?? "";
   const [value, setValue] = useState<string>(initialValue);
 
+  const newRows = rows ?? 3; // Rows by default should be 3
+
   /**
    * Changing Description.
    * @param event Change text input event.
    */
   const onChangeValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     event.preventDefault();
-    setValue(event.target.value.substr(0, maxLength));
+    const value = limitString(event.target.value, maxLength);
+    if(value.length > maxLength){
+      return;
+    }
+    setValue(value);
   }
 
   /**
@@ -48,7 +61,13 @@ const CharacterDescriptionEdit: FC<{description: CharacterDescriptionRequest | n
 
   return <StyledDescription sx={{gridColumn: `span ${columnWidth}`}}>
     <Typography variant={"subtitle1"}>{description?.name ?? ""}</Typography>
-    <TextField fullWidth multiline rows={rows ?? 3} value={value} onChange={onChangeValue} onBlur={onSaveValue}/>
+    <TextField fullWidth
+               multiline
+               rows={newRows}
+               maxRows={newRows}
+               value={value}
+               onChange={onChangeValue}
+               onBlur={onSaveValue}/>
   </StyledDescription>
 }
 

@@ -8,7 +8,9 @@ const CharacterDescriptionView: FC<{description: CharacterDescriptionResponse | 
   ({description, columnWidth}) => {
   return <StyledDescription sx={{gridColumn: `span ${columnWidth}`}}>
     <Typography variant={"subtitle1"}>{description?.name ?? ""}</Typography>
-    <Typography sx={{height: '100%'}} display={"inline"} variant={"body1"}>{description?.value ?? ""}</Typography>
+    <Typography sx={{height: '100%', wordWrap: "break-word", whiteSpace: "pre-line"}}
+                display={"inline"}
+                variant={"body1"}>{description?.value ?? ""}</Typography>
   </StyledDescription>
 }
 
