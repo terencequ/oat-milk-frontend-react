@@ -1,5 +1,5 @@
-import React from 'react';
-import {HashRouter as Router, Route, Switch} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {HashRouter as Router, Route, Switch, useHistory} from "react-router-dom";
 import './App.css';
 import NavBar from "./modules/core/components/NavBar";
 import HomePage from "./modules/core/pages/HomePage";
@@ -55,9 +55,6 @@ const StyledBody = styled.div<StyledBodyProps>`
 const App = () => {
   const darkMode = useAppSelector(state => state.userInterface.darkMode);
   const theme = createAppTheme(darkMode);
-
-  console.log(theme);
-
   document.title = "Oat Milk";
   const {drawerOpen, drawerMinimised} = useAppSelector(state => state.userInterface);
 

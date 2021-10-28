@@ -31,7 +31,7 @@ export const usersSlice = createSlice({
 })
 
 export default usersSlice.reducer;
-export const { logout, setAuthToken } = usersSlice.actions;
+export const { logout, setAuthToken, setUser } = usersSlice.actions;
 
 export const isLoggedInSelector = () => {
     return () => {

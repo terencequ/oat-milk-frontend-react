@@ -1,4 +1,4 @@
-import React, {FC, MouseEvent, useState} from 'react';
+import React, {FC, MouseEvent, useEffect, useState} from 'react';
 import {AppBar, IconButton, LinearProgress, Menu, MenuItem, Toolbar} from "@mui/material";
 import styled from "@emotion/styled";
 
@@ -7,7 +7,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {logout} from "../../../redux/slices/usersSlice";
 import {isElectron} from "../../shared/helpers/ElectronHelpers";
@@ -50,6 +50,14 @@ const NavBar: FC = () => {
 
   const dispatch = useAppDispatch();
   const {drawerMinimised, isLoading} = useAppSelector(state => state.userInterface);
+
+  const history = useHistory();
+  useEffect(() => {
+    if(authToken == null){
+      history.push("/login");
+    }
+  }, [authToken, history]);
+
 
   const handleToggleLeftDrawer = (e: MouseEvent<HTMLButtonElement>) => {
     dispatch(setDrawerMinimised(!drawerMinimised));
