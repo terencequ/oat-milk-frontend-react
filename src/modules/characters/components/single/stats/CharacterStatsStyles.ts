@@ -41,20 +41,24 @@ export const StyledProficienciesContainer = styled(Card)`
   padding: ${themeSpacing(2)};
 `
 
-export const StyledAbilityScore = styled(Card)`
+export const StyledAbilityScore = styled.div`
   display: grid;
   grid-template-rows: [Name] 25% [Modifier] 50% [Value] 25%;
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding: ${themeSpacing(2)}
+  padding: ${themeSpacing(2)};
+  height: 100%;
 `
 
 export const StyledProficiencyOrSavingThrow = styled.div`
   display: grid;
-  grid-template-columns: [Is Proficient] 40px [Name] 12rem [Modifier] 1fr;  
+  grid-template-columns: [Is Proficient] auto [Name] 12rem [Modifier] 40px;
+  grid-column-gap: ${themeSpacing(1)};
   width: 100%;
   align-items: center;
+  justify-content: center;
+  padding: 0 ${themeSpacing(1)};
 `
 
 export const StyledAttributes = styled.div`

@@ -23,12 +23,12 @@ const CharacterDescriptionsEdit: FC = () => {
   const backstory = getDescription("backstory");
 
   return <StyledDescriptions>
-    <CharacterDescriptionEdit description={personalityTraits} maxLength={100}/>
-    <CharacterDescriptionEdit description={ideals} maxLength={100}/>
-    <CharacterDescriptionEdit description={bonds} maxLength={100}/>
-    <CharacterDescriptionEdit description={flaws} maxLength={100}/>
-    <CharacterDescriptionEdit description={alliesAndOrganisations} maxLength={100}/>
-    <CharacterDescriptionEdit description={appearance} maxLength={100}/>
+    <CharacterDescriptionEdit description={personalityTraits} maxLength={200}/>
+    <CharacterDescriptionEdit description={ideals} maxLength={200}/>
+    <CharacterDescriptionEdit description={bonds} maxLength={200}/>
+    <CharacterDescriptionEdit description={flaws} maxLength={200}/>
+    <CharacterDescriptionEdit description={alliesAndOrganisations} maxLength={200}/>
+    <CharacterDescriptionEdit description={appearance} maxLength={200}/>
     <CharacterDescriptionEdit description={backstory} maxLength={1000} columnWidth={2} rows={13}/>
   </StyledDescriptions>
 }

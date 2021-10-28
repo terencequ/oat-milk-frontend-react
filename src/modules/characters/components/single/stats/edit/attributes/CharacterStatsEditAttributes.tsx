@@ -54,17 +54,17 @@ const CharacterStatsEditAttributes: FC = (props) => {
         <CharacterStatsEditAttribute iconSrc={speedIcon} attribute={speedAttribute} maxValue={999} minValue={0}/>
         <StyledAttribute>
             <StyledAttributeLogo src={passivePerceptionIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>Passive Perception</Typography>
+            <Typography variant={"subtitle1"} textAlign={"center"}>Passive perception</Typography>
             <Typography variant={"body1"}>{passivePerception}</Typography>
         </StyledAttribute>
         <StyledAttribute>
             <StyledAttributeLogo src={proficiencyBonusIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>Proficiency Bonus</Typography>
+            <Typography variant={"subtitle1"} textAlign={"center"}>Proficiency bonus</Typography>
             <Typography variant={"body1"}>{getModifierAsString(proficiencyBonus)}</Typography>
         </StyledAttribute>
         <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>        <StyledWideAttribute>
         <StyledAttributeLogo src={hitDiceIcon}/>
-            <Typography variant={"subtitle1"}>Hit Dice</Typography>
+            <Typography variant={"subtitle1"}>Hit dice</Typography>
             <div>
                 10d8
             </div>
