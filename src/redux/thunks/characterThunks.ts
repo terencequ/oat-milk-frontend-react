@@ -9,9 +9,10 @@ import {RootState} from "../store";
 import {failRequest, startRequest, succeedRequest} from "../slices/requestsSlice";
 import {getCharacterSummaries} from "./characterSummaryThunks";
 import {setCurrentCharacter, setCurrentEditCharacter} from "../slices/charactersSlice";
+import globalAxios from "axios";
 
 export const createCharacterClient = (): CharacterApi => {
-    return new CharacterApi(undefined, process.env.REACT_APP_API_URL);
+    return new CharacterApi(undefined, process.env.REACT_APP_API_URL, globalAxios);
 }
 
 export function createCharacter(request: CharacterRequest): ThunkAction<void, RootState, unknown, AnyAction> {

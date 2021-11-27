@@ -15,7 +15,6 @@ interface GenericAsyncProps {
 
 const GenericAsync: FC<GenericAsyncProps> = ({existingData, requestId, children}) => {
     const dispatch = useAppDispatch();
-    const history = useHistory();
     const { status, error } = requestSelector(requestId)();
 
     useEffect(() => {
@@ -24,18 +23,21 @@ const GenericAsync: FC<GenericAsyncProps> = ({existingData, requestId, children}
         } else {
             dispatch(setLoading(false));
         }
-    }, [dispatch, status])
+
+        if(status === RequestStatus.Failure){
+            const index401 = error?.indexOf("status code 401") ?? -1;
+            if(index401 !== -1){
+                dispatch(logout());
+            }
+        }
+
+    }, [dispatch, error, status])
 
     if(status === RequestStatus.Success || status === RequestStatus.InProgress){
         return <div>
             {children}
         </div>
     } else {
-        const index401 = error?.indexOf("status code 401") ?? -1;
-        if(index401 === -1){
-            dispatch(logout());
-        }
-
         return <>
             <Typography variant={"h2"} align={"center"} gutterBottom>Uh oh! An error has occurred.</Typography>
             <Typography variant={"h3"} align={"center"}>{error}</Typography>
