@@ -4,6 +4,8 @@ import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {useAppDispatch} from "../../../redux/hooks";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {setLoading} from "../../../redux/slices/userInterfaceSlice";
+import {useHistory} from "react-router-dom";
+import {logout} from "../../../redux/slices/usersSlice";
 
 interface GenericAsyncProps {
     existingData: boolean;
@@ -13,8 +15,9 @@ interface GenericAsyncProps {
 
 const GenericAsync: FC<GenericAsyncProps> = ({existingData, requestId, children}) => {
     const dispatch = useAppDispatch();
+    const history = useHistory();
     const { status, error } = requestSelector(requestId)();
-    
+
     useEffect(() => {
         if(status === RequestStatus.InProgress){
             dispatch(setLoading(true));
@@ -23,19 +26,21 @@ const GenericAsync: FC<GenericAsyncProps> = ({existingData, requestId, children}
         }
     }, [dispatch, status])
 
-    return <div>
-        {
-            (status === RequestStatus.Success || status === RequestStatus.InProgress)
-            && children
+    if(status === RequestStatus.Success || status === RequestStatus.InProgress){
+        return <div>
+            {children}
+        </div>
+    } else {
+        const index401 = error?.indexOf("status code 401") ?? -1;
+        if(index401 === -1){
+            dispatch(logout());
         }
-        {
-            status === RequestStatus.Failure &&
-            <>
-                <Typography variant={"h2"} align={"center"} gutterBottom>Uh oh! An error has occurred.</Typography>
-                <Typography variant={"h3"} align={"center"}>{error}</Typography>
-            </>
-        }
-    </div>;
+
+        return <>
+            <Typography variant={"h2"} align={"center"} gutterBottom>Uh oh! An error has occurred.</Typography>
+            <Typography variant={"h3"} align={"center"}>{error}</Typography>
+        </>
+    }
 }
 
 export default GenericAsync;

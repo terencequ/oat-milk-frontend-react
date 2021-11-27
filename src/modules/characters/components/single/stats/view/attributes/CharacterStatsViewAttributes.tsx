@@ -40,7 +40,7 @@ const CharacterStatsViewAttributes: FC = (props) => {
     const deathSaveFailuresAttribute = getAttributeById("deathSaveFailures");
 
     const passivePerception = 10 + getModifier(character.abilityScores?.find(as => as.id === "wisdom")?.value ?? 10);
-    const proficiencyBonus = getProficiencyBonus(character.level.level);
+    const proficiencyBonus = getProficiencyBonus(character.level.number);
     const initiative = getModifier(character.abilityScores?.find(as => as.id === "dexterity")?.value ?? 10);
 
     return <StyledAttributes>

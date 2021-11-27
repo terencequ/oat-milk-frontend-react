@@ -68,9 +68,9 @@ export function getProficiencyBonus(level: number) {
 export function getProgressPercentage(level: CharacterLevelResponse) {
     const nextLevelExp = level.nextLevelExperienceRequirement;
     const currentExp = level.experience;
-    const previousLevelExp = level.previousLevelExperienceRequirement;
+    const currentLevelExp = level.currentLevelExperienceRequirement;
 
-    let characterPercentage = (currentExp - previousLevelExp) / (nextLevelExp - previousLevelExp);
+    let characterPercentage = (currentExp - currentLevelExp) / (nextLevelExp - currentLevelExp);
     return characterPercentage * 100;
 }
 

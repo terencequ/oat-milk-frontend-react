@@ -64,7 +64,6 @@ const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({descriptio
     <TextField fullWidth
                multiline
                rows={newRows}
-               maxRows={newRows}
                value={value}
                onChange={onChangeValue}
                onBlur={onSaveValue}/>

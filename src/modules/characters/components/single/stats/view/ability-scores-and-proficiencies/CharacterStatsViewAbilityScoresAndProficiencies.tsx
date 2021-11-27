@@ -37,7 +37,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC = (props) => {
                     return <CharacterViewSavingThrowProficiency
                         key={index}
                         abilityScore={value}
-                        levelValue={currentCharacter.level.level}/>
+                        levelValue={currentCharacter.level.number}/>
                 })}
             </StyledProficienciesContainer>
             <StyledProficienciesContainer>
@@ -48,7 +48,7 @@ const CharacterStatsViewAbilityScoresAndProficiencies: FC = (props) => {
                             key={index}
                             abilityScoreProficiency={value.proficiency}
                             abilityScore={value.abilityScore}
-                            levelValue={currentCharacter.level.level}/>
+                            levelValue={currentCharacter.level.number}/>
                     })}
             </StyledProficienciesContainer>
         </StyledProficiencies>
