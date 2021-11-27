@@ -10,6 +10,7 @@ export const UserFormPageContainer = styled(Card)`
   flex-flow: column;
   justify-content: center;
   margin: auto;
+  margin-top: ${themeSpacing(2)};
   padding: ${themeSpacing(4)};
 
   .logo {

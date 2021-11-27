@@ -69,7 +69,8 @@ export const StyledAttributes = styled.div`
   grid-row-gap: ${themeSpacing(1)};
 `
 
-export const StyledAttribute = styled(Card)`
+export const StyledAttribute = styled(Card)<{columnWidth?: number}>`
+  grid-column: span ${props => props.columnWidth ?? 1};
   display: grid;
   grid-template-rows: 1fr auto 40px;
   justify-items: center;

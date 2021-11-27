@@ -16,6 +16,8 @@ import passivePerceptionIcon from 'assets/images/icons/passiveperception.png';
 import proficiencyBonusIcon from 'assets/images/icons/proficiency.png';
 import speedIcon from 'assets/images/icons/speed.png';
 import {StyledAttribute, StyledAttributeLogo, StyledAttributes, StyledWideAttribute } from "../../CharacterStatsStyles";
+import CharacterStatsViewAttribute from "./CharacterStatsViewAttribute";
+import CharacterStatsViewAttributeCustom from "./CharacterStatsViewAttributeCustom";
 
 
 const CharacterStatsViewAttributes: FC = (props) => {
@@ -44,48 +46,14 @@ const CharacterStatsViewAttributes: FC = (props) => {
     const initiative = getModifier(character.abilityScores?.find(as => as.id === "dexterity")?.value ?? 10);
 
     return <StyledAttributes>
-        <StyledAttribute>
-            <StyledAttributeLogo src={initiativeIcon}/>
-            <Typography variant={"subtitle1"}>Initiative</Typography>
-            <Typography variant={"body1"}>{getModifierAsString(initiative)}</Typography>
-        </StyledAttribute>
-        <StyledAttribute>
-            <StyledAttributeLogo src={hitPointsIcon}/>
-            <Typography variant={"subtitle1"}>{hitPointsAttribute.name}</Typography>
-            <Typography variant={"body1"}>{hitPointsAttribute.currentValue}/{hitPointsAttribute.defaultValue}</Typography>
-        </StyledAttribute>
-        <StyledAttribute>
-            <StyledAttributeLogo src={speedIcon}/>
-            <Typography variant={"subtitle1"}>{speedAttribute.name}</Typography>
-            <Typography variant={"body1"}>{speedAttribute.currentValue}ft</Typography>
-        </StyledAttribute>
-        <StyledAttribute>
-            <StyledAttributeLogo src={passivePerceptionIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>Passive perception</Typography>
-            <Typography variant={"body1"}>{passivePerception}</Typography>
-        </StyledAttribute>
-        <StyledAttribute>
-            <StyledAttributeLogo src={proficiencyBonusIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>Proficiency bonus</Typography>
-            <Typography variant={"body1"}>{getModifierAsString(proficiencyBonus)}</Typography>
-        </StyledAttribute>
-        <StyledAttribute>
-            <StyledAttributeLogo src={armorClassIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>Armor class</Typography>
-            <Typography variant={"body1"}>{armorClassAttribute.currentValue}</Typography>
-        </StyledAttribute>
-        <StyledWideAttribute>
-            <StyledAttributeLogo src={hitDiceIcon}/>
-            <Typography variant={"subtitle1"}>Hit dice</Typography>
-            <div>
-                10d8
-            </div>
-        </StyledWideAttribute>
-        <StyledWideAttribute>
-            <CharacterStatsViewAttributesDeathSaves
-                deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue}
-                deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
-        </StyledWideAttribute>
+        <CharacterStatsViewAttributeCustom iconSrc={initiativeIcon} title={"Initiative"} value={getModifierAsString(initiative)}/>
+        <CharacterStatsViewAttribute iconSrc={hitPointsIcon} attribute={hitPointsAttribute} includeDefaultValue={true}/>
+        <CharacterStatsViewAttribute iconSrc={speedIcon} attribute={speedAttribute}/>
+        <CharacterStatsViewAttributeCustom iconSrc={passivePerceptionIcon} title={"Passive perception"} value={getModifierAsString(passivePerception)}/>
+        <CharacterStatsViewAttributeCustom iconSrc={proficiencyBonusIcon} title={"Proficiency bonus"} value={getModifierAsString(proficiencyBonus)}/>
+        <CharacterStatsViewAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute}/>
+        <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={"10d8"}/>
+        <CharacterStatsViewAttributesDeathSaves deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue} deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
     </StyledAttributes>
 }
 

@@ -5,6 +5,7 @@ import {FC} from "react";
 import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import deathSaveFailuresIcon from 'assets/images/icons/deathsavefailures.png';
 import deathSaveSuccessesIcon from 'assets/images/icons/deathsavesuccesses.png';
+import { StyledWideAttribute } from "../../CharacterStatsStyles";
 
 const StyledDeathSavesAndFailures = styled.div`
   display: grid;
@@ -36,24 +37,26 @@ interface CharacterStatsViewDeathSavesProps {
  * Displays death save successes and failures.
  */
 const CharacterStatsViewAttributesDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({deathSaveSuccesses, deathSaveFailures}) => {
-    return <StyledDeathSavesAndFailures>
-        <div>
-            <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
-            <StyledDeathSavesAndFailuresRadio>
-                <StyledAttributeLogo src={deathSaveSuccessesIcon}/>
-                {[...Array(deathSaveSuccesses)].map((value, index) => <RadioButtonChecked key={index}/>)}
-                {[...Array(3 - deathSaveSuccesses)].map((value, index) => <RadioButtonUnchecked key={index}/>)}
-            </StyledDeathSavesAndFailuresRadio>
-        </div>
-        <div>
-            <Typography align={"center"} variant={"subtitle1"}>Death save failures</Typography>
-            <StyledDeathSavesAndFailuresRadio>
-                <StyledAttributeLogo src={deathSaveFailuresIcon}/>
-                {[...Array(deathSaveFailures)].map((value, index) => <RadioButtonChecked key={index}/>)}
-                {[...Array(3 - deathSaveFailures)].map((value, index) => <RadioButtonUnchecked key={index}/>)}
-            </StyledDeathSavesAndFailuresRadio>
-        </div>
-    </StyledDeathSavesAndFailures>
+    return <StyledWideAttribute>
+            <StyledDeathSavesAndFailures>
+            <div>
+                <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
+                <StyledDeathSavesAndFailuresRadio>
+                    <StyledAttributeLogo src={deathSaveSuccessesIcon}/>
+                    {[...Array(deathSaveSuccesses)].map((value, index) => <RadioButtonChecked key={index}/>)}
+                    {[...Array(3 - deathSaveSuccesses)].map((value, index) => <RadioButtonUnchecked key={index}/>)}
+                </StyledDeathSavesAndFailuresRadio>
+            </div>
+            <div>
+                <Typography align={"center"} variant={"subtitle1"}>Death save failures</Typography>
+                <StyledDeathSavesAndFailuresRadio>
+                    <StyledAttributeLogo src={deathSaveFailuresIcon}/>
+                    {[...Array(deathSaveFailures)].map((value, index) => <RadioButtonChecked key={index}/>)}
+                    {[...Array(3 - deathSaveFailures)].map((value, index) => <RadioButtonUnchecked key={index}/>)}
+                </StyledDeathSavesAndFailuresRadio>
+            </div>
+        </StyledDeathSavesAndFailures>
+    </StyledWideAttribute>
 }
 
 export default CharacterStatsViewAttributesDeathSaves;

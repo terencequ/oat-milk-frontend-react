@@ -1,6 +1,6 @@
 import PeopleAlt from "@mui/icons-material/PeopleAlt";
 import ListAlt from "@mui/icons-material/ListAlt";
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Card, CardActionArea, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import {StyledPageContainer, themeSpacing} from '../styles/GlobalStyles';
@@ -34,9 +34,11 @@ const HomePage: FC = () => {
     const gotoCharacters = () => {
         history.push("/characters");
     }
+    useEffect(() => {
+        dispatch(setBackground("inherit"));
+    }, [dispatch])
 
     document.title = "Oat Milk - Home"
-    dispatch(setBackground("inherit"));
     return <StyledPageContainer>
         <Typography gutterBottom align={"center"} variant={"h2"}>Home</Typography>
         <HomePageButtons>

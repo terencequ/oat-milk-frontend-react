@@ -1,4 +1,4 @@
-import React, {FC, FormEvent, useState} from "react";
+import React, {FC, FormEvent, useEffect, useState} from "react";
 import {
     CenteredCircularProgress,
     UserFormPageContainer,
@@ -16,6 +16,8 @@ import MenuItemThemeButton from "../../shared/components/MenuItemThemeButton";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
+import entryBackgroundDark from "../../../assets/images/background-entry-dark.svg";
+import entryBackground from "../../../assets/images/background-entry.svg";
 
 const RegisterPage: FC = () => {
     const [displayName, setDisplayName] = useState("");
@@ -35,7 +37,10 @@ const RegisterPage: FC = () => {
 
     const darkmode = useAppSelector(state => state.userInterface.darkMode);
     document.title = "Oat Milk - Register"
-    dispatch(setBackground(`url("images/background-entry${darkmode ? "-dark" : ""}.svg")`));
+    useEffect(() => {
+        dispatch(setBackground(`url("${darkmode ? entryBackgroundDark : entryBackground}")`));
+    }, [darkmode, dispatch])
+
     return <>
         {isLoggedIn && // This means user is logged in
             <Redirect to={'/'}/>

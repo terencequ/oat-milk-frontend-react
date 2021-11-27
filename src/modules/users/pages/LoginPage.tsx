@@ -1,4 +1,4 @@
-import React, {FC, FormEvent, useState} from 'react';
+import React, {FC, FormEvent, useEffect, useState} from 'react';
 import {
   Button,
   FormControl, Link,
@@ -39,7 +39,11 @@ const LoginPage: FC = () => {
 
   const darkmode = useAppSelector(state => state.userInterface.darkMode);
   document.title = "Oat Milk - Login"
-  dispatch(setBackground(`url("${darkmode ? entryBackgroundDark : entryBackground}")`));
+
+  useEffect(() => {
+    dispatch(setBackground(`url("${darkmode ? entryBackgroundDark : entryBackground}")`));
+  }, [dispatch])
+
   return <>
     {isLoggedIn &&
       <Redirect to={'/'}/>

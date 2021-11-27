@@ -21,7 +21,7 @@ const StyledRoot = styled.div`
   background-image: ${() => {
     return useAppSelector(state => state.userInterface.currentBackground);
   }};
-  background-size: 100%;
+  background-size: cover;
 `
 
 interface StyledBodyProps {

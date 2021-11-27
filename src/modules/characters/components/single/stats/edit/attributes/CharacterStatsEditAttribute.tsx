@@ -24,7 +24,7 @@ const StyledTextField = styled(TextField)`
   width: 70px;
 `
 
-interface CharacterStatsEditProps {
+interface CharacterStatsEditAttributeProps {
     iconSrc: string | undefined;
     attribute: CharacterAttributeRequest,
     columnWidth?: number,
@@ -33,7 +33,7 @@ interface CharacterStatsEditProps {
     minValue: number,
 }
 
-const CharacterStatsEditAttribute: FC<CharacterStatsEditProps> =
+const CharacterStatsEditAttribute: FC<CharacterStatsEditAttributeProps> =
     ({
         iconSrc,
         attribute,
@@ -109,7 +109,7 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditProps> =
         }
     }
 
-    return <StyledAttribute sx={{gridColumn: `span ${columnWidth}`}}>
+    return <StyledAttribute columnWidth={columnWidth}>
         <StyledAttributeLogo src={iconSrc}/>
         <Typography variant={"subtitle1"}>{attribute.name}</Typography>
         <ErrorTooltip open={!!error} title={error ?? ""}>

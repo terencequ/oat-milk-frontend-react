@@ -12,12 +12,13 @@ import speedIcon from "../../../../../../../assets/images/icons/speed.png";
 import passivePerceptionIcon from "../../../../../../../assets/images/icons/passiveperception.png";
 import proficiencyBonusIcon from "../../../../../../../assets/images/icons/proficiency.png";
 import armorClassIcon from "../../../../../../../assets/images/icons/armorclass.png";
-import CharacterStatsViewAttributesDeathSaves from "../../view/attributes/CharacterStatsViewAttributesDeathSaves";
 import hitDiceIcon from "../../../../../../../assets/images/icons/hitdice.png";
+import CharacterStatsViewAttributesDeathSaves from "../../view/attributes/CharacterStatsViewAttributesDeathSaves";
 import {StyledAttribute, StyledAttributeLogo, StyledAttributes, StyledWideAttribute } from "../../CharacterStatsStyles";
 import {useAppSelector} from "../../../../../../../redux/hooks";
 import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterStatsEditAttribute from "./CharacterStatsEditAttribute";
+import CharacterStatsViewAttributeCustom from "../../view/attributes/CharacterStatsViewAttributeCustom";
 
 const CharacterStatsEditAttributes: FC = (props) => {
     const character = useAppSelector(state => state.characters.currentEditCharacter);
@@ -45,36 +46,14 @@ const CharacterStatsEditAttributes: FC = (props) => {
     const initiative = getModifier(character.abilityScores?.find(as => as.id === "dexterity")?.value ?? 10);
 
     return <StyledAttributes>
-        <StyledAttribute>
-            <StyledAttributeLogo src={initiativeIcon}/>
-            <Typography variant={"subtitle1"}>Initiative</Typography>
-            <Typography variant={"body1"}>{getModifierAsString(initiative)}</Typography>
-        </StyledAttribute>
-        <CharacterStatsEditAttribute iconSrc={hitPointsIcon} attribute={hitPointsAttribute} maxValue={999} minValue={0} includeDefaultValue/>
+        <CharacterStatsViewAttributeCustom iconSrc={initiativeIcon} title={"Initiative"} value={getModifierAsString(initiative)}/>
+        <CharacterStatsEditAttribute iconSrc={hitPointsIcon} attribute={hitPointsAttribute} maxValue={999} minValue={0} includeDefaultValue={true}/>
         <CharacterStatsEditAttribute iconSrc={speedIcon} attribute={speedAttribute} maxValue={999} minValue={0}/>
-        <StyledAttribute>
-            <StyledAttributeLogo src={passivePerceptionIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>Passive perception</Typography>
-            <Typography variant={"body1"}>{passivePerception}</Typography>
-        </StyledAttribute>
-        <StyledAttribute>
-            <StyledAttributeLogo src={proficiencyBonusIcon}/>
-            <Typography variant={"subtitle1"} textAlign={"center"}>Proficiency bonus</Typography>
-            <Typography variant={"body1"}>{getModifierAsString(proficiencyBonus)}</Typography>
-        </StyledAttribute>
-        <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>        <StyledWideAttribute>
-        <StyledAttributeLogo src={hitDiceIcon}/>
-            <Typography variant={"subtitle1"}>Hit dice</Typography>
-            <div>
-                10d8
-            </div>
-        </StyledWideAttribute>
-        <StyledWideAttribute>
-            <CharacterStatsViewAttributesDeathSaves
-                deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue}
-                deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
-        </StyledWideAttribute>
-
+        <CharacterStatsViewAttributeCustom iconSrc={passivePerceptionIcon} title={"Passive perception"} value={getModifierAsString(passivePerception)}/>
+        <CharacterStatsViewAttributeCustom iconSrc={proficiencyBonusIcon} title={"Proficiency bonus"} value={getModifierAsString(proficiencyBonus)}/>
+        <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>
+        <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={"10d8"}/>
+        <CharacterStatsViewAttributesDeathSaves deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue} deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
     </StyledAttributes>
 }
 
