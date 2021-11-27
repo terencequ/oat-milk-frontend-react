@@ -73,7 +73,6 @@ export const StyledAttributes = styled.div`
 interface WrappedCardProps extends CardProps {
     columnSpan?: number
 }
-
 const WrappedCard: FC<WrappedCardProps> = ({columnSpan, ...props}) => {
     return <Card {...props}>{props.children}</Card>
 }

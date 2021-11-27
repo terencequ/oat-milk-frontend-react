@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import {Card} from "@mui/material";
+import {Card, CardProps} from "@mui/material";
 import {themeSpacing} from "../../../../core/styles/GlobalStyles";
+import {FC} from "react";
 
 export const StyledDescriptions = styled.div`
   display: grid;
@@ -10,7 +11,15 @@ export const StyledDescriptions = styled.div`
   grid-row-gap: ${themeSpacing(1)};
 `;
 
-export const StyledDescription = styled(Card)<{ columnSpan?: number }>`
+
+interface WrappedCardProps extends CardProps {
+    columnSpan?: number
+}
+
+const WrappedCard: FC<WrappedCardProps> = ({columnSpan, ...props}) => {
+    return <Card {...props}>{props.children}</Card>
+}
+export const StyledDescription = styled(WrappedCard)<{ columnSpan?: number }>`
   grid-column: span ${props => props.columnSpan ?? 1};
   padding: ${themeSpacing(2)};
 `
