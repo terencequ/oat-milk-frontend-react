@@ -31,7 +31,7 @@ const StyledExperienceField = styled(TextField)`
   margin: auto;
 `
 
-const CharacterEditSummary: FC = () => {
+const CharacterSummaryEdit: FC = () => {
   const dispatch = useAppDispatch();
 
   const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
@@ -47,7 +47,7 @@ const CharacterEditSummary: FC = () => {
   const [experience, setExperience] = useState(initialExperience);
 
   // Error state in redux
-  const experienceErrorId = `${CharacterEditSummary.name}/experience`
+  const experienceErrorId = `${CharacterSummaryEdit.name}/experience`
   const experienceError = getEditCharacterFormError(experienceErrorId)();
   const setExperienceError = useCallback((newError: string | null) => {
     dispatch(setCurrentEditCharacterFormError({id: experienceErrorId, error: newError}))
@@ -153,4 +153,4 @@ const CharacterEditSummary: FC = () => {
   </StyledSummary>
 }
 
-export default CharacterEditSummary;
+export default CharacterSummaryEdit;

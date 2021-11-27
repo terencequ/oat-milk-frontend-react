@@ -3,7 +3,7 @@ import React, {FC} from "react";
 import {useAppSelector} from "../../../../../../redux/hooks";
 import {StyledSummary} from "../CharacterSummaryStyles";
 
-const CharacterViewSummary: FC = (props) => {
+const CharacterSummaryView: FC = (props) => {
     const currentCharacter = useAppSelector(state => state.characters.currentCharacter);
     if(!currentCharacter){
         return <></>
@@ -18,4 +18,4 @@ const CharacterViewSummary: FC = (props) => {
     </StyledSummary>
 }
 
-export default CharacterViewSummary;
+export default CharacterSummaryView;

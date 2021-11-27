@@ -14,6 +14,7 @@ import CharacterStats from "../components/single/stats/CharacterStats";
 import {setBackground} from "../../../redux/slices/userInterfaceSlice";
 import CharacterSummary from "../components/single/summary/CharacterSummary";
 import CharacterDescriptions from "../components/single/descriptions/CharacterDescriptions";
+import CharacterSpells from "../components/single/spells/CharacterSpells";
 
 const StyledTabs = styled(Tabs)`
   margin-bottom: ${themeSpacing(2)};
@@ -113,6 +114,7 @@ const CharacterPage: FC<{editModeStart: boolean}> = ({editModeStart}) => {
                           onChange={(_, newValue) => setTabSelection(newValue)} indicatorColor={"secondary"} textColor={"secondary"}>
                 <Tab label={"Overall"} value={0}/>
                 <Tab label={"Descriptions"} value={1}/>
+                <Tab label={"Spells"} value={2}/>
               </StyledTabs>
             </div>
             <Fade in={tabSelection === 0} appear>
@@ -123,6 +125,11 @@ const CharacterPage: FC<{editModeStart: boolean}> = ({editModeStart}) => {
             <Fade in={tabSelection === 1} appear>
               <div hidden={tabSelection !== 1}>
                 <CharacterDescriptions editMode={editMode}/>
+              </div>
+            </Fade>
+            <Fade in={tabSelection === 2} appear>
+              <div hidden={tabSelection !== 2}>
+                <CharacterSpells editMode={editMode}/>
               </div>
             </Fade>
           </StyledMainContainer>

@@ -1,12 +1,12 @@
 import {FC} from "react";
-import CharacterEditSummary from "./edit/CharacterEditSummary";
-import CharacterViewSummary from "./view/CharacterViewSummary";
+import CharacterSummaryEdit from "./edit/CharacterSummaryEdit";
+import CharacterSummaryView from "./view/CharacterSummaryView";
 
 const CharacterSummary: FC<{editMode: boolean}> = ({editMode}) => {
   return <>
     {editMode
-      ? <CharacterEditSummary/>
-      : <CharacterViewSummary/>
+      ? <CharacterSummaryEdit/>
+      : <CharacterSummaryView/>
     }
   </>
 }
