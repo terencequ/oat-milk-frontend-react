@@ -10,6 +10,7 @@ export const StyledDescriptions = styled.div`
   grid-row-gap: ${themeSpacing(1)};
 `;
 
-export const StyledDescription = styled(Card)`
+export const StyledDescription = styled(Card)<{ columnSpan?: number }>`
+  grid-column: span ${props => props.columnSpan ?? 1};
   padding: ${themeSpacing(2)};
 `

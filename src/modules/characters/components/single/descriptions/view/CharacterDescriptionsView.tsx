@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import {useAppSelector} from "../../../../../../redux/hooks";
 import {CharacterDescriptionResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterDescriptionView from "./CharacterDescriptionView";
@@ -26,7 +26,7 @@ const CharacterDescriptionsView: FC = () => {
     <CharacterDescriptionView description={flaws}/>
     <CharacterDescriptionView description={alliesAndOrganisations}/>
     <CharacterDescriptionView description={appearance}/>
-    <CharacterDescriptionView description={backstory} columnWidth={2}/>
+    <CharacterDescriptionView description={backstory} columnSpan={2}/>
   </StyledDescriptions>
 }
 

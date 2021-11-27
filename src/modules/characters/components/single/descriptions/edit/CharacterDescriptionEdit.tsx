@@ -1,7 +1,7 @@
-import {ChangeEvent, FC, FocusEvent, useState} from "react";
+import {ChangeEvent, FC, useState} from "react";
 import {CharacterDescriptionRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {TextField, Typography} from "@mui/material";
-import { StyledDescription } from "../CharacterDescriptionsStyles";
+import {StyledDescription} from "../CharacterDescriptionsStyles";
 import {setCurrentEditCharacter} from "../../../../../../redux/slices/charactersSlice";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
 import {limitString} from "../../../../helpers/TextHelpers";
@@ -9,11 +9,11 @@ import {limitString} from "../../../../helpers/TextHelpers";
 interface CharacterDescriptionEditProps {
   description: CharacterDescriptionRequest | null;
   maxLength: number;
-  columnWidth?: number;
+  columnSpan?: number;
   rows?: number;
 }
 
-const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({description, maxLength, columnWidth, rows}) => {
+const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({description, maxLength, columnSpan, rows}) => {
 
   const dispatch = useAppDispatch();
   const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
@@ -38,14 +38,13 @@ const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({descriptio
 
   /**
    * Check errors and persist Description value to redux.
-   * @param event
    */
-  const onSaveValue = (event: FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    if(description === null){
+  const onSaveValue = () => {
+    if (description === null) {
       return;
     }
 
-    if(!!currentEditCharacter){
+    if (!!currentEditCharacter) {
       dispatch(setCurrentEditCharacter({
         ...currentEditCharacter,
         descriptions: currentEditCharacter.descriptions?.map(d => {
@@ -59,7 +58,7 @@ const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({descriptio
   }
 
 
-  return <StyledDescription sx={{gridColumn: `span ${columnWidth}`}}>
+  return <StyledDescription columnSpan={columnSpan}>
     <Typography variant={"subtitle1"}>{description?.name ?? ""}</Typography>
     <TextField fullWidth
                multiline

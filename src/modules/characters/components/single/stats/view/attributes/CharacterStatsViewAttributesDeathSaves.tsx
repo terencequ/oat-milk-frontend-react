@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import {Paper, Typography} from "@mui/material";
+import {Typography} from "@mui/material";
 import {RadioButtonChecked, RadioButtonUnchecked} from "@mui/icons-material";
 import {FC} from "react";
 import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import deathSaveFailuresIcon from 'assets/images/icons/deathsavefailures.png';
 import deathSaveSuccessesIcon from 'assets/images/icons/deathsavesuccesses.png';
-import { StyledWideAttribute } from "../../CharacterStatsStyles";
+import {StyledAttribute} from "../../CharacterStatsStyles";
 
 const StyledDeathSavesAndFailures = styled.div`
   display: grid;
@@ -26,8 +26,6 @@ const StyledAttributeLogo = styled.img`
   height: 32px;
 `
 
-
-
 interface CharacterStatsViewDeathSavesProps {
     deathSaveSuccesses: number,
     deathSaveFailures: number
@@ -37,8 +35,8 @@ interface CharacterStatsViewDeathSavesProps {
  * Displays death save successes and failures.
  */
 const CharacterStatsViewAttributesDeathSaves: FC<CharacterStatsViewDeathSavesProps> = ({deathSaveSuccesses, deathSaveFailures}) => {
-    return <StyledWideAttribute>
-            <StyledDeathSavesAndFailures>
+    return <StyledAttribute columnSpan={2}>
+        <StyledDeathSavesAndFailures>
             <div>
                 <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
                 <StyledDeathSavesAndFailuresRadio>
@@ -56,7 +54,7 @@ const CharacterStatsViewAttributesDeathSaves: FC<CharacterStatsViewDeathSavesPro
                 </StyledDeathSavesAndFailuresRadio>
             </div>
         </StyledDeathSavesAndFailures>
-    </StyledWideAttribute>
+    </StyledAttribute>
 }
 
 export default CharacterStatsViewAttributesDeathSaves;

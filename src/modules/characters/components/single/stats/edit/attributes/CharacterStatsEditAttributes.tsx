@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import initiativeIcon from "../../../../../../../assets/images/icons/initiative.png";
-import {Typography} from "@mui/material";
 import {
     getLevel,
     getModifier,
@@ -14,21 +13,21 @@ import proficiencyBonusIcon from "../../../../../../../assets/images/icons/profi
 import armorClassIcon from "../../../../../../../assets/images/icons/armorclass.png";
 import hitDiceIcon from "../../../../../../../assets/images/icons/hitdice.png";
 import CharacterStatsViewAttributesDeathSaves from "../../view/attributes/CharacterStatsViewAttributesDeathSaves";
-import {StyledAttribute, StyledAttributeLogo, StyledAttributes, StyledWideAttribute } from "../../CharacterStatsStyles";
+import {StyledAttributes} from "../../CharacterStatsStyles";
 import {useAppSelector} from "../../../../../../../redux/hooks";
 import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterStatsEditAttribute from "./CharacterStatsEditAttribute";
 import CharacterStatsViewAttributeCustom from "../../view/attributes/CharacterStatsViewAttributeCustom";
 
-const CharacterStatsEditAttributes: FC = (props) => {
+const CharacterStatsEditAttributes: FC = () => {
     const character = useAppSelector(state => state.characters.currentEditCharacter);
 
-    if(!character){
+    if (!character) {
         return <></>
     }
 
-    const attributesDictionary: {[id: string]: CharacterAttributeResponse}
-        = character.attributes?.reduce((a,x) => ({...a, [x.id]: x}), {}) ?? {}; // Convert to dictionary for performance
+    const attributesDictionary: { [id: string]: CharacterAttributeResponse }
+        = character.attributes?.reduce((a, x) => ({...a, [x.id]: x}), {}) ?? {}; // Convert to dictionary for performance
 
     function getAttributeById(id: string): CharacterAttributeResponse {
         return attributesDictionary[id]

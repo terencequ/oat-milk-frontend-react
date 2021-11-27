@@ -1,12 +1,7 @@
-import {Card, Typography} from "@mui/material";
-import {CharacterAttributeResponse, CharacterResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
 import {useAppSelector} from "../../../../../../../redux/hooks";
-import {
-    getModifier,
-    getModifierAsString,
-    getProficiencyBonus,
-} from "../../../../../helpers/CharacterStatHelpers";
+import {getModifier, getModifierAsString, getProficiencyBonus,} from "../../../../../helpers/CharacterStatHelpers";
 import CharacterStatsViewAttributesDeathSaves from "./CharacterStatsViewAttributesDeathSaves";
 import armorClassIcon from 'assets/images/icons/armorclass.png';
 import initiativeIcon from 'assets/images/icons/initiative.png';
@@ -15,20 +10,20 @@ import hitPointsIcon from 'assets/images/icons/hitpoints.png';
 import passivePerceptionIcon from 'assets/images/icons/passiveperception.png';
 import proficiencyBonusIcon from 'assets/images/icons/proficiency.png';
 import speedIcon from 'assets/images/icons/speed.png';
-import {StyledAttribute, StyledAttributeLogo, StyledAttributes, StyledWideAttribute } from "../../CharacterStatsStyles";
+import {StyledAttributes} from "../../CharacterStatsStyles";
 import CharacterStatsViewAttribute from "./CharacterStatsViewAttribute";
 import CharacterStatsViewAttributeCustom from "./CharacterStatsViewAttributeCustom";
 
 
-const CharacterStatsViewAttributes: FC = (props) => {
+const CharacterStatsViewAttributes: FC = () => {
     const character = useAppSelector(state => state.characters.currentCharacter);
 
-    if(!character){
+    if (!character) {
         return <></>
     }
 
-    const attributesDictionary: {[id: string]: CharacterAttributeResponse}
-        = character.attributes.reduce((a,x) => ({...a, [x.id]: x}), {}); // Convert to dictionary for performance
+    const attributesDictionary: { [id: string]: CharacterAttributeResponse }
+        = character.attributes.reduce((a, x) => ({...a, [x.id]: x}), {}); // Convert to dictionary for performance
 
     function getAttributeById(id: string): CharacterAttributeResponse {
         return attributesDictionary[id]

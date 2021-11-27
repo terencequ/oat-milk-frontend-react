@@ -109,17 +109,17 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditAttributeProps> =
         }
     }
 
-    return <StyledAttribute columnWidth={columnWidth}>
+    return <StyledAttribute columnSpan={columnWidth}>
         <StyledAttributeLogo src={iconSrc}/>
         <Typography variant={"subtitle1"}>{attribute.name}</Typography>
         <ErrorTooltip open={!!error} title={error ?? ""}>
             <StyledContainer>
                 <StyledTextField variant={"outlined"}
-                    inputProps={{min: 0, style: { textAlign: 'center' }}}
-                    size={"small"}
-                    value={currentValue}
-                    onChange={onChangeCurrentValue}
-                    onBlur={onSaveValue}/>
+                                 inputProps={{min: 0, style: {textAlign: 'center'}}}
+                                 size={"small"}
+                                 value={currentValue}
+                                 onChange={onChangeCurrentValue}
+                                 onBlur={onSaveValue}/>
                 {
                     includeDefaultValue &&
                         <>

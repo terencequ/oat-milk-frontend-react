@@ -1,10 +1,8 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import {useAppSelector} from "../../../../../../redux/hooks";
-import {
-  CharacterDescriptionRequest,
-} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {CharacterDescriptionRequest,} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterDescriptionEdit from "./CharacterDescriptionEdit";
-import { StyledDescriptions } from "../CharacterDescriptionsStyles";
+import {StyledDescriptions} from "../CharacterDescriptionsStyles";
 
 const CharacterDescriptionsEdit: FC = () => {
   const currentEditCharacterDescriptions = useAppSelector(state => state.characters.currentEditCharacter)?.descriptions ?? [];
@@ -29,7 +27,7 @@ const CharacterDescriptionsEdit: FC = () => {
     <CharacterDescriptionEdit description={flaws} maxLength={200}/>
     <CharacterDescriptionEdit description={alliesAndOrganisations} maxLength={200}/>
     <CharacterDescriptionEdit description={appearance} maxLength={200}/>
-    <CharacterDescriptionEdit description={backstory} maxLength={1000} columnWidth={2} rows={13}/>
+    <CharacterDescriptionEdit description={backstory} maxLength={1000} columnSpan={2} rows={13}/>
   </StyledDescriptions>
 }
 

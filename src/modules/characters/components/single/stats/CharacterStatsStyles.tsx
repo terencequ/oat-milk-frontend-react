@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import {Card} from "@mui/material";
+import {Card, CardProps} from "@mui/material";
 import {themeSpacing} from "../../../../core/styles/GlobalStyles";
+import {FC} from "react";
 
 /**
  * Container for entire stats page.
@@ -69,19 +70,17 @@ export const StyledAttributes = styled.div`
   grid-row-gap: ${themeSpacing(1)};
 `
 
-export const StyledAttribute = styled(Card)<{columnWidth?: number}>`
-  grid-column: span ${props => props.columnWidth ?? 1};
+interface WrappedCardProps extends CardProps {
+    columnSpan?: number
+}
+
+const WrappedCard: FC<WrappedCardProps> = ({columnSpan, ...props}) => {
+    return <Card {...props}>{props.children}</Card>
+}
+export const StyledAttribute = styled(WrappedCard)<{ columnSpan?: number }>`
+  grid-column: span ${props => props.columnSpan ?? 1};
   display: grid;
   grid-template-rows: 1fr auto 40px;
-  justify-items: center;
-  align-items: center;
-  padding: ${themeSpacing(2)};
-`
-
-export const StyledWideAttribute = styled(Card)`
-  grid-column: span 2;
-  display: grid;
-  grid-template-rows: 1fr auto 30px;
   justify-items: center;
   align-items: center;
   padding: ${themeSpacing(2)};
