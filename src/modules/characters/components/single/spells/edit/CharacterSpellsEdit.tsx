@@ -17,7 +17,7 @@ const CharacterSpellsEdit: FC = () => {
   return <StyledCharacterSpells>
     <StyledCharacterSpellsContainer totalItemCount={currentEditCharacterSpells.length}>
       {currentEditCharacterSpells.map((spell, index) => <CharacterSpellEdit key={index} spell={spell}/>)}
-      <Button variant={"contained"} onClick={() => setOpen(true)}>Create New Spell</Button>
+      <Button color={"secondary"} variant={"contained"} onClick={() => setOpen(true)}>Create New Spell</Button>
     </StyledCharacterSpellsContainer>
     <CharacterSpellCreateOrEditDialog open={open} onClose={() => setOpen(false)}/>
   </StyledCharacterSpells>
