@@ -51,7 +51,7 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditAttributeProps> =
     const initialDefaultValue = (attribute.defaultValue ?? 0).toString();
     const [defaultValue, setDefaultValue] = useState<string>(initialDefaultValue);
 
-        // Error state in redux
+    // Error state in redux
     const errorId = `${CharacterEditAbilityScore.name}/${attribute.id}`
     const error = getEditCharacterFormError(errorId)();
     const setError = useCallback((newError: string | null) => {

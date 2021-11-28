@@ -11,7 +11,6 @@ import styled from "@emotion/styled";
 import PrivateRoute from "./modules/core/components/PrivateRoute";
 import {useAppSelector} from "./redux/hooks";
 import createAppTheme from "./theme";
-import CharacterCreatePage from "./modules/characters/pages/CharacterCreatePage";
 import RegisterPage from "./modules/users/pages/RegisterPage";
 import CharacterListPage from "./modules/characters/pages/CharacterListPage";
 import NavDrawer, {drawerMinimisedWidth, drawerWidth} from "./modules/core/components/NavDrawer";
@@ -81,9 +80,6 @@ const App = () => {
               </PrivateRoute>
               <PrivateRoute path={"/character=:id/view"}>
                 <CharacterPage editModeStart={false}/>
-              </PrivateRoute>
-              <PrivateRoute path={"/create"}>
-                <CharacterCreatePage/>
               </PrivateRoute>
               <PrivateRoute path={"/"}>
                 <HomePage/>

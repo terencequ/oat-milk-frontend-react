@@ -9,6 +9,7 @@ export const mapCharacterResponseToRequest = (response: CharacterResponse): Char
             ...p
         }))),
         attributes: response.attributes,
-        descriptions: response.descriptions
+        descriptions: response.descriptions,
+        spells: response.spells,
     };
 }

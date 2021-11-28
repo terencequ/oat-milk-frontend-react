@@ -1,7 +1,5 @@
-import React, {FC, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
+import React, {FC} from "react";
 import {StyledAttribute, StyledAttributeLogo} from "../../CharacterStatsStyles";
-import initiativeIcon from "../../../../../../../assets/images/icons/initiative.png";
 import {Typography} from "@mui/material";
 import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 

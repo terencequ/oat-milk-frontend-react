@@ -9,3 +9,7 @@ export function limitString(string: string, maxLength: number) {
     result = result.replace(/\r\n/g, "\n").replace(/\r/g, "").replace("\n", "");
     return result;
 }
+
+export function isWhitespaceOnly(string: string){
+    return !string.replace(/\s/g, '').length;
+}
