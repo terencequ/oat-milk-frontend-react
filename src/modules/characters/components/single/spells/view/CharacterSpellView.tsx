@@ -1,7 +1,7 @@
 import {FC, useState} from "react";
 import {Card, CardActionArea, Collapse, Typography} from "@mui/material";
 import {CharacterSpellResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {StyledCharacterSpell} from "../CharacterSpellsStyles";
+import {StyledCharacterSpell, StyledCharacterSpellContents, StyledCharacterSpellName} from "../CharacterSpellsStyles";
 
 const CharacterSpellView: FC<{spell: CharacterSpellResponse}> = (props) => {
   const [expand, setExpand] = useState(false);
@@ -12,16 +12,19 @@ const CharacterSpellView: FC<{spell: CharacterSpellResponse}> = (props) => {
   }
 
   return <StyledCharacterSpell>
-    <div>
-      <CardActionArea onClick={toggleExpand}>
-        <Typography>{props.spell.name}</Typography>
-      </CardActionArea>
-    </div>
+    <CardActionArea onClick={toggleExpand}>
+      <StyledCharacterSpellName>
+        <Typography variant={"subtitle1"}>{props.spell.name}</Typography>
+      </StyledCharacterSpellName>
+    </CardActionArea>
 
     {/** More Information */}
     <Collapse in={expand}>
-      <Typography>{props.spell.description}</Typography>
+      <StyledCharacterSpellContents>
+        <Typography>{props.spell.description}</Typography>
+      </StyledCharacterSpellContents>
     </Collapse>
+
   </StyledCharacterSpell>
 }
 
