@@ -8,7 +8,6 @@ const CharacterDescriptionsEdit: FC = () => {
   const currentEditCharacterDescriptions = useAppSelector(state => state.characters.currentEditCharacter)?.descriptions ?? [];
 
   const getDescription = (id: string): CharacterDescriptionRequest | null => {
-    console.log(currentEditCharacterDescriptions);
     return currentEditCharacterDescriptions.find(d => d.id === id) ?? null;
   }
 

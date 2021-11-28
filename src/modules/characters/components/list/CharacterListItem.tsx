@@ -3,7 +3,7 @@ import {
   Avatar, Button,
   ButtonGroup,
   Card,
-  CardActionArea, Collapse, Theme, Typography
+  CardActionArea, CardActionAreaProps, Collapse, Theme, Typography
 } from "@mui/material";
 import styled from "@emotion/styled";
 import {useHistory} from "react-router-dom";
@@ -20,6 +20,7 @@ import logo from "assets/images/logo.png";
 export type CharacterInfoBasicProp = {
   characterSummary: CharacterSummaryResponse;
   style?: CSSProperties;
+  isMobile?: boolean;
 };
 
 const MainContainer = styled(Card)`
@@ -43,9 +44,20 @@ const SummaryDisplay = styled.div`
   }
 `
 
-const SummaryActionArea = styled(CardActionArea)`
+interface WrappedCardActionAreaProps extends CardActionAreaProps {
+  isMobile?: boolean;
+}
+const WrappedCardActionArea: FC<WrappedCardActionAreaProps> = ({isMobile, ...props}) => {
+  return <CardActionArea {...props}>{props.children}</CardActionArea>
+}
+const SummaryActionArea = styled(WrappedCardActionArea)<{isMobile?: boolean}>`
   display: grid;
-  grid-template-columns: 130px 15rem 10rem 1fr;
+  ${({isMobile}) => {
+    console.log(isMobile)
+    return isMobile 
+        ? 'grid-template-columns: 130px 1fr;'
+        : 'grid-template-columns: 130px 15rem 10rem 1fr;';
+  }}
 `
 
 const SummaryActions = styled(ButtonGroup)`
@@ -66,9 +78,10 @@ const ExpandedCollapseButton = styled(Button)`
 /**
  * Display a summary of a character as a vertical list item. Can be expanded to see more information, like an accordion.
  * @param characterSummary
+ * @param isMobile If true, this element will only display essential info.
  * @constructor
  */
-const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
+const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary, isMobile}) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
@@ -97,11 +110,11 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary}) => {
   return <MainContainer>
     {/** Summary Information */}
     <SummaryDisplay>
-      <SummaryActionArea onClick={toggleExpand}>
+      <SummaryActionArea onClick={toggleExpand} isMobile={isMobile}>
         <Avatar variant={"rounded"} className={"character-image"} alt="Character Icon" src={logo} />
         <Typography align={"left"} variant={"h4"}>{characterSummary.name}</Typography>
-        <Typography align={"left"} variant={"subtitle1"}>{characterSummary.currentHitPoints}/{characterSummary.maxHitPoints} HP</Typography>
-        <Typography align={"left"} variant={"subtitle1"}>Peasant, Level {characterSummary.level}</Typography>
+        {!isMobile && <Typography align={"left"} variant={"subtitle1"}>{characterSummary.currentHitPoints}/{characterSummary.maxHitPoints} HP</Typography>}
+        {!isMobile && <Typography align={"left"} variant={"subtitle1"}>Peasant, Level {characterSummary.level}</Typography>}
       </SummaryActionArea>
       <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
         <Button onClick={viewThis}><Visibility/></Button>
