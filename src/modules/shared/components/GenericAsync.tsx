@@ -1,4 +1,4 @@
-import {Typography} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import React, {FC, useEffect} from "react";
 import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {useAppDispatch} from "../../../redux/hooks";
@@ -6,6 +6,18 @@ import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {setLoading} from "../../../redux/slices/userInterfaceSlice";
 import {useHistory} from "react-router-dom";
 import {logout} from "../../../redux/slices/usersSlice";
+import styled from "@emotion/styled";
+import {themeSpacing} from "../../core/styles/GlobalStyles";
+
+const StyledErrorPage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+const StyledRefreshButton = styled(Button)`
+    margin-top: ${themeSpacing(4)};
+`
 
 interface GenericAsyncProps {
     existingData: boolean;
@@ -38,10 +50,11 @@ const GenericAsync: FC<GenericAsyncProps> = ({existingData, requestId, children}
             {children}
         </div>
     } else {
-        return <>
+        return <StyledErrorPage>
             <Typography variant={"h2"} align={"center"} gutterBottom>Uh oh! An error has occurred.</Typography>
-            <Typography variant={"h3"} align={"center"}>{error}</Typography>
-        </>
+            <Typography variant={"h3"} align={"center"} gutterBottom>{error}</Typography>
+            <StyledRefreshButton variant={"contained"} onClick={() => window.location.reload()}>Refresh</StyledRefreshButton>
+        </StyledErrorPage>
     }
 }
 

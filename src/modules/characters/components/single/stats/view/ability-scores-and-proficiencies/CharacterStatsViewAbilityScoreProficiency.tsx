@@ -7,7 +7,7 @@ import {
 import React, {FC, useState} from "react";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledProficiencyOrSavingThrow} from "../../CharacterStatsStyles";
-import DiceDialog from "../../../../../../shared/components/DiceDialog";
+import DiceDialog from "../../../../../../shared/components/dialogs/DiceDialog";
 
 interface CharacterViewAbilityScoreProficiencyProps {
     abilityScoreProficiency: CharacterAbilityScoreProficiencyResponse;

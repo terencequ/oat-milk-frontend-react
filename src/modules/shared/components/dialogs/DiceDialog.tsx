@@ -1,7 +1,7 @@
 import {Dispatch, FC, SetStateAction, useCallback, useEffect, useRef, useState} from "react";
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Snackbar} from "@mui/material";
-import {getRandomInt} from "../../characters/helpers/NumberHelpers";
-import {getModifierAsString} from "../../characters/helpers/CharacterStatHelpers";
+import {getRandomInt} from "../../../characters/helpers/NumberHelpers";
+import {getModifierAsString} from "../../../characters/helpers/CharacterStatHelpers";
 
 export interface DiceSnackbarProps {
     title: string,

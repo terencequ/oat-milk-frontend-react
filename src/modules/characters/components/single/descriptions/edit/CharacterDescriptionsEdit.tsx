@@ -26,7 +26,7 @@ const CharacterDescriptionsEdit: FC = () => {
     <CharacterDescriptionEdit description={flaws} maxLength={200}/>
     <CharacterDescriptionEdit description={alliesAndOrganisations} maxLength={200}/>
     <CharacterDescriptionEdit description={appearance} maxLength={200}/>
-    <CharacterDescriptionEdit description={backstory} maxLength={1000} columnSpan={2} rows={13}/>
+    <CharacterDescriptionEdit description={backstory} maxLength={1000} columnSpan={2} rows={13} allowNewLines/>
   </StyledDescriptions>
 }
 

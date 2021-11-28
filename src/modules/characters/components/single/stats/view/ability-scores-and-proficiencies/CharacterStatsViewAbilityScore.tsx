@@ -4,7 +4,7 @@ import React, {FC, useState} from "react";
 import {getModifier, getModifierAsString} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledAbilityScore} from "../../CharacterStatsStyles";
 import styled from "@emotion/styled";
-import DiceDialog from "../../../../../../shared/components/DiceDialog";
+import DiceDialog from "../../../../../../shared/components/dialogs/DiceDialog";
 
 const StyledCardActionArea = styled(CardActionArea)`
   height: 100%;

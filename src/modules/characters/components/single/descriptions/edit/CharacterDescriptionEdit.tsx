@@ -11,9 +11,17 @@ interface CharacterDescriptionEditProps {
   maxLength: number;
   columnSpan?: number;
   rows?: number;
+  allowNewLines?: boolean;
 }
 
-const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({description, maxLength, columnSpan, rows}) => {
+const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = (
+    {
+        description,
+        maxLength,
+        columnSpan,
+        rows,
+        allowNewLines,
+    }) => {
 
   const dispatch = useAppDispatch();
   const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
@@ -29,7 +37,10 @@ const CharacterDescriptionEdit: FC<CharacterDescriptionEditProps> = ({descriptio
    */
   const onChangeValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     event.preventDefault();
-    const value = limitString(event.target.value, maxLength);
+    let value = event.target.value;
+    if(!allowNewLines){
+      value = limitString(value, maxLength);
+    }
     if(value.length > maxLength){
       return;
     }

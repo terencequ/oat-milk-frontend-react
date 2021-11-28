@@ -16,6 +16,7 @@ import Delete from "@mui/icons-material/Delete";
 import Edit from "@mui/icons-material/Edit";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import logo from "assets/images/logo.png";
+import DeleteDialog from "../../../shared/components/dialogs/DeleteDialog";
 
 export type CharacterInfoBasicProp = {
   characterSummary: CharacterSummaryResponse;
@@ -86,6 +87,7 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary, isMobi
   const dispatch = useAppDispatch();
 
   const [expand, setExpand] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
   /** Toggle expansion on the more info section. */
   const toggleExpand = () => {
@@ -119,7 +121,7 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary, isMobi
       <SummaryActions disableElevation={true} variant="text" color="inherit" aria-label="text primary button group">
         <Button onClick={viewThis}><Visibility/></Button>
         <Button onClick={editThis}><Edit/></Button>
-        <Button onClick={deleteThis} color={"error"}><Delete/></Button>
+        <Button onClick={() => setOpenDeleteDialog(true)} color={"error"}><Delete/></Button>
       </SummaryActions>
     </SummaryDisplay>
 
@@ -134,6 +136,12 @@ const CharacterListItem: FC<CharacterInfoBasicProp> = ({characterSummary, isMobi
         <ExpandLess fontSize={"large"}/>
       </ExpandedCollapseButton>
     </Collapse>
+    <DeleteDialog
+        open={openDeleteDialog}
+        onClose={() => setOpenDeleteDialog(false)}
+        onDelete={deleteThis}
+        subjectType={"Character Sheet"}
+        subjectName={characterSummary.name}/>
   </MainContainer>;
 };
 
