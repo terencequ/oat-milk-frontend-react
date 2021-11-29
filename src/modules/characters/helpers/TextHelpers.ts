@@ -6,7 +6,7 @@
  */
 export function limitString(string: string, maxLength: number) {
     let result = string;
-    result = result.replace(/\r\n/g, "\n").replace(/\r/g, "").replace("\n", "");
+    result = result.replace(/\r\n/g, "\n").replace(/\r/g, "").replace("\n", "").substr(0, maxLength);
     return result;
 }
 

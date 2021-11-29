@@ -3,7 +3,7 @@ import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Snackb
 import {getRandomInt} from "../../../characters/helpers/NumberHelpers";
 import {getModifierAsString} from "../../../characters/helpers/CharacterStatHelpers";
 
-export interface DiceSnackbarProps {
+export interface DiceDialogProps {
     title: string,
     open: boolean;
     setOpen: Dispatch<SetStateAction<boolean>>;
@@ -11,7 +11,7 @@ export interface DiceSnackbarProps {
     dice: number;
 }
 
-const DiceDialog: FC<DiceSnackbarProps> = ({title, open, setOpen, modifier, dice}) => {
+const DiceDialog: FC<DiceDialogProps> = ({title, open, setOpen, modifier, dice}) => {
 
     const [diceRoll, setDiceRoll] = useState(0);
 

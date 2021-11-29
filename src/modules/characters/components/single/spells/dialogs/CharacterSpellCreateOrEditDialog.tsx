@@ -15,7 +15,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import {isWhitespaceOnly} from "../../../../helpers/TextHelpers";
+import {isWhitespaceOnly, limitString} from "../../../../helpers/TextHelpers";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 import {CharacterSpellRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
@@ -46,10 +46,10 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
     const currentEditCharacterSpells = currentEditCharacter?.spells ?? [];
 
     const onChangeId = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setId(event.target.value.substr(0, 16).toLowerCase().replaceAll(/[^a-z0-9]/g, ''));
+        setId(limitString(event.target.value, 16).toLowerCase().replaceAll(/[^a-z0-9]/g, ''));
     }
     const onChangeName = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setName(event.target.value.substr(0, 32));
+        setName(limitString(event.target.value, 32));
     }
     const onChangeDescription = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setDescription(event.target.value.substr(0, 1024));
