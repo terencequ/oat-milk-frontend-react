@@ -22,5 +22,17 @@ export const StyledCharacterSpellName = styled.div`
 `
 
 export const StyledCharacterSpellContents = styled.div`
-  padding: ${themeSpacing(4)}
+  padding: ${themeSpacing(4)};
+  .properties {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: ${themeSpacing(3)};
+    margin-bottom: ${themeSpacing(2)};
+  }
+`
+
+export const StyledCharacterSpellContentsProperty = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: ${themeSpacing(2)};
 `

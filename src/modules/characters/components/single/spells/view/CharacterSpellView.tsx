@@ -1,9 +1,14 @@
 import {FC, useState} from "react";
 import {CardActionArea, Collapse, Typography} from "@mui/material";
 import {CharacterSpellResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {StyledCharacterSpell, StyledCharacterSpellContents, StyledCharacterSpellName} from "../CharacterSpellsStyles";
+import {
+  StyledCharacterSpell,
+  StyledCharacterSpellContents,
+  StyledCharacterSpellName
+} from "../CharacterSpellsStyles";
+import CharacterSpellInfoView from "./CharacterSpellInfoView";
 
-const CharacterSpellView: FC<{spell: CharacterSpellResponse}> = (props) => {
+const CharacterSpellView: FC<{spell: CharacterSpellResponse}> = ({spell}) => {
   const [expand, setExpand] = useState(false);
 
   /** Toggle expansion on the more info section. */
@@ -15,17 +20,21 @@ const CharacterSpellView: FC<{spell: CharacterSpellResponse}> = (props) => {
     {/** Summary Information */}
     <CardActionArea onClick={toggleExpand}>
       <StyledCharacterSpellName>
-        <Typography variant={"subtitle1"}>{props.spell.name}</Typography>
+        <Typography variant={"subtitle1"}>{spell.name}</Typography>
       </StyledCharacterSpellName>
     </CardActionArea>
 
     {/** More Information */}
     <Collapse in={expand}>
-      <StyledCharacterSpellContents>
-        <Typography variant={"h2"} gutterBottom>{props.spell.name}</Typography>
-        <Typography variant={"h3"} gutterBottom>Description</Typography>
-        <Typography sx={{wordWrap: "break-word", whiteSpace: "pre-line"}}>{props.spell.description}</Typography>
-      </StyledCharacterSpellContents>
+      <CharacterSpellInfoView
+          name={spell.name}
+          description={spell.description}
+          level={spell.level}
+          castingTime={spell.castingTime}
+          rangeOrArea={spell.rangeOrArea}
+          duration={spell.duration}
+          components={spell.components}
+          school={spell.school}/>
     </Collapse>
 
   </StyledCharacterSpell>
