@@ -8,7 +8,7 @@ import {AnyAction, ThunkAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 import {failRequest, startRequest, succeedRequest} from "../slices/requestsSlice";
 import {getCharacterSummaries} from "./characterSummaryThunks";
-import {setCurrentCharacter, setCurrentEditCharacter} from "../slices/charactersSlice";
+import {setCurrentCharacter, setCurrentEditCharacter} from "../slices/characterSlice";
 import globalAxios from "axios";
 
 export const createCharacterClient = (): CharacterApi => {

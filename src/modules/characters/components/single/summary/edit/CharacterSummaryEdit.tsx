@@ -8,7 +8,7 @@ import {
   getEditCharacterFormError,
   setCurrentEditCharacter,
   setCurrentEditCharacterFormError
-} from "../../../../../../redux/slices/charactersSlice";
+} from "../../../../../../redux/slices/characterSlice";
 import ErrorTooltip from "../../../../../core/components/ErrorTooltip";
 
 const StyledNameField = styled(TextField)`

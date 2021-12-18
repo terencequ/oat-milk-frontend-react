@@ -10,7 +10,7 @@ import {
     REGISTER, persistCombineReducers,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import charactersReducer from "./slices/charactersSlice";
+import charactersReducer from "./slices/characterSlice";
 import requestsReducer from "./slices/requestsSlice";
 import userInterfaceReducer from "./slices/userInterfaceSlice";
 import usersReducer from "./slices/usersSlice";

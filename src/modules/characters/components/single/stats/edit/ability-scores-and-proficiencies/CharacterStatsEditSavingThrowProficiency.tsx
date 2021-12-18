@@ -7,7 +7,7 @@ import {ChangeEvent, FC, useEffect, useState} from "react";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledProficiencyOrSavingThrow} from "../../CharacterStatsStyles";
 import styled from "@emotion/styled";
-import {setCurrentEditCharacter} from "../../../../../../../redux/slices/charactersSlice";
+import {setCurrentEditCharacter} from "../../../../../../../redux/slices/characterSlice";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
 
 const StyledCheckbox = styled(Checkbox)`

@@ -7,7 +7,7 @@ import {
     getEditCharacterFormError,
     setCurrentEditCharacter,
     setCurrentEditCharacterFormError
-} from "../../../../../../../redux/slices/charactersSlice";
+} from "../../../../../../../redux/slices/characterSlice";
 import CharacterEditAbilityScore from "../ability-scores-and-proficiencies/CharacterStatsEditAbilityScore";
 import ErrorTooltip from "../../../../../../core/components/ErrorTooltip";
 import {castToNumber} from "../../../../../helpers/NumberHelpers";

@@ -4,7 +4,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {useHistory, useParams} from "react-router-dom";
 import {mapCharacterResponseToRequest} from "../../../api/helpers/characterMapping";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
-import {anyCurrentEditCharacterFormErrors, setCurrentEditCharacter} from "../../../redux/slices/charactersSlice";
+import {anyCurrentEditCharacterFormErrors, setCurrentEditCharacter} from "../../../redux/slices/characterSlice";
 import {getCharacterByIdentifierAsCurrent, updateCharacter} from "../../../redux/thunks/characterThunks";
 import styled from "@emotion/styled";
 import {StyledPageContainer, themeSpacing} from '../../core/styles/GlobalStyles';

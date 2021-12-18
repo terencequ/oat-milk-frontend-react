@@ -4,7 +4,7 @@ import {
     getEditCharacterFormError,
     setCurrentEditCharacter,
     setCurrentEditCharacterFormError
-} from "../../../../../../redux/slices/charactersSlice";
+} from "../../../../../../redux/slices/characterSlice";
 import {
     Button,
     Dialog,

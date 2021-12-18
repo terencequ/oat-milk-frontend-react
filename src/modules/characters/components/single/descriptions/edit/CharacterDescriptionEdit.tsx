@@ -2,7 +2,7 @@ import {ChangeEvent, FC, useState} from "react";
 import {CharacterDescriptionRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {TextField, Typography} from "@mui/material";
 import {StyledDescription} from "../CharacterDescriptionsStyles";
-import {setCurrentEditCharacter} from "../../../../../../redux/slices/charactersSlice";
+import {setCurrentEditCharacter} from "../../../../../../redux/slices/characterSlice";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
 import {limitString} from "../../../../helpers/TextHelpers";
 

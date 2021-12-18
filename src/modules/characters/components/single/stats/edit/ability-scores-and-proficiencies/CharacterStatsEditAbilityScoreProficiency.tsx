@@ -6,7 +6,7 @@ import {
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {ChangeEvent, FC, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
-import {setCurrentEditCharacter} from "../../../../../../../redux/slices/charactersSlice";
+import {setCurrentEditCharacter} from "../../../../../../../redux/slices/characterSlice";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledProficiencyOrSavingThrow} from "../../CharacterStatsStyles";
 

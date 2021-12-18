@@ -8,7 +8,7 @@ import {
     getEditCharacterFormError,
     setCurrentEditCharacter,
     setCurrentEditCharacterFormError
-} from "../../../../../../redux/slices/charactersSlice";
+} from "../../../../../../redux/slices/characterSlice";
 import Edit from "@mui/icons-material/Edit";
 import Delete from "@mui/icons-material/Delete";
 import styled from "@emotion/styled";
