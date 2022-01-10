@@ -18,7 +18,7 @@ interface WrappedCardProps extends CardProps {
     columnSpan?: number,
     minHeight?: number
 }
-const WrappedCard: FC<WrappedCardProps> = ({columnSpan, ...props}) => {
+const WrappedCard: FC<WrappedCardProps> = ({columnSpan, minHeight, ...props}) => {
     return <Card {...props}>{props.children}</Card>
 }
 export const StyledDescription = styled(WrappedCard)<WrappedCardProps>`
