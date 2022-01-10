@@ -58,7 +58,7 @@ const CharacterCreateDialog: FC<CharacterCreateDialogProps> = ({open, onClose}) 
 
     return <Dialog open={open} onClose={onClose}>
         <DialogTitle>
-            <Typography variant={"h3"}>Create new character</Typography>
+            Create new character
         </DialogTitle>
         <DialogContent>
             <StyledForm>
