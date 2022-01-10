@@ -5,19 +5,18 @@ import {
     setCurrentEditCharacter,
     setCurrentEditCharacterFormError
 } from "../../../../../../redux/slices/characterSlice";
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    FormControl,
-    TextField,
-    Typography
-} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, FormControl, TextField, Typography} from "@mui/material";
 import {isWhitespaceOnly, limitString} from "../../../../helpers/TextHelpers";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
-import {CharacterSpellRequest, SpellSchool} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {
+    CharacterSpellRequest,
+    SpellCastingTimeRequest,
+    SpellCastingTimeType,
+    SpellSchool
+} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {generateId} from "../../../../helpers/IdGeneratorHelpers";
+import SpellCastingTimeEdit from "../../../../../spells/components/edit/SpellCastingTimeEdit";
 
 const StyledForm = styled.div`
   margin-top: ${themeSpacing(2)};
@@ -26,7 +25,7 @@ const StyledForm = styled.div`
   grid-row-gap: ${themeSpacing(2)};
   .idAndName {
     display: grid;
-    grid-template-columns: 15rem 1fr;
+    grid-template-columns: 100%;
     grid-column-gap: ${themeSpacing(2)};
   }
   .properties {
@@ -58,7 +57,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [level, setLevel] = useState<number>(1);
-    const [castingTime, setCastingTime] = useState<string>("");
+    const [castingTime, setCastingTime] = useState<SpellCastingTimeRequest>({});
     const [rangeOrArea, setRangeOrArea] = useState<string>("");
     const [components, setComponents] = useState<string>("");
     const [duration, setDuration] = useState<string>("");
@@ -76,9 +75,6 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
     const onChangeLevel = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const string = event.target.value.replaceAll(/[^0-9]/g, '').substr(0, 2);
         setLevel(parseInt(string === "" ? "0" : string));
-    }
-    const onChangeCastingTime = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setCastingTime(limitString(event.target.value, 32));
     }
     const onChangeRangeOrArea = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setRangeOrArea(limitString(event.target.value, 32));
@@ -118,7 +114,6 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             setName(existingSpell?.name ?? "");
             setDescription(existingSpell?.description ?? "");
             setLevel(existingSpell?.level ?? 0);
-
             setSchool(existingSpell?.school ?? SpellSchool.Abjuration);
         }
     }, [existingSpell, setError])
@@ -135,8 +130,9 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
 
     /** Create a new spell. */
     const onSave = () => {
-        if(id === "" || name === ""){
-            setError("ID and name fields are required.");
+        let newId = existingSpell ? id : generateId(currentEditCharacterSpells.map(s => s.id));
+        if(name === ""){
+            setError("Name field is required.");
             return;
         }
         if(isWhitespaceOnly(name)){
@@ -146,16 +142,21 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
         if(currentEditCharacter === null) {
             return;
         }
+        let shouldCreateNewId = existingSpell?.shouldCreateNewId ?? false;
+        if(!shouldCreateNewId){
+            shouldCreateNewId = !existingSpell;
+        }
         const newSpell: CharacterSpellRequest = {
-            id: id,
+            id: newId,
             name: name,
             description: description,
             level: level,
-            castingTime: undefined,
+            castingTime: castingTime,
             range: undefined,
             components: undefined,
             duration: undefined,
             school: school,
+            shouldCreateNewId: shouldCreateNewId
         }
         if(!existingSpell){
             const existingSpell = currentEditCharacterSpells.find(s => s.id === id);
@@ -200,9 +201,6 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             <StyledForm>
                 <div className={"idAndName"}>
                     <FormControl>
-                        <TextField onChange={onChangeId} variant={"filled"} label={"ID"} value={id} required/>
-                    </FormControl>
-                    <FormControl>
                         <TextField onChange={onChangeName} variant={"filled"} label={"Name"} value={name} required/>
                     </FormControl>
                 </div>
@@ -210,9 +208,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
                     <FormControl>
                         <TextField onChange={onChangeLevel} variant={"filled"} label={"Level"} value={level}/>
                     </FormControl>
-                    <FormControl>
-                        <TextField onChange={onChangeCastingTime} variant={"filled"} label={"Casting Time"} value={castingTime}/>
-                    </FormControl>
+                    <SpellCastingTimeEdit castingTime={castingTime} setCastingTime={setCastingTime}/>
                     <FormControl>
                         <TextField onChange={onChangeRangeOrArea} variant={"filled"} label={"Range / Area"} value={rangeOrArea}/>
                     </FormControl>
