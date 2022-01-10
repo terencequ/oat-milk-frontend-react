@@ -1,13 +1,13 @@
 import {
-  CharacterSpell,
+  CharacterSpellRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {useAppSelector} from "../hooks";
 import {anyErrors, getError} from "./helpers/selectorHelper";
 
 export interface CharacterSpellState {
-  currentCharacterSpells: CharacterSpell[] | null;
-  currentEditCharacterSpells: CharacterSpell[] | null;
+  currentCharacterSpells: CharacterSpellRequest[] | null;
+  currentEditCharacterSpells: CharacterSpellRequest[] | null;
   currentEditCharacterSpellsFormErrors: { [id: string] : string | null }
 }
 
@@ -21,10 +21,10 @@ export const characterSpellSlice = createSlice({
   name: 'characterSpell',
   initialState,
   reducers: {
-    setCurrentCharacter: (state: CharacterSpellState, action: PayloadAction<CharacterSpell[]>) => {
+    setCurrentCharacter: (state: CharacterSpellState, action: PayloadAction<CharacterSpellRequest[]>) => {
       state.currentCharacterSpells = action.payload;
     },
-    setCurrentEditCharacter: (state: CharacterSpellState, action: PayloadAction<CharacterSpell[] | null>) => {
+    setCurrentEditCharacter: (state: CharacterSpellState, action: PayloadAction<CharacterSpellRequest[] | null>) => {
       state.currentEditCharacterSpells = action.payload;
     },
     setCurrentEditCharacterFormError: (state: CharacterSpellState, action: PayloadAction<{id: string, error: string | null}>) => {

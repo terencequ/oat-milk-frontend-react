@@ -5,10 +5,12 @@ import {processError} from "./helpers/errorHelper";
 import {AnyAction, ThunkAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 import {failRequest, startRequest, succeedRequest} from "../slices/requestsSlice";
-import {setCharacterSummaries} from "../slices/characterSlice";
+import {setCharacterSummaries} from "../slices/characterSummarySlice";
+import globalAxios from "axios";
+
 
 export const createCharacterSummaryClient = (): CharacterSummaryApi => {
-    return new CharacterSummaryApi(undefined, process.env.REACT_APP_API_URL);
+    return new CharacterSummaryApi(undefined, process.env.REACT_APP_API_URL, globalAxios);
 }
 
 export function getCharacterSummaries(): ThunkAction<void, RootState, unknown, AnyAction> {

@@ -7,9 +7,10 @@ import {AnyAction, ThunkAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 import {failRequest, startRequest, succeedRequest} from "../slices/requestsSlice";
 import {logout, setAuthToken, setUser} from "../slices/usersSlice";
+import globalAxios from "axios";
 
 const createUserClient = (): UserApi => {
-    return new UserApi(undefined, process.env.REACT_APP_API_URL);
+    return new UserApi(undefined, process.env.REACT_APP_API_URL, globalAxios);
 }
 
 export function getUserProfile(request: UserLoginRequest): ThunkAction<void, RootState, unknown, AnyAction> {

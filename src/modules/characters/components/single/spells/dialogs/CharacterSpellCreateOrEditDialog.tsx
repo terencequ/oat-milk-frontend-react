@@ -17,7 +17,7 @@ import {
 import {isWhitespaceOnly, limitString} from "../../../../helpers/TextHelpers";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
-import {CharacterSpellRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {CharacterSpellRequest, SpellSchool} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 
 const StyledForm = styled.div`
   margin-top: ${themeSpacing(2)};
@@ -62,7 +62,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
     const [rangeOrArea, setRangeOrArea] = useState<string>("");
     const [components, setComponents] = useState<string>("");
     const [duration, setDuration] = useState<string>("");
-    const [school, setSchool] = useState<string>("");
+    const [school, setSchool] = useState<SpellSchool>(SpellSchool.Abjuration);
 
     const onChangeId = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setId(limitString(event.target.value, 16).toLowerCase().replaceAll(/[^a-z0-9]/g, ''));
@@ -90,7 +90,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
         setDuration(limitString(event.target.value, 32));
     }
     const onChangeSchool = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setSchool(limitString(event.target.value, 32));
+        setSchool(SpellSchool[event.target.value as keyof typeof SpellSchool]);
     }
 
     // Error state in redux
@@ -108,21 +108,18 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             setName("");
             setDescription("");
             setLevel(1);
-            setCastingTime("");
-            setRangeOrArea("");
-            setComponents("");
-            setDuration("");
-            setSchool("");
+            // setCastingTime("");
+            // setRangeOrArea("");
+            // setComponents("");
+            // setDuration("");
+            setSchool(SpellSchool.Abjuration);
         } else {
             setId(existingSpell.id);
             setName(existingSpell?.name ?? "");
             setDescription(existingSpell?.description ?? "");
             setLevel(existingSpell?.level ?? 0);
-            setCastingTime(existingSpell?.castingTime ?? "");
-            setRangeOrArea(existingSpell?.rangeOrArea ?? "");
-            setComponents(existingSpell?.components ?? "");
-            setDuration(existingSpell?.duration ?? "");
-            setSchool(existingSpell?.school ?? "");
+
+            setSchool(existingSpell?.school ?? SpellSchool.Abjuration);
         }
     }, [existingSpell, setError])
 
@@ -154,10 +151,10 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             name: name,
             description: description,
             level: level,
-            castingTime: castingTime,
-            rangeOrArea: rangeOrArea,
-            components: components,
-            duration: duration,
+            castingTime: undefined,
+            range: undefined,
+            components: undefined,
+            duration: undefined,
             school: school,
         }
         if(!existingSpell){

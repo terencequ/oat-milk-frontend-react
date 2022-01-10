@@ -1,6 +1,13 @@
 import {FC} from "react";
 import {StyledCharacterSpellContents, StyledCharacterSpellContentsProperty} from "../CharacterSpellsStyles";
 import {Divider, Typography} from "@mui/material";
+import {
+    SpellCastingTimeRequest,
+    SpellComponentsRequest,
+    SpellDurationRequest,
+    SpellRangeRequest,
+    SpellSchool
+} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 
 const CharacterSpellPropertyView: FC<{title: string, value: string}> = ({title, value}) => (
     <StyledCharacterSpellContentsProperty>
@@ -13,11 +20,11 @@ interface CharacterSpellInfoViewProps {
     name: string;
     description: string;
     level: number;
-    castingTime: string;
-    rangeOrArea: string;
-    duration: string;
-    components: string;
-    school: string;
+    castingTime: SpellCastingTimeRequest | undefined;
+    range: SpellRangeRequest | undefined;
+    duration: SpellDurationRequest | undefined;
+    components: SpellComponentsRequest | undefined;
+    school: SpellSchool;
 }
 
 const CharacterSpellInfoView: FC<CharacterSpellInfoViewProps> = (props) => {
@@ -26,10 +33,10 @@ const CharacterSpellInfoView: FC<CharacterSpellInfoViewProps> = (props) => {
         <Divider sx={{marginBottom: 2}}/>
         <div className={"properties"}>
             <CharacterSpellPropertyView title={"Level"} value={props.level.toString()}/>
-            <CharacterSpellPropertyView title={"Casting Time"} value={props.castingTime}/>
-            <CharacterSpellPropertyView title={"Range / Area"} value={props.rangeOrArea}/>
-            <CharacterSpellPropertyView title={"Duration"} value={props.duration}/>
-            <CharacterSpellPropertyView title={"Components"} value={props.components}/>
+            <CharacterSpellPropertyView title={"Casting Time"} value={"N/A"}/>
+            <CharacterSpellPropertyView title={"Range / Area"} value={"N/A"}/>
+            <CharacterSpellPropertyView title={"Duration"} value={"N/A"}/>
+            <CharacterSpellPropertyView title={"Components"} value={"N/A"}/>
             <CharacterSpellPropertyView title={"School"} value={props.school}/>
         </div>
         <Divider sx={{marginBottom: 2}}/>

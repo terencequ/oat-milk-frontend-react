@@ -1,20 +1,13 @@
-import {FC, useCallback, useEffect, useState} from "react";
-import {CharacterSpellRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {StyledCharacterSpell, StyledCharacterSpellContents, StyledCharacterSpellName} from "../CharacterSpellsStyles";
+import {FC, useState} from "react";
+import {CharacterSpellRequest, SpellSchool} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {StyledCharacterSpell, StyledCharacterSpellName} from "../CharacterSpellsStyles";
 import {Button, ButtonGroup, CardActionArea, Collapse, Typography} from "@mui/material";
-import {useHistory} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
-import {
-    getEditCharacterFormError,
-    setCurrentEditCharacter,
-    setCurrentEditCharacterFormError
-} from "../../../../../../redux/slices/characterSlice";
+import {setCurrentEditCharacter} from "../../../../../../redux/slices/characterSlice";
 import Edit from "@mui/icons-material/Edit";
 import Delete from "@mui/icons-material/Delete";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
-import CharacterEditAbilityScore
-    from "../../stats/edit/ability-scores-and-proficiencies/CharacterStatsEditAbilityScore";
 import CharacterSpellCreateOrEditDialog from "../dialogs/CharacterSpellCreateOrEditDialog";
 import DeleteDialog from "../../../../../shared/components/dialogs/DeleteDialog";
 import CharacterSpellInfoView from "../view/CharacterSpellInfoView";
@@ -84,11 +77,11 @@ const CharacterSpellEdit: FC<{spell: CharacterSpellRequest}> = ({spell}) => {
                 name={spell.name ?? ""}
                 description={spell.description ?? ""}
                 level={spell.level ?? 0}
-                castingTime={spell.castingTime ?? ""}
-                rangeOrArea={spell.rangeOrArea ?? ""}
-                duration={spell.duration ?? ""}
-                components={spell.components ?? ""}
-                school={spell.school ?? ""}/>
+                castingTime={spell.castingTime}
+                range={spell.range}
+                duration={spell.duration}
+                components={spell.components}
+                school={spell.school ?? SpellSchool.Abjuration}/>
         </Collapse>
         <CharacterSpellCreateOrEditDialog
             open={editDialogOpen}

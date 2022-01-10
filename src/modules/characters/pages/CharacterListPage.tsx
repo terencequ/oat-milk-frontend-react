@@ -23,7 +23,7 @@ const StyledList = styled.div`
 
 const CharacterListPage: FC = () => {
     const dispatch = useAppDispatch();
-    const {characterSummaries} = useAppSelector(state => state.characters)
+    const {characterSummaries} = useAppSelector(state => state.characterSummary)
 
     useEffect(() => {
         dispatch(getCharacterSummaries());

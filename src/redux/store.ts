@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import charactersReducer from "./slices/characterSlice";
+import charaterSummaryReducer from "./slices/characterSummarySlice";
 import requestsReducer from "./slices/requestsSlice";
 import userInterfaceReducer from "./slices/userInterfaceSlice";
 import usersReducer from "./slices/usersSlice";
@@ -26,6 +27,7 @@ const persistedReducer = persistCombineReducers(
     persistConfig,
     {
         characters: charactersReducer,
+        characterSummary: charaterSummaryReducer,
         users: usersReducer,
         userInterface: userInterfaceReducer,
         requests: requestsReducer,
