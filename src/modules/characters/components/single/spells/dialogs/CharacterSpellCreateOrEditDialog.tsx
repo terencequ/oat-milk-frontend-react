@@ -18,6 +18,7 @@ import {
 import {generateId} from "../../../../helpers/IdGeneratorHelpers";
 import SpellCastingTimeEdit from "../../../../../spells/components/edit/SpellCastingTimeEdit";
 import SpellLevelEdit from "../../../../../spells/components/edit/SpellLevelEdit";
+import SpellNameEdit from "../../../../../spells/components/edit/SpellNameEdit";
 
 const StyledForm = styled.div`
   margin-top: ${themeSpacing(2)};
@@ -201,9 +202,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
 
             <StyledForm>
                 <div className={"idAndName"}>
-                    <FormControl>
-                        <TextField onChange={onChangeName} variant={"filled"} label={"Name"} value={name} required/>
-                    </FormControl>
+                    <SpellNameEdit name={name} setName={setName}/>
                 </div>
                 <div className={"properties"}>
                     <SpellLevelEdit level={level} setLevel={setLevel}/>

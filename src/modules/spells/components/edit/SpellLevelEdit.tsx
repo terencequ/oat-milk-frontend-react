@@ -14,7 +14,7 @@ interface SpellLevelEditProps {
 }
 
 const SpellLevelEdit: FC<SpellLevelEditProps> = ({level, setLevel}) => {
-    const onChangeValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const onChangeLevel = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const string = e.target.value.replaceAll(/[^0-9]/g, '').substr(0, 2);
         const int = parseInt(string === "" ? "0" : string);
         setLevel(int);
@@ -23,7 +23,7 @@ const SpellLevelEdit: FC<SpellLevelEditProps> = ({level, setLevel}) => {
     return <StyledLevel>
         <Typography gutterBottom variant={"subtitle1"}>Level</Typography>
         <FormControl>
-            <TextField variant={"filled"} label={"Value"} value={level} onChange={onChangeValue}/>
+            <TextField variant={"filled"} label={"Value"} value={level} onChange={onChangeLevel}/>
         </FormControl>
     </StyledLevel>
 }
