@@ -1,7 +1,29 @@
 import {ChangeEvent, FC} from "react";
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
+import {
+  Divider,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Typography
+} from "@mui/material";
 import {SpellCastingTimeRequest, SpellCastingTimeType} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import _ from "lodash";
+import styled from "@emotion/styled";
+import {themeSpacing} from "../../../core/styles/GlobalStyles";
+
+const StyledCastingTime = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const StyledCastingTimeForm = styled.div`
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  grid-column-gap: ${themeSpacing(1)};
+`
 
 interface SpellCastingTimeEditProps {
   castingTime: SpellCastingTimeRequest;
@@ -30,12 +52,14 @@ export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime
     setCastingTime(newCastingTime);
   }
 
-  return <>
+  return <StyledCastingTime>
+    <Typography gutterBottom variant={"subtitle1"}>Casting Time</Typography>
+    <StyledCastingTimeForm>
       <FormControl>
-        <TextField variant={"filled"} label={"Casting Time Value"} value={castingTime.value} onChange={onChangeValue}/>
+        <TextField variant={"filled"} label={"Value"} value={castingTime.value} onChange={onChangeValue}/>
       </FormControl>
       <FormControl variant="filled">
-        <InputLabel id={"spellCastingTimeLabel"}>Casting Time Type</InputLabel>
+        <InputLabel id={"spellCastingTimeLabel"}>Type</InputLabel>
         <Select
           labelId={"spellCastingTimeLabel"}
           id={"spellCastingTime"}
@@ -47,7 +71,8 @@ export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime
           }
         </Select>
       </FormControl>
-  </>
+    </StyledCastingTimeForm>
+  </StyledCastingTime>
 }
 
 export default SpellCastingTimeEdit;

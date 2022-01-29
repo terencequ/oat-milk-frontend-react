@@ -17,6 +17,7 @@ import {
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {generateId} from "../../../../helpers/IdGeneratorHelpers";
 import SpellCastingTimeEdit from "../../../../../spells/components/edit/SpellCastingTimeEdit";
+import SpellLevelEdit from "../../../../../spells/components/edit/SpellLevelEdit";
 
 const StyledForm = styled.div`
   margin-top: ${themeSpacing(2)};
@@ -205,9 +206,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
                     </FormControl>
                 </div>
                 <div className={"properties"}>
-                    <FormControl>
-                        <TextField onChange={onChangeLevel} variant={"filled"} label={"Level"} value={level}/>
-                    </FormControl>
+                    <SpellLevelEdit level={level} setLevel={setLevel}/>
                     <SpellCastingTimeEdit castingTime={castingTime} setCastingTime={setCastingTime}/>
                     <FormControl>
                         <TextField onChange={onChangeRangeOrArea} variant={"filled"} label={"Range / Area"} value={rangeOrArea}/>
