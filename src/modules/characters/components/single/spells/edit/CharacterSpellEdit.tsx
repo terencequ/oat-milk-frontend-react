@@ -72,7 +72,7 @@ const CharacterSpellEdit: FC<{spell: CharacterSpellRequest}> = ({spell}) => {
         </StyledDisplay>
 
         {/** More Information */}
-        <Collapse in={expand}>
+        <Collapse in={expand}> 
             <CharacterSpellInfoView
                 name={spell.name ?? ""}
                 description={spell.description ?? ""}
