@@ -12,7 +12,6 @@ import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 import {
     CharacterSpellRequest,
     SpellCastingTimeRequest,
-    SpellCastingTimeType,
     SpellSchool
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {generateId} from "../../../../helpers/IdGeneratorHelpers";

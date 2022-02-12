@@ -1,6 +1,5 @@
 import {
   SpellCastingTimeRequest,
-  SpellCastingTimeResponse,
   SpellCastingTimeType
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import _ from "lodash";

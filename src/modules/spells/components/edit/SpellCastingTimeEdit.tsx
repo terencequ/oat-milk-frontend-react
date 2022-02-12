@@ -1,6 +1,5 @@
 import {ChangeEvent, FC} from "react";
 import {
-  Divider,
   FormControl,
   InputLabel,
   MenuItem,

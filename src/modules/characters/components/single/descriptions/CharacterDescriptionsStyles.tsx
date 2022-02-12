@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 import {Card, CardProps} from "@mui/material";
 import {themeSpacing} from "../../../../core/styles/GlobalStyles";
 import {FC} from "react";
-import CharacterDescriptionsEdit from "./edit/CharacterDescriptionsEdit";
-import CharacterDescriptionEdit from "./edit/CharacterDescriptionEdit";
 
 export const StyledDescriptions = styled.div`
   display: grid;

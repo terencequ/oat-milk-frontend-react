@@ -3,7 +3,7 @@ import {Checkbox, Typography} from "@mui/material";
 import {
     CharacterAbilityScoreRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {ChangeEvent, FC, useEffect, useState} from "react";
+import {ChangeEvent, FC, useState} from "react";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";
 import {StyledProficiencyOrSavingThrow} from "../../CharacterStatsStyles";
 import styled from "@emotion/styled";

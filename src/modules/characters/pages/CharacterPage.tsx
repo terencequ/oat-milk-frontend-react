@@ -1,7 +1,7 @@
-import {Edit, KeyboardReturn, Restore, Save, Visibility} from "@mui/icons-material";
+import {Edit, Save, Visibility} from "@mui/icons-material";
 import {Fade, Tab, Tabs} from "@mui/material";
 import React, {FC, useEffect, useState} from 'react';
-import {useHistory, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {mapCharacterResponseToRequest} from "../../../api/helpers/characterMapping";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import {anyCurrentEditCharacterFormErrors, setCurrentEditCharacter} from "../../../redux/slices/characterSlice";

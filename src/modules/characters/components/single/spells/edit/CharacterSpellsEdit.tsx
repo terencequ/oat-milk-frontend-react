@@ -3,7 +3,6 @@ import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
 import {StyledCharacterSpells, StyledCharacterSpellsContainer} from "../CharacterSpellsStyles";
 import CharacterSpellEdit from "./CharacterSpellEdit";
 import {Button} from "@mui/material";
-import {setCurrentEditCharacter} from "../../../../../../redux/slices/characterSlice";
 import CharacterSpellCreateOrEditDialog from "../dialogs/CharacterSpellCreateOrEditDialog";
 
 const CharacterSpellsEdit: FC = () => {

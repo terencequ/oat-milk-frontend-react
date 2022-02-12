@@ -1,5 +1,5 @@
-import {Dispatch, FC, SetStateAction, useCallback, useEffect, useRef, useState} from "react";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Snackbar} from "@mui/material";
+import {Dispatch, FC, SetStateAction, useCallback, useEffect, useState} from "react";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
 import {getRandomInt} from "../../../characters/helpers/NumberHelpers";
 import {getModifierAsString} from "../../../characters/helpers/CharacterStatHelpers";
 

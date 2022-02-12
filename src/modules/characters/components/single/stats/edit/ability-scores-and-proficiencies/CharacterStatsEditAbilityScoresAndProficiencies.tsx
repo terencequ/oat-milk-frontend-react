@@ -1,5 +1,4 @@
 import {Typography} from "@mui/material";
-import {CharacterRequest} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import React, {FC} from "react";
 import {useAppSelector} from "../../../../../../../redux/hooks";
 import {getLevel} from "../../../../../helpers/CharacterStatHelpers";

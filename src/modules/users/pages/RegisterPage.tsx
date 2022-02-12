@@ -6,7 +6,7 @@ import {
 } from "./UserFormStyles";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Logo from "../../shared/components/Logo";
-import {Button, Divider, FormControl, Link, TextField, Typography} from "@mui/material";
+import {Button, FormControl, Link, TextField, Typography} from "@mui/material";
 import PasswordInput from "../../shared/components/PasswordInput";
 import {Link as RouterLink, Redirect} from "react-router-dom";
 import {login, register} from "../../../redux/thunks/userThunks";

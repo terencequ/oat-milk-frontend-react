@@ -1,5 +1,3 @@
-import PeopleAlt from "@mui/icons-material/PeopleAlt";
-import ListAlt from "@mui/icons-material/ListAlt";
 import React, {FC, useEffect} from 'react';
 import {Card, CardActionArea, Typography} from "@mui/material";
 import styled from "@emotion/styled";

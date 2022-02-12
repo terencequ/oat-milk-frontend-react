@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {Card, CardActionArea, Collapse} from "@mui/material";
+import {Card} from "@mui/material";
 import {themeSpacing} from "../../../../core/styles/GlobalStyles";
 
 export const StyledCharacterSpells = styled.div`

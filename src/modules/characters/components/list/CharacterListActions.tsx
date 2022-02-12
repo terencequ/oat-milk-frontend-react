@@ -1,7 +1,5 @@
 import {FC, useState} from "react";
 import Add from "@mui/icons-material/Add";
-import {createCharacter} from "../../../../redux/thunks/characterThunks";
-import {useAppDispatch} from "../../../../redux/hooks";
 import FloatingActionList, {FloatingActionModel} from "../../../shared/components/FloatingActionList";
 import CharacterCreateDialog from "./dialogs/CharacterCreateDialog";
 

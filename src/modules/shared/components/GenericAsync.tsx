@@ -4,7 +4,6 @@ import {RequestStatus} from "../../../redux/actions/requestStatus";
 import {useAppDispatch} from "../../../redux/hooks";
 import {requestSelector} from "../../../redux/slices/requestsSlice";
 import {setLoading} from "../../../redux/slices/userInterfaceSlice";
-import {useHistory} from "react-router-dom";
 import {logout} from "../../../redux/slices/usersSlice";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../core/styles/GlobalStyles";

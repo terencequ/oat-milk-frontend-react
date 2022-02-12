@@ -4,7 +4,7 @@ import {Checkbox, Typography} from "@mui/material";
 import {
     CharacterAbilityScoreProficiencyRequest,
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {ChangeEvent, FC, useEffect, useState} from "react";
+import {ChangeEvent, FC, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
 import {setCurrentEditCharacter} from "../../../../../../../redux/slices/characterSlice";
 import {getModifier, getModifierAsString, getProficiencyBonus} from "../../../../../helpers/CharacterStatHelpers";

@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {HashRouter as Router, Route, Switch, useHistory} from "react-router-dom";
+import React from 'react';
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
 import NavBar from "./modules/core/components/NavBar";
 import HomePage from "./modules/core/pages/HomePage";
