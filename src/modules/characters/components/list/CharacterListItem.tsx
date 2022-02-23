@@ -54,7 +54,6 @@ const WrappedCardActionArea: FC<WrappedCardActionAreaProps> = ({isMobile, ...pro
 const SummaryActionArea = styled(WrappedCardActionArea)<{isMobile?: boolean}>`
   display: grid;
   ${({isMobile}) => {
-    console.log(isMobile)
     return isMobile 
         ? 'grid-template-columns: 130px 1fr;'
         : 'grid-template-columns: 130px 15rem 10rem 1fr;';

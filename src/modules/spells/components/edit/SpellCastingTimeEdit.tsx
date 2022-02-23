@@ -30,9 +30,13 @@ interface SpellCastingTimeEditProps {
 }
 
 export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime, setCastingTime}) => {
+  /**
+   * Change the value of the casting time
+   * @param e
+   */
   const onChangeValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const string = e.target.value.replaceAll(/[^0-9]/g, '').substr(0, 2);
-    const int = parseInt(string === "" ? "0" : string);
+    const int = parseInt(string === "" ? "1" : string);
     let newCastingTime: SpellCastingTimeRequest = {
       value: int,
       type: castingTime.type,
@@ -41,6 +45,11 @@ export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime
     };
     setCastingTime(newCastingTime);
   }
+
+  /**
+   * Change the type of the casting time
+   * @param e
+   */
   const onChangeCastingTime = (e: SelectChangeEvent) => {
     let newCastingTime: SpellCastingTimeRequest = {
       value: castingTime.value,
@@ -55,18 +64,18 @@ export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime
     <Typography gutterBottom variant={"subtitle1"}>Casting Time</Typography>
     <StyledCastingTimeForm>
       <FormControl>
-        <TextField variant={"filled"} label={"Value"} value={castingTime.value} onChange={onChangeValue}/>
+        <TextField variant={"filled"} label={"Value"} value={castingTime.value ?? ""} onChange={onChangeValue}/>
       </FormControl>
       <FormControl variant="filled">
-        <InputLabel id={"spellCastingTimeLabel"}>Type</InputLabel>
+        <InputLabel id={"spellCastingTimeTypeLabel"}>Type</InputLabel>
         <Select
-          labelId={"spellCastingTimeLabel"}
-          id={"spellCastingTime"}
-          value={castingTime.type}
+          labelId={"spellCastingTimeTypeLabel"}
+          id={"spellCastingTimeType"}
+          value={castingTime.type ?? ''}
           onChange={onChangeCastingTime}
         >
           {
-            Object.keys(SpellCastingTimeType).map(t => <MenuItem value={t}>{_.startCase(t)}</MenuItem>)
+            Object.keys(SpellCastingTimeType).map((type, index) => <MenuItem value={type} key={index}>{_.startCase(type)}</MenuItem>)
           }
         </Select>
       </FormControl>

@@ -9,7 +9,7 @@ const StyledName = styled.div`
 
 interface SpellNameEditProps {
     name: string;
-    setName: (level: string) => void;
+    setName: (name: string) => void;
 }
 
 const SpellNameEdit: FC<SpellNameEditProps> = ({name, setName}) => {

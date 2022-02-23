@@ -39,7 +39,7 @@ const CharacterListPage: FC = () => {
                 <MainSection in appear>
                     <div>
                         <StyledList>
-                            {characterSummaries.map((value, i) => <CharacterListItem key={i} characterSummary={value}/>)}
+                            {characterSummaries.map((value, i) => <CharacterListItem key={i} characterSummary={value} isMobile={false}/>)}
                         </StyledList>
                     </div>
                 </MainSection>

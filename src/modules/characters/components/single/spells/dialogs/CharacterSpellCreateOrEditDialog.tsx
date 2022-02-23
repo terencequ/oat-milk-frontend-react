@@ -18,6 +18,8 @@ import {generateId} from "../../../../helpers/IdGeneratorHelpers";
 import SpellCastingTimeEdit from "../../../../../spells/components/edit/SpellCastingTimeEdit";
 import SpellLevelEdit from "../../../../../spells/components/edit/SpellLevelEdit";
 import SpellNameEdit from "../../../../../spells/components/edit/SpellNameEdit";
+import {set} from "lodash";
+import SpellDescriptionEdit from "../../../../../spells/components/edit/SpellDescriptionEdit";
 
 const StyledForm = styled.div`
   margin-top: ${themeSpacing(2)};
@@ -64,19 +66,6 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
     const [duration, setDuration] = useState<string>("");
     const [school, setSchool] = useState<SpellSchool>(SpellSchool.Abjuration);
 
-    const onChangeId = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setId(limitString(event.target.value, 16).toLowerCase().replaceAll(/[^a-z0-9]/g, ''));
-    }
-    const onChangeName = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setName(limitString(event.target.value, 32));
-    }
-    const onChangeDescription = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setDescription(event.target.value.substr(0, 1024));
-    }
-    const onChangeLevel = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        const string = event.target.value.replaceAll(/[^0-9]/g, '').substr(0, 2);
-        setLevel(parseInt(string === "" ? "0" : string));
-    }
     const onChangeRangeOrArea = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setRangeOrArea(limitString(event.target.value, 32));
     }
@@ -114,7 +103,11 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             setId(existingSpell.id);
             setName(existingSpell?.name ?? "");
             setDescription(existingSpell?.description ?? "");
-            setLevel(existingSpell?.level ?? 0);
+            setLevel(existingSpell?.level ?? 1);
+            setCastingTime(existingSpell?.castingTime ?? {});
+            // setRangeOrArea("");
+            // setComponents("");
+            // setDuration("");
             setSchool(existingSpell?.school ?? SpellSchool.Abjuration);
         }
     }, [existingSpell, setError])
@@ -220,9 +213,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
                     </FormControl>
                 </div>
                 <div className={"description"}>
-                    <FormControl>
-                        <TextField onChange={onChangeDescription} variant={"filled"} label={"Description"} value={description} multiline rows={12}/>
-                    </FormControl>
+                    <SpellDescriptionEdit description={description} setDescription={setDescription}/>
                 </div>
 
             </StyledForm>
