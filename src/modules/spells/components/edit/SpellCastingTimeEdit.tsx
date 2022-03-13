@@ -1,6 +1,7 @@
 import {ChangeEvent, FC} from "react";
 import {
-  FormControl,
+  Checkbox,
+  FormControl, FormControlLabel,
   InputLabel,
   MenuItem,
   Select,
@@ -20,7 +21,7 @@ const StyledCastingTime = styled.div`
 
 const StyledCastingTimeForm = styled.div`
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 80px 1fr 120px;
   grid-column-gap: ${themeSpacing(1)};
 `
 
@@ -29,7 +30,7 @@ interface SpellCastingTimeEditProps {
   setCastingTime: (castingTime: SpellCastingTimeRequest) => void;
 }
 
-export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime, setCastingTime}) => {
+const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime, setCastingTime}) => {
   /**
    * Change the value of the casting time
    * @param e
@@ -50,12 +51,27 @@ export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime
    * Change the type of the casting time
    * @param e
    */
-  const onChangeCastingTime = (e: SelectChangeEvent) => {
+  const onChangeType = (e: SelectChangeEvent) => {
     let newCastingTime: SpellCastingTimeRequest = {
       value: castingTime.value,
       type: e.target.value as SpellCastingTimeType,
       description: castingTime.description,
       isRitual: castingTime.isRitual,
+    };
+    setCastingTime(newCastingTime);
+  }
+
+  /**
+   * Toggle if ritual for the casting time
+   * @param e
+   */
+  const onChangeIsRitual = (e: SelectChangeEvent) => {
+    console.log(e.target.value);
+    let newCastingTime: SpellCastingTimeRequest = {
+      value: castingTime.value,
+      type: castingTime.type,
+      description: castingTime.description,
+      isRitual: e.target.value === "Ritual",
     };
     setCastingTime(newCastingTime);
   }
@@ -67,16 +83,28 @@ export const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime
         <TextField variant={"filled"} label={"Value"} value={castingTime.value ?? ""} onChange={onChangeValue}/>
       </FormControl>
       <FormControl variant="filled">
-        <InputLabel id={"spellCastingTimeTypeLabel"}>Type</InputLabel>
+        <InputLabel id={"spellCastingTimeTypeLabel"}>Unit</InputLabel>
         <Select
           labelId={"spellCastingTimeTypeLabel"}
           id={"spellCastingTimeType"}
           value={castingTime.type ?? ''}
-          onChange={onChangeCastingTime}
+          onChange={onChangeType}
         >
           {
             Object.keys(SpellCastingTimeType).map((type, index) => <MenuItem value={type} key={index}>{_.startCase(type)}</MenuItem>)
           }
+        </Select>
+      </FormControl>
+      <FormControl variant="filled">
+        <InputLabel id={"spellCastingIsRitualLabel"}>Type</InputLabel>
+        <Select
+            labelId={"spellCastingIsRitualLabel"}
+            id={"spellCastingIsRitual"}
+            value={(castingTime.isRitual ?? false) ? 'Ritual' : 'Normal'}
+            onChange={onChangeIsRitual}
+        >
+          <MenuItem value={'Normal'}>Normal</MenuItem>
+          <MenuItem value={'Ritual'}>Ritual</MenuItem>
         </Select>
       </FormControl>
     </StyledCastingTimeForm>

@@ -6,7 +6,6 @@ import {Typography} from "@mui/material";
 
 const CharacterSpellsView: FC = () => {
   const currentCharacterSpells = useAppSelector(state => state.characters.currentCharacter)?.spells ?? [];
-  console.log("spells", currentCharacterSpells);
 
   return <StyledCharacterSpells>
     {currentCharacterSpells.length === 0

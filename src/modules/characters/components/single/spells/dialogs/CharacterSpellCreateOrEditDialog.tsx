@@ -11,17 +11,18 @@ import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 import {
     CharacterSpellRequest,
-    SpellCastingTimeRequest,
+    SpellCastingTimeRequest, SpellRangeRequest,
     SpellSchool
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {generateId} from "../../../../helpers/IdGeneratorHelpers";
 import SpellCastingTimeEdit from "../../../../../spells/components/edit/SpellCastingTimeEdit";
 import SpellLevelEdit from "../../../../../spells/components/edit/SpellLevelEdit";
 import SpellNameEdit from "../../../../../spells/components/edit/SpellNameEdit";
-import {set} from "lodash";
 import SpellDescriptionEdit from "../../../../../spells/components/edit/SpellDescriptionEdit";
+import SpellRangeEdit from "../../../../../spells/components/edit/SpellRangeEdit";
 
 const StyledForm = styled.div`
+  width: auto;
   margin-top: ${themeSpacing(2)};
   display: grid;
   grid-template-rows: auto auto 1fr;
@@ -33,7 +34,7 @@ const StyledForm = styled.div`
   }
   .properties {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr;
     grid-column-gap: ${themeSpacing(2)};
     grid-row-gap: ${themeSpacing(2)};
   }
@@ -61,14 +62,11 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
     const [description, setDescription] = useState<string>("");
     const [level, setLevel] = useState<number>(1);
     const [castingTime, setCastingTime] = useState<SpellCastingTimeRequest>({});
-    const [rangeOrArea, setRangeOrArea] = useState<string>("");
+    const [range, setRange] = useState<SpellRangeRequest>({});
     const [components, setComponents] = useState<string>("");
     const [duration, setDuration] = useState<string>("");
     const [school, setSchool] = useState<SpellSchool>(SpellSchool.Abjuration);
 
-    const onChangeRangeOrArea = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setRangeOrArea(limitString(event.target.value, 32));
-    }
     const onChangeComponents = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setComponents(limitString(event.target.value, 32));
     }
@@ -94,8 +92,8 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             setName("");
             setDescription("");
             setLevel(1);
-            // setCastingTime("");
-            // setRangeOrArea("");
+            setCastingTime({});
+            setRange({});
             // setComponents("");
             // setDuration("");
             setSchool(SpellSchool.Abjuration);
@@ -105,7 +103,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             setDescription(existingSpell?.description ?? "");
             setLevel(existingSpell?.level ?? 1);
             setCastingTime(existingSpell?.castingTime ?? {});
-            // setRangeOrArea("");
+            setRange(existingSpell?.range ?? {});
             // setComponents("");
             // setDuration("");
             setSchool(existingSpell?.school ?? SpellSchool.Abjuration);
@@ -146,7 +144,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             description: description,
             level: level,
             castingTime: castingTime,
-            range: undefined,
+            range: range,
             components: undefined,
             duration: undefined,
             school: school,
@@ -179,7 +177,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
         }
     }
 
-    return <Dialog open={open} disableEscapeKeyDown fullWidth maxWidth={"md"}>
+    return <Dialog open={open} disableEscapeKeyDown fullWidth maxWidth={"lg"}>
         <DialogContent>
             {!existingSpell
                 ? <>
@@ -199,9 +197,7 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
                 <div className={"properties"}>
                     <SpellLevelEdit level={level} setLevel={setLevel}/>
                     <SpellCastingTimeEdit castingTime={castingTime} setCastingTime={setCastingTime}/>
-                    <FormControl>
-                        <TextField onChange={onChangeRangeOrArea} variant={"filled"} label={"Range / Area"} value={rangeOrArea}/>
-                    </FormControl>
+                    <SpellRangeEdit range={range} setRange={setRange}/>
                     <FormControl>
                         <TextField onChange={onChangeComponents} variant={"filled"} label={"Components"} value={components}/>
                     </FormControl>
