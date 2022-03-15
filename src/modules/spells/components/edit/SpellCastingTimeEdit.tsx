@@ -1,15 +1,16 @@
 import {ChangeEvent, FC} from "react";
 import {
-  Checkbox,
-  FormControl, FormControlLabel,
-  InputLabel,
+  FormControl, InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
   TextField,
   Typography
 } from "@mui/material";
-import {SpellCastingTimeRequest, SpellCastingTimeType} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {
+  SpellCastingTimeRequest,
+  SpellCastingTimeType
+} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import _ from "lodash";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
@@ -32,18 +33,24 @@ interface SpellCastingTimeEditProps {
 
 const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime, setCastingTime}) => {
   /**
+   * Create a new casting time object.
+   */
+  const createNewCastingTime: () => SpellCastingTimeRequest = () => ({
+    value: castingTime.value,
+    type: castingTime.type,
+    description: castingTime.description,
+    isRitual: castingTime.isRitual,
+  });
+
+  /**
    * Change the value of the casting time
    * @param e
    */
   const onChangeValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const string = e.target.value.replaceAll(/[^0-9]/g, '').substr(0, 2);
     const int = parseInt(string === "" ? "1" : string);
-    let newCastingTime: SpellCastingTimeRequest = {
-      value: int,
-      type: castingTime.type,
-      description: castingTime.description,
-      isRitual: castingTime.isRitual,
-    };
+    let newCastingTime = createNewCastingTime();
+    newCastingTime.value = int;
     setCastingTime(newCastingTime);
   }
 
@@ -52,12 +59,8 @@ const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime, setCa
    * @param e
    */
   const onChangeType = (e: SelectChangeEvent) => {
-    let newCastingTime: SpellCastingTimeRequest = {
-      value: castingTime.value,
-      type: e.target.value as SpellCastingTimeType,
-      description: castingTime.description,
-      isRitual: castingTime.isRitual,
-    };
+    let newCastingTime = createNewCastingTime();
+    newCastingTime.type = e.target.value as SpellCastingTimeType;
     setCastingTime(newCastingTime);
   }
 
@@ -66,13 +69,8 @@ const SpellCastingTimeEdit: FC<SpellCastingTimeEditProps> = ({castingTime, setCa
    * @param e
    */
   const onChangeIsRitual = (e: SelectChangeEvent) => {
-    console.log(e.target.value);
-    let newCastingTime: SpellCastingTimeRequest = {
-      value: castingTime.value,
-      type: castingTime.type,
-      description: castingTime.description,
-      isRitual: e.target.value === "Ritual",
-    };
+    let newCastingTime = createNewCastingTime();
+    newCastingTime.isRitual = e.target.value === "Ritual";
     setCastingTime(newCastingTime);
   }
 

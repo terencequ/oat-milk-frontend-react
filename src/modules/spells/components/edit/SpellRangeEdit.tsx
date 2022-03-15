@@ -26,6 +26,13 @@ interface SpellRangeEditProps {
 }
 
 const SpellRangeEdit : FC<SpellRangeEditProps> = ({range, setRange}) => {
+    const createNewRange: () => SpellRangeRequest = () => ({
+        targetValue: range.targetValue,
+        targetType: range.targetType,
+        effectValue: range.effectValue,
+        effectType: range.effectType
+    });
+
     /**
      * Change the value of the spell's target range.
      * @param e
@@ -33,12 +40,8 @@ const SpellRangeEdit : FC<SpellRangeEditProps> = ({range, setRange}) => {
     const onChangeTargetValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const string = e.target.value.replaceAll(/[^0-9]/g, '').substr(0, 2);
         const int = parseInt(string === "" ? "1" : string);
-        let newRange: SpellRangeRequest = {
-            targetValue: int,
-            targetType: range.targetType,
-            effectValue: range.effectValue,
-            effectType: range.effectType
-        };
+        let newRange = createNewRange();
+        newRange.targetValue = int;
         setRange(newRange);
     }
 
@@ -47,12 +50,8 @@ const SpellRangeEdit : FC<SpellRangeEditProps> = ({range, setRange}) => {
      * @param e
      */
     const onChangeTargetType = (e: SelectChangeEvent) => {
-        let newRange: SpellRangeRequest = {
-            targetValue: range.targetValue,
-            targetType:  e.target.value as SpellRangeTargetType,
-            effectValue: range.effectValue,
-            effectType: range.effectType
-        };
+        let newRange = createNewRange();
+        newRange.targetType = e.target.value as SpellRangeTargetType;
         setRange(newRange);
     }
 
@@ -63,12 +62,8 @@ const SpellRangeEdit : FC<SpellRangeEditProps> = ({range, setRange}) => {
     const onChangeEffectValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const string = e.target.value.replaceAll(/[^0-9]/g, '').substr(0, 2);
         const int = parseInt(string === "" ? "1" : string);
-        let newRange: SpellRangeRequest = {
-            targetValue: range.targetValue,
-            targetType: range.targetType,
-            effectValue: int,
-            effectType: range.effectType
-        };
+        let newRange = createNewRange();
+        newRange.effectValue = int;
         setRange(newRange);
     }
 
@@ -77,12 +72,8 @@ const SpellRangeEdit : FC<SpellRangeEditProps> = ({range, setRange}) => {
      * @param e
      */
     const onChangeEffectType = (e: SelectChangeEvent) => {
-        let newRange: SpellRangeRequest = {
-            targetValue: range.targetValue,
-            targetType: range.targetType,
-            effectValue: range.effectValue,
-            effectType: e.target.value as SpellRangeEffectType
-        };
+        let newRange = createNewRange();
+        newRange.effectType = e.target.value as SpellRangeEffectType;
         setRange(newRange);
     }
 

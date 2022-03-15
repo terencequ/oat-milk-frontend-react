@@ -11,7 +11,7 @@ import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 import {
     CharacterSpellRequest,
-    SpellCastingTimeRequest, SpellRangeRequest,
+    SpellCastingTimeRequest, SpellComponentsRequest, SpellDurationRequest, SpellRangeRequest,
     SpellSchool
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {generateId} from "../../../../helpers/IdGeneratorHelpers";
@@ -20,6 +20,9 @@ import SpellLevelEdit from "../../../../../spells/components/edit/SpellLevelEdit
 import SpellNameEdit from "../../../../../spells/components/edit/SpellNameEdit";
 import SpellDescriptionEdit from "../../../../../spells/components/edit/SpellDescriptionEdit";
 import SpellRangeEdit from "../../../../../spells/components/edit/SpellRangeEdit";
+import SpellSchoolEdit from "../../../../../spells/components/edit/SpellSchoolEdit";
+import SpellComponentsEdit from "../../../../../spells/components/edit/SpellComponentsEdit";
+import SpellDurationEdit from "../../../../../spells/components/edit/SpellDurationEdit";
 
 const StyledForm = styled.div`
   width: auto;
@@ -63,19 +66,9 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
     const [level, setLevel] = useState<number>(1);
     const [castingTime, setCastingTime] = useState<SpellCastingTimeRequest>({});
     const [range, setRange] = useState<SpellRangeRequest>({});
-    const [components, setComponents] = useState<string>("");
-    const [duration, setDuration] = useState<string>("");
+    const [duration, setDuration] = useState<SpellDurationRequest>({});
+    const [components, setComponents] = useState<SpellComponentsRequest>({});
     const [school, setSchool] = useState<SpellSchool>(SpellSchool.Abjuration);
-
-    const onChangeComponents = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setComponents(limitString(event.target.value, 32));
-    }
-    const onChangeDuration = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setDuration(limitString(event.target.value, 32));
-    }
-    const onChangeSchool = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setSchool(SpellSchool[event.target.value as keyof typeof SpellSchool]);
-    }
 
     // Error state in redux
     const errorId = `${CharacterSpellCreateOrEditDialog.name}`
@@ -94,8 +87,8 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             setLevel(1);
             setCastingTime({});
             setRange({});
-            // setComponents("");
-            // setDuration("");
+            setDuration({});
+            setComponents({});
             setSchool(SpellSchool.Abjuration);
         } else {
             setId(existingSpell.id);
@@ -104,8 +97,8 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             setLevel(existingSpell?.level ?? 1);
             setCastingTime(existingSpell?.castingTime ?? {});
             setRange(existingSpell?.range ?? {});
-            // setComponents("");
-            // setDuration("");
+            setDuration(existingSpell?.duration ?? {});
+            setComponents(existingSpell?.components ?? {});
             setSchool(existingSpell?.school ?? SpellSchool.Abjuration);
         }
     }, [existingSpell, setError])
@@ -145,8 +138,8 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
             level: level,
             castingTime: castingTime,
             range: range,
-            components: undefined,
-            duration: undefined,
+            duration: duration,
+            components: components,
             school: school,
             shouldCreateNewId: shouldCreateNewId
         }
@@ -198,15 +191,9 @@ const CharacterSpellCreateOrEditDialog: FC<CharacterSpellCreateOrEditDialogProps
                     <SpellLevelEdit level={level} setLevel={setLevel}/>
                     <SpellCastingTimeEdit castingTime={castingTime} setCastingTime={setCastingTime}/>
                     <SpellRangeEdit range={range} setRange={setRange}/>
-                    <FormControl>
-                        <TextField onChange={onChangeComponents} variant={"filled"} label={"Components"} value={components}/>
-                    </FormControl>
-                    <FormControl>
-                        <TextField onChange={onChangeDuration} variant={"filled"} label={"Duration"} value={duration}/>
-                    </FormControl>
-                    <FormControl>
-                        <TextField onChange={onChangeSchool} variant={"filled"} label={"School"} value={school}/>
-                    </FormControl>
+                    <SpellDurationEdit duration={duration} setDuration={setDuration}/>
+                    <SpellComponentsEdit components={components} setComponents={setComponents}/>
+                    <SpellSchoolEdit school={school} setSchool={setSchool}/>
                 </div>
                 <div className={"description"}>
                     <SpellDescriptionEdit description={description} setDescription={setDescription}/>

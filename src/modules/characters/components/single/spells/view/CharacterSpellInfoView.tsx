@@ -8,7 +8,12 @@ import {
     SpellRangeRequest,
     SpellSchool
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
-import {getCastingTimeAsString} from "../../../../helpers/SpellHelpers";
+import {
+    getCastingTimeAsString,
+    getComponentsAsString,
+    getDurationAsString,
+    getRangeAsString
+} from "../../../../helpers/SpellHelpers";
 
 const CharacterSpellPropertyView: FC<{title: string, value: string}> = ({title, value}) => (
     <StyledCharacterSpellContentsProperty>
@@ -35,9 +40,9 @@ const CharacterSpellInfoView: FC<CharacterSpellInfoViewProps> = (props) => {
         <div className={"properties"}>
             <CharacterSpellPropertyView title={"Level"} value={props.level.toString()}/>
             <CharacterSpellPropertyView title={"Casting Time"} value={getCastingTimeAsString(props.castingTime)}/>
-            <CharacterSpellPropertyView title={"Range / Area"} value={"N/A"}/>
-            <CharacterSpellPropertyView title={"Duration"} value={"N/A"}/>
-            <CharacterSpellPropertyView title={"Components"} value={"N/A"}/>
+            <CharacterSpellPropertyView title={"Range / Area"} value={getRangeAsString(props.range)}/>
+            <CharacterSpellPropertyView title={"Duration"} value={getDurationAsString(props.duration)}/>
+            <CharacterSpellPropertyView title={"Components"} value={getComponentsAsString(props.components)}/>
             <CharacterSpellPropertyView title={"School"} value={props.school}/>
         </div>
         <Divider sx={{marginBottom: 2}}/>

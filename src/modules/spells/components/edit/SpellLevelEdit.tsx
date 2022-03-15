@@ -5,7 +5,6 @@ import {FormControl, TextField, Typography} from "@mui/material";
 const StyledLevel = styled.div`
   display: flex;
   flex-direction: column;
-  
 `
 
 interface SpellLevelEditProps {
