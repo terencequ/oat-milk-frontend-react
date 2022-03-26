@@ -13,14 +13,21 @@ export function getCastingTimeAsString(castingTime: SpellCastingTimeRequest | un
     return "N/A";
   }
 
-  const {value, type} = castingTime;
+  const {value, type, isRitual} = castingTime;
+  let string = "";
   switch (type) {
     case SpellCastingTimeType.Special:
     case SpellCastingTimeType.Unspecified:
-      return type;
+      string = type;
+      break;
     default:
-      return (value ?? 0) + " " + _.startCase(type);
+      string = (value ?? 0) + " " + _.startCase(type);
+      break;
   }
+  if(isRitual){
+    string += " (ritual)";
+  }
+  return string;
 }
 
 /**
@@ -46,16 +53,20 @@ export function getDurationAsString(duration: SpellDurationRequest | undefined) 
   }
 
   const {value, type} = duration;
+  let string = "";
   switch (type) {
     case SpellDurationType.Special:
     case SpellDurationType.Unspecified:
     case SpellDurationType.Instantaneous:
     case SpellDurationType.UntilDispelled:
     case SpellDurationType.UntilDispelledOrTriggered:
-      return type;
+      string = type;
+      break;
     default:
-      return (value ?? 0) + " " + _.startCase(type);
+      string = (value ?? 0) + " " + _.startCase(type);
+      break;
   }
+  return string;
 }
 
 /**

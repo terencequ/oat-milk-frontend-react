@@ -35,6 +35,7 @@ export function login(request: UserLoginRequest): ThunkAction<void, RootState, u
             const res = await createUserClient().userLoginPost(request);
             dispatch(succeedRequest(login.name))
             dispatch(setAuthToken(res.data?.authToken ?? ""));
+            dispatch(getUserProfile(request));
         } catch (err) {
             const errorRes = processError(err);
             dispatch(failRequest([login.name, errorRes.message ?? "An unexpected error has occurred!"]))
@@ -49,6 +50,7 @@ export function register(request: UserRequest): ThunkAction<void, RootState, unk
             const res = await createUserClient().userRegisterPost(request);
             dispatch(succeedRequest(register.name))
             dispatch(setAuthToken(res.data?.authToken ?? ""));
+            dispatch(getUserProfile(request));
         } catch (err) {
             const errorRes = processError(err);
             dispatch(failRequest([register.name, errorRes.message ?? "An unexpected error has occurred!"]))
