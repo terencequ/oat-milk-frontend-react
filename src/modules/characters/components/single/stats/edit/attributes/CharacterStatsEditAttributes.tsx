@@ -12,12 +12,13 @@ import passivePerceptionIcon from "../../../../../../../assets/images/icons/pass
 import proficiencyBonusIcon from "../../../../../../../assets/images/icons/proficiency.png";
 import armorClassIcon from "../../../../../../../assets/images/icons/armorclass.png";
 import hitDiceIcon from "../../../../../../../assets/images/icons/hitdice.png";
-import CharacterStatsViewAttributesDeathSaves from "../../view/attributes/CharacterStatsViewAttributesDeathSaves";
+import CharacterStatsViewAttributeDeathSaves from "../../view/attributes/CharacterStatsViewAttributesDeathSaves";
 import {StyledAttributes} from "../../CharacterStatsStyles";
 import {useAppSelector} from "../../../../../../../redux/hooks";
 import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterStatsEditAttribute from "./CharacterStatsEditAttribute";
 import CharacterStatsViewAttributeCustom from "../../view/attributes/CharacterStatsViewAttributeCustom";
+import CharacterStatsEditAttributeDeathSaves from "./CharacterStatsEditAttributeDeathSaves";
 
 const CharacterStatsEditAttributes: FC = () => {
     const character = useAppSelector(state => state.characters.currentEditCharacter);
@@ -52,7 +53,7 @@ const CharacterStatsEditAttributes: FC = () => {
         <CharacterStatsViewAttributeCustom iconSrc={proficiencyBonusIcon} title={"Proficiency bonus"} value={getModifierAsString(proficiencyBonus)}/>
         <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>
         <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={"10d8"}/>
-        <CharacterStatsViewAttributesDeathSaves deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue} deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
+        <CharacterStatsEditAttributeDeathSaves deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue} deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
     </StyledAttributes>
 }
 
