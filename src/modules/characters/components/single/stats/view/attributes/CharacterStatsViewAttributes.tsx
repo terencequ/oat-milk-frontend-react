@@ -43,8 +43,8 @@ const CharacterStatsViewAttributes: FC = () => {
     return <StyledAttributes>
         <CharacterStatsViewAttributeCustom iconSrc={initiativeIcon} title={"Initiative"} value={getModifierAsString(initiative)}/>
         <CharacterStatsViewAttribute iconSrc={hitPointsIcon} attribute={hitPointsAttribute} includeDefaultValue={true}/>
-        <CharacterStatsViewAttribute iconSrc={speedIcon} attribute={speedAttribute}/>
-        <CharacterStatsViewAttributeCustom iconSrc={passivePerceptionIcon} title={"Passive perception"} value={getModifierAsString(passivePerception)}/>
+        <CharacterStatsViewAttribute iconSrc={speedIcon} attribute={speedAttribute} suffix={"ft"}/>
+        <CharacterStatsViewAttributeCustom iconSrc={passivePerceptionIcon} title={"Passive perception"} value={passivePerception.toString()}/>
         <CharacterStatsViewAttributeCustom iconSrc={proficiencyBonusIcon} title={"Proficiency bonus"} value={getModifierAsString(proficiencyBonus)}/>
         <CharacterStatsViewAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute}/>
         <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={"10d8"}/>

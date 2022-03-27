@@ -37,8 +37,6 @@ interface CharacterStatsEditAttributeDeathSavesProps {
 const CharacterStatsEditAttributeDeathSaves: FC<CharacterStatsEditAttributeDeathSavesProps> = ({deathSaveSuccesses, deathSaveFailures}) => {
     const dispatch = useAppDispatch();
     const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
-    const [deathSaveSuccessesState, setDeathSaveSuccessesState] = useState(deathSaveSuccesses);
-    const [deathSaveFailuresState, setDeathSaveFailuresState] = useState(deathSaveFailures);
 
     /**
      * Update a character attribute.
@@ -46,11 +44,6 @@ const CharacterStatsEditAttributeDeathSaves: FC<CharacterStatsEditAttributeDeath
      * @param attributeId
      */
     const changeAttribute = (value: number, attributeId: string) => {
-        if(attributeId === "deathSaveSuccesses") {
-            setDeathSaveSuccessesState(value);
-        } else if(attributeId === "deathSaveFailures") {
-            setDeathSaveFailuresState(value);
-        }
         if(!!currentEditCharacter) {
             dispatch(setCurrentEditCharacter(({
                 ...currentEditCharacter,
@@ -73,14 +66,14 @@ const CharacterStatsEditAttributeDeathSaves: FC<CharacterStatsEditAttributeDeath
                 <Typography align={"center"} variant={"subtitle1"}>Death save successes</Typography>
                 <StyledDeathSavesAndFailuresRadio>
                     <StyledAttributeLogo src={deathSaveSuccessesIcon}/>
-                    <CharacterStatsEditAttributeDeathSavesRadioGroup value={deathSaveSuccessesState} setValue={(e) => changeAttribute(e, "deathSaveSuccesses")} maxValue={3}/>
+                    <CharacterStatsEditAttributeDeathSavesRadioGroup value={deathSaveSuccesses} setValue={(e) => changeAttribute(e, "deathSaveSuccesses")} maxValue={3}/>
                 </StyledDeathSavesAndFailuresRadio>
             </div>
             <div>
                 <Typography align={"center"} variant={"subtitle1"}>Death save failures</Typography>
                 <StyledDeathSavesAndFailuresRadio>
                     <StyledAttributeLogo src={deathSaveFailuresIcon}/>
-                    <CharacterStatsEditAttributeDeathSavesRadioGroup value={deathSaveFailuresState} setValue={(e) => changeAttribute(e, "deathSaveFailures")} maxValue={3}/>
+                    <CharacterStatsEditAttributeDeathSavesRadioGroup value={deathSaveFailures} setValue={(e) => changeAttribute(e, "deathSaveFailures")} maxValue={3}/>
                 </StyledDeathSavesAndFailuresRadio>
             </div>
         </StyledDeathSavesAndFailures>

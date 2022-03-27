@@ -31,6 +31,7 @@ interface CharacterStatsEditAttributeProps {
     includeDefaultValue?: boolean,
     maxValue: number,
     minValue: number,
+    suffix?: string
 }
 
 const CharacterStatsEditAttribute: FC<CharacterStatsEditAttributeProps> =
@@ -41,6 +42,7 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditAttributeProps> =
         includeDefaultValue,
         maxValue,
         minValue,
+        suffix
      }) => {
     const dispatch = useAppDispatch();
     const currentEditCharacter = useAppSelector(state => state.characters.currentEditCharacter);
@@ -130,8 +132,10 @@ const CharacterStatsEditAttribute: FC<CharacterStatsEditAttributeProps> =
                                 value={defaultValue}
                                 onChange={onChangeDefaultValue}
                                 onBlur={onSaveValue}/>
+
                         </>
                 }
+                {!!suffix && <Typography variant={"body1"}>{suffix}</Typography>}
             </StyledContainer>
         </ErrorTooltip>
     </StyledAttribute>

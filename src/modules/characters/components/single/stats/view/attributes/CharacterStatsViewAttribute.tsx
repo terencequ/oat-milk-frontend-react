@@ -8,6 +8,7 @@ interface CharacterStatsViewAttributeProps {
   attribute: CharacterAttributeResponse,
   columnWidth?: number,
   includeDefaultValue?: boolean,
+  suffix?: string,
 }
 
 const CharacterStatsViewAttribute: FC<CharacterStatsViewAttributeProps> = (props) => {
@@ -17,8 +18,8 @@ const CharacterStatsViewAttribute: FC<CharacterStatsViewAttributeProps> = (props
     <Typography variant={"subtitle1"}>{props.attribute.name}</Typography>
     {
       props.includeDefaultValue
-        ? <Typography variant={"body1"}>{props.attribute.currentValue}/{props.attribute.defaultValue}</Typography>
-        : <Typography variant={"body1"}>{props.attribute.currentValue}</Typography>
+        ? <Typography variant={"body1"}>{props.attribute.currentValue}/{props.attribute.defaultValue}{props.suffix}</Typography>
+        : <Typography variant={"body1"}>{props.attribute.currentValue}{props.suffix}</Typography>
     }
   </StyledAttribute>
 }
