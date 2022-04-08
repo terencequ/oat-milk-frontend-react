@@ -1,7 +1,12 @@
 import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {FC} from "react";
 import {useAppSelector} from "../../../../../../../redux/hooks";
-import {getModifier, getModifierAsString, getProficiencyBonus,} from "../../../../../helpers/CharacterStatHelpers";
+import {
+    getHitDiceAsString,
+    getModifier,
+    getModifierAsString,
+    getProficiencyBonus,
+} from "../../../../../helpers/CharacterStatHelpers";
 import CharacterStatsViewAttributesDeathSaves from "./CharacterStatsViewAttributesDeathSaves";
 import armorClassIcon from 'assets/images/icons/armorclass.png';
 import initiativeIcon from 'assets/images/icons/initiative.png';
@@ -47,7 +52,7 @@ const CharacterStatsViewAttributes: FC = () => {
         <CharacterStatsViewAttributeCustom iconSrc={passivePerceptionIcon} title={"Passive perception"} value={passivePerception.toString()}/>
         <CharacterStatsViewAttributeCustom iconSrc={proficiencyBonusIcon} title={"Proficiency bonus"} value={getModifierAsString(proficiencyBonus)}/>
         <CharacterStatsViewAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute}/>
-        <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={"10d8"}/>
+        <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={getHitDiceAsString(character.attributes, false)} toolTip={"Max: "+getHitDiceAsString(character.attributes, true)}/>
         <CharacterStatsViewAttributesDeathSaves deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue} deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
     </StyledAttributes>
 }

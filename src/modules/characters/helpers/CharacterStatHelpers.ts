@@ -1,4 +1,10 @@
-import {CharacterLevelResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {
+    CharacterAttributeRequest,
+    CharacterAttributeResponse,
+    CharacterLevelResponse
+} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {parseInt} from "lodash";
+import {isWhitespaceOnly} from "./TextHelpers";
 
 const MinLevel = 1;
 const MaxLevel = 20;
@@ -92,4 +98,42 @@ export function getModifierAsString(modifier: number) {
  */
 export function getModifier(stat: number) {
     return Math.floor((stat - 10) / 2);
+}
+
+/**
+ * Get hit dice in string format.
+ * @param attributes Character attribute list
+ * @param useDefaultValues If true, get dice default values. Otherwise get current values.
+ */
+export function getHitDiceAsString(attributes: CharacterAttributeRequest[] | null | undefined, useDefaultValues: boolean){
+    if(!attributes){
+        return "N/A";
+    }
+
+    const idStart = "hitDice";
+
+    // Store dictionary of all hit dice and their values
+    const dice: {[id: string] : number} = {};
+    let hitDiceAttributes = attributes.filter(a => a.id.startsWith(idStart));
+    for(let hitDiceAttribute of hitDiceAttributes){
+        const diceType = hitDiceAttribute.id.substring(idStart.length);
+
+        const diceDefaultValue = hitDiceAttribute.defaultValue;
+        const diceCurrentValue = hitDiceAttribute.currentValue;
+
+        if(useDefaultValues){
+            dice[diceType] = diceDefaultValue ?? 0;
+        } else {
+            dice[diceType] = diceCurrentValue ?? 0;
+        }
+    }
+
+    // Sort dice dictionary
+    const sortableArray = Object.entries(dice);
+    const sortedArray = sortableArray.sort(([aKey, ], [bKey, ]) => parseInt(aKey) - parseInt(bKey));
+    const sortedDice = Object.fromEntries(sortedArray);
+
+    // Construct string
+    const result = Object.keys(sortedDice).map(key => sortedDice[key] + key).join(",");
+    return isWhitespaceOnly(result) ? "No dice" : result;
 }

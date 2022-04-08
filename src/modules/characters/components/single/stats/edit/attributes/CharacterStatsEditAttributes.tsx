@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import initiativeIcon from "../../../../../../../assets/images/icons/initiative.png";
 import {
+    getHitDiceAsString,
     getLevel,
     getModifier,
     getModifierAsString,
@@ -12,7 +13,6 @@ import passivePerceptionIcon from "../../../../../../../assets/images/icons/pass
 import proficiencyBonusIcon from "../../../../../../../assets/images/icons/proficiency.png";
 import armorClassIcon from "../../../../../../../assets/images/icons/armorclass.png";
 import hitDiceIcon from "../../../../../../../assets/images/icons/hitdice.png";
-import CharacterStatsViewAttributeDeathSaves from "../../view/attributes/CharacterStatsViewAttributesDeathSaves";
 import {StyledAttributes} from "../../CharacterStatsStyles";
 import {useAppSelector} from "../../../../../../../redux/hooks";
 import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
@@ -52,7 +52,7 @@ const CharacterStatsEditAttributes: FC = () => {
         <CharacterStatsViewAttributeCustom iconSrc={passivePerceptionIcon} title={"Passive perception"} value={passivePerception.toString()}/>
         <CharacterStatsViewAttributeCustom iconSrc={proficiencyBonusIcon} title={"Proficiency bonus"} value={getModifierAsString(proficiencyBonus)}/>
         <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>
-        <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={"10d8"}/>
+        <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={getHitDiceAsString(character.attributes, false)} toolTip={"Max: "+getHitDiceAsString(character.attributes, true)}/>
         <CharacterStatsEditAttributeDeathSaves deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue} deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
     </StyledAttributes>
 }
