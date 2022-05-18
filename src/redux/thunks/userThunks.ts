@@ -32,6 +32,7 @@ export function login(request: UserLoginRequest): ThunkAction<void, RootState, u
     return async dispatch => {
         try {
             dispatch(startRequest(login.name))
+            dispatch(logout());
             const res = await createUserClient().userLoginPost(request);
             dispatch(succeedRequest(login.name))
             dispatch(setAuthToken(res.data?.authToken ?? ""));

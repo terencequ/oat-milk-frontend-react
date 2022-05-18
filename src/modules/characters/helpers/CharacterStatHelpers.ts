@@ -1,6 +1,5 @@
 import {
     CharacterAttributeRequest,
-    CharacterAttributeResponse,
     CharacterLevelResponse
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import {parseInt} from "lodash";

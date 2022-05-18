@@ -1,12 +1,12 @@
-import React, {ChangeEvent, FC, useCallback, useEffect, useState} from "react";
+import React, {FC, useCallback, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../redux/hooks";
 import {
     getEditCharacterFormError,
     setCurrentEditCharacter,
     setCurrentEditCharacterFormError
 } from "../../../../../../redux/slices/characterSlice";
-import {Button, Dialog, DialogActions, DialogContent, FormControl, TextField, Typography} from "@mui/material";
-import {isWhitespaceOnly, limitString} from "../../../../helpers/TextHelpers";
+import {Button, Dialog, DialogActions, DialogContent, Typography} from "@mui/material";
+import {isWhitespaceOnly} from "../../../../helpers/TextHelpers";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../core/styles/GlobalStyles";
 import {

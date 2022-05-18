@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import styled from "@emotion/styled";
 import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import {StyledAttribute} from "../../CharacterStatsStyles";
@@ -8,7 +8,6 @@ import {Delete, RadioButtonChecked, RadioButtonUnchecked} from "@mui/icons-mater
 import deathSaveFailuresIcon from "../../../../../../../assets/images/icons/deathsavefailures.png";
 import {useAppDispatch, useAppSelector} from "../../../../../../../redux/hooks";
 import {setCurrentEditCharacter} from "../../../../../../../redux/slices/characterSlice";
-import restoreIcon from "../../../../../../../assets/images/windowbar/restore.png";
 
 const StyledDeathSavesAndFailures = styled.div`
   display: grid;

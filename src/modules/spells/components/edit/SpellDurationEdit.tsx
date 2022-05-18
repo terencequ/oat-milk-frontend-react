@@ -1,8 +1,6 @@
 import {ChangeEvent, FC} from "react";
 import {
-  Checkbox,
-  FormControl, FormControlLabel,
-  InputLabel,
+  FormControl, InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -10,8 +8,6 @@ import {
   Typography
 } from "@mui/material";
 import {
-  SpellCastingTimeRequest,
-  SpellCastingTimeType,
   SpellDurationRequest, SpellDurationType
 } from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import _ from "lodash";

@@ -6,7 +6,6 @@ import {themeSpacing} from "../../../../../../core/styles/GlobalStyles";
 import deathSaveFailuresIcon from 'assets/images/icons/deathsavefailures.png';
 import deathSaveSuccessesIcon from 'assets/images/icons/deathsavesuccesses.png';
 import {StyledAttribute} from "../../CharacterStatsStyles";
-import {useAppSelector} from "../../../../../../../redux/hooks";
 
 const StyledDeathSavesAndFailures = styled.div`
   display: grid;

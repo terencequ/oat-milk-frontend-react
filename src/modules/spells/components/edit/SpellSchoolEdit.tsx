@@ -1,7 +1,7 @@
-import {ChangeEvent, FC} from "react";
-import {SpellRangeEffectType, SpellRangeRequest, SpellSchool} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
+import {FC} from "react";
+import {SpellSchool} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import styled from "@emotion/styled";
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography} from "@mui/material";
 import _ from "lodash";
 import {themeSpacing} from "../../../core/styles/GlobalStyles";
 
