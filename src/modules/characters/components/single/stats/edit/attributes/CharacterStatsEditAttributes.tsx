@@ -15,10 +15,11 @@ import armorClassIcon from "../../../../../../../assets/images/icons/armorclass.
 import hitDiceIcon from "../../../../../../../assets/images/icons/hitdice.png";
 import {StyledAttributes} from "../../CharacterStatsStyles";
 import {useAppSelector} from "../../../../../../../redux/hooks";
-import {CharacterAttributeResponse} from "@oatmilk/oat-milk-backend-typescript-axios-sdk";
 import CharacterStatsEditAttribute from "./CharacterStatsEditAttribute";
 import CharacterStatsViewAttributeCustom from "../../view/attributes/CharacterStatsViewAttributeCustom";
 import CharacterStatsEditAttributeDeathSaves from "./CharacterStatsEditAttributeDeathSaves";
+import {getAttributeById, getCharacterAttributesAsDictionary} from "../../../../../helpers/CharacterNavigationHelpers";
+import CharacterStatsEditHitDice from "./CharacterStatsEditHitDice";
 
 const CharacterStatsEditAttributes: FC = () => {
     const character = useAppSelector(state => state.characters.currentEditCharacter);
@@ -27,22 +28,16 @@ const CharacterStatsEditAttributes: FC = () => {
         return <></>
     }
 
-    const attributesDictionary: { [id: string]: CharacterAttributeResponse }
-        = character.attributes?.reduce((a, x) => ({...a, [x.id]: x}), {}) ?? {}; // Convert to dictionary for performance
+    const attributesDictionary = getCharacterAttributesAsDictionary(character); // Convert to dictionary for performance
 
-    function getAttributeById(id: string): CharacterAttributeResponse {
-        return attributesDictionary[id]
-            ?? {id: id, name: "N/A", currentValue: 0, defaultValue: 0};
-    }
-
-    const speedAttribute = getAttributeById("speed");
-    const hitPointsAttribute = getAttributeById("hitPoints");
-    const armorClassAttribute = getAttributeById("armorClass");
-    const deathSaveSuccessesAttribute = getAttributeById("deathSaveSuccesses");
-    const deathSaveFailuresAttribute = getAttributeById("deathSaveFailures");
+    const speedAttribute = getAttributeById("speed", attributesDictionary);
+    const hitPointsAttribute = getAttributeById("hitPoints", attributesDictionary);
+    const armorClassAttribute = getAttributeById("armorClass", attributesDictionary);
+    const deathSaveSuccessesAttribute = getAttributeById("deathSaveSuccesses", attributesDictionary);
+    const deathSaveFailuresAttribute = getAttributeById("deathSaveFailures", attributesDictionary);
 
     const passivePerception = 10 + getModifier(character.abilityScores?.find(as => as.id === "wisdom")?.value ?? 10);
-    const proficiencyBonus = getProficiencyBonus(getProficiencyBonus(getLevel(getAttributeById("experience").currentValue ?? 0) ?? 0));
+    const proficiencyBonus = getProficiencyBonus(getProficiencyBonus(getLevel(getAttributeById("experience", attributesDictionary).currentValue ?? 0) ?? 0));
     const initiative = getModifier(character.abilityScores?.find(as => as.id === "dexterity")?.value ?? 10);
 
     return <StyledAttributes>
@@ -52,7 +47,7 @@ const CharacterStatsEditAttributes: FC = () => {
         <CharacterStatsViewAttributeCustom iconSrc={passivePerceptionIcon} title={"Passive perception"} value={passivePerception.toString()}/>
         <CharacterStatsViewAttributeCustom iconSrc={proficiencyBonusIcon} title={"Proficiency bonus"} value={getModifierAsString(proficiencyBonus)}/>
         <CharacterStatsEditAttribute iconSrc={armorClassIcon} attribute={armorClassAttribute} maxValue={99} minValue={0}/>
-        <CharacterStatsViewAttributeCustom iconSrc={hitDiceIcon} columnWidth={2} title={"Hit dice"} value={getHitDiceAsString(character.attributes, false)} toolTip={"Max: "+getHitDiceAsString(character.attributes, true)}/>
+        <CharacterStatsEditHitDice/>
         <CharacterStatsEditAttributeDeathSaves deathSaveSuccesses={deathSaveSuccessesAttribute.currentValue} deathSaveFailures={deathSaveFailuresAttribute.currentValue}/>
     </StyledAttributes>
 }
